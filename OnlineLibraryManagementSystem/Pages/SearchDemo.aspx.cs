@@ -33,6 +33,7 @@ public partial class Pages_SearchDemo : BasePage
         // 输入过滤，未完成
         if (tbSearch.Text.ToString().Length == 0)
         {
+            Response.Redirect("~/Pages/SearchDemo.aspx");
             return;
         }
 
@@ -180,12 +181,15 @@ public partial class Pages_SearchDemo : BasePage
         dtResult = search1Result.Copy();
         String[] notices = { "No announcement", "No announcement", "No announcement", "", "" };
         String[] titles = { "", "", "", "", "" };
+        String[] dates = { "", "", "", "", "" };
         int i = 0;
         int j = 0;
+        int m = 0;
         foreach (DataRow dr in dtResult.Rows)
         {
             titles[i++] = dr["Title"].ToString();
             notices[j++] = dr["Details"].ToString();
+            dates[m++]= Convert.ToDateTime(dr["Timestamp"]).ToString("yyyy-MM-dd");
         }
         title1.Text = titles[0].ToString();
         title2.Text = titles[1].ToString();
@@ -193,6 +197,9 @@ public partial class Pages_SearchDemo : BasePage
         notice1.Text = notices[0].ToString();
         notice2.Text = notices[1].ToString();
         notice3.Text = notices[2].ToString();
+        date1.Text ="Date:" + dates[0].ToString();
+        date2.Text ="Date:" + dates[1].ToString();
+        date3.Text ="Date:" + dates[2].ToString();
 
     }
 

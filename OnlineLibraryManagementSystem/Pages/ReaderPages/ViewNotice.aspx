@@ -3,7 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="../../assets/vendors/daterangepicker/styles/vendor.css" rel="stylesheet" />
     <link href="../../assets/vendors/daterangepicker/styles/daterangepicker.css" rel="stylesheet" />
-    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="body" Runat="Server">
     <div class="card">

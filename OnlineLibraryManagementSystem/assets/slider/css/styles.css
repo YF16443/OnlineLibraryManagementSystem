@@ -2,11 +2,11 @@
 
 ul {
     margin: 0;
-    padding: 0 0 20px 30px;
+    padding: 0px;
 }
 
 .container {
-    max-width: 750px;
+    max-width: 1800px;
     overflow: hidden;
     padding: 20px;
 }
@@ -29,49 +29,55 @@ ul {
     }
 
     .first a {
-        font-family: 'Open Sans Condensed', sans-serif;
-        font-size: 50px;
-        top: 50px;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 44px;
+        top: 25px;
         left: 50%;
         width: 400px;
         text-align: center;
         margin-left: -200px;
         word-break: break-all;
+        font-weight: 500;
+        line-height: 1.1;
     }
 
     .first div {
-        font-family: 'Open Sans Condensed', sans-serif;
-        font-size: 35px;
-        top:150px;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 19px;
+        top: 100px;
         left: 50%;
-        width: 400px;
+        width: 800px;
         text-align: center;
-        margin-left: -200px;
+        margin-left: -400px;
         word-break: break-all;
+        color: antiquewhite;
     }
 
 .second {
     background: url("../images/5.jpg") center no-repeat;
 }
     .second a {
-        font-family: 'Open Sans Condensed', sans-serif;
-        font-size: 50px;
-        top: 50px;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 44px;
+        top: 25px;
         left: 50%;
         width: 400px;
         text-align: center;
         margin-left: -200px;
         word-break: break-all;
+        font-weight: 500;
+        line-height: 1.1;
     }
     .second div {
-        font-family: 'Open Sans Condensed', sans-serif;
-        font-size: 35px;
-        top: 150px;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 19px;
+        top: 100px;
         left: 50%;
-        width: 400px;
+        width: 800px;
         text-align: center;
-        margin-left: -200px;
+        margin-left: -400px;
         word-break: break-all;
+        color: antiquewhite;
     }   
     .second img {
         top: 160px;
@@ -82,24 +88,27 @@ ul {
     background: url("../images/5.jpg") center no-repeat;
 }
     .third a {
-        font-family: 'Open Sans Condensed', sans-serif;
-        font-size: 50px;
-        top: 50px;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 44px;
+        top: 25px;
         left: 50%;
         width: 400px;
         text-align: center;
         margin-left: -200px;
         word-break: break-all;
+        font-weight: 500;
+        line-height: 1.1;
     }
     .third div {
-        font-family: 'Open Sans Condensed', sans-serif;
-        font-size: 35px;
-        top: 150px;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 19px;
+        top: 100px;
         left: 50%;
-        width: 400px;
+        width: 800px;
         text-align: center;
-        margin-left: -200px;
+        margin-left: -400px;
         word-break: break-all;
+        color: antiquewhite;
     } 
     .third img {
         top: 100px;

@@ -5093,7 +5093,7 @@ a.dropdown-toggle[aria-expanded="true"] .caret {
   filter: alpha(opacity=100); }
 
 .form-control {
-  background-color: #F3F2EE;
+  background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid #e8e7e3;
   border-radius: 4px;
   color: #364150;
@@ -5229,7 +5229,9 @@ a.dropdown-toggle[aria-expanded="true"] .caret {
 textarea.form-control {
   max-width: 100%;
   padding: 10px 18px;
-  resize: none; }
+  resize: none;
+  background-color: white;
+}
 
 .input-group-focus .input-group-addon {
   background-color: #FFFFFF; }

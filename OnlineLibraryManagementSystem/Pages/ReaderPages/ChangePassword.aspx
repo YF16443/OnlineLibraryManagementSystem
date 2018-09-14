@@ -8,7 +8,7 @@
         <table style="width: 100%;">
             <tr>
                 <td style="width: 45%; text-align: right">
-                    <asp:Label ID="lbOldPassword" runat="server" Text="<%$ Resources:Resource,OldPassword %>"></asp:Label>
+                    <asp:Label ID="lbOldPassword" runat="server" style="font-size:18px; color:black; background-color: rgba(255, 255, 255, 0.5); border:1px solid rgba(255, 255, 255, 0.5); border-radius: 5px;" Text="<%$ Resources:Resource,OldPassword %>"></asp:Label>
                     &nbsp;
                 </td>
                 <td style="width: 20%; text-align: center">
@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td style="width: 45%; text-align: right">
-                    <asp:Label ID="lbNewPassword" runat="server" Text="<%$ Resources:Resource,NewPassword %>"></asp:Label>
+                    <asp:Label ID="lbNewPassword" runat="server" style="font-size:18px; color:black; background-color: rgba(255, 255, 255, 0.5); border:1px solid rgba(255, 255, 255, 0.5); border-radius: 5px;" Text="<%$ Resources:Resource,NewPassword %>"></asp:Label>
                     &nbsp;
                 </td>
                 <td style="width: 20%; text-align: center">
@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <td style="width: 45%; text-align: right">
-                    <asp:Label ID="lbConfirmNewPassword" runat="server" Text="<%$ Resources:Resource,ConfirmNewPassword %>"></asp:Label>
+                    <asp:Label ID="lbConfirmNewPassword" runat="server" style="font-size:18px; color:black; background-color: rgba(255, 255, 255, 0.5); border:1px solid rgba(255, 255, 255, 0.5); border-radius: 5px;" Text="<%$ Resources:Resource,ConfirmNewPassword %>"></asp:Label>
                     &nbsp;
                 </td>
                 <td style="width: 20%; text-align: center">

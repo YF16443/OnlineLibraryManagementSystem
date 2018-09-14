@@ -10,9 +10,10 @@
 	margin:0;
 }
 .edslider > ul{
-	background:#fff;
+	/* background:#fff; */
 	display:block;
 	overflow:hidden;
+    margin: 0px 120px;
 }
 .edslider > ul li{
 	display:none;
@@ -48,16 +49,18 @@
 	height:50px;
 	position: absolute;
 	overflow: hidden;
-	top: 225px;
+	/* top: 225px; */
 	transition: background .2s;
 }
 .edslider .controls .next{
 	background-position:0 0;
 	right: 0;
+    margin-top: 60px;
 }
 .edslider .controls .prev{
 	background-position:0 -50px;
 	left: 0;
+    margin-top: 60px;
 }
 .edslider .controls .next:hover,
 .edslider .controls .prev:hover{
@@ -66,7 +69,7 @@
 .edslider .controls .paginator{
 	position: relative;
 	text-align: center;
-	top: 470px;
+	top: 270px;
 }
 .edslider .controls .paginator li{
 	background:rgba(0,0,0,.7);
@@ -89,4 +92,5 @@
 	top: 0;
 	height:3px;
 	z-index:2;
+    height: 0px;
 }

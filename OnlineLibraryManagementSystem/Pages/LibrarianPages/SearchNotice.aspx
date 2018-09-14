@@ -29,7 +29,7 @@
                         <asp:BoundField HeaderText="<%$ Resources:Resource, NoticeId %>" DataField="NoticeId" ReadOnly="true"  />
                         <asp:TemplateField HeaderText="<%$ Resources:Resource, Title %>" HeaderStyle-CssClass="text-primary">
                             <EditItemTemplate>
-                                <asp:TextBox ID="ttName" runat="server" Text='<%# Eval("Title") %>' MaxLength="150"></asp:TextBox>
+                                <asp:TextBox ID="ttName" runat="server" Text='<%# Eval("Title") %>' MaxLength="50"></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="llName" runat="server" Text='<%# Eval("Title") %>'></asp:Label>
@@ -37,7 +37,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="<%$ Resources:Resource, Notice %>" HeaderStyle-CssClass="text-primary">
                             <EditItemTemplate>
-                                <asp:TextBox ID="txtName" runat="server" Text='<%# Eval("Details") %>' MaxLength="150"></asp:TextBox>
+                                <asp:TextBox ID="txtName" runat="server" Text='<%# Eval("Details") %>' MaxLength="100"></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="lblName" runat="server" Text='<%# Eval("Details") %>'></asp:Label>
@@ -71,7 +71,7 @@
             "lengthChange": false,
             "order": [[0, 'asc']],
             columnDefs: [{
-                'targets': [3],
+                'targets': [4,5],
                 'orderable': false
             }]
         });

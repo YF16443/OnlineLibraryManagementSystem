@@ -32,7 +32,7 @@
              <fieldset>
 	                <div class="form-group">
 	                   <label class="col-sm-1 control-label"><asp:label ID="lbTitle" runat="server" text="<%$ Resources:Resource,Title %>"></asp:label></label>
-	                   <div class="col-sm-11">
+	                   <div class="col-sm-10">
                           <asp:textbox ID="tbTitle" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
 	                    </div>
 	                 </div>
@@ -41,7 +41,7 @@
              <fieldset>
 	                <div class="form-group">
 	                   <label class="col-sm-1 control-label"><asp:label ID="lbCountry" runat="server" text="<%$ Resources:Resource,Country %>"></asp:label></label>
-	                   <div class="col-sm-11">
+	                   <div class="col-sm-10">
                             <asp:textbox ID="tbCountry" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
 	                    </div>
 	                 </div>
@@ -62,7 +62,7 @@
              <fieldset>
 	                <div class="form-group">
 	                   <label class="col-sm-1 control-label"><asp:label ID="lbISSN" runat="server" text="ISSN"></asp:label></label>
-	                   <div class="col-sm-11">
+	                   <div class="col-sm-10">
                             <asp:textbox ID="tbISSN" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
 	                    </div>
 	                 </div>
@@ -71,7 +71,7 @@
              <fieldset>
 	                <div class="form-group">
 	                   <label class="col-sm-1 control-label"><asp:label ID="lbPrice" runat="server" text="<%$ Resources:Resource,Price %>" ></asp:label></label>
-	                   <div class="col-sm-11">
+	                   <div class="col-sm-10">
                            <asp:textbox ID="tbPrice" runat="server" TextMode="Number" Cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
 	                    </div>
 	                 </div>

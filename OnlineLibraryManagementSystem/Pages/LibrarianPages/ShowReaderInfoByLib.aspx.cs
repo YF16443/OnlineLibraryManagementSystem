@@ -303,6 +303,7 @@ public partial class Pages_ShowReaderInfo : BasePage
 
     protected void Delete(object sender, EventArgs e)
     {
+
         string readerId = Request["ReaderId"];
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
@@ -353,7 +354,7 @@ public partial class Pages_ShowReaderInfo : BasePage
             if (result == 1)
             {
                 Response.Write("<script>window.alert(' The removal completed successfully!');</script>");
-                
+                Session["delete"] = "true";
                 Response.Redirect("SearchReader.aspx");
                 return;
             }

@@ -92,9 +92,8 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
 
     protected void Add_Click(object sender, EventArgs e)
     {
-        if(newName.Text.Equals(""))
+        if(!rfvName.IsValid)
         {
-            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.CategoryNameRequire + "');", true);
             GridviewBind();
             return;
         }

@@ -57,6 +57,14 @@
                             </div>
 	                 </div>
 	              </fieldset>
+            <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"><asp:Label ID="LabelCategorytitle" runat="server" Text="<%$ Resources:Resource,Category %>"></asp:Label></label>
+	                   <div class="col-sm-11">
+                             <asp:Label ID="LabelCatogoryinfo" runat="server" Text="" Cssclass="form-control"></asp:Label>
+                            </div>
+	                 </div>
+	              </fieldset>
                   <fieldset>
 	                <div class="form-group">
 	                   <label class="col-sm-1 control-label"><asp:Label ID="Label5" runat="server" Text="ISBN13"></asp:Label></label>

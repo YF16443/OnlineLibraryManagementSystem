@@ -75,7 +75,11 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
     protected void Button1_Click(object sender, EventArgs e)
     {
         if (!rfvAccount.IsValid || !rfvName.IsValid || !rfvPassword.IsValid)
+        {
+            Bind();
             return;
+        }
+            
         string Account = TextBox2.Text.ToString();
         string Password = TextBox3.Text.ToString();
         string Name = TextBox4.Text.ToString();
@@ -93,7 +97,8 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
                 Int64 count = (Int64)reader["num"];
                 if (count > 0)
                 {
-                    Response.Write("<script>window.alert('" + "账户名已存在" + "!');</script>");
+                    ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.AccountExist + "');", true);
+                    Bind();
                     return;
                 }
                 break;
@@ -106,33 +111,12 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
             
             MySqlCommand sqlcom = new MySqlCommand(sql, sqlcon);
             sqlcom.ExecuteNonQuery();
-            MySqlDataAdapter sqlda = new MySqlDataAdapter(sqlstr, sqlcon);
-            DataSet ds = new DataSet();
-            sqlda.Fill(ds);
-            GridView1.DataSource = ds;
-            GridView1.DataBind();
             sqlcon.Close();
+        GridView1.EditIndex = -1;
+        Bind();
 
         
     }
-
-    protected void Button2_Click(object sender, EventArgs e)
-
-    {
-        String name = TextBox1.Text.ToString();
-        sqlcon = new MySqlConnection(strCon);
-        string sqlstr = "select LibrarianId,Account,Password,Name from Librarians where Name like " + "\"%" + name + "%\"";
-        sqlcon.Open();
-        MySqlDataAdapter sqlda = new MySqlDataAdapter(sqlstr, sqlcon);
-        DataSet ds = new DataSet();
-        sqlda.Fill(ds);
-        GridView1.DataSource = ds;
-        GridView1.DataBind();
-        sqlcon.Close();
-    }
-
-
-
 
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {

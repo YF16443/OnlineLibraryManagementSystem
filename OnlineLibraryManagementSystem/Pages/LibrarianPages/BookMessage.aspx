@@ -30,68 +30,76 @@
          <fieldset>
 	                <div class="form-group">
 	                   <label class="col-sm-1 control-label"><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Title %>"></asp:Label></label>
-	                   <div class="col-sm-11">
+	                   <div class="col-sm-10">
                            <asp:TextBox ID="TextBoxtitle" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
 	                    </div>
 	                 </div>
 	              </fieldset>
+            &nbsp
          <fieldset>
 	                <div class="form-group">
 	                   <label class="col-sm-1 control-label"><asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, Author %>"></asp:Label></label>
-	                   <div class="col-sm-11">
+	                   <div class="col-sm-10">
                            <asp:TextBox ID="TextBoxauthor" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
 	                    </div>
 	                 </div>
 	              </fieldset>
+            &nbsp
          <fieldset>
 	                <div class="form-group">
 	                   <label class="col-sm-1 control-label"><asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Pubdate %>"></asp:Label></label>
-	                   <div class="col-sm-11">
+	                   <div class="col-sm-10">
                         <asp:TextBox ID="TextBoxpubdate" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
 	                    </div>
 	                 </div>
 	              </fieldset>
+            &nbsp
          <fieldset>
 	                <div class="form-group">
 	                   <label class="col-sm-1 control-label"><asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Price %>"></asp:Label></label>
-	                   <div class="col-sm-11">
+	                   <div class="col-sm-10">
                            <asp:TextBox ID="TextBoxprice" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
 	                    </div>
 	                 </div>
 	              </fieldset>
+            &nbsp
          <fieldset>
 	                <div class="form-group">
 	                   <label class="col-sm-1 control-label"><asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, ISBN13 %>"></asp:Label></label>
-	                   <div class="col-sm-11">
+	                   <div class="col-sm-10">
                            <asp:TextBox ID="TextBoxisbn13" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
 	                    </div>
 	                 </div>
 	              </fieldset>
+            &nbsp
          <fieldset>
 	                <div class="form-group">
 	                   <label class="col-sm-1 control-label"><asp:Label ID="Label6" runat="server" Text="<%$ Resources:Resource, ISBN10 %>"></asp:Label></label>
-	                   <div class="col-sm-11">
+	                   <div class="col-sm-10">
                            <asp:TextBox ID="TextBoxisbn10" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
 	                    </div>
 	                 </div>
 	              </fieldset>
+            &nbsp
          <fieldset>
 	                <div class="form-group">
 	                   <label class="col-sm-1 control-label"><asp:Label ID="Label12" runat="server" Text="<%$ Resources:Resource, Pages %>"></asp:Label></label>
-	                   <div class="col-sm-11">
+	                   <div class="col-sm-10">
                             <asp:TextBox ID="TextBoxpages" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
 	                    </div>
 	                 </div>
 	              </fieldset>
+            &nbsp
          <fieldset>
 	                <div class="form-group">
 	                   <label class="col-sm-1 control-label"> <asp:Label ID="Label13" runat="server" Text="<%$ Resources:Resource, Publisher %>"></asp:Label></label>
-	                   <div class="col-sm-11">
+	                   <div class="col-sm-10">
 	                    <asp:TextBox ID="TextBoxpublisher" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
                        </div>
 	                 </div>
 	              </fieldset>
-            <fieldset>
+            &nbsp
+            <fieldset style="text-align:center;">
             <asp:Button ID="Alter" runat="server" Text="<%$ Resources:Resource,Alter %>" OnClick="Alter_Click" CssClass="btn btn-fill btn-default"/>        
             </fieldset>
         </div>
@@ -137,8 +145,8 @@
                     </asp:TemplateField>
                  <asp:TemplateField HeaderText="<%$ Resources:Resource, Print_Barcode %>">
                      <ItemTemplate>
-                     <input type=button value="<asp:Literal runat="server" Text="<%$ Resources:Resource, Print%>" />" onclick="doPrint()" Class="btn btn-fill btn-default">
-                  </ItemTemplate>
+                    <asp:Button ID="ButtonPrint" runat="server" Text="<%$ Resources:Resource, Print %>"  OnClick="ButtonPrint_Click" Cssclass="btn btn-fill btn-default" />                    
+                     </ItemTemplate>
                      <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                  </asp:TemplateField>
                 <asp:CommandField ShowEditButton="true"  />
@@ -164,6 +172,20 @@
     <script type="text/javascript">
         var $124 = $;
     </script>
+ <script type="text/javascript">
+        $(document).ready(function(e) {
+            var counter = 0;
+            if (window.history && window.history.pushState) {
+                $(window).on('popstate', function () {
+                    //window.history.pushState('forward', null, '#');
+                    //window.history.forward(1);
+                   // window.location.href = window.location.reload();
+                });
+            }
+            //window.history.pushState('forward', null, '#'); //在IE中必须得有这两行
+            //window.history.forward(1);
+        });
+        </script>
     <script src="../../assets/vendors/jquery.datatables.js"></script> 
 </asp:Content>
 <asp:Content ID="content4" ContentPlaceHolderID="foot" runat="server">
@@ -221,6 +243,6 @@
             window.print();
             var result="<%=deletebind() %>";
            
-        }      
+        }
 </script>
 </asp:Content>
