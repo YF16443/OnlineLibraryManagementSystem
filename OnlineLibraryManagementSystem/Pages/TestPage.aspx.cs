@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class App_WebReferences_MasterPage : BaseMasterPage
+public partial class Pages_TestPage : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
