@@ -15,8 +15,13 @@ public static class BookInfoQuery
     {
         string bookInfo = GetBookInfoJson(ISBN);
 
-        Book book = JsonConvert.DeserializeObject<Book>(bookInfo);
+        if (bookInfo == null)
+        {
+            return null;
+        }
 
+        Book book = JsonConvert.DeserializeObject<Book>(bookInfo);
+        
         return book;
     }
 
@@ -25,7 +30,16 @@ public static class BookInfoQuery
         var request = WebRequest.Create("https://api.douban.com/v2/book/isbn/:" + ISBN) as HttpWebRequest;
         request.Method = "GET";
 
-        var response = request.GetResponse() as HttpWebResponse;
+        HttpWebResponse response;
+        try
+        {
+            response = request.GetResponse() as HttpWebResponse;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+        
         Stream responseStream = response.GetResponseStream();
         var responseReader = new StreamReader(responseStream);
         string bookInfo = responseReader.ReadToEnd();

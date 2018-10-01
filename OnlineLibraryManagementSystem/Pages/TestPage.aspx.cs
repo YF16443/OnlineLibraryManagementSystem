@@ -25,7 +25,14 @@ public partial class Pages_TestPage : BasePage
 
             //Book information query test
             Book book = BookInfoQuery.GetByISBN("9787111128069");
-            lbBookInfo.Text = book.isbn10 + " " + book.image + " " + book.author[0];
+            if (book != null)
+            {
+                lbBookInfo.Text = book.isbn10 + " " + book.image + " " + book.author[0];
+            }
+            else
+            {
+                lbBookInfo.Text = "Book Not Found";
+            }
 
             ViewState["book"] = book;
         }
@@ -36,7 +43,14 @@ public partial class Pages_TestPage : BasePage
         Book book = (Book)ViewState["book"];
 
         //Barcode generation test
-        var barcodeImage = MyBarcodeGenerator.Generate(book.isbn10) as System.Drawing.Image;
-        MyBarcodeGenerator.ShowBarcode(book.isbn13, this.Response);
+        if (book != null)
+        {
+            var barcodeImage = MyBarcodeGenerator.Generate(book.isbn10) as System.Drawing.Image;
+            MyBarcodeGenerator.ShowBarcode(book.isbn13, this.Response);
+        }
+        else
+        {
+            Response.Write("Book Not Found");
+        }
     }
 }
