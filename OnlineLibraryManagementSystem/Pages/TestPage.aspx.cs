@@ -16,11 +16,16 @@ public partial class Pages_TestPage : BasePage
     {
         if (!IsPostBack)
         {
+            //Database connection test
             string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
             MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
 
             OLMSDBConnection.Open();
             OLMSDBConnection.Close();
+
+            //Book information query test
+            Book book = BookInfoQuery.GetByISBN("9787111128069");
+            lbBookInfo.Text = book.isbn10 + " " + book.image + " " + book.author[0];
         }
     }
 }
