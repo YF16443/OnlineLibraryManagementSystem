@@ -6,5 +6,7 @@
     <asp:Label ID="lbTest" runat="server" Text="<%$ Resources:Resource,TestString %>"></asp:Label>
     <br />
     <asp:Label ID="lbBookInfo" runat="server" Text="Book Information Show Failed"></asp:Label>
+    <br />
+    <asp:Button ID="btShowBarcode" runat="server" OnClick="btShowBarcode_Click" Text="Show Barcode" />
 </asp:Content>
 

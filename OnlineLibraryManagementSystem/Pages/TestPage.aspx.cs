@@ -26,6 +26,17 @@ public partial class Pages_TestPage : BasePage
             //Book information query test
             Book book = BookInfoQuery.GetByISBN("9787111128069");
             lbBookInfo.Text = book.isbn10 + " " + book.image + " " + book.author[0];
+
+            ViewState["book"] = book;
         }
+    }
+
+    protected void btShowBarcode_Click(object sender, EventArgs e)
+    {
+        Book book = (Book)ViewState["book"];
+
+        //Barcode generation test
+        var barcodeImage = MyBarcodeGenerator.Generate(book.isbn10) as System.Drawing.Image;
+        MyBarcodeGenerator.ShowBarcode(book.isbn13, this.Response);
     }
 }

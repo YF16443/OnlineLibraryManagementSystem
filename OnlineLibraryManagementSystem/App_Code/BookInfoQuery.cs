@@ -36,6 +36,7 @@ public static class BookInfoQuery
     }
 }
 
+[Serializable]
 public class Book
 {
     public string subtitle { get; set; }               //
