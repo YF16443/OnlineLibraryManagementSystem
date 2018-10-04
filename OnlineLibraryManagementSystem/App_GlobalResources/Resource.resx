@@ -117,8 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="IsDeposit" xml:space="preserve">
+    <value>deposit &amp; 300元押金</value>
+    <comment>读者是否缴纳300元押金</comment>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email @ 邮箱</value>
+    <comment>读者邮箱</comment>
+  </data>
+  <data name="IdNumber" xml:space="preserve">
+    <value>IdNumber &amp; 身份证号</value>
+    <comment>读者身份证号</comment>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name &amp; 姓名</value>
+    <comment>读者名</comment>
+  </data>
+  <data name="ReaderRegister" xml:space="preserve">
+    <value>RearerRegister &amp; 读者注册</value>
+    <comment>读者注册的title</comment>
+  </data>
+  <data name="Telephone" xml:space="preserve">
+    <value>Telephone &amp; 联系电话</value>
+    <comment>读者联系电话</comment>
+  </data>
   <data name="TestString" xml:space="preserve">
     <value>English &amp; 中文</value>
     <comment>多语言测试用字符串</comment>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel &amp; 取消</value>
+    <comment>取消按钮</comment>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register &amp; 注册</value>
+    <comment>注册按钮</comment>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account &amp; 账户名</value>
+    <comment>读者账户名</comment>
+  </data>
+  <data name="BookTitle" xml:space="preserve">
+    <value>BookTitle &amp; 书名</value>
+    <comment>借阅图书的名字</comment>
+  </data>
+  <data name="IssueTime" xml:space="preserve">
+    <value>IssueTime &amp; 借阅时间</value>
+    <comment>借阅图书的日期</comment>
+  </data>
+  <data name="OverDueTime" xml:space="preserve">
+    <value>OverDueTime &amp; 逾期时间</value>
+    <comment>逾期时间 30天之后为逾期</comment>
+  </data>
+  <data name="ReturnTime" xml:space="preserve">
+    <value>ReturnTime &amp; 还书时间</value>
+    <comment>归还图书的日期</comment>
+  </data>
+  <data name="ReaderInfo" xml:space="preserve">
+    <value>ReaderInfo &amp; 读者信息</value>
+    <comment>显示读者信息</comment>
   </data>
 </root>
