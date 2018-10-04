@@ -14,7 +14,7 @@ public partial class Pages_ShowReaderInfo : BasePage
     {
         if (! IsPostBack)
         {
-            string account = Request.QueryString["id"];
+            string account = (string)Session["id"];
             if(account == null)
             {
                 //exception-handler
