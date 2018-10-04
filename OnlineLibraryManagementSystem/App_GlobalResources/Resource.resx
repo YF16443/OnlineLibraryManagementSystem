@@ -177,4 +177,20 @@
     <value>ReaderInfo &amp; 读者信息</value>
     <comment>显示读者信息</comment>
   </data>
+    <data name="Login_Login" xml:space="preserve">
+    <value>Login</value>
+    <comment>登录</comment>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Password </value>
+    <comment>密码</comment>
+  </data>
+  <data name="Login_Remember" xml:space="preserve">
+    <value>RememberMe</value>
+    <comment>下次记住我</comment>
+  </data>
+  <data name="Login_UsrName" xml:space="preserve">
+    <value>UserName </value>
+    <comment>用户名</comment>
+  </data>
 </root>
