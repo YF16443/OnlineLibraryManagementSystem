@@ -42,13 +42,13 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">
-                        <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource,Issue_ISBN %>"></asp:Label>
+                        <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource,Issue_BookID %>"></asp:Label>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <br />
                         &nbsp;
                     </td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox2" runat="server" TextMode="Password"></asp:TextBox>
+                        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                         &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="TextBox2"></asp:RequiredFieldValidator>
                         <br />
                         <br />
@@ -56,9 +56,9 @@
                 </tr>
             </table>
         <div class="style1">
-                <asp:Button ID="Button1" runat="server" Text="<%$ Resources:Resource,Issue_Execute %>" />
+                <asp:Button ID="Button1" runat="server" Text="<%$ Resources:Resource,Issue_Execute %>" OnClick="Button1_Click" />
                 &nbsp;&nbsp;
-            <asp:Button ID="Button2" runat="server" Text="<%$ Resources:Resource,Issue_Scan %>" CausesValidation="False" />
+            <asp:Button ID="Button2" runat="server" Text="<%$ Resources:Resource,Issue_Scan %>" CausesValidation="False" OnClick="Button2_Click" />
         </div>
     </div>
 </asp:Content>

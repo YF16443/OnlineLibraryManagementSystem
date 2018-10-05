@@ -193,13 +193,13 @@
     <value>用户名 </value>
     <comment>用户名</comment>
   </data>
+  <data name="Issue_BookID" xml:space="preserve">
+    <value>图书编号</value>
+    <comment>图书编号</comment>
+  </data>
   <data name="Issue_Execute" xml:space="preserve">
     <value>执行</value>
     <comment>执行</comment>
-  </data>
-  <data name="Issue_ISBN" xml:space="preserve">
-    <value>ISBN</value>
-    <comment>ISBN</comment>
   </data>
   <data name="Issue_Reader" xml:space="preserve">
     <value>借出人</value>
