@@ -12,7 +12,6 @@ public partial class Pages_Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
     }
     protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
     {
@@ -30,6 +29,7 @@ public partial class Pages_Login : System.Web.UI.Page
         conn.Close();
         if (res != null)
         {
+            //使用Session方式保存账户信息
             Session["id"] = Login1.UserName;
             e.Authenticated = true;
         }

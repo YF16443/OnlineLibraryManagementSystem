@@ -89,7 +89,7 @@ public partial class Pages_UserRegistration : BasePage
                 }
             }
             reader.Close();
- 
+
             MySqlCommand cmd = new MySqlCommand(insertReaderSql, OLMSDBConnection);
             cmd.Parameters.AddWithValue("?account", account);
             cmd.Parameters.AddWithValue("?name", name);

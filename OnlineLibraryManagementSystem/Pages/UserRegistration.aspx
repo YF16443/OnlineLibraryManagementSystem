@@ -34,7 +34,7 @@
     <div class="auto-style1">
         <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource,ReaderRegister %>" CssClass="auto-style5"></asp:Label>
         <br /> <br />
-        <table class ="style1">
+        <table class ="style1" dir="ltr">
             <tr>
                 <td class="auto-style2">
                     <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, Name %>"></asp:Label>
