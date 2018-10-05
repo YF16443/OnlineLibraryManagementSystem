@@ -177,7 +177,7 @@
     <value>ReaderInfo &amp; 读者信息</value>
     <comment>显示读者信息</comment>
   </data>
-    <data name="Login_Login" xml:space="preserve">
+  <data name="Login_Login" xml:space="preserve">
     <value>Login</value>
     <comment>登录</comment>
   </data>
@@ -192,5 +192,25 @@
   <data name="Login_UsrName" xml:space="preserve">
     <value>UserName </value>
     <comment>用户名</comment>
+  </data>
+  <data name="Issue_Execute" xml:space="preserve">
+    <value>Execute</value>
+    <comment>执行</comment>
+  </data>
+  <data name="Issue_ISBN" xml:space="preserve">
+    <value>ISBN</value>
+    <comment>ISBN</comment>
+  </data>
+  <data name="Issue_Reader" xml:space="preserve">
+    <value>Reader</value>
+    <comment>借出人</comment>
+  </data>
+  <data name="Issue_Scan" xml:space="preserve">
+    <value>Scan</value>
+    <comment>扫描条形码</comment>
+  </data>
+  <data name="Issue_Title" xml:space="preserve">
+    <value>Issue Books</value>
+    <comment>借出图书</comment>
   </data>
 </root>
