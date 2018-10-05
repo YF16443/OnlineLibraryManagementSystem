@@ -193,4 +193,60 @@
     <value>UserName</value>
     <comment>用户名</comment>
   </data>
+  <data name="Add_Stacks" xml:space="preserve">
+    <value>Add_Stacks</value>
+    <comment>添加书库</comment>
+  </data>
+  <data name="Add_Shelves" xml:space="preserve">
+    <value>Add_Shelves</value>
+    <comment>添加书架</comment>
+  </data>
+  <data name="StackId" xml:space="preserve">
+    <value>StackId</value>
+    <comment>书库ID</comment>
+  </data>
+  <data name="Stack_Summary" xml:space="preserve">
+    <value>Stack_Summary</value>
+    <comment>书库所放书籍摘要</comment>
+  </data>
+  <data name="Stack_Timestamp" xml:space="preserve">
+    <value>Stack_Timestamp</value>
+    <comment>建立书库时间</comment>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>添加</comment>
+  </data>
+  <data name="ShelfId" xml:space="preserve">
+    <value>ShelfId</value>
+    <comment>书架ID</comment>
+  </data>
+  <data name="Shelf_Summary" xml:space="preserve">
+    <value>Shelf_Summary</value>
+    <comment>书架所放书籍摘要</comment>
+  </data>
+  <data name="Shelf_Timestamp" xml:space="preserve">
+    <value>Shelf_Timestamp</value>
+    <comment>建立书架时间</comment>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+    <comment>书库（书架）ID</comment>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+    <comment>查找书库或书架</comment>
+  </data>
+  <data name="Search_Type" xml:space="preserve">
+    <value>Search_Type</value>
+    <comment>查询类型</comment>
+  </data>
+  <data name="Shelf" xml:space="preserve">
+    <value>Shelf</value>
+    <comment>书架</comment>
+  </data>
+  <data name="Stack" xml:space="preserve">
+    <value>Stack</value>
+    <comment>书库</comment>
+  </data>
 </root>
