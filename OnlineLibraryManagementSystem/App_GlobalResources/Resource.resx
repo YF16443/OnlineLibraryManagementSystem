@@ -197,20 +197,24 @@
     <value>BookID</value>
     <comment>图书编号</comment>
   </data>
-  <data name="Issue_Execute" xml:space="preserve">
-    <value>Execute</value>
-    <comment>执行</comment>
+  <data name="Issue_Issue" xml:space="preserve">
+    <value>Issue</value>
+    <comment>借出</comment>
   </data>
   <data name="Issue_Reader" xml:space="preserve">
     <value>Reader</value>
-    <comment>借出人</comment>
+    <comment>读者</comment>
   </data>
   <data name="Issue_Scan" xml:space="preserve">
     <value>Scan</value>
     <comment>扫描条形码</comment>
   </data>
   <data name="Issue_Title" xml:space="preserve">
-    <value>Issue Books</value>
+    <value>Issue &amp; Return Books</value>
     <comment>借出图书</comment>
+  </data>
+  <data name="Issue_Return" xml:space="preserve">
+    <value>Return</value>
+    <comment>借还</comment>
   </data>
 </root>

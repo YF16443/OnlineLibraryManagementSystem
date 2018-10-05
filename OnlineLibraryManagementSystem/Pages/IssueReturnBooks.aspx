@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPage.master" AutoEventWireup="true" CodeFile="IssueBooks.aspx.cs" Inherits="Pages_IssueBooks" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPage.master" AutoEventWireup="true" CodeFile="IssueReturnBooks.aspx.cs" Inherits="Pages_IssueReturnBooks" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
@@ -56,9 +56,11 @@
                 </tr>
             </table>
         <div class="style1">
-                <asp:Button ID="Button1" runat="server" Text="<%$ Resources:Resource,Issue_Execute %>" OnClick="Button1_Click" />
-                &nbsp;&nbsp;
-            <asp:Button ID="Button2" runat="server" Text="<%$ Resources:Resource,Issue_Scan %>" CausesValidation="False" OnClick="Button2_Click" />
+            <asp:Button ID="Button1" runat="server" Text="<%$ Resources:Resource,Issue_Issue %>" OnClick="Button1_Click" />
+            &nbsp;&nbsp;
+            <asp:Button ID="Button3" runat="server" Text="<%$ Resources:Resource,Issue_Return %>" OnClick="Button2_Click" />
+            &nbsp;&nbsp;
+            <asp:Button ID="Button2" runat="server" Text="<%$ Resources:Resource,Issue_Scan %>" CausesValidation="False" OnClick="Button3_Click" />
         </div>
     </div>
 </asp:Content>
