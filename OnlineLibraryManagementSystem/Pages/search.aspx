@@ -51,7 +51,7 @@
                 <td class="auto-style2" colspan="1" dir="ltr">
                     图书名称</td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBookName" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBookName" value="数据库导论" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -84,7 +84,7 @@
     
         <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
             <ItemTemplate>
-                <%#Eval("Title") %>
+                <%#Eval("Title") %> <a href="<%#Eval("href") %>">查看详情</a>
             </ItemTemplate>
         </asp:Repeater>
     

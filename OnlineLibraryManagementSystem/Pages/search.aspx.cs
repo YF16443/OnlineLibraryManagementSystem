@@ -40,7 +40,7 @@ public partial class Pages_search : BasePage
         else
         {
             bookname = TextBookName.Text;
-            exp = "select Title from Books where Title = " +"\""+ bookname + "\"";            
+            exp = "select Title, BookId from Books where Title like " + "\"%"+ bookname + "%\"";            
             System.Diagnostics.Debug.WriteLine(bookname);
         }
 
@@ -120,6 +120,7 @@ public partial class Pages_search : BasePage
                     Books book = new Books();
                     book.Title = (string)reader["Title"];
                     books_list.Add(book);
+                    book.href = "/Pages/bookMessage.aspx?book_id=" + reader["BookId"].ToString();
                 }
             }
             Repeater1.DataSource = books_list;
@@ -159,5 +160,6 @@ public partial class Pages_search : BasePage
 public class Books
 {
     public string Title { get; set; }
+    public string href { get; set; }
 }
 
