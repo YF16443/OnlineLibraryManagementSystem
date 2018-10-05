@@ -14,6 +14,7 @@ public partial class Pages_TestPage : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        Console.WriteLine("a");
         if (!IsPostBack)
         {
             //Database connection test
