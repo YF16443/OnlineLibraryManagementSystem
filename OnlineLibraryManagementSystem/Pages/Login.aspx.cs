@@ -30,6 +30,7 @@ public partial class Pages_Login : System.Web.UI.Page
         conn.Close();
         if (res != null)
         {
+            //使用Session方式保存账户信息
             Session["id"] = Login1.UserName;
             e.Authenticated = true;
         }

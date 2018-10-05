@@ -14,6 +14,7 @@ public partial class Pages_ShowReaderInfo : BasePage
     {
         if (! IsPostBack)
         {
+            //注意这里改成了通过Session获取
             string account = (string)Session["id"];
             if(account == null)
             {
