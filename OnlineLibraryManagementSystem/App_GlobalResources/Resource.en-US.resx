@@ -249,4 +249,28 @@
     <value>Stack</value>
     <comment>书库</comment>
   </data>
+  <data name="Issue_BookID" xml:space="preserve">
+    <value>BookID</value>
+    <comment>图书编号</comment>
+  </data>
+  <data name="Issue_Issue" xml:space="preserve">
+    <value>Issue</value>
+    <comment>借出</comment>
+  </data>
+  <data name="Issue_Reader" xml:space="preserve">
+    <value>Reader</value>
+    <comment>读者</comment>
+  </data>
+  <data name="Issue_Return" xml:space="preserve">
+    <value>Return</value>
+    <comment>借还</comment>
+  </data>
+  <data name="Issue_Scan" xml:space="preserve">
+    <value>Scan</value>
+    <comment>扫描条形码</comment>
+  </data>
+  <data name="Issue_Title" xml:space="preserve">
+    <value>Issue &amp; Return Books</value>
+    <comment>借出图书</comment>
+  </data>
 </root>
