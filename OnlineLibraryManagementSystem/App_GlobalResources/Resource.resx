@@ -503,4 +503,24 @@
         FAqFgZKhQqFQGCgZKhQKhYGSoUKhUBgoGSoUCoWI/D9w2DwbKyC4CQAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="Book" xml:space="preserve">
+    <value>Book&amp;图书</value>
+    <comment>图书</comment>
+  </data>
+  <data name="Check" xml:space="preserve">
+    <value>Check&amp;查看详情</value>
+    <comment>查看详情</comment>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>News&amp;报纸</value>
+    <comment>报纸</comment>
+  </data>
+  <data name="Periodical" xml:space="preserve">
+    <value>Periodical&amp;期刊</value>
+    <comment>期刊</comment>
+  </data>
+  <data name="BookPeriodicalNews" xml:space="preserve">
+    <value>BookPeriodicalNews&amp;图书期刊报纸</value>
+    <comment>图书期刊报纸</comment>
+  </data>
 </root>

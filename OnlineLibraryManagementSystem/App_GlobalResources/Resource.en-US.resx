@@ -273,4 +273,24 @@
     <value>Issue &amp; Return Books</value>
     <comment>借出图书</comment>
   </data>
+  <data name="Book" xml:space="preserve">
+    <value>Book</value>
+    <comment>图书</comment>
+  </data>
+  <data name="Check" xml:space="preserve">
+    <value>Check</value>
+    <comment>查看详情</comment>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>News</value>
+    <comment>报纸</comment>
+  </data>
+  <data name="Periodical" xml:space="preserve">
+    <value>Periodical</value>
+    <comment>期刊</comment>
+  </data>
+  <data name="BookPeriodicalNews" xml:space="preserve">
+    <value>BookPeriodicalNews</value>
+    <comment>图书期刊报纸</comment>
+  </data>
 </root>
