@@ -47,11 +47,21 @@
     </div>
 
     <table class ="style1" dir="ltr">
-            <tr>
+
+        <tr>
+                <td class="auto-style2">
+                    <asp:TextBox ID="TextSearch" runat="server"></asp:TextBox>
+                </td>
+                <td class="auto-style4">
+                    <asp:Button ID="Button2" runat="server" Text="查询" BorderColor="Black" ForeColor="Black" Height="40px" Width="100px" OnClick="Search" />
+                </td>
+        </tr>
+
+<%--            <tr>
                 <td class="auto-style2" colspan="1" dir="ltr">
                     图书名称</td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBookName" value="数据库导论" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBookName" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -74,11 +84,11 @@
                 <td class="auto-style4">
                     <asp:TextBox ID="TextBookDate" runat="server"></asp:TextBox>
                 </td>
-            </tr>
+            </tr>--%>
         </table>
-    <div class="style1">
+<%--    <div class="style1">
     <asp:Button ID="Button1" runat="server" Text="查询" BorderColor="Black" ForeColor="Black" Height="40px" Width="100px" OnClick="Search" />
-    </div>
+    </div>--%>
 
     <div class="style1">
     

@@ -23,35 +23,38 @@ public partial class Pages_search : BasePage
 
     protected void Search(object sender, EventArgs e)
     {
-        string bookname, booknum, bookaur, bookdate, exp;
-        booknum = TextBookNum.Text;
-        bookaur = TextBookAur.Text;
-        bookdate = TextBookDate.Text;
-        string[] a = { "BookId","Author","PubDate"};
-        string[] b = { booknum, bookaur, bookdate };
+        string search;
+        search = TextSearch.Text;
+
+        //string bookname, booknum, bookaur, bookdate, exp;
+        //booknum = TextBookNum.Text;
+        //bookaur = TextBookAur.Text;
+        //bookdate = TextBookDate.Text;
+        //string[] a = { "BookId","Author","PubDate"};
+        //string[] b = { booknum, bookaur, bookdate };
         
 
-        if (TextBookName.Text == "")
-        {
-            Response.Write("<script>window.alert('图书名不能为空!');</script>");
-            System.Diagnostics.Debug.WriteLine("a");
-            return;
-        }
-        else
-        {
-            bookname = TextBookName.Text;
-            exp = "select Title, BookId from Books where Title like " + "\"%"+ bookname + "%\"";            
-            System.Diagnostics.Debug.WriteLine(bookname);
-        }
+        //if (TextBookName.Text == "")
+        //{
+        //    Response.Write("<script>window.alert('图书名不能为空!');</script>");
+        //    System.Diagnostics.Debug.WriteLine("a");
+        //    return;
+        //}
+        //else
+        //{
+        //    bookname = TextBookName.Text;
+        //    exp = "select Title, BookId from Books where Title like " + "\"%"+ bookname + "%\"";            
+        //    System.Diagnostics.Debug.WriteLine(bookname);
+        //}
 
-        for(int i = 0; i == 3; i++)
-        {
-            if (a[i] != null)
-            {
-                exp = exp + " and " + a[i] + " = \"" + b[i] + "\"";
-            }
-            else continue;
-        }
+        //for(int i = 0; i == 3; i++)
+        //{
+        //    if (a[i] != null)
+        //    {
+        //        exp = exp + " and " + a[i] + " = \"" + b[i] + "\"";
+        //    }
+        //    else continue;
+        //}
         //if (TextBookNum.Text == "")
         //{
         //    System.Diagnostics.Debug.WriteLine("booknum is ok");
@@ -96,8 +99,11 @@ public partial class Pages_search : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         System.Diagnostics.Debug.WriteLine("database is ok");
-        string booknamesql = exp + ";";
-
+        //string booknamesql = exp + ";";
+        string booknamesql = "select * from Books where Title like " + "\"%" + search + "%\""
+                                           + " or " + "Author like " + "\"%" + search + "%\""
+                                           + " or " + "ISBN13 like " + "\"%" + search + "%\""
+                                           + " or " + "ISBN10 like " + "\"%" + search + "%\"";
 
         System.Diagnostics.Debug.WriteLine(booknamesql);
 
