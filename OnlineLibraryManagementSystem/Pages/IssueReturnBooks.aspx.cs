@@ -53,10 +53,8 @@ public partial class Pages_IssueReturnBooks : System.Web.UI.Page
             OLMSDBConnection.Open();
             DateTime time_now = DateTime.Now;
             string now_time = time_now.ToString("yyyy-MM-dd HH:mm:ss");
-            //默认归还日期为1月后
-            string return_time = time_now.AddMonths(1).ToString("yyyy-MM-dd HH:mm:ss");
-            string insertIssueSql = "INSERT INTO `IssueRecords` (`ReaderId`, `BookBarcode`, `IssueTime`, `ReturnTime`) VALUES('"
-                + readerID + "', '" + BarcodeID + "', '" + now_time + "', '" + return_time + "');";
+            string insertIssueSql = "INSERT INTO `IssueRecords` (`ReaderId`, `BookBarcode`, `IssueTime`) VALUES('"
+                + readerID + "', '" + BarcodeID + "', '" + now_time + "');";
             MySqlCommand cmd2 = new MySqlCommand(insertIssueSql, OLMSDBConnection);
             cmd2.ExecuteReader();
             Response.Write("<script>alert('OK')</script>");

@@ -249,8 +249,28 @@
     <value>Stack &amp; 书库</value>
     <comment>书库</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="headIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>headIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Issue_BookID" xml:space="preserve">
+    <value>BookID</value>
+    <comment>图书编号</comment>
+  </data>
+  <data name="Issue_Issue" xml:space="preserve">
+    <value>Issue</value>
+    <comment>借出</comment>
+  </data>
+  <data name="Issue_Reader" xml:space="preserve">
+    <value>Reader</value>
+    <comment>读者</comment>
+  </data>
+  <data name="Issue_Return" xml:space="preserve">
+    <value>Return</value>
+    <comment>借还</comment>
+  </data>
+  <data name="Issue_Scan" xml:space="preserve">
+    <value>Scan</value>
+    <comment>扫描条形码</comment>
+  </data>
+  <data name="Issue_Title" xml:space="preserve">
+    <value>Issue &amp; Return Books</value>
+    <comment>借出图书</comment>
   </data>
 </root>
