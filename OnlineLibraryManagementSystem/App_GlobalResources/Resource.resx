@@ -249,4 +249,8 @@
     <value>Stack &amp; 书库</value>
     <comment>书库</comment>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="headIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>headIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
