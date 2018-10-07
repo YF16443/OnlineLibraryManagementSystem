@@ -6,20 +6,23 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Bibliosoft</title>
-    <link rel="icon" href="/<%$ Resources:Resource,headIcon %>" type="image/x-ico"/>
+    <link rel="icon" href="../Images/headicon.ico" type="image/x-ico"/>
     <asp:ContentPlaceHolder id="head" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form" runat="server">
         <div>
             <asp:ImageButton ID="ibLogo" runat="server" ImageUrl="~/Images/logo.png" PostBackUrl="~/Pages/search.aspx" Height="15%" Width="15%"/>
-            &nbsp;<asp:HyperLink ID="HyperLink1" runat="server">HyperLink</asp:HyperLink>
-            &nbsp;<asp:HyperLink ID="HyperLink2" runat="server">HyperLink</asp:HyperLink>
-            &nbsp;<asp:HyperLink ID="HyperLink3" runat="server">HyperLink</asp:HyperLink>
-            &nbsp;<asp:HyperLink ID="HyperLink4" runat="server">HyperLink</asp:HyperLink>
-            &nbsp;<asp:HyperLink ID="HyperLink5" runat="server">HyperLink</asp:HyperLink>
-            &nbsp;<asp:HyperLink ID="HyperLink6" runat="server">HyperLink</asp:HyperLink>
-            &nbsp;<asp:HyperLink ID="HyperLink7" runat="server">HyperLink</asp:HyperLink>
+            &nbsp;<asp:HyperLink ID="hlSearch" runat="server" NavigateUrl="~/Pages/search.aspx">搜索</asp:HyperLink>
+            &nbsp;<asp:HyperLink ID="hlIssueReturn" runat="server" NavigateUrl="~/Pages/IssueReturnBooks.aspx">借还书</asp:HyperLink>
+            &nbsp;<asp:HyperLink ID="hlLogin" runat="server" NavigateUrl="~/Pages/Login.aspx">登录</asp:HyperLink>
+            &nbsp;<asp:HyperLink ID="hlReaderResistration" runat="server" NavigateUrl="~/Pages/ReaderRegistration.aspx">读者注册</asp:HyperLink>
+            &nbsp;<asp:HyperLink ID="hlStackShelf" runat="server" NavigateUrl="~/Pages/Search_Stacks_Shelves.aspx">书库管理</asp:HyperLink>
+            &nbsp;<asp:HyperLink ID="hlPersonalInfo" runat="server" NavigateUrl="~/Pages/ShowReaderInfo.aspx">个人信息</asp:HyperLink>
+            &nbsp;<asp:DropDownList ID="DropDownList1" runat="server">
+                <asp:ListItem Value="zh_CN">简体中文</asp:ListItem>
+                <asp:ListItem Value="en-US">English</asp:ListItem>
+            </asp:DropDownList>
         </div>
         <div>
             <asp:ContentPlaceHolder id="body" runat="server"></asp:ContentPlaceHolder>

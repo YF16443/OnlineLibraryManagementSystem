@@ -8,5 +8,6 @@
     <asp:Label ID="lbBookInfo" runat="server" Text="Book Information Show Failed"></asp:Label>
     <br />
     <asp:Button ID="btShowBarcode" runat="server" OnClick="btShowBarcode_Click" Text="Show Barcode" />
+    <br />
 </asp:Content>
 

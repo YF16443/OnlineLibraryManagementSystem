@@ -9,7 +9,7 @@ using System.Configuration;
 using System.Text.RegularExpressions;
 using System.Text;
 
-public partial class Pages_UserRegistration : BasePage
+public partial class Pages_ReaderRegistration : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
