@@ -273,4 +273,32 @@
     <value>借还书界面</value>
     <comment>借还书界面</comment>
   </data>
+  <data name="Book" xml:space="preserve">
+    <value>图书</value>
+    <comment>图书</comment>
+  </data>
+  <data name="Check" xml:space="preserve">
+    <value>查看详情</value>
+    <comment>查看详情</comment>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>报纸</value>
+    <comment>报纸</comment>
+  </data>
+  <data name="Periodical" xml:space="preserve">
+    <value>期刊</value>
+    <comment>期刊</comment>
+  </data>
+  <data name="BookPeriodicalNews" xml:space="preserve">
+    <value>图书期刊报纸</value>
+    <comment>图书期刊报纸</comment>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>默认</value>
+    <comment>默认</comment>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>作者</value>
+    <comment>作者</comment>
+  </data>
 </root>
