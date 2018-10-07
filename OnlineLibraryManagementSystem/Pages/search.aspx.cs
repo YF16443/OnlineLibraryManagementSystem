@@ -66,6 +66,7 @@ public partial class Pages_search : BasePage
                 {
                     Books book = new Books();
                     book.Title = (string)reader["Title"];
+                    book.Author = (string)reader["Author"];
                     books_list.Add(book);
                     book.href = "/Pages/bookMessage.aspx?book_id=" + reader["BookId"].ToString();
                 }
@@ -73,21 +74,6 @@ public partial class Pages_search : BasePage
             Repeater1.DataSource = books_list;
             Repeater1.DataBind();
             reader.Close();
-            //int result = cmd1.ExecuteNonQuery();
-            //if (result == 1)
-            //{
-            //    Response.Write("<script>window.alert('执行成功');</script>");
-            //    //Response.Redirect()
-            //    return;
-            //}
-            //else
-            //{
-            //    Response.Write("<script>window.alert('执行失败');</script>");
-            //    //Response.Redirect()
-            //    return;
-            //}
-
-
         }
         catch (MySqlException ex)
         {
@@ -113,5 +99,6 @@ public class Books
 {
     public string Title { get; set; }
     public string href { get; set; }
+    public string Author { get; set; }
 }
 

@@ -32,6 +32,15 @@ public partial class Pages_bookMessage : System.Web.UI.Page
                     author.Text =  reader["Author"].ToString();
                     pubDate.Text = reader["PubDate"].ToString();
                     price.Text =   reader["Price"].ToString();
+                    isbn13.Text = reader["ISBN13"].ToString();
+                    isbn10.Text = reader["ISBN10"].ToString();
+                    subtitle.Text = reader["SubTitle"].ToString();
+                    origintitle.Text = reader["OriginTitle"].ToString();
+                    binding.Text = reader["Binding"].ToString();
+                    //translater.Text = reader["Translater"].ToString();
+                    catalog.Text = reader["Catalog"].ToString();
+                    pages.Text = reader["Pages"].ToString();
+                    publisher.Text = reader["Publisher"].ToString();
                     break;
                 }
             }

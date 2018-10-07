@@ -51,7 +51,7 @@
         <tr>
                 <td class="auto-style2">
                     <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-                    <asp:Listitem value="0" >默认</asp:Listitem> 
+                    <asp:Listitem value="0">默认</asp:Listitem> 
                     <asp:Listitem value="1">图书</asp:Listitem> 
                     <asp:Listitem value="2">作者</asp:Listitem> 
                     <asp:Listitem value="3">ISSN</asp:Listitem> 
@@ -61,8 +61,7 @@
                     <asp:TextBox ID="TextSearch" runat="server"></asp:TextBox>
                 </td>
                 <td class="auto-style4">
-                    <asp:Button ID="Button2" runat="server" Text="<%$ Resources:Resource, Search %>" BorderColor="Black" ForeColor="Black" Height="40px" Width="100px" OnClick="Search" />
-                    
+                    <asp:Button ID="Button2" runat="server" Text="<%$ Resources:Resource, Search %>" BorderColor="Black" ForeColor="Black" Height="40px" Width="100px" OnClick="Search" />    
                 </td>
         </tr>
 
@@ -103,7 +102,7 @@
     
         <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
             <ItemTemplate>
-                <%#Eval("Title") %> <a href="<%#Eval("href") %>" ><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Check %>"></asp:Label></a>
+                <%#Eval("Title") %> <%#Eval("Author") %><a href="<%#Eval("href") %>" ><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Check %>"></asp:Label></a>
             </ItemTemplate>
         </asp:Repeater>
     
