@@ -51,11 +51,13 @@
         <tr>
                 <td class="auto-style2">
                     <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-                    <asp:Listitem value="0">默认</asp:Listitem> 
+                    <asp:Listitem value="0" >默认</asp:Listitem> 
                     <asp:Listitem value="1">图书</asp:Listitem> 
                     <asp:Listitem value="2">作者</asp:Listitem> 
                     <asp:Listitem value="3">ISSN</asp:Listitem> 
                     </asp:DropDownList>
+                    <%--aspDropDownList以及Select等控件的Listitem的全球化存在问题，因为Listitem标签不允许有text子标签，那么我输入Text="<%$ Resources:Resource, Check %>">时会报错的，
+                    所以应该如何实现？网上没有这种情况， 都是在runat="server"的情况下使用的。--%>
                     <asp:TextBox ID="TextSearch" runat="server"></asp:TextBox>
                 </td>
                 <td class="auto-style4">

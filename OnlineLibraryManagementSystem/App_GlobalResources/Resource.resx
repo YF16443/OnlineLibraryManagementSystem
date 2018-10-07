@@ -523,4 +523,8 @@
     <value>BookPeriodicalNews&amp;图书期刊报纸</value>
     <comment>图书期刊报纸</comment>
   </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default&amp;默认</value>
+    <comment>默认</comment>
+  </data>
 </root>
