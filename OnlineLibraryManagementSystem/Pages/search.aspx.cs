@@ -26,96 +26,37 @@ public partial class Pages_search : BasePage
         string search;
         search = TextSearch.Text;
 
-        //string bookname, booknum, bookaur, bookdate, exp;
-        //booknum = TextBookNum.Text;
-        //bookaur = TextBookAur.Text;
-        //bookdate = TextBookDate.Text;
-        //string[] a = { "BookId","Author","PubDate"};
-        //string[] b = { booknum, bookaur, bookdate };
-        
-
-        //if (TextBookName.Text == "")
-        //{
-        //    Response.Write("<script>window.alert('图书名不能为空!');</script>");
-        //    System.Diagnostics.Debug.WriteLine("a");
-        //    return;
-        //}
-        //else
-        //{
-        //    bookname = TextBookName.Text;
-        //    exp = "select Title, BookId from Books where Title like " + "\"%"+ bookname + "%\"";            
-        //    System.Diagnostics.Debug.WriteLine(bookname);
-        //}
-
-        //for(int i = 0; i == 3; i++)
-        //{
-        //    if (a[i] != null)
-        //    {
-        //        exp = exp + " and " + a[i] + " = \"" + b[i] + "\"";
-        //    }
-        //    else continue;
-        //}
-        //if (TextBookNum.Text == "")
-        //{
-        //    System.Diagnostics.Debug.WriteLine("booknum is ok");
-        //    return;
-        //}
-        //else
-        //{
-        //    booknum = TextBookNum.Text;
-        //    //exp = exp + "and BookId = " + booknum;
-        //    exp = exp + " and BookId = ?booknum" ;
-        //}
-        ////这里没有运行！！！！！！
-
-        //System.Diagnostics.Debug.WriteLine("这里运行了");
-
-        //if (TextBookAur.Text == "")
-        //{
-        //    System.Diagnostics.Debug.WriteLine("bookaur is ok");
-        //    return;
-        //}
-        //else
-        //{
-        //    bookaur = TextBookAur.Text;
-        //    //exp = exp + " and Author = " + bookaur;
-        //    exp = exp + " and Author = ?bookaur";
-        //}
-
-        //if (TextBookDate.Text == "")
-        //{
-        //    System.Diagnostics.Debug.WriteLine("bookdate is ok");
-        //    return;
-            
-        //}
-        //else
-        //{
-        //    bookdate = TextBookDate.Text;
-        //    //exp = exp + " and PubDate = " + bookdate;
-        //    exp = exp + " and PubDate = ?bookdate";
-        //}
-        //System.Diagnostics.Debug.WriteLine("if else");
         //链接数据库
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         System.Diagnostics.Debug.WriteLine("database is ok");
-        //string booknamesql = exp + ";";
-        string booknamesql = "select * from Books where Title like " + "\"%" + search + "%\""
+        String booknamesql="";
+        if (DropDownList1.SelectedValue=="0")
+        {
+            booknamesql = "select * from Books where Title like " + "\"%" + search + "%\""
                                            + " or " + "Author like " + "\"%" + search + "%\""
                                            + " or " + "ISBN13 like " + "\"%" + search + "%\""
                                            + " or " + "ISBN10 like " + "\"%" + search + "%\"";
+        }
+        if (DropDownList1.SelectedValue == "1")
+        {
+            booknamesql = "select * from Books where Title like " + "\"%" + search + "%\"";
+        }
+        if (DropDownList1.SelectedValue == "2")
+        {
+            booknamesql = "select * from Books where Author like " + "\"%" + search + "%\"";
+        }
+        if (DropDownList1.SelectedValue == "3")
+        {
+            booknamesql = "select * from Books where ISSBN13 like " + "\"%" + search + "%\""
+                                          + " or " + "ISBN10 like " + "\"%" + search + "%\"";
+        }
 
-        System.Diagnostics.Debug.WriteLine(booknamesql);
 
         try
         {
             OLMSDBConnection.Open();
 
-            //MySqlCommand cmd1 = new MySqlCommand(booknamesql, OLMSDBConnection);
-            //cmd1.Parameters.AddWithValue("?bookname", bookname);
-            //cmd1.Parameters.AddWithValue("?booknum", booknum);
-            //cmd1.Parameters.AddWithValue("?bookaur", bookaur);
-            //cmd1.Parameters.AddWithValue("?bookdate", bookdate);
             MySqlCommand cmd1 = new MySqlCommand(booknamesql, OLMSDBConnection);
             ArrayList books_list = new ArrayList();
             MySqlDataReader reader = cmd1.ExecuteReader();
@@ -159,6 +100,11 @@ public partial class Pages_search : BasePage
     }
 
     protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+
+    }
+
+    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
 
     }

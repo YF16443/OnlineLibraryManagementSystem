@@ -39,16 +39,23 @@
     </div>
     
     <div class="right">
-    <select id="Select1" dir="ltr" name="D1">
+<%--    <select id="Select1" dir="ltr" name="D1">
+
         <option value="1"><asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, Book %>"></asp:Label></option>
         <option value="2"><asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, BookPeriodicalNews %>"></asp:Label></option>
-    </select>
+    </select>--%>
     </div>
 
     <table class ="style1" dir="ltr">
 
         <tr>
                 <td class="auto-style2">
+                    <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                    <asp:Listitem value="0">默认</asp:Listitem> 
+                    <asp:Listitem value="1">图书</asp:Listitem> 
+                    <asp:Listitem value="2">作者</asp:Listitem> 
+                    <asp:Listitem value="3">ISSN</asp:Listitem> 
+                    </asp:DropDownList>
                     <asp:TextBox ID="TextSearch" runat="server"></asp:TextBox>
                 </td>
                 <td class="auto-style4">
