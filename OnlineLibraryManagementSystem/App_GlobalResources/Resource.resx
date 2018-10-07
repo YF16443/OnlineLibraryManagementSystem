@@ -527,4 +527,8 @@
     <value>Default&amp;默认</value>
     <comment>默认</comment>
   </data>
+  <data name="Author" xml:space="preserve">
+    <value>Author&amp;作者</value>
+    <comment>作者</comment>
+  </data>
 </root>

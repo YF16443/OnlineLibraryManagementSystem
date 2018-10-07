@@ -51,9 +51,9 @@
         <tr>
                 <td class="auto-style2">
                     <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-                    <asp:Listitem value="0">默认</asp:Listitem> 
-                    <asp:Listitem value="1">图书</asp:Listitem> 
-                    <asp:Listitem value="2">作者</asp:Listitem> 
+                    <asp:Listitem value="0" Text="<%$ Resources:Resource, Default %>"></asp:Listitem> 
+                    <asp:Listitem value="1" Text="<%$ Resources:Resource, Book %>"></asp:Listitem> 
+                    <asp:Listitem value="2" Text="<%$ Resources:Resource, Author %>"></asp:Listitem> 
                     <asp:Listitem value="3">ISSN</asp:Listitem> 
                     </asp:DropDownList>
                     <%--aspDropDownList以及Select等控件的Listitem的全球化存在问题，因为Listitem标签不允许有text子标签，那么我输入Text="<%$ Resources:Resource, Check %>">时会报错的，
@@ -105,7 +105,13 @@
                 <%#Eval("Title") %> <%#Eval("Author") %><a href="<%#Eval("href") %>" ><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Check %>"></asp:Label></a>
             </ItemTemplate>
         </asp:Repeater>
+    <div class="style1">
+        <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
     
+        <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
+    
+        <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
+    </div>
     </div>
 
         </asp:Content>

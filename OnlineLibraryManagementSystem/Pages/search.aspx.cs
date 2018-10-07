@@ -30,8 +30,8 @@ public partial class Pages_search : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         System.Diagnostics.Debug.WriteLine("database is ok");
-        String booknamesql="";
-        if (DropDownList1.SelectedValue=="0")
+        String booknamesql = "";
+        if (DropDownList1.SelectedValue == "0")
         {
             booknamesql = "select * from Books where Title like " + "\"%" + search + "%\""
                                            + " or " + "Author like " + "\"%" + search + "%\""
@@ -83,6 +83,37 @@ public partial class Pages_search : BasePage
         {
             OLMSDBConnection.Close();
         }
+        
+        String dividesql = "SELECT Catalog, count(1) as counts FROM OnlineLibraryManagementSystem.Books where Title like " + "\"%" + search + "%\"" + "group by Catalog;";
+        try
+        {
+            
+            OLMSDBConnection.Open();
+            MySqlCommand cmd2 = new MySqlCommand(dividesql, OLMSDBConnection);
+            ArrayList books_list = new ArrayList();
+            MySqlDataReader reader2 = cmd2.ExecuteReader();
+            while (reader2.Read())
+            {
+                if (reader2.HasRows)
+                {
+                    
+                    Label3.Text = reader2["Catalog"].ToString();
+                    Label4.Text = reader2["counts"].ToString();
+                    break;
+                }
+            }
+            Label2.Text = "分类";
+            reader2.Close();
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            OLMSDBConnection.Close();
+        }
+
     }
 
     protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -94,11 +125,12 @@ public partial class Pages_search : BasePage
     {
 
     }
-}
-public class Books
-{
-    public string Title { get; set; }
-    public string href { get; set; }
-    public string Author { get; set; }
+
+    public class Books
+    {
+        public string Title { get; set; }
+        public string href { get; set; }
+        public string Author { get; set; }
+    }
 }
 

@@ -30,7 +30,7 @@ public partial class Pages_bookMessage : System.Web.UI.Page
                 {
                     title.Text =   reader["Title"].ToString();
                     author.Text =  reader["Author"].ToString();
-                    pubDate.Text = reader["PubDate"].ToString();
+                    pubDate.Text = Convert.ToDateTime(reader["PubDate"]).ToString("yyyy-MM-dd");
                     price.Text =   reader["Price"].ToString();
                     isbn13.Text = reader["ISBN13"].ToString();
                     isbn10.Text = reader["ISBN10"].ToString();
