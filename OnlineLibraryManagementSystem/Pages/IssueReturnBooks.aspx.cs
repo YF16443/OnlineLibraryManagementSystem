@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Pages_IssueReturnBooks : System.Web.UI.Page
+public partial class Pages_IssueReturnBooks : BasePage
 {
     static string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
     MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
@@ -16,6 +16,7 @@ public partial class Pages_IssueReturnBooks : System.Web.UI.Page
     {
 
     }
+
     protected string getBarcode(string bookID)
     {
         string BarcodeID = null;
@@ -43,6 +44,7 @@ public partial class Pages_IssueReturnBooks : System.Web.UI.Page
         }
         return BarcodeID;
     }
+
     protected bool isTrueReader(string readerID)
     {
         try
@@ -73,6 +75,7 @@ public partial class Pages_IssueReturnBooks : System.Web.UI.Page
             OLMSDBConnection.Close();
         }
     }
+
     protected void Button1_Click(object sender, EventArgs e)
     {
         string readerID = TextBox1.Text;
@@ -119,6 +122,7 @@ public partial class Pages_IssueReturnBooks : System.Web.UI.Page
             OLMSDBConnection.Close();
         }
     }
+
     protected void Button2_Click(object sender, EventArgs e)
     {
         string readerID = TextBox1.Text;
