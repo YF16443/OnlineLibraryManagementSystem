@@ -151,7 +151,6 @@
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register &amp; 注册</value>
-    <comment>注册按钮</comment>
   </data>
   <data name="Account" xml:space="preserve">
     <value>Account &amp; 账户名</value>
@@ -223,7 +222,6 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search &amp; 搜索</value>
-    <comment>搜索</comment>
   </data>
   <data name="Search_Type" xml:space="preserve">
     <value>Search_Type &amp; 查询类型</value>
@@ -299,7 +297,6 @@
   </data>
   <data name="Author" xml:space="preserve">
     <value>Author&amp;作者</value>
-    <comment>作者</comment>
   </data>
   <data name="AboutUs" xml:space="preserve">
     <value>AboutUs&amp;关于我们</value>
@@ -310,11 +307,32 @@
     <comment>图书借出和归还</comment>
   </data>
   <data name="PersonalInfo" xml:space="preserve">
-    <value>Personal Information &amp; 个人信息</value>
+    <value>My Account &amp; 我的账号</value>
     <comment>读者个人信息</comment>
   </data>
   <data name="StacksManagement" xml:space="preserve">
     <value>Stacks Management &amp; 书库管理</value>
     <comment>书库和书架管理</comment>
+  </data>
+  <data name="BookManagement" xml:space="preserve">
+    <value>Book Management &amp; 图书管理</value>
+    <comment>图书管理</comment>
+  </data>
+  <data name="ReaderManagement" xml:space="preserve">
+    <value>Reader Management &amp; 读者管理</value>
+    <comment>读者管理</comment>
+  </data>
+  <data name="Issue" xml:space="preserve">
+    <value>Issue &amp; 借出</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>Return &amp; 归还</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Sign Out &amp; 退出</value>
+    <comment>退出当前帐号</comment>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title &amp; 标题</value>
   </data>
 </root>

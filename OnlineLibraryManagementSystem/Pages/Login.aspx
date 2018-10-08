@@ -8,6 +8,5 @@
         <asp:Login ID="Login1" runat="server" LoginButtonText="<%$ Resources:Resource,Login_Login %>" PasswordLabelText="<%$ Resources:Resource,Login_Password %>" RememberMeText="<%$ Resources:Resource,Login_Remember %>" TitleText="<%$ Resources:Resource,Login_Login %>" UserNameLabelText="<%$ Resources:Resource,Login_UsrName %>" Width="304px" DestinationPageUrl="~/Pages/ShowReaderInfo.aspx" OnAuthenticate="Login1_Authenticate">
         </asp:Login>
     </div>
-&nbsp;
 
 </asp:Content>
