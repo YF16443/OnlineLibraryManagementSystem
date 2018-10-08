@@ -12,7 +12,7 @@ using MySql.Data;
 using System.Net;
 using System.IO;
 
-public partial class Pages_Addbooks_ISBN : System.Web.UI.Page
+public partial class Pages_Addbooks_ISBN : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
