@@ -1,6 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPage.master" AutoEventWireup="true" CodeFile="ReturnBookDemo.aspx.cs" Inherits="Pages_ReturnBookDemo" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="head" Runat="Server">
+    <style type="text/css">
+        .auto-style1 {
+            width: 37%;
+            height: 29px;
+        }
+        .auto-style2 {
+            width: 26%;
+            height: 29px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="body" ContentPlaceHolderID="body" Runat="Server">
     <div>
@@ -11,13 +21,13 @@
                 </td>
             </tr>
             <tr>
-                <td style="width:37%; text-align:right">
+                <td style="text-align:right" class="auto-style1">
                     <asp:Label ID="lbBarcode" runat="server" Text="<%$ Resources:Resource,Barcode %>"></asp:Label>
                 </td>
-                <td style="width:26%; text-align:center">
-                    <asp:TextBox ID="tbBarcode" runat="server" Width="300px"></asp:TextBox>
+                <td style="text-align:center" class="auto-style2">
+                    <asp:TextBox ID="tbBarcode" runat="server" Width="300px" TextMode="Number"></asp:TextBox>
                 </td>
-                <td style="width:37%">
+                <td class="auto-style1">
                     <asp:RequiredFieldValidator ID="rfvBarcode" runat="server" ControlToValidate="tbBarcode" ErrorMessage="*"></asp:RequiredFieldValidator>
                 </td>
             </tr>

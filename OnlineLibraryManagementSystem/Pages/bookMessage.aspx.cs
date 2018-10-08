@@ -10,7 +10,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
 
-public partial class Pages_bookMessage : System.Web.UI.Page
+public partial class Pages_bookMessage : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
