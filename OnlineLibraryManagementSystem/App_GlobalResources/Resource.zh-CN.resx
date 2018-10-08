@@ -341,4 +341,20 @@
   <data name="ReaderId" xml:space="preserve">
     <value>读者帐号</value>
   </data>
+  <data name="Add_Books" xml:space="preserve">
+    <value>添加图书</value>
+    <comment>添加图书</comment>
+  </data>
+  <data name="ISBN" xml:space="preserve">
+    <value>ISBN</value>
+    <comment>ISBN(ISSN)</comment>
+  </data>
+  <data name="Print_Barcode" xml:space="preserve">
+    <value>打印条形码</value>
+    <comment>打印条形码</comment>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>数量</value>
+    <comment>数量</comment>
+  </data>
 </root>
