@@ -25,8 +25,8 @@
                             <Items>
                                 <asp:MenuItem Text="<%$ Resources:Resource,Search %>" Value="1" NavigateUrl="~/Pages/SearchDemo.aspx"></asp:MenuItem>
                                 <asp:MenuItem Text="<%$ Resources:Resource,BookCirculation %>" Value="2">
-                                    <asp:MenuItem Text="<%$ Resources:Resource,Issue %>" Value="21"></asp:MenuItem>
-                                    <asp:MenuItem Text="<%$ Resources:Resource,Return %>" Value="22"></asp:MenuItem>
+                                    <asp:MenuItem Text="<%$ Resources:Resource,Issue %>" Value="21" NavigateUrl="~/Pages/IssueBookDemo.aspx"></asp:MenuItem>
+                                    <asp:MenuItem Text="<%$ Resources:Resource,Return %>" Value="22" NavigateUrl="~/Pages/ReturnBookDemo.aspx"></asp:MenuItem>
                                 </asp:MenuItem>
                                 <asp:MenuItem Text="<%$ Resources:Resource,BookManagement %>" Value="3"></asp:MenuItem>
                                 <asp:MenuItem Text="<%$ Resources:Resource,StacksManagement %>" Value="4"></asp:MenuItem>
