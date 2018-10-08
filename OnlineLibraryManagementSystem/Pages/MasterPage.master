@@ -23,16 +23,23 @@
                     <td>
                         <asp:Menu ID="MainMenu" runat="server" DisappearAfter="0" Orientation="Horizontal" RenderingMode="List" ViewStateMode="Enabled">
                             <Items>
-                                <asp:MenuItem Text="<%$ Resources:Resource,Search %>" Value="1" NavigateUrl="~/Pages/SearchDemo.aspx"></asp:MenuItem>
-                                <asp:MenuItem Text="<%$ Resources:Resource,BookCirculation %>" Value="2">
-                                    <asp:MenuItem Text="<%$ Resources:Resource,Issue %>" Value="21" NavigateUrl="~/Pages/IssueBookDemo.aspx"></asp:MenuItem>
-                                    <asp:MenuItem Text="<%$ Resources:Resource,Return %>" Value="22" NavigateUrl="~/Pages/ReturnBookDemo.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="<%$ Resources:Resource,Search %>" Value="Search" NavigateUrl="~/Pages/SearchDemo.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="<%$ Resources:Resource,BookCirculation %>" Value="Circulation" Selectable="False">
+                                    <asp:MenuItem Text="<%$ Resources:Resource,Issue %>" Value="Issue" NavigateUrl="~/Pages/IssueBookDemo.aspx"></asp:MenuItem>
+                                    <asp:MenuItem Text="<%$ Resources:Resource,Return %>" Value="Return" NavigateUrl="~/Pages/ReturnBookDemo.aspx"></asp:MenuItem>
                                 </asp:MenuItem>
-                                <asp:MenuItem Text="<%$ Resources:Resource,BookManagement %>" Value="3"></asp:MenuItem>
-                                <asp:MenuItem Text="<%$ Resources:Resource,StacksManagement %>" Value="4"></asp:MenuItem>
-                                <asp:MenuItem Text="<%$ Resources:Resource,ReaderManagement %>" Value="5">
-                                    <asp:MenuItem Text="<%$ Resources:Resource,Register %>" Value="51"></asp:MenuItem>
-                                    <asp:MenuItem Text="<%$ Resources:Resource,Search %>" Value="52"></asp:MenuItem>
+                                <asp:MenuItem Text="<%$ Resources:Resource,BookManagement %>" Value="BookManagement" Selectable="False">
+                                    <asp:MenuItem Text="<%$ Resources:Resource,AddBook %>" Value="AddBook"></asp:MenuItem>
+                                    <asp:MenuItem Text="<%$ Resources:Resource,AddPeriodical %>" Value="AddPeriodical"></asp:MenuItem>
+                                </asp:MenuItem>
+                                <asp:MenuItem Text="<%$ Resources:Resource,StacksManagement %>" Value="StackManagement" Selectable="False">
+                                    <asp:MenuItem Text="<%$ Resources:Resource,Search %>" Value="Search" NavigateUrl="~/Pages/Search_Stacks_Shelves.aspx"></asp:MenuItem>
+                                    <asp:MenuItem Text="<%$ Resources:Resource,AddStack %>" Value="AddStack" NavigateUrl="~/Pages/AddStacks.aspx"></asp:MenuItem>
+                                    <asp:MenuItem Text="<%$ Resources:Resource,AddShelf %>" Value="AddShelf" NavigateUrl="~/Pages/AddShelves.aspx"></asp:MenuItem>
+                                </asp:MenuItem>
+                                <asp:MenuItem Text="<%$ Resources:Resource,ReaderManagement %>" Value="ReaderManagement" Selectable="False">
+                                    <asp:MenuItem Text="<%$ Resources:Resource,Register %>" Value="Register"></asp:MenuItem>
+                                    <asp:MenuItem Text="<%$ Resources:Resource,Search %>" Value="Search"></asp:MenuItem>
                                 </asp:MenuItem>
                             </Items>
                         </asp:Menu>
@@ -40,8 +47,8 @@
                     <td style="width:120px">
                         <asp:Menu ID="AccountMenu" runat="server" Orientation="Horizontal" RenderingMode="List">
                             <Items>
-                                <asp:MenuItem Text="<%$ Resources:Resource,Login_Login %>" Value="1" NavigateUrl="~/Pages/Login.aspx"></asp:MenuItem>
-                                <asp:MenuItem Text="<%$ Resources:Resource,PersonalInfo %>" Value="2" NavigateUrl="~/Pages/ShowReaderInfo.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="<%$ Resources:Resource,Login_Login %>" Value="Login" NavigateUrl="~/Pages/Login.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="<%$ Resources:Resource,PersonalInfo %>" Value="Account" NavigateUrl="~/Pages/ShowReaderInfo.aspx"></asp:MenuItem>
                             </Items>
                         </asp:Menu>
                     </td>

@@ -341,4 +341,16 @@
   <data name="ReaderId" xml:space="preserve">
     <value>Reader Id</value>
   </data>
+  <data name="AddShelf" xml:space="preserve">
+    <value>AddShelf</value>
+  </data>
+  <data name="AddStack" xml:space="preserve">
+    <value>AddStack</value>
+  </data>
+  <data name="AddBook" xml:space="preserve">
+    <value>AddBook</value>
+  </data>
+  <data name="AddPeriodical" xml:space="preserve">
+    <value>AddPeriodical</value>
+  </data>
 </root>

@@ -9,7 +9,7 @@ using System.Configuration;
 using System.Text.RegularExpressions;
 using System.Text;
 
-public partial class Pages_Search_Stacks_Shelves : System.Web.UI.Page
+public partial class Pages_Search_Stacks_Shelves : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {

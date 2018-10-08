@@ -341,4 +341,16 @@
   <data name="ReaderId" xml:space="preserve">
     <value>Reader Id &amp; 读者帐号</value>
   </data>
+  <data name="AddShelf" xml:space="preserve">
+    <value>Add Shelf &amp; 添加书架</value>
+  </data>
+  <data name="AddStack" xml:space="preserve">
+    <value>Add Stack &amp; 添加书库</value>
+  </data>
+  <data name="AddBook" xml:space="preserve">
+    <value>添加图书</value>
+  </data>
+  <data name="AddPeriodical" xml:space="preserve">
+    <value>添加期刊</value>
+  </data>
 </root>
