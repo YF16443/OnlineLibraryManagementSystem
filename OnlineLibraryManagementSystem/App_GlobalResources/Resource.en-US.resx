@@ -235,7 +235,7 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
-    <comment>查找书库或书架</comment>
+    <comment>搜索</comment>
   </data>
   <data name="Search_Type" xml:space="preserve">
     <value>Search_Type</value>
@@ -300,5 +300,21 @@
   <data name="Author" xml:space="preserve">
     <value>Author</value>
     <comment>作者</comment>
+  </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>AboutUs</value>
+    <comment>网站官方信息</comment>
+  </data>
+  <data name="BookCirculation" xml:space="preserve">
+    <value>Circulation</value>
+    <comment>图书借出和归还</comment>
+  </data>
+  <data name="PersonalInfo" xml:space="preserve">
+    <value>Personal Information</value>
+    <comment>读者个人信息</comment>
+  </data>
+  <data name="StacksManagement" xml:space="preserve">
+    <value>Stacks Management</value>
+    <comment>书库和书架管理</comment>
   </data>
 </root>

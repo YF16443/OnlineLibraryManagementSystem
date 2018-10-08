@@ -210,8 +210,8 @@
     <comment>书库（书架）ID</comment>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>查询</value>
-    <comment>查询书库或书架</comment>
+    <value>搜索</value>
+    <comment>搜索</comment>
   </data>
   <data name="Search_Type" xml:space="preserve">
     <value>查询类型</value>
@@ -300,5 +300,21 @@
   <data name="Author" xml:space="preserve">
     <value>作者</value>
     <comment>作者</comment>
+  </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>关于我们</value>
+    <comment>网站官方信息</comment>
+  </data>
+  <data name="BookCirculation" xml:space="preserve">
+    <value>图书借还</value>
+    <comment>图书借出和归还</comment>
+  </data>
+  <data name="PersonalInfo" xml:space="preserve">
+    <value>个人信息</value>
+    <comment>读者个人信息</comment>
+  </data>
+  <data name="StacksManagement" xml:space="preserve">
+    <value>书库管理</value>
+    <comment>书库和书架管理</comment>
   </data>
 </root>
