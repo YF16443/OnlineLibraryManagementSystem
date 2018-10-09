@@ -10,7 +10,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
 
-public partial class Pages_bookMessage : System.Web.UI.Page
+public partial class Pages_bookMessage : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -28,8 +28,7 @@ public partial class Pages_bookMessage : System.Web.UI.Page
             {
                 if (reader.HasRows)
                 {
-                    Image1.ImageUrl = "~/Images/Cover/2.jpg";/*reader["ImageURL"].ToString()*/
-                        
+                    Image1.ImageUrl = reader["ImageURL"].ToString();
                     title.Text =   reader["Title"].ToString();
                     author.Text =  reader["Author"].ToString();
                     pubDate.Text = Convert.ToDateTime(reader["PubDate"]).ToString("yyyy-MM-dd");
@@ -39,7 +38,7 @@ public partial class Pages_bookMessage : System.Web.UI.Page
                     subtitle.Text = reader["SubTitle"].ToString();
                     origintitle.Text = reader["OriginTitle"].ToString();
                     binding.Text = reader["Binding"].ToString();
-                    //translater.Text = reader["Translater"].ToString();
+                    translator.Text = reader["Translator"].ToString();
                     catalog.Text = reader["Catalog"].ToString();
                     pages.Text = reader["Pages"].ToString();
                     publisher.Text = reader["Publisher"].ToString();

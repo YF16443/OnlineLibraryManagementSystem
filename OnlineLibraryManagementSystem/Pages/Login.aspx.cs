@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Pages_Login : System.Web.UI.Page
+public partial class Pages_Login : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {

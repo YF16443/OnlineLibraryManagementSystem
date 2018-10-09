@@ -369,4 +369,7 @@
   <data name="AddPeriodical" xml:space="preserve">
     <value>AddPeriodical</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
 </root>

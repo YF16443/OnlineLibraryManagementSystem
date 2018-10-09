@@ -29,7 +29,7 @@
                                     <asp:MenuItem Text="<%$ Resources:Resource,Return %>" Value="Return" NavigateUrl="~/Pages/ReturnBookDemo.aspx"></asp:MenuItem>
                                 </asp:MenuItem>
                                 <asp:MenuItem Text="<%$ Resources:Resource,BookManagement %>" Value="BookManagement" Selectable="False">
-                                    <asp:MenuItem Text="<%$ Resources:Resource,AddBook %>" Value="AddBook"></asp:MenuItem>
+                                    <asp:MenuItem Text="<%$ Resources:Resource,AddBook %>" Value="AddBook" NavigateUrl="~/Pages/Addbooks_ISBN.aspx"></asp:MenuItem>
                                     <asp:MenuItem Text="<%$ Resources:Resource,AddPeriodical %>" Value="AddPeriodical"></asp:MenuItem>
                                 </asp:MenuItem>
                                 <asp:MenuItem Text="<%$ Resources:Resource,StacksManagement %>" Value="StackManagement" Selectable="False">
@@ -38,8 +38,7 @@
                                     <asp:MenuItem Text="<%$ Resources:Resource,AddShelf %>" Value="AddShelf" NavigateUrl="~/Pages/AddShelves.aspx"></asp:MenuItem>
                                 </asp:MenuItem>
                                 <asp:MenuItem Text="<%$ Resources:Resource,ReaderManagement %>" Value="ReaderManagement" Selectable="False">
-                                    <asp:MenuItem Text="<%$ Resources:Resource,Register %>" Value="Register"></asp:MenuItem>
-                                    <asp:MenuItem Text="<%$ Resources:Resource,Search %>" Value="Search"></asp:MenuItem>
+                                    <asp:MenuItem Text="<%$ Resources:Resource,Register %>" Value="Register" NavigateUrl="~/Pages/ReaderRegistration.aspx"></asp:MenuItem>
                                 </asp:MenuItem>
                             </Items>
                         </asp:Menu>

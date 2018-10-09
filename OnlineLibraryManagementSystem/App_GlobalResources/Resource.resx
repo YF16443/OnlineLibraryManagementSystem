@@ -369,4 +369,7 @@
   <data name="AddPeriodical" xml:space="preserve">
     <value>添加期刊</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details &amp; 详细信息</value>
+  </data>
 </root>

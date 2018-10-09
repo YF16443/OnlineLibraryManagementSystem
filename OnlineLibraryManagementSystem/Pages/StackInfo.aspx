@@ -33,7 +33,7 @@
         }
     </style>
     <div class="auto-style1">
-        <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource,Add_Stacks %>" CssClass="auto-style5"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource,Details %>" CssClass="auto-style5"></asp:Label>
         <br /> <br />
         <table class ="style1">
             <tr>

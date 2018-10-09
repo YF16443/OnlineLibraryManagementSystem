@@ -9,7 +9,7 @@ using System.Configuration;
 using System.Text.RegularExpressions;
 using System.Text;
 
-public partial class Pages_ShelfInfo : System.Web.UI.Page
+public partial class Pages_ShelfInfo : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
