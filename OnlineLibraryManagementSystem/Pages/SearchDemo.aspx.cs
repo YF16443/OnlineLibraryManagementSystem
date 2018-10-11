@@ -10,19 +10,13 @@ using System.Data;
 
 public partial class Pages_SearchDemo : BasePage
 {
-    
+    public static SortInfo siForGv = null;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         
     }
-    //private void BindBook()
-    //{
-    //    DataView view = lastResult.DefaultView;
-    //    String sort = (string)ViewState["SortOrder"] + " " + (string)ViewState["OrderDire"];
-    //    view.Sort = sort;
-    //    gvBookResult.DataSource = view;
-    //    gvBookResult.DataBind();
-    //}
+
     protected void brSearch_Click(object sender, EventArgs e)
     {
         // 输入过滤，未完成
@@ -75,12 +69,12 @@ public partial class Pages_SearchDemo : BasePage
         OLMSDBConnection.Close();
 
         DataTable searchResult = resultSet.Tables[0];
+        siForGv = new SortInfo(resultSet.Tables[0]);
 
         if (ddlClass.SelectedValue.ToString().Equals("Books"))
         {
             gvBookResult.DataSource = searchResult;
             gvBookResult.DataBind();
-            //BindBook();
         }
            
         else
@@ -88,8 +82,6 @@ public partial class Pages_SearchDemo : BasePage
             gvPeriodicalResult.DataSource = searchResult;
             gvPeriodicalResult.DataBind();
         }
-        //ViewState["SortOrder"] = "BookId";
-        //ViewState["OrderDire"] = "ASC";
 
 
     }
@@ -118,19 +110,26 @@ public partial class Pages_SearchDemo : BasePage
 
     protected void gvBookResult_Sorting(object sender, GridViewSortEventArgs e)
     {
-        string sPage = e.SortExpression;
-        if (ViewState["SortOrder"].ToString() == sPage)
+        if (siForGv == null)
         {
-            if (ViewState["OrderDire"].ToString() == "Desc")
-                ViewState["OrderDire"] = "ASC";
-            else
-                ViewState["OrderDire"] = "Desc";
+            return;
         }
-        else
+        GridView SortGv = (GridView)sender;
+        siForGv.SortExpression = e.SortExpression;
+        int page = SortGv.PageIndex;
+        siForGv.SortDataBind(SortGv, page, false);
+
+    }
+
+    protected void gvBookResult_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        if (siForGv == null)
         {
-            ViewState["SortOrder"] = e.SortExpression;
+            return;
         }
-        //BindBook();
+        GridView SortGv = (GridView)sender;
+        int page = e.NewPageIndex;
+        siForGv.SortDataBind(SortGv, page, true);
     }
 
 }
