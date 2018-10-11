@@ -10,11 +10,19 @@ using System.Data;
 
 public partial class Pages_SearchDemo : BasePage
 {
+    
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
-
+    //private void BindBook()
+    //{
+    //    DataView view = lastResult.DefaultView;
+    //    String sort = (string)ViewState["SortOrder"] + " " + (string)ViewState["OrderDire"];
+    //    view.Sort = sort;
+    //    gvBookResult.DataSource = view;
+    //    gvBookResult.DataBind();
+    //}
     protected void brSearch_Click(object sender, EventArgs e)
     {
         // 输入过滤，未完成
@@ -35,7 +43,6 @@ public partial class Pages_SearchDemo : BasePage
             getResult_sql = new MySqlCommand("select BookId,Title,ImageURL,Author,Publisher " +
                                                      "from Books " +
                                                      "where " + (ddlField.SelectedValue.ToString().Equals("ISBN") ? "ISBN13 like '%" + keyword + "%' or ISBN10 like '%" + keyword + "%';" : ddlField.Text.ToString() + " like '%" + keyword + "%';"), OLMSDBConnection);
-            // 不知道为什么下面这几句查不到结果
             /*var rules_para = new MySqlParameter
             {
                 ParameterName = "@rules",
@@ -73,12 +80,16 @@ public partial class Pages_SearchDemo : BasePage
         {
             gvBookResult.DataSource = searchResult;
             gvBookResult.DataBind();
+            //BindBook();
         }
+           
         else
         {
             gvPeriodicalResult.DataSource = searchResult;
             gvPeriodicalResult.DataBind();
         }
+        //ViewState["SortOrder"] = "BookId";
+        //ViewState["OrderDire"] = "ASC";
 
 
     }
@@ -104,4 +115,22 @@ public partial class Pages_SearchDemo : BasePage
             gvBookResult.DataBind();
         }
     }
+
+    protected void gvBookResult_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        string sPage = e.SortExpression;
+        if (ViewState["SortOrder"].ToString() == sPage)
+        {
+            if (ViewState["OrderDire"].ToString() == "Desc")
+                ViewState["OrderDire"] = "ASC";
+            else
+                ViewState["OrderDire"] = "Desc";
+        }
+        else
+        {
+            ViewState["SortOrder"] = e.SortExpression;
+        }
+        //BindBook();
+    }
+
 }

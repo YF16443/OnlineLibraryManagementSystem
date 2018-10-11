@@ -36,18 +36,18 @@
             </tr>
             <tr>
                 <td style="text-align:center" colspan="3">
-                    <asp:GridView ID="gvBookResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" ShowHeader="False" Enabled="False">
+                    <asp:GridView ID="gvBookResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvBookResult_Sorting">
                         <Columns>
-                            <asp:ImageField ShowHeader="False" DataImageUrlField="ImageURL" ReadOnly="True">
+                            <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True">
                                 <ItemStyle Height="84px" HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" CssClass="resultImg" />
                             </asp:ImageField>
-                            <asp:HyperLinkField ShowHeader="False" DataNavigateUrlFields="BookId" DataNavigateUrlFormatString="~/Pages/bookMessage.aspx?book_id={0}" DataTextField="Title">
+                            <asp:HyperLinkField HeaderText="<%$ Resources:Resource, BookTitle %>" SortExpression="BookId" DataNavigateUrlFields="BookId" DataNavigateUrlFormatString="~/Pages/bookMessage.aspx?book_id={0}" DataTextField="Title">
                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:HyperLinkField>
-                            <asp:BoundField ShowHeader="False" DataField="Author" ReadOnly="True">
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, Author %>" SortExpression="Author" DataField="Author" ReadOnly="True">
                             <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Publisher" ReadOnly="True" ShowHeader="False">
+                            <asp:BoundField DataField="Publisher" HeaderText="<%$ Resources:Resource, Publisher %>" SortExpression="Publisher" ReadOnly="True">
                             <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                             </asp:BoundField>
                         </Columns>

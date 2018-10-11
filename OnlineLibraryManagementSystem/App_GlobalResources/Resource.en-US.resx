@@ -372,4 +372,10 @@
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="Publisher" xml:space="preserve">
+    <value>Publisher</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Cover</value>
+  </data>
 </root>

@@ -372,4 +372,10 @@
   <data name="Details" xml:space="preserve">
     <value>详细信息</value>
   </data>
+  <data name="Publisher" xml:space="preserve">
+    <value>出版社</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>封面</value>
+  </data>
 </root>
