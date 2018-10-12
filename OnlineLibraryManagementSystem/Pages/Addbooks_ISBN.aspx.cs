@@ -71,9 +71,10 @@ public partial class Pages_Addbooks_ISBN : BasePage
             string author = string.Join(",", book.author.ToArray());
             string translator = string.Join(",", book.translator.ToArray());
             string price = book.price.Substring(0, book.price.Length - 1);
+            string ImageURLSave = "~/Images/Cover/" + book.title + ".jpg";
             //日期默认为1号
             string pubdate = book.pubdate + "-1";
-            string insertBook = "insert into Books(ISBN13,ISBN10,Title,SubTitle,Author,Pubdate,OriginTitle,ImageURL,Binding,Translator,Catalog,Pages,Publisher,AuthorIntro,Summary,Price) " + "values('" + book.isbn13 + "','" + book.isbn10 + "','" + book.title + "','" + book.subtitle + "','" + author + "','" + pubdate + "','" + book.origin_title + "','" + URL + "','" + book.binding + "','" + translator + "','" + book.catalog + "','" + book.pages + "','" + book.publisher + "','" + book.author_intro + "','" + book.summary + "','" + price + "')";
+            string insertBook = "insert into Books(ISBN13,ISBN10,Title,SubTitle,Author,Pubdate,OriginTitle,ImageURL,Binding,Translator,Catalog,Pages,Publisher,AuthorIntro,Summary,Price) " + "values('" + book.isbn13 + "','" + book.isbn10 + "','" + book.title + "','" + book.subtitle + "','" + author + "','" + pubdate + "','" + book.origin_title + "','" + ImageURLSave + "','" + book.binding + "','" + translator + "','" + book.catalog + "','" + book.pages + "','" + book.publisher + "','" + book.author_intro + "','" + book.summary + "','" + price + "')";
             MySqlCommand cmdinsertBook = new MySqlCommand(insertBook, OLMSDBConnection);
             int result1 = 0;
             result1 = cmdinsertBook.ExecuteNonQuery();
