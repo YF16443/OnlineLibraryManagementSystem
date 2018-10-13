@@ -11,6 +11,7 @@ using System.Web;
 public class SendEmail
 {
     static System.Net.Mail.SmtpClient client = null;
+    //接收者邮件地址，邮件主题，邮件正文
     public static void Send(string Receiver, string Subject, string content)
     {
         if (string.IsNullOrEmpty(Receiver) || string.IsNullOrEmpty(Subject)
@@ -53,7 +54,9 @@ public class SendEmail
             Message.BodyEncoding = System.Text.Encoding.UTF8;
             Message.Priority = System.Net.Mail.MailPriority.High;
 
-            Message.From = new System.Net.Mail.MailAddress("spm_a4@163.com", "测试员");
+            Message.From = new System.Net.Mail.MailAddress("spm_a4@163.com", "OnlineLibraryManagement");
+            //收件人中加上发送者，防止被当做垃圾邮件（我也不懂为什么加上这个就可以了= =）
+            Receiver += ",spm_a4@163.com";
             //添加邮件接收人地址
             string[] receivers = Receiver.Split(new char[] { ',' });
             Array.ForEach(receivers.ToArray(), ToMail => { Message.To.Add(ToMail); });

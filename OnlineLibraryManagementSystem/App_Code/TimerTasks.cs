@@ -23,25 +23,65 @@ public class TimerTasks
     }
     static void Task_do(object sender, EventArgs e)
     {
-        //暂时默认逾期时间为1天
-        TimeSpan overdue_time = TimeSpan.FromDays(1);
+        //暂时默认提醒时间为7天
+        TimeSpan notice_time = TimeSpan.FromDays(7);
+        //暂时默认逾期时间为10天
+        TimeSpan overdue_time = TimeSpan.FromDays(10);
         DateTime time_now = DateTime.Now;
+
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
         conn.Open();
         try
         {
-            string querySql = "SELECT RecordId, IssueTime FROM IssueRecords WHERE " +
+            string querySql = "SELECT * FROM IssueRecords WHERE " +
                             "ReturnTime is null ORDER BY IssueTime ASC";
-            MySqlCommand cmd = new MySqlCommand(querySql, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlCommand queryCmd = new MySqlCommand(querySql, conn);
+            MySqlDataReader reader = queryCmd.ExecuteReader();
             while (reader.Read())
             {
                 if (reader.HasRows)
                 {
-                    
+                    //emailNoticeStatus表示已经向该订单用户发送邮件的数量
+                    int emailNoticeStatus = (int)reader["EmailNoticeStatus"];
+                    DateTime time_notice = (DateTime)reader["IssueTime"] + notice_time;
+                    DateTime time_overdue = (DateTime)reader["IssueTime"] + overdue_time;
+                    //DateTime.Compare前一个时间早于后一个时间时返回结果小于0
+                    if (emailNoticeStatus < 2 && DateTime.Compare(time_notice, time_now) < 0)
+                    {
+                        //System.Diagnostics.Debug.WriteLine(time_overdue);
+                        MySqlConnection conn2 = new MySqlConnection(OLMSDBConnectionString);
+                        conn2.Open();
+                        string queryReaderEmailSql = "SELECT Email FROM Readers WHERE ReaderId = " +
+                            reader["ReaderId"];
+                        MySqlCommand emailCmd = new MySqlCommand(queryReaderEmailSql, conn2);
+                        MySqlDataReader reader2 = emailCmd.ExecuteReader();
+                        reader2.Read();
+                        String emailReceiver = null;
+                        if (reader2.HasRows)
+                            emailReceiver = (string)reader2["Email"];
+                        reader2.Close();
+                        //发送提醒邮件
+                        if (emailNoticeStatus == 0)
+                        {
+                            SendEmail.Send(emailReceiver, "OnlineLibraryManagement书籍即将逾期提醒",
+                            "尊敬的用户，您在本馆所借书籍还有3天将逾期，请尽快归还，谢谢合作！");
+                        }
+                        // 发送逾期邮件
+                        else if (emailNoticeStatus == 1 && DateTime.Compare(time_overdue, time_now) < 0)
+                        {
+                            SendEmail.Send(emailReceiver, "OnlineLibraryManagement书籍逾期提醒",
+                            "尊敬的用户，您在本馆所借书籍已经逾期未归还，请尽快归还，谢谢合作！");
+                        }
+                        string updateEmailStatusSql = "UPDATE IssueRecords SET EmailNoticeStatus = "
+                            + (emailNoticeStatus + 1) + " WHERE (RecordId = "+ reader["RecordId"] + ");";
+                        MySqlCommand cmd2 = new MySqlCommand(updateEmailStatusSql, conn2);
+                        cmd2.ExecuteReader();
+                        conn2.Close();
+                    }
                 }
             }
+            reader.Close();
         }
         finally
         {
