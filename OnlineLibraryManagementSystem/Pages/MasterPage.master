@@ -21,9 +21,8 @@
                         <asp:ImageButton ID="ibLogo" runat="server" ImageUrl="~/Images/logo.png" PostBackUrl="~/Pages/SearchDemo.aspx" Height="43.2px" Width="145.35px"/>
                     </td>
                     <td>
-                        <asp:Menu ID="MainMenu" runat="server" DisappearAfter="0" Orientation="Horizontal" RenderingMode="List" ViewStateMode="Enabled">
+                        <asp:Menu ID="MainMenu" runat="server" DisappearAfter="0" Orientation="Horizontal" RenderingMode="List" Visible="False">
                             <Items>
-                                <asp:MenuItem Text="<%$ Resources:Resource,Search %>" Value="Search" NavigateUrl="~/Pages/SearchDemo.aspx"></asp:MenuItem>
                                 <asp:MenuItem Text="<%$ Resources:Resource,BookCirculation %>" Value="Circulation" Selectable="False">
                                     <asp:MenuItem Text="<%$ Resources:Resource,Issue %>" Value="Issue" NavigateUrl="~/Pages/IssueBookDemo.aspx"></asp:MenuItem>
                                     <asp:MenuItem Text="<%$ Resources:Resource,Return %>" Value="Return" NavigateUrl="~/Pages/ReturnBookDemo.aspx"></asp:MenuItem>
@@ -31,6 +30,9 @@
                                 <asp:MenuItem Text="<%$ Resources:Resource,BookManagement %>" Value="BookManagement" Selectable="False">
                                     <asp:MenuItem Text="<%$ Resources:Resource,AddBook %>" Value="AddBook" NavigateUrl="~/Pages/Addbooks_ISBN.aspx"></asp:MenuItem>
                                     <asp:MenuItem Text="<%$ Resources:Resource,AddPeriodical %>" Value="AddPeriodical"></asp:MenuItem>
+                                    <asp:MenuItem Text="<%$ Resources:Resource,Search %>" Value="Search"></asp:MenuItem>
+                                    <asp:MenuItem Text="<%$ Resources:Resource,OperationHistory %>" Value="OperationHistory"></asp:MenuItem>
+                                    <asp:MenuItem Text="<%$ Resources:Resource,Category %>" Value="Category"></asp:MenuItem>
                                 </asp:MenuItem>
                                 <asp:MenuItem Text="<%$ Resources:Resource,StacksManagement %>" Value="StackManagement" Selectable="False">
                                     <asp:MenuItem Text="<%$ Resources:Resource,Search %>" Value="Search" NavigateUrl="~/Pages/Search_Stacks_Shelves.aspx"></asp:MenuItem>
@@ -39,27 +41,31 @@
                                 </asp:MenuItem>
                                 <asp:MenuItem Text="<%$ Resources:Resource,ReaderManagement %>" Value="ReaderManagement" Selectable="False">
                                     <asp:MenuItem Text="<%$ Resources:Resource,Register %>" Value="Register" NavigateUrl="~/Pages/ReaderRegistration.aspx"></asp:MenuItem>
-                                    <asp:MenuItem Text="<%$ Resources:Resource,ChangePassword %>" Value="ChangePassword" NavigateUrl="~/Pages/ChangePassword.aspx"></asp:MenuItem>
-                                    <asp:MenuItem Text="<%$ Resources:Resource,ChangeReaderInfomation %>" Value="ChangeReaderInfomation" NavigateUrl="~/Pages/ChangeReaderInfomation.aspx"></asp:MenuItem>
+                                    <asp:MenuItem Text="<%$ Resources:Resource,Search %>" Value="Search"></asp:MenuItem>
                                 </asp:MenuItem>
+                                <asp:MenuItem Text="<%$ Resources:Resource,Statistics %>" Value="Statistics"></asp:MenuItem>
+                                <asp:MenuItem Text="<%$ Resources:Resource,NoticeManagement %>" Value="NoticeManagement"></asp:MenuItem>
                             </Items>
                         </asp:Menu>
-                    </td>
-                    <td>
-
-                        <asp:Label ID="ShowAccount" runat="server" Text="Label"></asp:Label>
-
+                        <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" DisappearAfter="0" Visible="False">
+                            <Items>
+                                <asp:MenuItem Text="<%$ Resources:Resource,SystemSettings %>" Value="SystemSettings"></asp:MenuItem>
+                                <asp:MenuItem Text="<%$ Resources:Resource,LibrarianManagement %>" Value="LibrarianManagement"></asp:MenuItem>
+                            </Items>
+                        </asp:Menu>
                     </td>
                     <td style="width:120px">
-                        <asp:Menu ID="AccountMenu" runat="server" Orientation="Horizontal" RenderingMode="List">
-                            <Items>
-                                <asp:MenuItem Text="<%$ Resources:Resource,Login_Login %>" Value="Login" NavigateUrl="~/Pages/Login.aspx"></asp:MenuItem>
-                                <asp:MenuItem Text="<%$ Resources:Resource,PersonalInfo %>" Value="Account" NavigateUrl="~/Pages/ShowReaderInfo.aspx"></asp:MenuItem>
-                            </Items>
-                        </asp:Menu>
+                        <asp:LoginView ID="LoginView" runat="server">
+                            <AnonymousTemplate>
+                                <asp:LinkButton ID="lbLogin" runat="server" Text="<%$ Resources:Resource,Login %>">Login</asp:LinkButton>
+                            </AnonymousTemplate>
+                            <LoggedInTemplate>
+                                <asp:HyperLink ID="hlMyAccount" runat="server" Text="<%$ Resources:Resource,MyAccount %>">My Account</asp:HyperLink>
+                                <asp:LinkButton ID="lbLogout" runat="server" Text="<%$ Resources:Resource,Logout %>">Logout</asp:LinkButton>
+                            </LoggedInTemplate>
+                        </asp:LoginView>
                     </td>
-                    <td style="width:150px">
-                        <asp:LinkButton ID="lbSignOut" runat="server" Text="<%$ Resources:Resource,SignOut %>" OnClick="lbSignOut_Click" ></asp:LinkButton>
+                    <td style="width:100px">
                         <asp:DropDownList ID="ddlLanguages" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlLanguages_SelectedIndexChanged">
                             <asp:ListItem Value="zh-CN">简体中文</asp:ListItem>
                             <asp:ListItem Value="en-US">English</asp:ListItem>

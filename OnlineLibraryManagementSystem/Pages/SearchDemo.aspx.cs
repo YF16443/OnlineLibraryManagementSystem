@@ -17,6 +17,11 @@ public partial class Pages_SearchDemo : BasePage
         
     }
 
+    protected void Page_LoadComplete(object sender, EventArgs e)
+    {
+        ((Master.FindControl("LoginView") as LoginView).FindControl("lbLogin") as LinkButton)
+    }
+
     protected void brSearch_Click(object sender, EventArgs e)
     {
         // 输入过滤，未完成
@@ -37,6 +42,7 @@ public partial class Pages_SearchDemo : BasePage
             getResult_sql = new MySqlCommand("select BookId,Title,ImageURL,Author,Publisher " +
                                                      "from Books " +
                                                      "where " + (ddlField.SelectedValue.ToString().Equals("ISBN") ? "ISBN13 like '%" + keyword + "%' or ISBN10 like '%" + keyword + "%';" : ddlField.Text.ToString() + " like '%" + keyword + "%';"), OLMSDBConnection);
+            //下面的语句有问题
             /*var rules_para = new MySqlParameter
             {
                 ParameterName = "@rules",

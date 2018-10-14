@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPage.master" AutoEventWireup="true" CodeFile="SearchDemo.aspx.cs" Inherits="Pages_SearchDemo" %>
 
+
+
 <asp:Content ID="head" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
         .resultImg img{
@@ -7,6 +9,7 @@
             max-width:60px;
         }
     </style>
+    <script src="../Scripts/art-Template/template-web.js"></script>
 </asp:Content>
 <asp:Content ID="body" ContentPlaceHolderID="body" Runat="Server">
     <div>
