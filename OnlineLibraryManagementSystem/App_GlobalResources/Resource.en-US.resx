@@ -378,4 +378,22 @@
   <data name="Cover" xml:space="preserve">
     <value>Cover</value>
   </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>ChangePassword</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Comfirm New Password</value>
+  </data>
+  <data name="LogInNotice" xml:space="preserve">
+    <value>Please log in first</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>Wrong Password</value>
+  </data>
 </root>

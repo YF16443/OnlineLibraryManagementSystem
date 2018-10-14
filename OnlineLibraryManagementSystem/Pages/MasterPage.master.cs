@@ -15,11 +15,13 @@ public partial class Pages_MasterPage : BaseMasterPage
         {
             ddlLanguages.SelectedValue = Session["PreferredCulture"].ToString();
         }
+        ShowAccount.Text = (string)Session["id"];
     }
 
     protected void lbSignOut_Click(object sender, EventArgs e)
     {
-
+        Session["id"] = null;
+        Response.Redirect("~/Pages/Login.aspx");
     }
 
     protected void ddlLanguages_SelectedIndexChanged(object sender, EventArgs e)

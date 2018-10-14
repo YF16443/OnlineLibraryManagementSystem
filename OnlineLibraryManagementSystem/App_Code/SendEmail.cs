@@ -24,23 +24,25 @@ public class SendEmail
             try
             {
                 //163发送配置                    
-                client = new System.Net.Mail.SmtpClient();
-                client.Host = "smtp.163.com";
-                client.Port = 25;
-                client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-                client.EnableSsl = true;
-                client.UseDefaultCredentials = true;
+                client = new System.Net.Mail.SmtpClient
+                {
+                    Host = "smtp.163.com",
+                    Port = 25,
+                    DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network,
+                    EnableSsl = true,
+                    UseDefaultCredentials = true,
 
 
-                //qq发送配置的参数//切EnableSsl必须设置为true  
-                //client = new System.Net.Mail.SmtpClient();
-                //client.Host = "smtp.qq.com";
-                //client.Port = 25;
-                //client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-                //client.EnableSsl = true;
-                //client.UseDefaultCredentials = false;
+                    //qq发送配置的参数//切EnableSsl必须设置为true  
+                    //client = new System.Net.Mail.SmtpClient();
+                    //client.Host = "smtp.qq.com";
+                    //client.Port = 25;
+                    //client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+                    //client.EnableSsl = true;
+                    //client.UseDefaultCredentials = false;
 
-                client.Credentials = new System.Net.NetworkCredential("spm_a4@163.com", "SPM12345");
+                    Credentials = new System.Net.NetworkCredential("spm_a4@163.com", "SPM12345")
+                };
             }
             catch (Exception ex)
             {
