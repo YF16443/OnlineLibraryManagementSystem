@@ -17,7 +17,7 @@ public partial class Pages_ReaderRegistration : BasePage
     }
     protected void RegisterReader(object sender, EventArgs e)
     {
-        string name, account, password, idNumber, telephone, email;
+        string name, readerId, password, idNumber, telephone, email;
 
         if (TextBoxName.Text == "")
         {
@@ -35,7 +35,7 @@ public partial class Pages_ReaderRegistration : BasePage
         }
         else
         {
-            account = TextBoxAccount.Text;
+            readerId = TextBoxAccount.Text;
             //这里应该有正则匹配去除非法输入防止篡改数据库
         }
         if (TextBoxIDNumber.Text == "")
@@ -65,14 +65,14 @@ public partial class Pages_ReaderRegistration : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         //检测同账号是否注册过
-        string selectReaderSql = "select count(*) as num from Readers where Account = ?account or IdNumber = ?idNumber;";
-        string insertReaderSql = "INSERT INTO Readers(Account, Password, Name, IdNumber, Phone, Email) " +
-            "VALUES(?account, ?password, ?name, ?idNumber, ?telephone, ?email);";
+        string selectReaderSql = "select count(*) as num from Readers where ReaderId = ?readerId or IdNumber = ?idNumber;";
+        string insertReaderSql = "INSERT INTO Readers(ReaderId, Phone, Password, Name, IdNumber, Email) " +
+            "VALUES(?readerId, ?telephone, ?password, ?name, ?idNumber, ?email);";
         try
         {
             OLMSDBConnection.Open();
             MySqlCommand cmd2 = new MySqlCommand(selectReaderSql, OLMSDBConnection);
-            cmd2.Parameters.AddWithValue("?account", account);
+            cmd2.Parameters.AddWithValue("?readerId", readerId);
             cmd2.Parameters.AddWithValue("?idNumber", idNumber);
             MySqlDataReader reader = cmd2.ExecuteReader();
             while (reader.Read())
@@ -91,7 +91,7 @@ public partial class Pages_ReaderRegistration : BasePage
             reader.Close();
 
             MySqlCommand cmd = new MySqlCommand(insertReaderSql, OLMSDBConnection);
-            cmd.Parameters.AddWithValue("?account", account);
+            cmd.Parameters.AddWithValue("?readerId", readerId);
             cmd.Parameters.AddWithValue("?name", name);
             cmd.Parameters.AddWithValue("?password", password);
             cmd.Parameters.AddWithValue("?idNumber", idNumber);
@@ -114,7 +114,8 @@ public partial class Pages_ReaderRegistration : BasePage
         }
         catch(MySqlException ex)
         {
-            Console.WriteLine(ex.Message);
+            //Console.WriteLine(ex.Message);
+            Response.Write("<script>alert('" + ex.Message + "')</script>");
         }
         finally
         {

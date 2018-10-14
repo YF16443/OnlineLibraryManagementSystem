@@ -48,7 +48,7 @@
                     <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Account %>"></asp:Label>
                 </td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxAccount" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBoxAccount" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
             </tr>
             <tr>

@@ -19,9 +19,10 @@ public class TimerTasks
             AutoReset = true,
             Enabled = true
         };
-        timer.Elapsed += new System.Timers.ElapsedEventHandler(Task_do);
+        timer.Elapsed += new System.Timers.ElapsedEventHandler(Task_Email);
+        timer.Elapsed += new System.Timers.ElapsedEventHandler(Task_Email);
     }
-    static void Task_do(object sender, EventArgs e)
+    static void Task_Email(object sender, EventArgs e)
     {
         //暂时默认提醒时间为7天
         TimeSpan notice_time = TimeSpan.FromDays(7);
