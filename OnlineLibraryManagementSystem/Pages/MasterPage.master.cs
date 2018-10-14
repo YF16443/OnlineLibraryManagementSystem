@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Threading;
 using System.Globalization;
+using System.Web.Security;
 
 public partial class Pages_MasterPage : BaseMasterPage
 {
@@ -28,5 +29,11 @@ public partial class Pages_MasterPage : BaseMasterPage
     {
         Session["PreferredCulture"] = ddlLanguages.SelectedValue.ToString();
         Response.Redirect(Request.Url.ToString());
+    }
+
+    protected void lbLogout_Click(object sender, EventArgs e)
+    {
+        FormsAuthentication.SignOut();
+        Response.Redirect("~/Pages/SearchDemo.aspx");
     }
 }

@@ -60,8 +60,8 @@
                                 <asp:LinkButton ID="lbLogin" runat="server" Text="<%$ Resources:Resource,Login %>">Login</asp:LinkButton>
                             </AnonymousTemplate>
                             <LoggedInTemplate>
-                                <asp:HyperLink ID="hlMyAccount" runat="server" Text="<%$ Resources:Resource,MyAccount %>">My Account</asp:HyperLink>
-                                <asp:LinkButton ID="lbLogout" runat="server" Text="<%$ Resources:Resource,Logout %>">Logout</asp:LinkButton>
+                                <asp:HyperLink ID="hlMyAccount" runat="server" Text="<%$ Resources:Resource,MyAccount %>" NavigateUrl="~/Pages/ReaderPages/ShowReaderInfo.aspx"></asp:HyperLink>
+                                <asp:LinkButton ID="lbLogout" runat="server" Text="<%$ Resources:Resource,Logout %>" OnClick="lbLogout_Click">Logout</asp:LinkButton>
                             </LoggedInTemplate>
                         </asp:LoginView>
                     </td>
