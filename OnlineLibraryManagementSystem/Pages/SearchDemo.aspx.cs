@@ -19,7 +19,7 @@ public partial class Pages_SearchDemo : BasePage
 
     protected void Page_LoadComplete(object sender, EventArgs e)
     {
-        ((Master.FindControl("LoginView") as LoginView).FindControl("lbLogin") as LinkButton)
+        ((Master.FindControl("LoginView") as LoginView).FindControl("lbLogin") as LinkButton).PostBackUrl = "~/Pages/ReaderLogin.aspx";
     }
 
     protected void brSearch_Click(object sender, EventArgs e)

@@ -12,7 +12,7 @@
     <script src="../Scripts/art-Template/template-web.js"></script>
 </asp:Content>
 <asp:Content ID="body" ContentPlaceHolderID="body" Runat="Server">
-    <div>
+    <div style="padding-top:50px">
         <table style="width: 100%;">
             <tr>
                 <td style="width:35%; text-align:right">
