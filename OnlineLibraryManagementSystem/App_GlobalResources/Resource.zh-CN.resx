@@ -378,4 +378,31 @@
   <data name="Cover" xml:space="preserve">
     <value>封面</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>类别</value>
+  </data>
+  <data name="LibrarianManagement" xml:space="preserve">
+    <value>图书管理员管理</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>我的帐号</value>
+  </data>
+  <data name="NoticeManagement" xml:space="preserve">
+    <value>公告管理</value>
+  </data>
+  <data name="OperationHistory" xml:space="preserve">
+    <value>操作历史</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>数据统计</value>
+  </data>
+  <data name="SystemSettings" xml:space="preserve">
+    <value>系统配置</value>
+  </data>
 </root>

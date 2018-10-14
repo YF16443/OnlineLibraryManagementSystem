@@ -378,4 +378,31 @@
   <data name="Cover" xml:space="preserve">
     <value>Cover</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="LibrarianManagement" xml:space="preserve">
+    <value>Librarian Management</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>My Account</value>
+  </data>
+  <data name="NoticeManagement" xml:space="preserve">
+    <value>Notice Management</value>
+  </data>
+  <data name="OperationHistory" xml:space="preserve">
+    <value>Operation History</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="SystemSettings" xml:space="preserve">
+    <value>System Settings</value>
+  </data>
 </root>
