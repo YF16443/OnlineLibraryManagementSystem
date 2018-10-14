@@ -40,6 +40,7 @@
                                 <asp:MenuItem Text="<%$ Resources:Resource,ReaderManagement %>" Value="ReaderManagement" Selectable="False">
                                     <asp:MenuItem Text="<%$ Resources:Resource,Register %>" Value="Register" NavigateUrl="~/Pages/ReaderRegistration.aspx"></asp:MenuItem>
                                     <asp:MenuItem Text="<%$ Resources:Resource,ChangePassword %>" Value="ChangePassword" NavigateUrl="~/Pages/ChangePassword.aspx"></asp:MenuItem>
+                                    <asp:MenuItem Text="<%$ Resources:Resource,ChangeReaderInfomation %>" Value="ChangeReaderInfomation" NavigateUrl="~/Pages/ChangeReaderInfomation.aspx"></asp:MenuItem>
                                 </asp:MenuItem>
                             </Items>
                         </asp:Menu>
