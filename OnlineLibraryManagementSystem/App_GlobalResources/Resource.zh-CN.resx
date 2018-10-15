@@ -435,4 +435,10 @@
   <data name="SystemSettings" xml:space="preserve">
     <value>系统配置</value>
   </data>
+  <data name="Reserve" xml:space="preserve">
+    <value>预约</value>
+  </data>
+  <data name="Reservation_Fail" xml:space="preserve">
+    <value>预约失败！</value>
+  </data>
 </root>
