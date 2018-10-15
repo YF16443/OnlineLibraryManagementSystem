@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPage.master" AutoEventWireup="true" CodeFile="SearchDemo.aspx.cs" Inherits="Pages_SearchDemo" %>
 
-<%@ Register Assembly="obout_Grid_NET" Namespace="Obout.Grid" TagPrefix="cc1" %>
+
 
 <asp:Content ID="head" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
@@ -9,9 +9,10 @@
             max-width:60px;
         }
     </style>
+    <script src="../Scripts/art-Template/template-web.js"></script>
 </asp:Content>
 <asp:Content ID="body" ContentPlaceHolderID="body" Runat="Server">
-    <div>
+    <div style="padding-top:50px">
         <table style="width: 100%;">
             <tr>
                 <td style="width:35%; text-align:right">

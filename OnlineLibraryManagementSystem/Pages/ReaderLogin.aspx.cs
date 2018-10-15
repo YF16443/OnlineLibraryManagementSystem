@@ -12,6 +12,10 @@ public partial class Pages_Login : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!string.IsNullOrEmpty((string)Session["id"]))
+        {
+            Response.Redirect("~/Pages/SearchDemo.aspx");
+        }
     }
     protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
     {
@@ -19,7 +23,7 @@ public partial class Pages_Login : BasePage
         MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
         conn.Open();
         MySqlCommand cmd = conn.CreateCommand();
-        cmd.CommandText = "select * from Readers where Account = @u and Password = @p";
+        cmd.CommandText = "select * from Readers where ReaderId = @u and Password = @p";
         MySqlParameter param;
         param = new MySqlParameter("@u", Login1.UserName);
         cmd.Parameters.Add(param);
