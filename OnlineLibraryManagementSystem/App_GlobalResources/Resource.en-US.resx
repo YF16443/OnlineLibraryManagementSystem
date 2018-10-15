@@ -378,4 +378,8 @@
   <data name="Cover" xml:space="preserve">
     <value>Cover</value>
   </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+    <comment>书库位置</comment>
+  </data>
 </root>

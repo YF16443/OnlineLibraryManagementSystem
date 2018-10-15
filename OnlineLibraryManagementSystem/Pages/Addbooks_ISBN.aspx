@@ -45,7 +45,16 @@
             </tr>
             <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Quantity %>"></asp:Label>
+                    <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, ShelfId %>"></asp:Label>
+                </td>
+                <td class="auto-style4">    
+                    <asp:DropDownList ID="DropDownList1" runat="server">
+                    </asp:DropDownList> 
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style2">
+                    <asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Quantity %>"></asp:Label>
                 </td>
                 <td class="auto-style4">
                     <asp:TextBox ID="TextBoxQuantity" runat="server"></asp:TextBox>

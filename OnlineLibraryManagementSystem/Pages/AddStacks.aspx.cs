@@ -18,16 +18,33 @@ public partial class Pages_AddStacks : BasePage
 
     protected void AddStacks(object sender, EventArgs e)
     {
-        String stack_summary = "";
         String stackid = "";
+        String position = "";
+        String stack_summary = "";
         String nowdate = "";
+        String pattern = "[A-Z]-\\d{3}";
         if (TextBoxStackId.Text == "")
         {
             Response.Write("<script>alert('书库ID不为空')</script>");
+            return;
+        }
+        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxStackId.Text, pattern))
+        {
+            stackid = TextBoxStackId.Text;
         }
         else
         {
-            stackid = TextBoxStackId.Text;
+            Response.Write("<script>alert('书库ID格式不正确')</script>");
+            return;
+        }
+        if (TextBoxPosition.Text == "")
+        {
+            Response.Write("<script>alert('书库位置不为空')</script>");
+            return;
+        }
+        else
+        {
+            position = TextBoxPosition.Text;
         }
         stack_summary = TextBoxSummary.Text;
         nowdate = DateTime.Now.ToString("yyyy-MM-dd");
@@ -37,7 +54,7 @@ public partial class Pages_AddStacks : BasePage
         //检查同ID书库是否存在
         string selectStack = "select count(*) as num from Stacks where StackId='" + stackid + "';";
         //创建书库
-        string insertStack = "insert into Stacks(StackId,Summary,Timestamp) " + "values('" + stackid + "','" + stack_summary + "','" + nowdate + "');";
+        string insertStack = "insert into Stacks(StackId,Position,Summary,Timestamp) " + "values('" + stackid +"','"+position+ "','" + stack_summary + "','" + nowdate + "');";
         //打开数据库
         try
         {
@@ -74,10 +91,5 @@ public partial class Pages_AddStacks : BasePage
         {
             OLMSDBConnection.Close();
         }
-    }
-    protected void Cancel(object sender, EventArgs e)
-    {
-        //返回上一界面;
-        return;
     }
 }

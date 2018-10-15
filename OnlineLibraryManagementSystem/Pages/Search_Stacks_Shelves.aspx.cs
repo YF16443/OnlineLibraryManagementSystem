@@ -39,6 +39,7 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
         if (TextBoxID.Text == "")
         {
             Response.Write("<script>alert('查询ID不为空')</script>");
+            return;
         }
         else id = TextBoxID.Text;
         //数据库
