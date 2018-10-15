@@ -94,7 +94,7 @@ public partial class Pages_bookMessage : BasePage
             //库存不足
             if(!bookAva)
             {
-                Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.Reservation_Fail + "');location.href='Login.aspx';</script>");
+                Response.Write("<script>alert('" + Resources.Resource.Reservation_Fail + "')</script>");
                 return;
             }
         }
