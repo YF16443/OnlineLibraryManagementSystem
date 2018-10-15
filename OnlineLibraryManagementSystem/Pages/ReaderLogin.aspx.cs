@@ -12,7 +12,7 @@ public partial class Pages_Login : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!string.IsNullOrEmpty((string)Session["id"]))
+        if (!string.IsNullOrEmpty((string)Session["id"])|| !string.IsNullOrEmpty((string)Session["lid"]))
         {
             Response.Redirect("~/Pages/SearchDemo.aspx");
         }

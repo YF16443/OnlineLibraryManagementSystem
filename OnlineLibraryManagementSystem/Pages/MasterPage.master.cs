@@ -34,6 +34,8 @@ public partial class Pages_MasterPage : BaseMasterPage
     protected void lbLogout_Click(object sender, EventArgs e)
     {
         FormsAuthentication.SignOut();
+        Session.Remove("id");
+        Session.Remove("lid");
         Response.Redirect("~/Pages/SearchDemo.aspx");
     }
 }

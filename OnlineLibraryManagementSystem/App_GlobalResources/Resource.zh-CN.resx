@@ -435,4 +435,7 @@
   <data name="SystemSettings" xml:space="preserve">
     <value>系统配置</value>
   </data>
+  <data name="LibrarianLogin" xml:space="preserve">
+    <value>管理员登录</value>
+  </data>
 </root>
