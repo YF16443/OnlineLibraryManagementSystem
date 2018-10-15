@@ -2,16 +2,23 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Pages_Login : BasePage
+public partial class Pages_LibrarianLogin : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!string.IsNullOrEmpty((string)Session["id"]))
+        {
+            Response.Redirect("~/Pages/SearchDemo.aspx");
+        }
+        else if (!string.IsNullOrEmpty((string)Session["lid"]))
+        {
+            Response.Redirect("~/Pages/LibrarianPages/IssueBookDemo.aspx");
+        }
     }
     protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
     {
@@ -19,7 +26,7 @@ public partial class Pages_Login : BasePage
         MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
         conn.Open();
         MySqlCommand cmd = conn.CreateCommand();
-        cmd.CommandText = "select * from Readers where Account = @u and Password = @p";
+        cmd.CommandText = "select * from Librarians where LibrarianId = @u and Password = @p";
         MySqlParameter param;
         param = new MySqlParameter("@u", Login1.UserName);
         cmd.Parameters.Add(param);
@@ -29,8 +36,8 @@ public partial class Pages_Login : BasePage
         conn.Close();
         if (res != null)
         {
-            //使用Session方式保存账户信息
-            Session["id"] = Login1.UserName;
+            //使用Session方式保存账户信息,lid为管理员id
+            Session["lid"] = Login1.UserName;
             e.Authenticated = true;
         }
         else

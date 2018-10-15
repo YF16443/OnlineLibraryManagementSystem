@@ -60,4 +60,51 @@ public partial class Pages_bookMessage : BasePage
             OLMSDBConnection.Close();
         }
     }
+
+    protected void reserve_Click(object sender, EventArgs e)
+    {
+        if (string.IsNullOrEmpty((string)Session["id"]))
+        {
+            //未登录时提示登录
+            Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='../ReaderLogin.aspx';</script>");
+        }
+        string bookId = Request["book_id"];
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+        try
+        {
+            string book_sql1 = "select * from BookBarcodes where BookId=" + bookId;
+            OLMSDBConnection.Open();
+            MySqlCommand cmd1 = new MySqlCommand(book_sql1, OLMSDBConnection);
+            ArrayList bookList = new ArrayList();
+            MySqlDataReader bookReader = cmd1.ExecuteReader();
+            Boolean bookAva = false;
+            while(bookReader.Read()&&!bookAva)
+            {
+                if(bookReader.HasRows)
+                {
+                    //有可预约图书
+                    if((Int64)bookReader["Status"]==0)
+                    {
+                        bookAva = true;
+                    }
+                }
+
+            }
+            //库存不足
+            if(!bookAva)
+            {
+                Response.Write("<script>alert('" + Resources.Resource.Reservation_Fail + "')</script>");
+                return;
+            }
+        }
+        catch(MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            OLMSDBConnection.Close();
+        }
+    }
 }

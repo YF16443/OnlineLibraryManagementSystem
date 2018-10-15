@@ -9,9 +9,10 @@
             max-width:60px;
         }
     </style>
+    <script src="../Scripts/art-Template/template-web.js"></script>
 </asp:Content>
 <asp:Content ID="body" ContentPlaceHolderID="body" Runat="Server">
-    <div>
+    <div style="padding-top:50px">
         <table style="width: 100%;">
             <tr>
                 <td style="width:35%; text-align:right">
@@ -43,7 +44,7 @@
                             <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True">
                                 <ItemStyle Height="84px" HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" CssClass="resultImg" />
                             </asp:ImageField>
-                            <asp:HyperLinkField HeaderText="<%$ Resources:Resource, BookTitle %>" SortExpression="Title" DataNavigateUrlFields="BookId" DataNavigateUrlFormatString="~/Pages/bookMessage.aspx?book_id={0}" DataTextField="Title">
+                            <asp:HyperLinkField HeaderText="<%$ Resources:Resource, BookTitle %>" SortExpression="Title" DataNavigateUrlFields="BookId" DataNavigateUrlFormatString="~/Pages/OtherPages/bookMessage.aspx?book_id={0}" DataTextField="Title">
                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:HyperLinkField>
                             <asp:BoundField HeaderText="<%$ Resources:Resource, Author %>" SortExpression="Author" DataField="Author" ReadOnly="True">
