@@ -12,11 +12,25 @@ public partial class Pages_Login : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!string.IsNullOrEmpty((string)Session["id"])|| !string.IsNullOrEmpty((string)Session["lid"]))
+        if (!string.IsNullOrEmpty((string)Session["id"]))
         {
             Response.Redirect("~/Pages/SearchDemo.aspx");
         }
+        else if (!string.IsNullOrEmpty((string)Session["lid"]))
+        {
+            Response.Redirect("~/Pages/LibrarianPages/IssueBookDemo.aspx");
+        }
     }
+
+    protected void Page_LoadComplete(object sender, EventArgs e)
+    {
+        var loginView = Master.FindControl("LoginView") as LoginView;
+        if (loginView != null)
+        {
+            loginView.Visible = false;
+        }
+    }
+
     protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
     {
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;

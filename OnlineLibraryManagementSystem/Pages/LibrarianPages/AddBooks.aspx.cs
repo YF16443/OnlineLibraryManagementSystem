@@ -33,6 +33,11 @@ public partial class Pages_Addbooks_ISBN : BasePage
         }
     }
 
+    protected void Page_LoadComplete(object sender, EventArgs e)
+    {
+        Help.LibrarianMenuInit(this, sender, e);
+    }
+
     protected void Addbooks(object sender, EventArgs e)
     {
         //扫描ISBN获得图书信息并添加
