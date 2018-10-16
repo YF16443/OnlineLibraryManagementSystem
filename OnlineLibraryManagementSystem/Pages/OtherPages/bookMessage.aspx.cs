@@ -79,28 +79,58 @@ public partial class Pages_bookMessage : BasePage
             ArrayList bookList = new ArrayList();
             MySqlDataReader bookReader = cmd1.ExecuteReader();
             Boolean bookAva = false;
+            string reserveBarcode = null;
             while(bookReader.Read()&&!bookAva)
             {
                 if(bookReader.HasRows)
                 {
                     //有可预约图书
-                    if((Int64)bookReader["Status"]==0)
+                    if((int)bookReader["Status"]==0)
                     {
                         bookAva = true;
+                        reserveBarcode = bookReader["BookBarcode"].ToString();
                     }
+
                 }
 
             }
+            bookReader.Close();
             //库存不足
             if(!bookAva)
             {
                 Response.Write("<script>alert('" + Resources.Resource.Reservation_Fail + "')</script>");
                 return;
             }
+            else
+            {
+                string reservingTime = DateTime.Now.ToString();
+                int reservingReaderId = 0;
+                if (Session["id"] != null)
+                {
+                    string readerId = Session["id"].ToString();
+                    reservingReaderId = int.Parse(readerId);
+
+                }
+                System.Diagnostics.Debug.Write(reservingReaderId);
+                string reserve_sql = "update BookBarcodes set Status=2, ReservingTime=?reservingtime,ReservingReaderId=?reservingreaderid where BookBarcode=?bookbarcode";
+                MySqlCommand cmd2 = new MySqlCommand(reserve_sql, OLMSDBConnection);
+                cmd2.Parameters.AddWithValue("?reservingtime", reservingTime);
+                cmd2.Parameters.AddWithValue("?reservingreaderid", reservingReaderId);
+                cmd2.Parameters.AddWithValue("?bookbarcode", reserveBarcode);
+                int result = cmd2.ExecuteNonQuery();
+                if (result == 1)
+                {
+                    Response.Write("<script>alert('" + Resources.Resource.Reservation_Success + "')</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('" + Resources.Resource.Reservation_Fail + "')</script>");
+                }
+            }
         }
         catch(MySqlException ex)
         {
-            Console.WriteLine(ex.Message);
+            System.Diagnostics.Debug.Write(ex.Message);
         }
         finally
         {

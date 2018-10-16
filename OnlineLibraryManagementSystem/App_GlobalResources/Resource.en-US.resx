@@ -448,4 +448,7 @@
   <data name="LibrarianLogin" xml:space="preserve">
     <value>Librarian Login</value>
   </data>
+  <data name="Reservation_Success" xml:space="preserve">
+    <value>Reservation Success!\nPlease arrive for issuing within 2 hours.</value>
+  </data>
 </root>

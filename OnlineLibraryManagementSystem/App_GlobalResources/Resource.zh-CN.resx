@@ -448,4 +448,7 @@
     <value>位置</value>
     <comment>书库位置</comment>
   </data>
+  <data name="Reservation_Success" xml:space="preserve">
+    <value>预约成功！\n请于两小时内到达借阅！</value>
+  </data>
 </root>
