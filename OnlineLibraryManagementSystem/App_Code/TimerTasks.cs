@@ -24,10 +24,11 @@ public class TimerTasks
     }
     static void Task_Email(object sender, EventArgs e)
     {
+        int overdueDuration = int.Parse(GetWebConfigValue.GetWebConfigValueByKey("OverdueDuration"));
         //暂时默认提醒时间为7天
         TimeSpan notice_time = TimeSpan.FromDays(7);
         //暂时默认逾期时间为10天
-        TimeSpan overdue_time = TimeSpan.FromDays(10);
+        TimeSpan overdue_time = TimeSpan.FromDays(overdueDuration);
         DateTime time_now = DateTime.Now;
 
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
@@ -45,6 +46,7 @@ public class TimerTasks
                 {
                     //emailNoticeStatus表示已经向该订单用户发送邮件的数量
                     int emailNoticeStatus = (int)reader["EmailNoticeStatus"];
+                    int returnStatus = (int)reader["Status"];
                     DateTime time_notice = (DateTime)reader["IssueTime"] + notice_time;
                     DateTime time_overdue = (DateTime)reader["IssueTime"] + overdue_time;
                     //DateTime.Compare前一个时间早于后一个时间时返回结果小于0
@@ -79,6 +81,12 @@ public class TimerTasks
                         MySqlCommand cmd2 = new MySqlCommand(updateEmailStatusSql, conn2);
                         cmd2.ExecuteReader();
                         conn2.Close();
+                    }
+                    if (DateTime.Compare(time_overdue, time_now) < 0 && (returnStatus == 0 || returnStatus == 3)) 
+                    {
+                        MySqlConnection conn2 = new MySqlConnection(OLMSDBConnectionString);
+                        conn2.Open();
+
                     }
                 }
             }
