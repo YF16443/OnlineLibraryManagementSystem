@@ -24,7 +24,7 @@ public class TimerTasks
     }
     static void Task_Email(object sender, EventArgs e)
     {
-        int overdueDuration = int.Parse(GetWebConfigValue.GetWebConfigValueByKey("OverdueDuration"));
+        int overdueDuration = int.Parse(ConfigurationManager.AppSettings["OverdueDuration"].ToString());
         //暂时默认提醒时间为7天
         TimeSpan notice_time = TimeSpan.FromDays(7);
         //暂时默认逾期时间为10天
@@ -45,6 +45,7 @@ public class TimerTasks
                 if (reader.HasRows)
                 {
                     //emailNoticeStatus表示已经向该订单用户发送邮件的数量
+                    string bookbarcode = reader["BookBarcode"].ToString();
                     int emailNoticeStatus = (int)reader["EmailNoticeStatus"];
                     int returnStatus = (int)reader["Status"];
                     DateTime time_notice = (DateTime)reader["IssueTime"] + notice_time;
@@ -84,9 +85,31 @@ public class TimerTasks
                     }
                     if (DateTime.Compare(time_overdue, time_now) < 0 && (returnStatus == 0 || returnStatus == 3)) 
                     {
-                        MySqlConnection conn2 = new MySqlConnection(OLMSDBConnectionString);
-                        conn2.Open();
-
+                        MySqlConnection conn3 = new MySqlConnection(OLMSDBConnectionString);
+                        try
+                        {
+                            conn3.Open();
+                            TimeSpan ts = time_now - time_overdue;
+                            int overduelength = ts.Days;
+                            System.Diagnostics.Debug.WriteLine(overduelength);
+                            double finePerDay = Convert.ToDouble(ConfigurationManager.AppSettings["OverdueFinePerDay"].ToString());
+                            double fine = overduelength * finePerDay;
+                            string overdue_sql = "update IssueRecords set Status=3, OverdueLength=?overduelength,Fine=?fine where BookBarcode=?bookbarcode";
+                            MySqlCommand cmd2 = new MySqlCommand(overdue_sql, conn3);
+                            cmd2.Parameters.AddWithValue("?overduelength", overduelength);
+                            cmd2.Parameters.AddWithValue("?fine", fine);
+                            cmd2.Parameters.AddWithValue("?bookbarcode", bookbarcode);
+                            int result = cmd2.ExecuteNonQuery();
+                            System.Diagnostics.Debug.WriteLine(result);
+                        }
+                        catch (MySqlException ex)
+                        {
+                            System.Diagnostics.Debug.Write(ex.Message);
+                        }
+                        finally
+                        {
+                            conn3.Close();
+                        }
                     }
                 }
             }
