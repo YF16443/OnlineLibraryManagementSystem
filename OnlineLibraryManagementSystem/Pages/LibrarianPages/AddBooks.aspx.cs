@@ -16,19 +16,21 @@ public partial class Pages_Addbooks_ISBN : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        DropDownList1.Items.Clear();
-        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
-        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
-
-        OLMSDBConnection.Open();
-        string select = "select ShelfId from Shelves";
-        MySqlCommand cmdselectBookid = new MySqlCommand(select, OLMSDBConnection);
-        MySqlDataReader reader = cmdselectBookid.ExecuteReader();
-        while (reader.Read())
+        if (!Page.IsPostBack)
         {
-            DropDownList1.Items.Add(reader["ShelfId"].ToString());
+            string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+            MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+
+            OLMSDBConnection.Open();
+            string select = "select ShelfId,StackId from Shelves";
+            MySqlCommand cmdselectBookid = new MySqlCommand(select, OLMSDBConnection);
+            MySqlDataReader reader = cmdselectBookid.ExecuteReader();
+            while (reader.Read())
+            {
+                DropDownList1.Items.Add(reader["ShelfId"].ToString() + "," + reader["StackId"].ToString());
+            }
+            OLMSDBConnection.Close();
         }
-        OLMSDBConnection.Close();
     }
 
     protected void Page_LoadComplete(object sender, EventArgs e)
@@ -46,6 +48,11 @@ public partial class Pages_Addbooks_ISBN : BasePage
             Response.Write("<script>alert('ISBN不为空')</script>");
             return;
 
+        }
+        else if (TextBoxISBN.Text.Length != 13)
+        {
+            Response.Write("<script>alert('ISBN格式不正确')</script>");
+            return;
         }
         else isbn = TextBoxISBN.Text;
         if (TextBoxQuantity.Text == "")
@@ -65,7 +72,8 @@ public partial class Pages_Addbooks_ISBN : BasePage
         //先检查数据库中是否存在该ISBN图书
         string selectIsbn = "select count(*) as num from Books where ISBN13 = '" + isbn + "'; ";
         int updateflag = 0;
-        string shelfid = DropDownList1.SelectedItem.Text;//书架号
+        string[] shelf= DropDownList1.SelectedItem.Text.Split(',');//书架号
+        string shelfid = shelf[0];
         string Bookid = "";//bookid
         string bookbarcode = "";//barcode码
         try

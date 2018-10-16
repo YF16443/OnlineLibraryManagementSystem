@@ -463,4 +463,8 @@
   <data name="Returned_Not" xml:space="preserve">
     <value>Not Returned &amp; 未归还</value>
   </data>
+  <data name="Select_Shelf" xml:space="preserve">
+    <value>Select_Shelf &amp;&amp; 选择书架</value>
+    <comment>选择书架</comment>
+  </data>
 </root>
