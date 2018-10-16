@@ -16,6 +16,11 @@ public partial class Pages_AddStacks : BasePage
 
     }
 
+    protected void Page_LoadComplete(object sender, EventArgs e)
+    {
+        Help.LibrarianMenuInit(this, sender, e);
+    }
+
     protected void AddStacks(object sender, EventArgs e)
     {
         String stackid = "";

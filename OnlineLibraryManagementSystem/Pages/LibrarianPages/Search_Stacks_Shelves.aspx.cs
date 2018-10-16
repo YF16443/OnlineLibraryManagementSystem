@@ -16,6 +16,11 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
 
     }
 
+    protected void Page_LoadComplete(object sender, EventArgs e)
+    {
+        Help.LibrarianMenuInit(this, sender, e);
+    }
+
     protected void Cancel(object sender, EventArgs e)
     {
         //跳转到上一页面
