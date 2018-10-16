@@ -12,9 +12,13 @@ public partial class Pages_Login : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!string.IsNullOrEmpty((string)Session["id"])|| !string.IsNullOrEmpty((string)Session["lid"]))
+        if (!string.IsNullOrEmpty((string)Session["id"]))
         {
             Response.Redirect("~/Pages/SearchDemo.aspx");
+        }
+        else if (!string.IsNullOrEmpty((string)Session["lid"]))
+        {
+            Response.Redirect("~/Pages/LibrarianPages/IssueBookDemo.aspx");
         }
     }
     protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)

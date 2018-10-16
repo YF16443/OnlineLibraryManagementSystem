@@ -26,7 +26,7 @@ public partial class Pages_LibrarianLogin : BasePage
         MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
         conn.Open();
         MySqlCommand cmd = conn.CreateCommand();
-        cmd.CommandText = "select * from Librarians where LibrarianId = @u and Password = @p";
+        cmd.CommandText = "select * from Librarians where Account = @u and Password = @p";
         MySqlParameter param;
         param = new MySqlParameter("@u", Login1.UserName);
         cmd.Parameters.Add(param);

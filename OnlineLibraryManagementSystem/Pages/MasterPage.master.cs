@@ -21,7 +21,7 @@ public partial class Pages_MasterPage : BaseMasterPage
 
     protected void lbSignOut_Click(object sender, EventArgs e)
     {
-        Session["id"] = null;
+        Session.Remove("id");
         Response.Redirect("~/Pages/Login.aspx");
     }
 
