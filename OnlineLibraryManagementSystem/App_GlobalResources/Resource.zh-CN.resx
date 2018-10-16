@@ -451,4 +451,8 @@
   <data name="Reservation_Success" xml:space="preserve">
     <value>预约成功！\n请于两小时内到达借阅！</value>
   </data>
+  <data name="Select_Shelf" xml:space="preserve">
+    <value>选择书架</value>
+    <comment>选择书架</comment>
+  </data>
 </root>

@@ -45,7 +45,7 @@
             </tr>
             <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, ShelfId %>"></asp:Label>
+                    <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Select_Shelf %>"></asp:Label>
                 </td>
                 <td class="auto-style4">    
                     <asp:DropDownList ID="DropDownList1" runat="server">
@@ -64,7 +64,6 @@
         <div class="style1">
              <asp:Button ID="AddButton" runat="server" Text="<%$ Resources:Resource, Add %>" OnClick="Addbooks"  CausesValidation="False" CssClass="auto-style7" />
             <asp:Button ID="Print_BarcodeButton" runat="server" Text="<%$ Resources:Resource, Print_Barcode %>" OnClick="Print_Barcode"  CausesValidation="False" CssClass="auto-style7" />
-             <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="auto-style7" />
         </div>
     </div>   
 </asp:Content>

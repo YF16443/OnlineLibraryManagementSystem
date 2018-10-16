@@ -451,4 +451,8 @@
   <data name="Reservation_Success" xml:space="preserve">
     <value>Reservation Success!\nPlease arrive for issuing within 2 hours.</value>
   </data>
+  <data name="Select_Shelf" xml:space="preserve">
+    <value>Select_Shelf</value>
+    <comment>Select_Shelf</comment>
+  </data>
 </root>

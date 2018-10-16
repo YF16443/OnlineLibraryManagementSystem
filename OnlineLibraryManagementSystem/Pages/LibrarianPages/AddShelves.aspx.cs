@@ -13,19 +13,22 @@ public partial class Pages_AddShelves : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        DropDownList1.Items.Clear();
-        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
-        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
-
-        OLMSDBConnection.Open();
-        string select = "select StackId from Stacks";
-        MySqlCommand cmdselectBookid = new MySqlCommand(select, OLMSDBConnection);
-        MySqlDataReader reader = cmdselectBookid.ExecuteReader();
-        while (reader.Read())
+        if (!Page.IsPostBack)
         {
-            DropDownList1.Items.Add(reader["StackId"].ToString());
+            //DropDownList1.Items.Clear();
+            string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+            MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+
+            OLMSDBConnection.Open();
+            string select = "select StackId from Stacks";
+            MySqlCommand cmdselectBookid = new MySqlCommand(select, OLMSDBConnection);
+            MySqlDataReader reader = cmdselectBookid.ExecuteReader();
+            DropDownList1.DataSource = reader;
+            DropDownList1.DataTextField = "StackId";
+            DropDownList1.DataBind();
+            reader.Close();
+            OLMSDBConnection.Close();
         }
-        OLMSDBConnection.Close();
     }
 
     protected void AddShelves(object sender, EventArgs e)
