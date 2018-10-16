@@ -451,4 +451,16 @@
   <data name="Reservation_Success" xml:space="preserve">
     <value>预约成功！\n请于两小时内到达借阅！</value>
   </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="Fine" xml:space="preserve">
+    <value>罚款金额</value>
+  </data>
+  <data name="Returned" xml:space="preserve">
+    <value>已归还</value>
+  </data>
+  <data name="Returned_Not" xml:space="preserve">
+    <value>未归还</value>
+  </data>
 </root>
