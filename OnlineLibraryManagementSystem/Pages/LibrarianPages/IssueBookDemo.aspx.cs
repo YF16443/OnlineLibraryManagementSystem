@@ -54,15 +54,17 @@ public partial class Pages_IssueBookDemo : BasePage
             //执行借书操作
             DateTime time_now = DateTime.Now;
             string now_time = time_now.ToString("yyyy-MM-dd HH:mm:ss");
-            string insertIssueSql = "INSERT INTO `IssueRecords` (`ReaderId`, `BookBarcode`, `IssueTime`) VALUES('"
-                + readerID + "', '" + BarcodeID + "', '" + now_time + "');";
+            string insertIssueSql = "INSERT INTO `IssueRecords` (`ReaderId`, `BookBarcode`, `IssueTime`) VALUES(@readerId, @bookBarcode, @issueTime);"
+                + "UPDATE BookBarcodes SET Status = 1, ReservingTime = NULL, ReservingReaderId = NULL WHERE(BookBarcode = @bookBarcode);";
             MySqlCommand cmd2 = new MySqlCommand(insertIssueSql, OLMSDBConnection);
-            cmd2.ExecuteReader();
+            cmd2.Parameters.AddWithValue("@readerId", readerID);
+            cmd2.Parameters.AddWithValue("@bookBarcode", BarcodeID);
+            cmd2.Parameters.AddWithValue("@issueTime", now_time);
+            cmd2.ExecuteNonQuery();
             Response.Write("<script>alert('OK')</script>");
         }
         catch (Exception ex)
         {
-            //exception-handler
             Response.Write("<script>alert('" + ex.Message + "')</script>");
         }
         finally
