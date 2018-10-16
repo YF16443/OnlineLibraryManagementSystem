@@ -11,4 +11,9 @@ public partial class Pages_LibrarianPages_AddPeriodicals : BasePage
     {
 
     }
+
+    protected void Page_LoadComplete(object sender, EventArgs e)
+    {
+        Help.LibrarianMenuInit(this, sender, e);
+    }
 }

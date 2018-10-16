@@ -22,7 +22,6 @@ public partial class Pages_MasterPage : BaseMasterPage
     protected void lbSignOut_Click(object sender, EventArgs e)
     {
         Session["id"] = null;
-        Response.Redirect("~/Pages/Login.aspx");
     }
 
     protected void ddlLanguages_SelectedIndexChanged(object sender, EventArgs e)

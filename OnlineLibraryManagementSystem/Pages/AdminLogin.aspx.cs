@@ -11,4 +11,13 @@ public partial class Pages_AdminLogin : BasePage
     {
 
     }
+
+    protected void Page_LoadComplete(object sender, EventArgs e)
+    {
+        var loginView = Master.FindControl("LoginView") as LoginView;
+        if (loginView != null)
+        {
+            loginView.Visible = false;
+        }
+    }
 }
