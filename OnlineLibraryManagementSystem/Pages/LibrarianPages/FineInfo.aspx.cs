@@ -35,6 +35,8 @@ public partial class Pages_LibrarianPages_FineInfo : System.Web.UI.Page
                 dr["newStatus"] = "未归还";
             if (status == "1")
                 dr["newStatus"] = "已归还";
+            if (status == "2") 
+                dr["newStatus"] = "已损坏或丢失";
         }
         FineOverdue.DataSource = searchResult;
         FineOverdue.DataBind();
