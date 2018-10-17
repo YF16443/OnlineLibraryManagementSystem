@@ -94,6 +94,10 @@ public class TimerTasks
                             System.Diagnostics.Debug.WriteLine(overduelength);
                             double finePerDay = Convert.ToDouble(ConfigurationManager.AppSettings["OverdueFinePerDay"].ToString());
                             double fine = overduelength * finePerDay;
+                            double deposit = Convert.ToDouble(ConfigurationManager.AppSettings["Deposit"].ToString());
+                            //罚款不超过押金
+                            if (fine > deposit)
+                                fine = deposit;
                             string overdue_sql = "update IssueRecords set Status=3, OverdueLength=?overduelength,Fine=?fine where BookBarcode=?bookbarcode";
                             MySqlCommand cmd2 = new MySqlCommand(overdue_sql, conn3);
                             cmd2.Parameters.AddWithValue("?overduelength", overduelength);

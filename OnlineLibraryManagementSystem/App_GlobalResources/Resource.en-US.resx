@@ -467,4 +467,22 @@
     <value>Select_Shelf</value>
     <comment>Select_Shelf</comment>
   </data>
+  <data name="Damage" xml:space="preserve">
+    <value>Damaged</value>
+  </data>
+  <data name="Lost" xml:space="preserve">
+    <value>Lost</value>
+  </data>
+  <data name="Reparation" xml:space="preserve">
+    <value>Reparation</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="DamageAlert" xml:space="preserve">
+    <value>Need to pay</value>
+  </data>
+  <data name="Yuan" xml:space="preserve">
+    <value>Yuan</value>
+  </data>
 </root>
