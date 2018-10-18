@@ -435,6 +435,22 @@
   <data name="SystemSettings" xml:space="preserve">
     <value>系统配置</value>
   </data>
+  <data name="LibrarianRegister" xml:space="preserve">
+    <value>管理员注册</value>
+    <comment>管理员注册</comment>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="Fine" xml:space="preserve">
+    <value>欠款</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
   <data name="Reserve" xml:space="preserve">
     <value>预约</value>
   </data>
@@ -466,6 +482,24 @@
   <data name="Select_Shelf" xml:space="preserve">
     <value>选择书架</value>
     <comment>选择书架</comment>
+  </data>
+  <data name="Damage" xml:space="preserve">
+    <value>损坏</value>
+  </data>
+  <data name="Lost" xml:space="preserve">
+    <value>丢失</value>
+  </data>
+  <data name="Reparation" xml:space="preserve">
+    <value>赔偿</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="DamageAlert" xml:space="preserve">
+    <value>需要赔偿</value>
+  </data>
+  <data name="Yuan" xml:space="preserve">
+    <value>元</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>编辑</value>

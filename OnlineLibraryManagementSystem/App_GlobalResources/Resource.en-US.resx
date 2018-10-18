@@ -467,6 +467,44 @@
     <value>Select_Shelf</value>
     <comment>Select_Shelf</comment>
   </data>
+  <data name="Damage" xml:space="preserve">
+    <value>Damaged</value>
+  </data>
+  <data name="Lost" xml:space="preserve">
+    <value>Lost</value>
+  </data>
+  <data name="Reparation" xml:space="preserve">
+    <value>Reparation</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="DamageAlert" xml:space="preserve">
+    <value>Need to pay</value>
+  </data>
+  <data name="Yuan" xml:space="preserve">
+    <value>Yuan</value>
+  </data>
+  <data name="LibrarianRegister" xml:space="preserve">
+    <value>LibrarianRegister</value>
+    <comment>管理员注册</comment>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+    <comment>密码</comment>
+  </data>
+  <data name="Fine" xml:space="preserve">
+    <value>Fine</value>
+    <comment>欠款</comment>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+    <comment>状态</comment>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>删除</comment>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
     <comment>Edit</comment>

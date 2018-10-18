@@ -467,6 +467,43 @@
     <value>Select_Shelf &amp;&amp; 选择书架</value>
     <comment>选择书架</comment>
   </data>
+  <data name="Damage" xml:space="preserve">
+    <value>Damaged &amp; 损坏</value>
+  </data>
+  <data name="Lost" xml:space="preserve">
+    <value>Lost &amp; 丢失</value>
+  </data>
+  <data name="Reparation" xml:space="preserve">
+    <value>Reparation &amp; 赔偿</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type &amp; 类型</value>
+  </data>
+  <data name="DamageAlert" xml:space="preserve">
+    <value>Need to pay &amp; 需要赔偿</value>
+  </data>
+  <data name="Yuan" xml:space="preserve">
+    <value>Yuan &amp; 元</value>
+  </data>
+  <data name="LibrarianRegister" xml:space="preserve">
+    <value>LibrarianRegister &amp; 管理员注册</value>
+    <comment>管理员注册</comment>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password &amp; 密码</value>
+    <comment>密码</comment>
+  </data>
+  <data name="Fine" xml:space="preserve">
+    <value>Fine &amp; 欠款</value>
+    <comment>欠款</comment>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status &amp; 状态</value>
+    <comment>状态</comment>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete &amp; 删除</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit &amp;&amp; 编辑</value>
     <comment>编辑</comment>
