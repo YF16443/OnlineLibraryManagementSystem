@@ -25,6 +25,7 @@ public partial class Pages_StackInfo : BasePage
             if (reader.Read())
             {
                 LabelStackId.Text = reader["StackId"].ToString();
+                LabelPosition.Text = reader["Position"].ToString();
                 LabelSummary.Text = reader["Summary"].ToString();
                 LabelStack_Timestamp.Text = reader["Timestamp"].ToString();
             }
@@ -48,5 +49,10 @@ public partial class Pages_StackInfo : BasePage
     protected void Cancel(object sender, EventArgs e)
     {
         Response.Redirect("Search_Stacks_Shelves.aspx");
+    }
+
+    protected void Edit_StackInfo(object sender, EventArgs e)
+    {
+        Response.Redirect("EditStack.aspx");
     }
 }

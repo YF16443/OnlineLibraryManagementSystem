@@ -467,4 +467,12 @@
     <value>Select_Shelf &amp;&amp; 选择书架</value>
     <comment>选择书架</comment>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit &amp;&amp; 编辑</value>
+    <comment>编辑</comment>
+  </data>
+  <data name="Alter" xml:space="preserve">
+    <value>Alter &amp;&amp; 修改</value>
+    <comment>修改</comment>
+  </data>
 </root>

@@ -23,8 +23,8 @@ public partial class Pages_Addbooks_ISBN : BasePage
 
             OLMSDBConnection.Open();
             string select = "select ShelfId,StackId from Shelves";
-            MySqlCommand cmdselectBookid = new MySqlCommand(select, OLMSDBConnection);
-            MySqlDataReader reader = cmdselectBookid.ExecuteReader();
+            MySqlCommand cmdselectshelfid = new MySqlCommand(select, OLMSDBConnection);
+            MySqlDataReader reader = cmdselectshelfid.ExecuteReader();
             while (reader.Read())
             {
                 DropDownList1.Items.Add(reader["ShelfId"].ToString() + "," + reader["StackId"].ToString());
@@ -77,7 +77,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
         string Bookid = "";//bookid
         string bookbarcode = "";//barcode码
         try
-        {
+        { 
             OLMSDBConnection.Open();
             MySqlCommand cmdselectIsbn = new MySqlCommand(selectIsbn, OLMSDBConnection);
             MySqlDataReader readerisbn = cmdselectIsbn.ExecuteReader();
@@ -126,8 +126,17 @@ public partial class Pages_Addbooks_ISBN : BasePage
                     return;
                 }
             }
+            Book book;
             //通过api建立book对象
-            Book book = BookInfoQuery.GetByISBN(isbn);
+            if (BookInfoQuery.GetByISBN(isbn) != null)
+            {
+                book = BookInfoQuery.GetByISBN(isbn);
+            }
+            else
+            {
+                Response.Write("<script>alert('未找到该图书')</script>");
+                return;
+            }
             string path = HttpRuntime.AppDomainAppPath.ToString() + "Images\\Cover\\";
             string ImageURL = SaveImageFromWeb(book.image, path, book.title);
             string author = string.Join(",", book.author.ToArray());
@@ -136,7 +145,6 @@ public partial class Pages_Addbooks_ISBN : BasePage
             string ImageURLSave = "~/Images/Cover/" + book.title + ".jpg";
             //日期默认为1号
             string pubdate = book.pubdate + "-1";
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd");
             List<string> tagsid = new List<string>();
             //向category表中插入该本书的关键字
             int flag = 0;
@@ -164,6 +172,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
                     MySqlCommand cmdinserttags = new MySqlCommand(inserttags, OLMSDBConnection);
                     int resulttags = 0;
                     resulttags = cmdinserttags.ExecuteNonQuery();
+                    flag = 0;
                 }
                 string selecttagsid = "select CategoryId from BookCategories where Name='" + tags.title + "';";
                 MySqlCommand cmdselecttagsid = new MySqlCommand(selecttagsid, OLMSDBConnection);
@@ -177,7 +186,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
             //将关键字转为关键字id存入，以逗号隔开即为categories，读取时需转换
             string categoryid = string.Join(",", tagsid.ToArray());
             //插入书
-            string insertBook = "insert into Books(ISBN13,ISBN10,ImageURL,Title,SubTitle,OriginTitle,Author,Translator,Publisher,PubDate,Category,Binding,Pages,Price,Summary,AuthorIntro,Catalog,Amount,Timestamp) " + "values('" + book.isbn13 + "','" + book.isbn10 + "','" + ImageURLSave + "','" + book.title + "','" + book.subtitle + "','" + book.origin_title + "','" + author + "','" + translator + "','" + book.publisher + "','" + pubdate + "','" + categoryid + "','" + book.binding + "','" + book.pages + "','" + price + "','" + book.summary + "','" + book.author_intro + "','" + book.catalog + "','" + quantity + "','" + timestamp + "')";
+            string insertBook = "insert into Books(ISBN13,ISBN10,ImageURL,Title,SubTitle,OriginTitle,Author,Translator,Publisher,PubDate,Category,Binding,Pages,Price,Summary,AuthorIntro,Catalog,Amount) " + "values('" + book.isbn13 + "','" + book.isbn10 + "','" + ImageURLSave + "','" + book.title + "','" + book.subtitle + "','"+addslashes(book.origin_title)+"','" + author + "','" + translator + "','" + book.publisher + "','" + pubdate + "','" + categoryid + "','" + book.binding + "','" + book.pages + "','" + price + "','" + book.summary + "','" + book.author_intro + "','" + book.catalog + "','" + quantity + "')";
             MySqlCommand cmdinsertBook = new MySqlCommand(insertBook, OLMSDBConnection);
             int result1 = 0;
             result1 = cmdinsertBook.ExecuteNonQuery();
@@ -284,7 +293,13 @@ public partial class Pages_Addbooks_ISBN : BasePage
             Response.Write("Book Not Found");
         }
     }
-
+    protected string addslashes(string str)
+    {
+        //处理单引号
+        //待修改
+        string newstr=str.Replace("\'","\\\'");
+        return newstr;
+    }
     protected void Cancel(object sender, EventArgs e)
     {
         //返回上一页面

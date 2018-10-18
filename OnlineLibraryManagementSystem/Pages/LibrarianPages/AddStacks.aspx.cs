@@ -52,14 +52,13 @@ public partial class Pages_AddStacks : BasePage
             position = TextBoxPosition.Text;
         }
         stack_summary = TextBoxSummary.Text;
-        nowdate = DateTime.Now.ToString("yyyy-MM-dd");
         //数据库
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         //检查同ID书库是否存在
         string selectStack = "select count(*) as num from Stacks where StackId='" + stackid + "';";
         //创建书库
-        string insertStack = "insert into Stacks(StackId,Position,Summary,Timestamp) " + "values('" + stackid +"','"+position+ "','" + stack_summary + "','" + nowdate + "');";
+        string insertStack = "insert into Stacks(StackId,Position,Summary) " + "values('" + stackid +"','"+position+ "','" + stack_summary  + "');";
         //打开数据库
         try
         {

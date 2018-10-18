@@ -467,4 +467,12 @@
     <value>选择书架</value>
     <comment>选择书架</comment>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>编辑</value>
+    <comment>编辑</comment>
+  </data>
+  <data name="Alter" xml:space="preserve">
+    <value>修改</value>
+    <comment>修改</comment>
+  </data>
 </root>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPage.master" AutoEventWireup="true" CodeFile="StackInfo.aspx.cs" Inherits="Pages_StackInfo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPage.master" AutoEventWireup="true" CodeFile="EditShelf.aspx.cs" Inherits="Pages_LibrarianPages_EditShelf" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -38,44 +38,41 @@
         <table class ="style1">
             <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource,StackId %>"></asp:Label>
+                    <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource,ShelfId %>"></asp:Label>
                 </td>
                 <td class="auto-style4">
-                    &nbsp
-                    <asp:Label ID="LabelStackId" runat="server" Text="LabelStackId"></asp:Label>
+                    <asp:TextBox ID="TextBoxShelfId" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource,Position %>"></asp:Label>
+                    <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, StackId %>"></asp:Label>
                 </td>
                 <td class="auto-style4">
-                    &nbsp
-                    <asp:Label ID="LabelPosition" runat="server" Text="LabelPosition"></asp:Label>
-                </td>
+                    <asp:DropDownList ID="DropDownList1" runat="server">
+                    </asp:DropDownList>
+                    </td>
             </tr>
             <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Stack_Summary %>"></asp:Label>
+                    <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Shelf_Summary %>"></asp:Label>
                 </td>
                 <td class="auto-style4">
-                    &nbsp
-                    <asp:Label ID="LabelSummary" runat="server" Text="LabelSummary"></asp:Label>
+                    <asp:TextBox ID="TextBoxSummary" runat="server"></asp:TextBox>
                 </td>
             </tr>
              <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Stack_Timestamp %>"></asp:Label>
+                    <asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Shelf_Timestamp %>"></asp:Label>
                 </td>
                 <td class="auto-style4">
-                    &nbsp
-                    <asp:Label ID="LabelStack_Timestamp" runat="server" Text="LabelStack_Timestamp"></asp:Label>
+                    <asp:Label ID="LabelShelf_Timestamp" runat="server" Text="LabelShelf_Timestamp"></asp:Label>
                 </td>
             </tr>
         </table>
         <div class="style1">
-            <asp:Button ID="EditButton" runat="server" Text="<%$ Resources:Resource, Edit %>" OnClick="Edit_StackInfo" CausesValidation="False" CssClass="auto-style7" />
-              <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="auto-style7" />
+            <asp:Button ID="AlterButton" runat="server" Text="<%$ Resources:Resource, Alter %>" OnClick="Alter_ShelfInfo" CausesValidation="False" CssClass="auto-style7" />
+            <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="auto-style7" />
         </div>
     </div>
   

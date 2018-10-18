@@ -49,4 +49,9 @@ public partial class Pages_ShelfInfo : BasePage
     {
         Response.Redirect("Search_Stacks_Shelves.aspx");
     }
+
+    protected void Edit_ShelfInfo(object sender, EventArgs e)
+    {
+        Response.Redirect("EditShelf.aspx");
+    }
 }

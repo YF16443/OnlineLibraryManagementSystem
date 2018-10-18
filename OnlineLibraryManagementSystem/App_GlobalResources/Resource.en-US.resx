@@ -467,4 +467,12 @@
     <value>Select_Shelf</value>
     <comment>Select_Shelf</comment>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>Edit</comment>
+  </data>
+  <data name="Alter" xml:space="preserve">
+    <value>Alter</value>
+    <comment>修改</comment>
+  </data>
 </root>

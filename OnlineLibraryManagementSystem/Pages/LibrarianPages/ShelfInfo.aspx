@@ -30,6 +30,7 @@
         }
         .auto-style7 {
             font-size: large;
+            text-align: center;
         }
     </style>
     <div class="auto-style1">
@@ -74,6 +75,7 @@
             </tr>
         </table>
         <div class="style1">
+            <asp:Button ID="EditButton" runat="server" Text="<%$ Resources:Resource, Edit %>" OnClick="Edit_ShelfInfo" CausesValidation="False" CssClass="auto-style7" />
              <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="auto-style7" />
         </div>
     </div>

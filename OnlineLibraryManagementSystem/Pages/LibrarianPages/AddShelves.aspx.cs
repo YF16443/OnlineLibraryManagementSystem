@@ -21,8 +21,8 @@ public partial class Pages_AddShelves : BasePage
 
             OLMSDBConnection.Open();
             string select = "select StackId from Stacks";
-            MySqlCommand cmdselectBookid = new MySqlCommand(select, OLMSDBConnection);
-            MySqlDataReader reader = cmdselectBookid.ExecuteReader();
+            MySqlCommand cmdselectstackid = new MySqlCommand(select, OLMSDBConnection);
+            MySqlDataReader reader = cmdselectstackid.ExecuteReader();
             DropDownList1.DataSource = reader;
             DropDownList1.DataTextField = "StackId";
             DropDownList1.DataBind();
@@ -44,14 +44,13 @@ public partial class Pages_AddShelves : BasePage
         string shelfid = "";
         stackid = DropDownList1.SelectedItem.Text;
         shelf_summary = TextBoxShelf_Summary.Text;
-        nowdate= DateTime.Now.ToString("yyyy-MM-dd");
         //数据库
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         //检查同ID书库是否存在
         string selectStack = "select count(*) as num2 from Stacks where StackId='" + stackid + "';";
         //创建书架
-        string insertShelve = "insert into Shelves(StackId,Summary,Timestamp) " + "values('"  + stackid + "','" + shelf_summary + "','" + nowdate + "');";
+        string insertShelve = "insert into Shelves(StackId,Summary) " + "values('"  + stackid + "','" + shelf_summary  + "');";
         string selectShelveid = "select max(ShelfId) from Shelves";
         try
         {

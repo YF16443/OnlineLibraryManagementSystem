@@ -39,14 +39,13 @@ public static class BookInfoQuery
         {
             return null;
         }
-        
-        Stream responseStream = response.GetResponseStream();
-        var responseReader = new StreamReader(responseStream);
-        string bookInfo = responseReader.ReadToEnd();
-        responseReader.Close();
-        responseStream.Close();
+            Stream responseStream = response.GetResponseStream();
+            var responseReader = new StreamReader(responseStream);
+            string bookInfo = responseReader.ReadToEnd();
+            responseReader.Close();
+            responseStream.Close();
 
-        return bookInfo;
+            return bookInfo;
     }
 }
 
