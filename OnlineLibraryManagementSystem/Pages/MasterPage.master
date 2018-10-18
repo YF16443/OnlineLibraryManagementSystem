@@ -21,7 +21,7 @@
                         <asp:ImageButton ID="ibLogo" runat="server" ImageUrl="~/Images/logo.png" PostBackUrl="~/Pages/SearchDemo.aspx" Height="43.2px" Width="145.35px"/>
                     </td>
                     <td>
-                        <asp:Menu ID="MainMenu" runat="server" DisappearAfter="0" Orientation="Horizontal" RenderingMode="List" Visible="False">
+                        <asp:Menu ID="LibrarianMenu" runat="server" DisappearAfter="0" Orientation="Horizontal" RenderingMode="List" Visible="False">
                             <Items>
                                 <asp:MenuItem Text="<%$ Resources:Resource,BookCirculation %>" Value="Circulation" Selectable="False">
                                     <asp:MenuItem Text="<%$ Resources:Resource,Issue %>" Value="Issue" NavigateUrl="~/Pages/IssueBookDemo.aspx"></asp:MenuItem>
@@ -47,7 +47,7 @@
                                 <asp:MenuItem Text="<%$ Resources:Resource,NoticeManagement %>" Value="NoticeManagement"></asp:MenuItem>
                             </Items>
                         </asp:Menu>
-                        <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" DisappearAfter="0" Visible="False">
+                        <asp:Menu ID="AdminMenu" runat="server" Orientation="Horizontal" DisappearAfter="0" Visible="False">
                             <Items>
                                 <asp:MenuItem Text="<%$ Resources:Resource,SystemSettings %>" Value="SystemSettings"></asp:MenuItem>
                                 <asp:MenuItem Text="<%$ Resources:Resource,LibrarianManagement %>" Value="LibrarianManagement"></asp:MenuItem>

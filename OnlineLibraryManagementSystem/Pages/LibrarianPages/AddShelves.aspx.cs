@@ -13,68 +13,56 @@ public partial class Pages_AddShelves : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Page.IsPostBack)
+        {
+            //DropDownList1.Items.Clear();
+            string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+            MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
 
+            OLMSDBConnection.Open();
+            string select = "select StackId from Stacks";
+            MySqlCommand cmdselectBookid = new MySqlCommand(select, OLMSDBConnection);
+            MySqlDataReader reader = cmdselectBookid.ExecuteReader();
+            DropDownList1.DataSource = reader;
+            DropDownList1.DataTextField = "StackId";
+            DropDownList1.DataBind();
+            reader.Close();
+            OLMSDBConnection.Close();
+        }
+    }
+
+    protected void Page_LoadComplete(object sender, EventArgs e)
+    {
+        Help.LibrarianMenuInit(this, sender, e);
     }
 
     protected void AddShelves(object sender, EventArgs e)
     {
-        string shelfid = "";
         string stackid = "";
         string shelf_summary = "";
         string nowdate = "";
-        if (TextBoxShelfId.Text == "")
-        {
-            Response.Write("<script>alert('书架ID不为空')</script>");
-        }
-        else
-        {
-            shelfid = TextBoxShelfId.Text;
-        }
-        if (TextBoxStackId.Text == "")
-        {
-            Response.Write("<script>alert('书库ID不为空')</script>");
-        }
-        else
-        {
-            stackid = TextBoxStackId.Text;
-        }
+        string shelfid = "";
+        stackid = DropDownList1.SelectedItem.Text;
         shelf_summary = TextBoxShelf_Summary.Text;
         nowdate= DateTime.Now.ToString("yyyy-MM-dd");
         //数据库
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
-        //检查同ID书架是否存在
-        string selectShelve = "select count(*) as num1 from Shelves where ShelfId='" + shelfid + "';";
         //检查同ID书库是否存在
         string selectStack = "select count(*) as num2 from Stacks where StackId='" + stackid + "';";
         //创建书架
-        string insertShelve = "insert into Shelves(ShelfId,StackId,Summary,Timestamp) " + "values('" + shelfid + "','" + stackid + "','" + shelf_summary + "','" + nowdate + "');";
+        string insertShelve = "insert into Shelves(StackId,Summary,Timestamp) " + "values('"  + stackid + "','" + shelf_summary + "','" + nowdate + "');";
+        string selectShelveid = "select max(ShelfId) from Shelves";
         try
         {
             OLMSDBConnection.Open();
-            MySqlCommand cmdselectshelve = new MySqlCommand(selectShelve, OLMSDBConnection);
-            MySqlDataReader reader1 = cmdselectshelve.ExecuteReader();
+            MySqlCommand cmdselectstack = new MySqlCommand(selectStack, OLMSDBConnection);
+            MySqlDataReader reader1 = cmdselectstack.ExecuteReader();
             while (reader1.Read())
             {
                 if (reader1.HasRows)
                 {
-                    Int64 count = (Int64)reader1["num1"];
-                    if (count > 0)
-                    {
-                        Response.Write("<script>alert('该书架已存在');</script>");
-                        return;
-                    }
-                    break;
-                }
-            }
-            reader1.Close();
-            MySqlCommand cmdselectstack = new MySqlCommand(selectStack, OLMSDBConnection);
-            MySqlDataReader reader2 = cmdselectstack.ExecuteReader();
-            while (reader2.Read())
-            {
-                if (reader2.HasRows)
-                {
-                    Int64 count = (Int64)reader2["num2"];
+                    Int64 count = (Int64)reader1["num2"];
                     if (count==0)
                     {
                         Response.Write("<script>window.alert('不存在该书库');</script>");
@@ -83,13 +71,20 @@ public partial class Pages_AddShelves : BasePage
                     break;
                 }
             }
-            reader2.Close();
+            reader1.Close();
             MySqlCommand cmdinsert = new MySqlCommand(insertShelve, OLMSDBConnection);
             int result = 0;
             result = cmdinsert.ExecuteNonQuery();
+            MySqlCommand cmdselect = new MySqlCommand(selectShelveid, OLMSDBConnection);
+            MySqlDataReader reader2 = cmdselect.ExecuteReader();
+            if (reader2.Read())
+            {
+                shelfid = reader2["max(ShelfId)"].ToString();
+            }
             if (result != 0)
             {
-                Response.Write("<script>alert('创建书架成功')</script>");
+                Response.Write("<script>alert('创建书架成功,书架id为:"+shelfid+"')</script>");
+                return;
             }
         }
         catch (MySqlException ex)
@@ -100,11 +95,5 @@ public partial class Pages_AddShelves : BasePage
         {
             OLMSDBConnection.Close();
         }
-    }
-
-    protected void Cancel(object sender, EventArgs e)
-    {
-        //跳转到上一页面
-        return;
     }
 }

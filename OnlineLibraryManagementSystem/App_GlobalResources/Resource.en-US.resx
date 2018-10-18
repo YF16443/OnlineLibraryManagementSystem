@@ -378,6 +378,10 @@
   <data name="Cover" xml:space="preserve">
     <value>Cover</value>
   </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+    <comment>书库位置</comment>
+  </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>ChangePassword</value>
   </data>
@@ -434,6 +438,52 @@
   </data>
   <data name="SystemSettings" xml:space="preserve">
     <value>System Settings</value>
+  </data>
+  <data name="Reserve" xml:space="preserve">
+    <value>Reserve</value>
+  </data>
+  <data name="Reservation_Fail" xml:space="preserve">
+    <value>Reservation Failed!</value>
+  </data>
+  <data name="LibrarianLogin" xml:space="preserve">
+    <value>Librarian Login</value>
+  </data>
+  <data name="Reservation_Success" xml:space="preserve">
+    <value>Reservation Success!\nPlease arrive for issuing within 2 hours.</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Fine" xml:space="preserve">
+    <value>Fine</value>
+  </data>
+  <data name="Returned" xml:space="preserve">
+    <value>Returned</value>
+  </data>
+  <data name="Returned_Not" xml:space="preserve">
+    <value>Not Returned</value>
+  </data>
+  <data name="Select_Shelf" xml:space="preserve">
+    <value>Select_Shelf</value>
+    <comment>Select_Shelf</comment>
+  </data>
+  <data name="Damage" xml:space="preserve">
+    <value>Damaged</value>
+  </data>
+  <data name="Lost" xml:space="preserve">
+    <value>Lost</value>
+  </data>
+  <data name="Reparation" xml:space="preserve">
+    <value>Reparation</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="DamageAlert" xml:space="preserve">
+    <value>Need to pay</value>
+  </data>
+  <data name="Yuan" xml:space="preserve">
+    <value>Yuan</value>
   </data>
   <data name="LibrarianRegister" xml:space="preserve">
     <value>LibrarianRegister</value>

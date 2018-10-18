@@ -69,4 +69,12 @@ public class Book
     public string author_intro { get; set; }           //
     public string summary { get; set; }                //
     public string price { get; set; }                  //
+    public tags[] tags { get; set; }
+}
+[Serializable]
+public class tags
+{
+    public string count { get; set; }//
+    public string name { get; set; }//
+    public string title { get; set; }//
 }

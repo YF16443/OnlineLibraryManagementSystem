@@ -451,4 +451,54 @@
   <data name="Delete" xml:space="preserve">
     <value>删除</value>
   </data>
+  <data name="Reserve" xml:space="preserve">
+    <value>预约</value>
+  </data>
+  <data name="Reservation_Fail" xml:space="preserve">
+    <value>预约失败！</value>
+  </data>
+  <data name="LibrarianLogin" xml:space="preserve">
+    <value>管理员登录</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>位置</value>
+    <comment>书库位置</comment>
+  </data>
+  <data name="Reservation_Success" xml:space="preserve">
+    <value>预约成功！\n请于两小时内到达借阅！</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="Fine" xml:space="preserve">
+    <value>罚款金额</value>
+  </data>
+  <data name="Returned" xml:space="preserve">
+    <value>已归还</value>
+  </data>
+  <data name="Returned_Not" xml:space="preserve">
+    <value>未归还</value>
+  </data>
+  <data name="Select_Shelf" xml:space="preserve">
+    <value>选择书架</value>
+    <comment>选择书架</comment>
+  </data>
+  <data name="Damage" xml:space="preserve">
+    <value>损坏</value>
+  </data>
+  <data name="Lost" xml:space="preserve">
+    <value>丢失</value>
+  </data>
+  <data name="Reparation" xml:space="preserve">
+    <value>赔偿</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="DamageAlert" xml:space="preserve">
+    <value>需要赔偿</value>
+  </data>
+  <data name="Yuan" xml:space="preserve">
+    <value>元</value>
+  </data>
 </root>

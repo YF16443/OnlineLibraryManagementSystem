@@ -40,6 +40,11 @@ public partial class Pages_ShelfInfo : BasePage
         }
     }
 
+    protected void Page_LoadComplete(object sender, EventArgs e)
+    {
+        Help.LibrarianMenuInit(this, sender, e);
+    }
+
     protected void Cancel(object sender, EventArgs e)
     {
         Response.Redirect("Search_Stacks_Shelves.aspx");

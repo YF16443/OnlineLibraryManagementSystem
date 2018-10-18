@@ -20,8 +20,8 @@
     <asp:Label ID="translator" runat="server" Text=""></asp:Label><br />
     <asp:Label ID="catalog" runat="server" Text=""></asp:Label><br />
     <asp:Label ID="pages" runat="server" Text=""></asp:Label><br />
-    <asp:Label ID="publisher" runat="server" Text=""></asp:Label>
-    
+    <asp:Label ID="publisher" runat="server" Text=""></asp:Label><br />
+    <asp:Button ID="reserve" runat="server" Text="<%$ Resources:Resource,Reserve %>" OnClick="reserve_Click" />
     
     <br />
 

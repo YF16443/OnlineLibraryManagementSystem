@@ -28,7 +28,7 @@ public partial class Pages_TestPage : BasePage
             Book book = BookInfoQuery.GetByISBN("9787111128069");
             if (book != null)
             {
-                lbBookInfo.Text = book.isbn10 + " " + book.image + " " + book.author[0];
+                lbBookInfo.Text = book.isbn10 + " " + book.image + " " + book.author[0]+book.tags[0].title;
             }
             else
             {

@@ -38,18 +38,11 @@
         <table class ="style1">
             <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, ShelfId %>"></asp:Label>
-                </td>
-                <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxShelfId" runat="server"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
                     <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, StackId %>"></asp:Label>
                 </td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxStackId" runat="server"></asp:TextBox>
+                    <asp:DropDownList ID="DropDownList1" runat="server">
+                    </asp:DropDownList>
                 </td>
             </tr>
             <tr>
@@ -63,7 +56,6 @@
         </table>
         <div class="style1">
              <asp:Button ID="AddButton" runat="server" Text="<%$ Resources:Resource, Add %>" OnClick="AddShelves"  CausesValidation="False" CssClass="auto-style7" />
-             <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="auto-style7" />
         </div>
     </div>
   
