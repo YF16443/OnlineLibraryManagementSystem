@@ -435,4 +435,23 @@
   <data name="SystemSettings" xml:space="preserve">
     <value>System Settings &amp; 系统配置</value>
   </data>
+  <data name="LibrarianRegister" xml:space="preserve">
+    <value>LibrarianRegister &amp; 管理员注册</value>
+    <comment>管理员注册</comment>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password &amp; 密码</value>
+    <comment>密码</comment>
+  </data>
+  <data name="Fine" xml:space="preserve">
+    <value>Fine &amp; 欠款</value>
+    <comment>欠款</comment>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status &amp; 状态</value>
+    <comment>状态</comment>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete &amp; 删除</value>
+  </data>
 </root>
