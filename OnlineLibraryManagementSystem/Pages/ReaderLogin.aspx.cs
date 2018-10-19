@@ -22,15 +22,6 @@ public partial class Pages_Login : BasePage
         }
     }
 
-    protected void Page_LoadComplete(object sender, EventArgs e)
-    {
-        var loginView = Master.FindControl("LoginView") as LoginView;
-        if (loginView != null)
-        {
-            loginView.Visible = false;
-        }
-    }
-
     protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
     {
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
