@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPage.master" AutoEventWireup="true" CodeFile="ChangeReaderInfomation.aspx.cs" Inherits="Pages_ChangeReaderInfomation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/ReaderPages/MasterPage.master" AutoEventWireup="true" CodeFile="ChangeReaderInfomation.aspx.cs" Inherits="Pages_ChangeReaderInfomation" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

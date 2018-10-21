@@ -6,11 +6,17 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Bibliosoft</title>
-    <link rel="icon" href="../Images/headicon.ico" type="image/x-ico"/>
-    <link href="../Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="../Content/bootstrap-reboot.min.css" rel="stylesheet" type="text/css" />
-    <link href="../Content/bootstrap-grid.min.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="~/Images/headicon.ico" type="image/x-ico"/>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-reboot.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder id="head" runat="server"></asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 160px;
+            text-align:center;
+        }
+    </style>
 </head>
 <body>
     <form id="form" runat="server">
@@ -21,6 +27,17 @@
                         <asp:ImageButton ID="ibLogo" runat="server" ImageUrl="~/Images/logo.png" PostBackUrl="~/Pages/SearchDemo.aspx" Height="43.2px" Width="145.35px"/>
                     </td>
                     <td>&nbsp;</td>
+                    <td class="auto-style1">
+                        <asp:LoginView ID="LoginView" runat="server">
+                            <AnonymousTemplate>
+                                <asp:LinkButton ID="lbLogin" runat="server" Text="<%$ Resources:Resource,Login %>" PostBackUrl="~/Pages/ReaderLogin.aspx"></asp:LinkButton>
+                            </AnonymousTemplate>
+                            <LoggedInTemplate>
+                                <asp:HyperLink ID="hlMyAccount" runat="server" Text="<%$ Resources:Resource,MyAccount %>" NavigateUrl="~/Pages/ReaderPages/ShowReaderInfo.aspx"></asp:HyperLink>
+                                <asp:LinkButton ID="lbLogout" runat="server" Text="<%$ Resources:Resource,Logout %>" OnClick="lbLogout_Click">Logout</asp:LinkButton>
+                            </LoggedInTemplate>
+                        </asp:LoginView>
+                    </td>
                     <td style="width:100px">
                         <asp:DropDownList ID="ddlLanguages" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlLanguages_SelectedIndexChanged">
                             <asp:ListItem Value="zh-CN">简体中文</asp:ListItem>
@@ -31,7 +48,8 @@
             </table>
         </div>
         <div>
-            <asp:ContentPlaceHolder id="body" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder id="body" runat="server">
+            </asp:ContentPlaceHolder>
         </div>
         <div style="text-align:center">
             <asp:HyperLink ID="hlAboutUs" runat="server" Text="<%$ Resources:Resource,AboutUs %>" NavigateUrl="~/Pages/AboutUs.aspx"></asp:HyperLink>

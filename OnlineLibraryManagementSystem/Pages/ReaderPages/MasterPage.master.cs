@@ -23,4 +23,12 @@ public partial class Pages_MasterPage : BaseMasterPage
         Session["PreferredCulture"] = ddlLanguages.SelectedValue.ToString();
         Response.Redirect(Request.Url.ToString());
     }
+
+    protected void lbLogout_Click(object sender, EventArgs e)
+    {
+        FormsAuthentication.SignOut();
+        Session.Remove("id");
+        Session.Remove("lid");
+        Response.Redirect("~/Pages/SearchDemo.aspx");
+    }
 }
