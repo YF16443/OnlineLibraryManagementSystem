@@ -141,5 +141,4 @@ public partial class Pages_SearchDemo : BasePage
         int page = e.NewPageIndex;
         siForGv.SortDataBind(SortGv, page, true);
     }
-
 }

@@ -176,9 +176,9 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
     }
     protected void Delete(object sender, EventArgs e)
     {
-            //数据库
-            string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
-            MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+        //删除stack或shelf
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         try
         {
             OLMSDBConnection.Open();
@@ -220,10 +220,12 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
             if (result != 0)
             {
                 Response.Write("<script>alert('删除成功')</script>");
+                return;
             }
             else
             {
                 Response.Write("<script>alert('请选择删除的项')</script>");
+                return;
             }
         }
         catch (MySqlException ex)
