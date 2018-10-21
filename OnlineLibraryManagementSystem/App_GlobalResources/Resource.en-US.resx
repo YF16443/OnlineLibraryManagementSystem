@@ -453,9 +453,11 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
+    <comment>状态</comment>
   </data>
   <data name="Fine" xml:space="preserve">
     <value>Fine</value>
+    <comment>欠款</comment>
   </data>
   <data name="Returned" xml:space="preserve">
     <value>Returned</value>
@@ -493,14 +495,6 @@
     <value>Password</value>
     <comment>密码</comment>
   </data>
-  <data name="Fine" xml:space="preserve">
-    <value>Fine</value>
-    <comment>欠款</comment>
-  </data>
-  <data name="Status" xml:space="preserve">
-    <value>Status</value>
-    <comment>状态</comment>
-  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
     <comment>删除</comment>
@@ -512,5 +506,9 @@
   <data name="Alter" xml:space="preserve">
     <value>Alter</value>
     <comment>修改</comment>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+    <comment>选择</comment>
   </data>
 </root>

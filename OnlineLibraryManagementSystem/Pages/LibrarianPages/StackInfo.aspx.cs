@@ -13,10 +13,20 @@ public partial class Pages_StackInfo : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        string stackid = "";
+        if (Request["StackId"] != null)
+        {
+            stackid = Request["StackId"];
+            Session["ID"] = Request["StackId"];
+        }
+        else
+        {
+            stackid = Session["ID"].ToString();
+        }
         //数据库
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
-        string select = "select * from " + Session["TYPE"].ToString() + " where StackId='" + Session["ID"].ToString() + "';";
+        string select = "select * from Stacks where StackId='" + stackid + "';";
         try
         {
             OLMSDBConnection.Open();

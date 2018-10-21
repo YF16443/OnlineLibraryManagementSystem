@@ -50,7 +50,7 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
             Response.Write("<script>alert('书库ID不为空')</script>");
             return;
         }
-        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxStackId.Text, pattern))
+        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxStackId.Text, pattern)&&TextBoxStackId.Text.Length==5)
         {
             newstackid = TextBoxStackId.Text;
         }

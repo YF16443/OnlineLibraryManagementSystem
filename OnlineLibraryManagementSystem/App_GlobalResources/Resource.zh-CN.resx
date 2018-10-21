@@ -224,7 +224,7 @@
     <comment>书架ID</comment>
   </data>
   <data name="Shelf_Summary" xml:space="preserve">
-    <value>书籍摘要</value>
+    <value>书架摘要</value>
     <comment>书架所放书籍摘要</comment>
   </data>
   <data name="Shelf_Timestamp" xml:space="preserve">
@@ -240,7 +240,7 @@
     <comment>书库ID</comment>
   </data>
   <data name="Stack_Summary" xml:space="preserve">
-    <value>书籍摘要</value>
+    <value>书库摘要</value>
     <comment>书库所放书籍摘要</comment>
   </data>
   <data name="Stack_Timestamp" xml:space="preserve">
@@ -443,7 +443,7 @@
     <value>密码</value>
   </data>
   <data name="Fine" xml:space="preserve">
-    <value>欠款</value>
+    <value>罚款金额</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>状态</value>
@@ -466,12 +466,6 @@
   </data>
   <data name="Reservation_Success" xml:space="preserve">
     <value>预约成功！\n请于两小时内到达借阅！</value>
-  </data>
-  <data name="Status" xml:space="preserve">
-    <value>状态</value>
-  </data>
-  <data name="Fine" xml:space="preserve">
-    <value>罚款金额</value>
   </data>
   <data name="Returned" xml:space="preserve">
     <value>已归还</value>
@@ -508,5 +502,9 @@
   <data name="Alter" xml:space="preserve">
     <value>修改</value>
     <comment>修改</comment>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>选择</value>
+    <comment>选择</comment>
   </data>
 </root>
