@@ -20,10 +20,26 @@ public partial class Pages_bookMessage : BasePage
         try
         {
             string book_id_sql = "select * from Books where BookId=" + bookId;
+            string book_num = "select * from BookBarcodes where BookId=" + bookId+" limit 0,1";
             OLMSDBConnection.Open();
             MySqlCommand cmd1 = new MySqlCommand(book_id_sql, OLMSDBConnection);
             ArrayList books_list = new ArrayList();
             MySqlDataReader reader = cmd1.ExecuteReader();
+            
+            //MySqlCommand cmd2 = new MySqlCommand(book_num, OLMSDBConnection);
+            //MySqlDataReader reader1 = cmd2.ExecuteReader();
+
+            //while (reader1.Read())
+            //{
+            //    if (reader1.HasRows)
+            //    {
+            //        Label14.Text = "位置：";
+            //        Label15.Text = reader1["Shelfid"].ToString();
+            //        break;
+            //    }
+            //}
+            //reader1.Close();
+
             while (reader.Read())
             {
                 if (reader.HasRows)
@@ -60,6 +76,43 @@ public partial class Pages_bookMessage : BasePage
             }
 
             reader.Close();
+
+
+
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            OLMSDBConnection.Close();
+        }
+
+
+        ////////////////////////////////////////////////图书位置信息/////////////////////////////////////////
+        string OLMSDBConnectionString1 = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection OLMSDBConnection1 = new MySqlConnection(OLMSDBConnectionString);
+        try
+        {
+            
+            string book_num = "select * from BookBarcodes where BookId=" + bookId + " limit 0,1";
+            OLMSDBConnection.Open();
+
+            MySqlCommand cmd2 = new MySqlCommand(book_num, OLMSDBConnection);
+            MySqlDataReader reader1 = cmd2.ExecuteReader();
+
+            while (reader1.Read())
+            {
+                if (reader1.HasRows)
+                {
+                    Label14.Text = "位置：";
+                    Label15.Text = reader1["Shelfid"].ToString();
+                    break;
+                }
+            }
+            reader1.Close();
+
 
 
 
