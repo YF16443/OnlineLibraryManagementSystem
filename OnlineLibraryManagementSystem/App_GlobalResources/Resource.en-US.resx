@@ -126,7 +126,7 @@
     <comment>读者邮箱</comment>
   </data>
   <data name="IdNumber" xml:space="preserve">
-    <value>IdNumber</value>
+    <value>Id Number</value>
     <comment>读者身份证号</comment>
   </data>
   <data name="Name" xml:space="preserve">
@@ -157,23 +157,23 @@
     <comment>读者账户名</comment>
   </data>
   <data name="BookTitle" xml:space="preserve">
-    <value>BookTitle</value>
+    <value>Book Title</value>
     <comment>借阅图书的名字</comment>
   </data>
   <data name="IssueTime" xml:space="preserve">
-    <value>IssueTime</value>
+    <value>Issue Time</value>
     <comment>借阅图书的日期</comment>
   </data>
   <data name="OverDueTime" xml:space="preserve">
-    <value>OverDueTime</value>
+    <value>OverDue Time</value>
     <comment>逾期时间 30天之后为逾期</comment>
   </data>
   <data name="ReturnTime" xml:space="preserve">
-    <value>ReturnTime</value>
+    <value>Return Time</value>
     <comment>归还图书的日期</comment>
   </data>
   <data name="ReaderInfo" xml:space="preserve">
-    <value>ReaderInfo</value>
+    <value>Reader Info</value>
     <comment>显示读者信息</comment>
   </data>
   <data name="Login_Login" xml:space="preserve">
@@ -185,31 +185,31 @@
     <comment>密码</comment>
   </data>
   <data name="Login_Remember" xml:space="preserve">
-    <value>RememberMe</value>
+    <value>Remember Me</value>
     <comment>下次记住我</comment>
   </data>
   <data name="Login_UsrName" xml:space="preserve">
-    <value>UserName</value>
+    <value>User Name</value>
     <comment>用户名</comment>
   </data>
   <data name="Add_Stacks" xml:space="preserve">
-    <value>Add_Stacks</value>
+    <value>Add Stacks</value>
     <comment>添加书库</comment>
   </data>
   <data name="Add_Shelves" xml:space="preserve">
-    <value>Add_Shelves</value>
+    <value>Add Shelves</value>
     <comment>添加书架</comment>
   </data>
   <data name="StackId" xml:space="preserve">
-    <value>StackId</value>
+    <value>Stack Id</value>
     <comment>书库ID</comment>
   </data>
   <data name="Stack_Summary" xml:space="preserve">
-    <value>Stack_Summary</value>
+    <value>Stack Summary</value>
     <comment>书库所放书籍摘要</comment>
   </data>
   <data name="Stack_Timestamp" xml:space="preserve">
-    <value>Stack_Timestamp</value>
+    <value>Stack Timestamp</value>
     <comment>建立书库时间</comment>
   </data>
   <data name="Add" xml:space="preserve">
@@ -221,11 +221,11 @@
     <comment>书架ID</comment>
   </data>
   <data name="Shelf_Summary" xml:space="preserve">
-    <value>Shelf_Summary</value>
+    <value>Shelf Summary</value>
     <comment>书架所放书籍摘要</comment>
   </data>
   <data name="Shelf_Timestamp" xml:space="preserve">
-    <value>Shelf_Timestamp</value>
+    <value>Shelf Timestamp</value>
     <comment>建立书架时间</comment>
   </data>
   <data name="ID" xml:space="preserve">
@@ -236,7 +236,7 @@
     <value>Search</value>
   </data>
   <data name="Search_Type" xml:space="preserve">
-    <value>Search_Type</value>
+    <value>Search Type</value>
     <comment>查询类型</comment>
   </data>
   <data name="Shelf" xml:space="preserve">
@@ -248,7 +248,7 @@
     <comment>书库</comment>
   </data>
   <data name="Issue_BookID" xml:space="preserve">
-    <value>BookID</value>
+    <value>Book ID</value>
     <comment>图书编号</comment>
   </data>
   <data name="Issue_Issue" xml:space="preserve">
@@ -288,7 +288,7 @@
     <comment>期刊</comment>
   </data>
   <data name="BookPeriodicalNews" xml:space="preserve">
-    <value>BookPeriodicalNews</value>
+    <value>Book Periodical News</value>
     <comment>图书期刊报纸</comment>
   </data>
   <data name="Default" xml:space="preserve">
@@ -342,7 +342,7 @@
     <value>Reader Id</value>
   </data>
   <data name="Add_Books" xml:space="preserve">
-    <value>Add_Books</value>
+    <value>Add Books</value>
     <comment>添加图书</comment>
   </data>
   <data name="ISBN" xml:space="preserve">
@@ -350,7 +350,7 @@
     <comment>ISBN(ISSN)</comment>
   </data>
   <data name="Print_Barcode" xml:space="preserve">
-    <value>Print_Barcode</value>
+    <value>Print Barcode</value>
     <comment>打印条形码</comment>
   </data>
   <data name="Quantity" xml:space="preserve">
@@ -358,16 +358,16 @@
     <comment>数量</comment>
   </data>
   <data name="AddShelf" xml:space="preserve">
-    <value>AddShelf</value>
+    <value>Add Shelf</value>
   </data>
   <data name="AddStack" xml:space="preserve">
-    <value>AddStack</value>
+    <value>Add Stack</value>
   </data>
   <data name="AddBook" xml:space="preserve">
-    <value>AddBook</value>
+    <value>Add Book</value>
   </data>
   <data name="AddPeriodical" xml:space="preserve">
-    <value>AddPeriodical</value>
+    <value>Add Periodical</value>
   </data>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
@@ -383,7 +383,7 @@
     <comment>书库位置</comment>
   </data>
   <data name="ChangePassword" xml:space="preserve">
-    <value>ChangePassword</value>
+    <value>Change Password</value>
   </data>
   <data name="ChangeReaderInfomation" xml:space="preserve">
     <value>Change Reader Infomation</value>
@@ -466,7 +466,7 @@
     <value>Not Returned</value>
   </data>
   <data name="Select_Shelf" xml:space="preserve">
-    <value>Select_Shelf</value>
+    <value>Select Shelf</value>
     <comment>Select_Shelf</comment>
   </data>
   <data name="Damage" xml:space="preserve">
@@ -488,7 +488,7 @@
     <value>Yuan</value>
   </data>
   <data name="LibrarianRegister" xml:space="preserve">
-    <value>LibrarianRegister</value>
+    <value>Librarian Register</value>
     <comment>管理员注册</comment>
   </data>
   <data name="Password" xml:space="preserve">
@@ -537,5 +537,20 @@
   <data name="Upload" xml:space="preserve">
     <value>Upload</value>
     <comment>上传</comment>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PublishDate" xml:space="preserve">
+    <value>Publish Date</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Pages</value>
+  </data>
+  <data name="AdminLogin" xml:space="preserve">
+    <value>Admin Login</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone Number</value>
   </data>
 </root>

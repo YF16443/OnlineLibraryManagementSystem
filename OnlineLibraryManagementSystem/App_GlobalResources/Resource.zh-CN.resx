@@ -514,6 +514,21 @@
   <data name="FineManagement" xml:space="preserve">
     <value>罚款管理</value>
   </data>
+  <data name="Price" xml:space="preserve">
+    <value>价格</value>
+  </data>
+  <data name="PublishDate" xml:space="preserve">
+    <value>出版日期</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>页数</value>
+  </data>
+  <data name="AdminLogin" xml:space="preserve">
+    <value>超级管理员登录</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>手机号</value>
+  </data>
   <data name="ISBN10" xml:space="preserve">
     <value>ISBN10</value>
     <comment>ISBN10</comment>
