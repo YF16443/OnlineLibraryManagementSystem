@@ -109,6 +109,7 @@ public partial class Pages_ShowReaderInfo : BasePage
             }
         }
     }
+
     protected void Submit(object sender, EventArgs e)
     {
         string name, readerId, password, idNumber, phone, email;
@@ -226,6 +227,7 @@ public partial class Pages_ShowReaderInfo : BasePage
         }
 
     }
+
     protected void Delete(object sender, EventArgs e)
     {
         string readerId = TextBoxAccount.Text;
@@ -300,6 +302,7 @@ public partial class Pages_ShowReaderInfo : BasePage
 
 
     }
+
     protected void Cancel(object sender, EventArgs e)
     {
         //返回上一个页面  Response.Redirect()

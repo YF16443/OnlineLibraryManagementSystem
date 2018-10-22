@@ -51,10 +51,6 @@ public partial class Pages_StackInfo : BasePage
         }
     }
 
-    protected void Page_LoadComplete(object sender, EventArgs e)
-    {
-    }
-
     protected void Cancel(object sender, EventArgs e)
     {
         Response.Redirect("Search_Stacks_Shelves.aspx");

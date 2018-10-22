@@ -14,11 +14,6 @@ public partial class Pages_ReturnBookDemo : BasePage
 
     }
 
-    protected void Page_LoadComplete(object sender, EventArgs e)
-    {
-
-    }
-
     protected void btReturn_Click(object sender, EventArgs e)
     {
         string BarcodeID = tbBarcode.Text;

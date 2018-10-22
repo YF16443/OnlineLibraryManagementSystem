@@ -35,10 +35,7 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
             OLMSDBConnection.Close();
         }
     }
-    protected void Page_LoadComplete(object sender, EventArgs e)
-    {
 
-    }
     protected void Alter_StackInfo(object sender, EventArgs e)
     {
         string newstackid = "";

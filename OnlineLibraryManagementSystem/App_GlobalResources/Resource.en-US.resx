@@ -523,4 +523,10 @@
   <data name="Pages" xml:space="preserve">
     <value>Pages</value>
   </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Updata" xml:space="preserve">
+    <value>Updata</value>
+  </data>
 </root>

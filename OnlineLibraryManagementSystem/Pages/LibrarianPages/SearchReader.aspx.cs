@@ -16,6 +16,7 @@ public partial class Pages_SearchReader : BasePage
     {
 
     }
+
     protected void Search(object sender, EventArgs e)
     {
         string search;
@@ -77,6 +78,7 @@ public partial class Pages_SearchReader : BasePage
 
 
     }
+
     protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
 
@@ -86,10 +88,12 @@ public partial class Pages_SearchReader : BasePage
     {
 
     }
+
     protected void TextSearch_TextChanged(object sender, EventArgs e)
     {
 
     }
+
     public class Readers
     {
         public string Name { get; set; }

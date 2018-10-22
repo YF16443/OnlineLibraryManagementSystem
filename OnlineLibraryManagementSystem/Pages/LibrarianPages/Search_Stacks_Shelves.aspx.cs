@@ -26,12 +26,6 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
         }
     }
 
-    protected void Page_LoadComplete(object sender, EventArgs e)
-    {
-        Help.LibrarianMenuInit(this, sender, e);
-    }
-
-
     protected void Search(object sender, EventArgs e)
     {
             string tabletype = "";
@@ -94,6 +88,7 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
                 OLMSDBConnection.Close();
             }
     }
+
     protected void gvStacksResult_Sorting(object sender, GridViewSortEventArgs e)
     {
         if (siForGv == null)
@@ -106,6 +101,7 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
         siForGv.SortDataBind(SortGv, page, false);
 
     }
+
     protected void BindDataTogvResult(string str)
     {
         //绑定gvstacks或gvshelves
@@ -141,6 +137,7 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
             OLMSDBConnection.Close();
         }
     }
+
     protected void gvStacksResult_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         if (siForGv == null)
@@ -151,6 +148,7 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
         int page = e.NewPageIndex;
         siForGv.SortDataBind(SortGv, page, true);
     }
+
     protected void gvShelvesResult_Sorting(object sender, GridViewSortEventArgs e)
     {
         if (siForGv == null)
@@ -174,6 +172,7 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
         int page = e.NewPageIndex;
         siForGv.SortDataBind(SortGv, page, true);
     }
+
     protected void Delete(object sender, EventArgs e)
     {
         //删除stack或shelf

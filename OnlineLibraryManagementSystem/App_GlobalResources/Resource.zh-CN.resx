@@ -523,4 +523,7 @@
   <data name="Pages" xml:space="preserve">
     <value>页数</value>
   </data>
+  <data name="Updata" xml:space="preserve">
+    <value>更新</value>
+  </data>
 </root>

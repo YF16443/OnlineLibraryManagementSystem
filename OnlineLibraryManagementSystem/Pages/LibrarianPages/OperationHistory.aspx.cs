@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Pages_LibrarianPages_OperationHistory : System.Web.UI.Page
+public partial class Pages_LibrarianPages_OperationHistory : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
