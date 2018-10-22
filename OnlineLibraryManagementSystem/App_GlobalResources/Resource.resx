@@ -514,4 +514,7 @@
     <value>Upload &amp; 上传</value>
     <comment>上传</comment>
   </data>
+  <data name="FineManagement" xml:space="preserve">
+    <value>Fine Management &amp; 罚款管理</value>
+  </data>
 </root>

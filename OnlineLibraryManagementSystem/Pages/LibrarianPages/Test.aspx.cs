@@ -11,4 +11,12 @@ public partial class Pages_LibrarianPages_Test : BasePage
     {
 
     }
+    protected void lbLogout_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void ddlLanguages_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }
