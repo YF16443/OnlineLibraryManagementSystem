@@ -511,4 +511,7 @@
     <value>Select</value>
     <comment>选择</comment>
   </data>
+  <data name="FineManagement" xml:space="preserve">
+    <value>Fine Management</value>
+  </data>
 </root>

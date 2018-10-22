@@ -507,4 +507,7 @@
     <value>选择</value>
     <comment>选择</comment>
   </data>
+  <data name="FineManagement" xml:space="preserve">
+    <value>罚款管理</value>
+  </data>
 </root>
