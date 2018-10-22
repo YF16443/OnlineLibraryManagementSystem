@@ -21,7 +21,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
             MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
             try
-            {
+            { 
                 string book_id_sql = "select * from Books where BookId=" + bookId;
                 OLMSDBConnection.Open();
                 MySqlCommand cmd1 = new MySqlCommand(book_id_sql, OLMSDBConnection);
@@ -66,8 +66,45 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
 
 
 
+
+                ////////////////////////////////////////////////图书位置信息/////////////////////////////////////////
+               string shelfid = "";
+               string stackid = "";
+
+               string book_shelfid = "select Shelfid from BookBarcodes where BookId='" + bookId + "';";
+
+               MySqlCommand cmd2 = new MySqlCommand(book_shelfid, OLMSDBConnection);
+               MySqlDataReader reader1 = cmd2.ExecuteReader();
+
+               while (reader1.Read())
+               {
+                    if (reader1.HasRows)
+                    {
+                       Label14.Text = "位置：";
+                       shelfid = reader1["Shelfid"].ToString();
+                       break;
+                    }
+                }
+                reader1.Close();
+                string book_stackid = "select StackId from Shelves where ShelfId='" + shelfid + "';";
+                MySqlCommand cmd3 = new MySqlCommand(book_stackid, OLMSDBConnection);
+                MySqlDataReader reader2 = cmd3.ExecuteReader();
+                if (reader2.Read())
+                {
+                    stackid = reader2["StackId"].ToString();
+                }
+                reader2.Close();
+                DropDownList1.Items.Add(shelfid + "," + stackid);
+                string additems = "select ShelfId,StackId from Shelves where ShelfId<>'" + shelfid + "';";
+                MySqlCommand cmdadditems = new MySqlCommand(additems, OLMSDBConnection);
+                MySqlDataReader reader3 = cmdadditems.ExecuteReader();
+                while (reader3.Read())
+                {
+                   DropDownList1.Items.Add(reader3["ShelfId"].ToString() + "," + reader3["StackId"].ToString());
+                }
+                reader3.Close();
             }
-            catch (MySqlException ex)
+                catch (MySqlException ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -91,6 +128,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         string newisbn10 = "";
         string newpages = "";
         string newpublisher = "";
+        string newshelfid = "";
         string pubdateparttern = "([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8])))";
         string priceparttern = "^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*$";
         string pagesparttern = "^[1-9]\\d*$";
@@ -158,6 +196,18 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             Response.Write("<script>alert('页数格式不正确')</script>");
             return;
         }
+        if (TextBoxpublisher.Text != "")
+        {
+            newpublisher = TextBoxpublisher.Text;
+        }
+        else
+        {
+            Response.Write("<script>alert('出版社不为空')</script>");
+            return;
+        }
+        string[] shelf = DropDownList1.SelectedItem.Text.Split(',');
+        newshelfid = shelf[0];
+       
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         try
@@ -167,14 +217,18 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             MySqlCommand cmdupdatebook = new MySqlCommand(updatebook, OLMSDBConnection);
             int result = 0;
             result = cmdupdatebook.ExecuteNonQuery();
-            if (result != 0)
+            string updateshelfid = "update BookBarcodes set ShelfId='" + newshelfid + "' where BookId='" + bookId + "';";
+            MySqlCommand cmdupdateshelfid = new MySqlCommand(updateshelfid, OLMSDBConnection);
+            int result1 = 0;
+            result1 = cmdupdateshelfid.ExecuteNonQuery();
+            if (result != 0 && result1!=0)
             {
                 Response.Write("<script>alert('修改成功')</script>");
                 return;
             }
             else
             {
-                Response.Write("<script>alert('格式错误')</script>");
+                Response.Write("<script>alert('修改失败')</script>");
                 return;
             }
         }
