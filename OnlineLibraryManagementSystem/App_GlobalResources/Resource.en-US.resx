@@ -514,4 +514,13 @@
   <data name="FineManagement" xml:space="preserve">
     <value>Fine Management</value>
   </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PublishDate" xml:space="preserve">
+    <value>Publish Date</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Pages</value>
+  </data>
 </root>

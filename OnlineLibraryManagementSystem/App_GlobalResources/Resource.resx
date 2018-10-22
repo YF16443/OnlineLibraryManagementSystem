@@ -517,4 +517,13 @@
   <data name="FineManagement" xml:space="preserve">
     <value>Fine Management &amp; 罚款管理</value>
   </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price &amp; 价格</value>
+  </data>
+  <data name="PublishDate" xml:space="preserve">
+    <value>Publish Date &amp; 出版日期</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Pages &amp; 页数</value>
+  </data>
 </root>

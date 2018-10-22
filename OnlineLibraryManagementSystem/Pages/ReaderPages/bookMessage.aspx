@@ -23,20 +23,20 @@
     <asp:Image ID="Image1" runat="server" Width="110" Hight="120"/>
      </div>
         <div style="text-align:left;" class="auto-style3">
-    <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+    <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource,Title %>"></asp:Label>
     <asp:Label ID="title" runat="server" Text=""></asp:Label><br/>
     
     
-    <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource,Author %>"></asp:Label>
     
     <asp:Label ID="author" runat="server" Text=""></asp:Label><br/>
-    <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource,PublishDate %>"></asp:Label>
     <asp:Label ID="pubDate" runat="server" Text=""></asp:Label><br/>
-    <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource,Price %>"></asp:Label>
     <asp:Label ID="price" runat="server" Text=""></asp:Label><br/>
-    <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="Label5" runat="server" Text="ISBN13"></asp:Label>
     <asp:Label ID="isbn13" runat="server" Text=""></asp:Label>
-    <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="Label6" runat="server" Text="ISBN10"></asp:Label>
     <asp:Label ID="isbn10" runat="server" Text=""></asp:Label><br/>
 <%--    <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
     <asp:Label ID="subtitle" runat="server" Text=""></asp:Label><br/>
@@ -48,11 +48,11 @@
     <asp:Label ID="translator" runat="server" Text=""></asp:Label>
     <asp:Label ID="Label11" runat="server" Text="Label"></asp:Label>
     <asp:Label ID="catalog" runat="server" Text=""></asp:Label>--%>
-    <asp:Label ID="Label12" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="Label12" runat="server" Text="<%$ Resources:Resource,Pages %>"></asp:Label>
     <asp:Label ID="pages" runat="server" Text=""></asp:Label><br/>
-    <asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="Label13" runat="server" Text="<%$ Resources:Resource,Publisher %>"></asp:Label>
     <asp:Label ID="publisher" runat="server" Text=""></asp:Label><br/>
-            <asp:Label ID="Label14" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="Label14" runat="server" Text="<%$ Resources:Resource,Position %>"></asp:Label>
             <asp:Label ID="Label15" runat="server" Text="Label"></asp:Label>
             <br/>
     </div>
