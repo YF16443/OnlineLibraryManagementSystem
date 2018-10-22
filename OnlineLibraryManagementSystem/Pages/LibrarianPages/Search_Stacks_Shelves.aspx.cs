@@ -26,10 +26,6 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
         }
     }
 
-    protected void Page_LoadComplete(object sender, EventArgs e)
-    {
-        Help.LibrarianMenuInit(this, sender, e);
-    }
 
 
     protected void Search(object sender, EventArgs e)
