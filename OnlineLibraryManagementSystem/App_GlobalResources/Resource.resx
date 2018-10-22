@@ -526,4 +526,10 @@
   <data name="Pages" xml:space="preserve">
     <value>Pages &amp; 页数</value>
   </data>
+  <data name="AdminLogin" xml:space="preserve">
+    <value>Admin Login @ 超级管理员登录</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone Number &amp; 手机号</value>
+  </data>
 </root>

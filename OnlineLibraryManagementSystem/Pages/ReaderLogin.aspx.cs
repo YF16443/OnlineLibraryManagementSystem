@@ -28,21 +28,22 @@ public partial class Pages_Login : BasePage
         MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
         conn.Open();
         MySqlCommand cmd = conn.CreateCommand();
-        cmd.CommandText = "select * from Readers where ReaderId = @u and Password = @p";
-        MySqlParameter param;
-        param = new MySqlParameter("@u", Login1.UserName);
-        cmd.Parameters.Add(param);
-        param = new MySqlParameter("@p", Login1.Password);
-        cmd.Parameters.Add(param);
+        cmd.CommandText = "select * from Readers where Phone = @phone and Password = @password";
+        cmd.Parameters.AddWithValue("@phone", Login1.UserName);
+        cmd.Parameters.AddWithValue("@password", Login1.Password);
         object res = cmd.ExecuteScalar();
-        conn.Close();
         if (res != null)
         {
+            cmd.CommandText = "select ReaderId from Readers where Phone = @phone";
+            MySqlDataReader reader = cmd.ExecuteReader();
             //使用Session方式保存账户信息
-            Session["id"] = Login1.UserName;
+            reader.Read();
+            string str_id = reader["ReaderId"].ToString();
+            Session.Add("id", str_id);
             e.Authenticated = true;
         }
         else
             e.Authenticated = false;
+        conn.Close();
     }
 }

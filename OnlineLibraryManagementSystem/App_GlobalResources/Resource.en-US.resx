@@ -523,4 +523,10 @@
   <data name="Pages" xml:space="preserve">
     <value>Pages</value>
   </data>
+  <data name="AdminLogin" xml:space="preserve">
+    <value>Admin Login</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
 </root>
