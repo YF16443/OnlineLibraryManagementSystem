@@ -37,7 +37,7 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
     }
     protected void Page_LoadComplete(object sender, EventArgs e)
     {
-        Help.LibrarianMenuInit(this, sender, e);
+
     }
     protected void Alter_StackInfo(object sender, EventArgs e)
     {

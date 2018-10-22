@@ -51,7 +51,6 @@ public partial class Pages_LibrarianPages_EditShelf : System.Web.UI.Page
     }
     protected void Page_LoadComplete(object sender, EventArgs e)
     {
-        Help.LibrarianMenuInit(this, sender, e);
     }
 
     protected void Alter_ShelfInfo(object sender, EventArgs e)

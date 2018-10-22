@@ -18,7 +18,6 @@ public partial class Pages_ReaderRegistration : BasePage
 
     protected void Page_LoadComplete(object sender, EventArgs e)
     {
-        Help.LibrarianMenuInit(this, sender, e);
     }
 
     protected void RegisterReader(object sender, EventArgs e)
