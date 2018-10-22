@@ -510,7 +510,8 @@
     <value>Select &amp; 选择</value>
     <comment>选择项</comment>
   </data>
-  <data name="FineManagement" xml:space="preserve">
-    <value>FineManagement &amp; 罚款管理</value>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload &amp; 上传</value>
+    <comment>上传</comment>
   </data>
 </root>
