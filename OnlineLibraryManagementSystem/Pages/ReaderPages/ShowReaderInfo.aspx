@@ -4,30 +4,34 @@
 <asp:Content ID="Content2" runat="server" contentplaceholderid="body">
     <style type="text/css">
         .style1 {
-            width: 100%;
+            width: 30%;
             text-align: center;
             font-family: Consolas;
+            float:left;
         }
         .style2 {
-            width: auto;
+            width: 30%;
             text-align: center;
             font-family: Consolas;
             margin:auto;
-
+        }
+        .style3{
+            float:left;
+            width: 70%;
         }
         .auto-style1 {
             text-align: center;
             margin:0 auto;
         }
         .auto-style2 {
-            width: 50%;
+            width: auto;
             text-align: right;
             height: 35px;
             font-size: x-large;
         }
 
         .auto-style4 {
-            width: 50%;
+            width: auto;
             text-align: left;
             height: 35px;
             font-size: x-large;
@@ -35,36 +39,19 @@
         .auto-style5 {
             font-size: xx-large;
         }
-        .auto-style7 {
-            font-size: large;
-        }
-        .auto-style8 {
-            font-size: x-large;
-            background-color: #e8e8e8;
-        }
-        .auto-style9 {
-            font-size: x-large;
-        }
-
+        
     </style>
     <div class="auto-style1">
         <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource,ReaderInfo %>" CssClass="auto-style5"></asp:Label>
         <br /> <br />
-        <table class ="style1">
+        <div class="style1">
+            <table>
             <tr>
                 <td class="auto-style2">
                     <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, Name %>"></asp:Label>
                 </td>
                 <td class="auto-style4">
                     <asp:Label ID="TextBoxName" runat="server" Text="name"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Account %>"></asp:Label>
-                </td>
-                <td class="auto-style4">
-                    <asp:Label ID="TextBoxAccount" runat="server" Text="Account"></asp:Label>
                 </td>
             </tr>
             <tr>
@@ -92,63 +79,21 @@
                 </td>
             </tr>
         </table>
-        <br />
-        <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand2">
-            <HeaderTemplate>
-            <table class ="style2">
-                <tr class ="auto-style9">
-                    <td>
-                        <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, BookTitle %>"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource, IssueTime %>"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="Label8" runat="server" Text="<%$ Resources:Resource, ReturnTime %>"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource, OverDueTime %>"></asp:Label>
-                    </td>
-                </tr>
-            </HeaderTemplate>
-            <ItemTemplate>
-            <tr class="auto-style9">
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "title") %>
-                </td>
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "issueTime") %>
-                </td>
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "returnTime") %>
-                </td>
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "overdueTime") %>
-                </td>
-            </tr>
-            </ItemTemplate>
-            <AlternatingItemTemplate>
-            <tr class ="auto-style8">
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "title") %>
-                </td>
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "issueTime") %>
-                </td>
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "returnTime") %>
-                </td>
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "overdueTime") %>
-                </td>
-            </tr>
-            </AlternatingItemTemplate>
-            <FooterTemplate>
-            </table>
-            </FooterTemplate>
-        </asp:Repeater>
-        <div class="style1">
-            <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="auto-style7" />
+        </div>
+        <div class = "style3">
+            <asp:GridView ID="GridView1" runat="server" CellPadding="20" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+            <AlternatingRowStyle BackColor="White" />
+            <EditRowStyle BackColor="#2461BF" />
+            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#EFF3FB" />
+            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#F5F7FB" />
+            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+            <SortedDescendingCellStyle BackColor="#E9EBEF" />
+            <SortedDescendingHeaderStyle BackColor="#4870BE" />
+        </asp:GridView>
         </div>
     </div>
 </asp:Content>

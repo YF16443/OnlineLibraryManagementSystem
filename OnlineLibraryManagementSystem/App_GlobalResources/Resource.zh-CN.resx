@@ -441,4 +441,8 @@
   <data name="Reservation_Fail" xml:space="preserve">
     <value>预约失败！</value>
   </data>
+  <data name="Fine" xml:space="preserve">
+    <value>罚款</value>
+    <comment>逾期罚款</comment>
+  </data>
 </root>

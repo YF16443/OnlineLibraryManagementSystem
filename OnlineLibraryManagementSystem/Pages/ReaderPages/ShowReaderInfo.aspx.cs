@@ -10,13 +10,22 @@ using System.Web.UI.WebControls;
 
 public partial class Pages_ShowReaderInfo : BasePage
 {
+    private static DateTime GetDateTime(string timeStamp)
+    {
+        DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+        long time = long.Parse(timeStamp + "0000000");
+        TimeSpan toNow = new TimeSpan(time);
+        return dtStart.Add(toNow);
+
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (! IsPostBack)
         {
             //注意这里改成了通过Session获取
-            string account = (string)Session["id"];
-            if(account == null)
+            string id = (string)Session["id"];
+            //string id = "123";
+            if(id == null)
             {
                 //exception-handler
                 return;
@@ -24,8 +33,8 @@ public partial class Pages_ShowReaderInfo : BasePage
             //Database connection test
             string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
             MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
-            string selectReaderSql = "select * from Readers where Account = ?account;";
-            string selectBookSql = "select IssueTime, ReturnTime,Title " +
+            string selectReaderSql = "select * from Readers where ReaderId = ?id;";
+            string selectBookSql = "select IssueTime, ReturnTime,Title, Fine " +
                 "from  IssueRecords, BookBarcodes, Books " +
                 "where  BookBarcodes.BookBarcode =   IssueRecords.BookBarcode and  BookBarcodes.BookId = Books.BookId " +
                 "and IssueRecords.ReaderId = ?reader_id;";
@@ -33,21 +42,19 @@ public partial class Pages_ShowReaderInfo : BasePage
             {
                 OLMSDBConnection.Open();
                 MySqlCommand cmd = new MySqlCommand(selectReaderSql, OLMSDBConnection);
-                cmd.Parameters.AddWithValue("?account", account);
+                //这样查询允许的基础是 name和phone字段不能为空
+                cmd.Parameters.AddWithValue("?id", id);
                 MySqlDataReader reader = cmd.ExecuteReader();
-                UInt32 id = 0;
                 while (reader.Read())
                 {
                     if (reader.HasRows)
                     {
                         TextBoxEmail.Text = (string)reader["Email"];
-                        TextBoxAccount.Text = (string)reader["Account"];
                         TextBoxName.Text = (string)reader["Name"];
                         TextBoxTelephone.Text = (string)reader["Phone"];
-                        string idNumber = (string)reader["idNumber"];
+                        string idNumber = (string)reader["IdNumber"];
                         idNumber = "XXXXXXXXXXXXXX" + idNumber.Substring(idNumber.Length - 4);
                         TextBoxIDNumber.Text = idNumber;
-                        id = (UInt32)reader["ReaderId"];
                         break;
                     }
                 }
@@ -65,7 +72,8 @@ public partial class Pages_ShowReaderInfo : BasePage
                         DateTime issueTime = (DateTime)reader2["IssueTime"];
                         DateTime returnTime;
                         TimeSpan d;
-                        if (reader2["ReturnTime"] == null)
+               
+                        if (reader2["ReturnTime"] is System.DBNull)
                         {
                             r.returnTime = "";
                             //获取当前时间
@@ -96,11 +104,19 @@ public partial class Pages_ShowReaderInfo : BasePage
                             r.overdueTime = delta.ToString();
                         }      
                         r.issueTime = issueTime.ToString();
+                        if (reader2["Fine"] is System.DBNull)
+                        {
+                            r.fine = "";
+                        }
+                        else
+                        {
+                            r.fine = reader2["Fine"].ToString();
+                        }
                         issueRecords.Add(r);
                     }
                 }
-                Repeater1.DataSource = issueRecords;
-                Repeater1.DataBind();
+                GridView1.DataSource = issueRecords;
+                GridView1.DataBind();
             }
             catch(MySqlException ex)
             {
@@ -133,6 +149,11 @@ public partial class Pages_ShowReaderInfo : BasePage
     {
 
     }
+
+    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }
 public class Record
 {
@@ -140,4 +161,5 @@ public class Record
     public string issueTime { get; set; }
     public string returnTime { get; set; }
     public string overdueTime { get; set; }
+    public string fine {get; set;}
 }
