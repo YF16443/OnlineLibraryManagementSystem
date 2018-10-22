@@ -511,8 +511,4 @@
     <value>Select</value>
     <comment>选择</comment>
   </data>
-  <data name="Upload" xml:space="preserve">
-    <value>Upload</value>
-    <comment>上传</comment>
-  </data>
 </root>
