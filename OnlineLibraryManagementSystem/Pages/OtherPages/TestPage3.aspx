@@ -16,26 +16,58 @@
     <link href="../../assets/vendors/sweetalert/css/sweetalert2.min.css" rel="Stylesheet" >
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
-    <div class="table-responsive">
-        <asp:GridView ID="FineOverdue" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered">
-        <Columns>
-            <asp:BoundField HeaderText="<%$ Resources:Resource, ReaderId %>" DataField="ReaderID" ReadOnly="true" HeaderStyle-CssClass="text-primary">
-            </asp:BoundField>
-            <asp:BoundField HeaderText="<%$ Resources:Resource, Barcode %>" DataField="BookBarcode" ReadOnly="true" HeaderStyle-CssClass="text-primary">
-            </asp:BoundField>
-            <asp:BoundField HeaderText="<%$ Resources:Resource, IssueTime %>" DataField="IssueTime" ReadOnly="true" HeaderStyle-CssClass="text-primary">
-            </asp:BoundField>
-            <asp:BoundField HeaderText="<%$ Resources:Resource, Status %>" DataField="newStatus" ReadOnly="true" HeaderStyle-CssClass="text-primary">
-            </asp:BoundField>
-            <asp:BoundField HeaderText="<%$ Resources:Resource, ReturnTime %>" DataField="ReturnTime" ReadOnly="true" HeaderStyle-CssClass="text-primary">
-            </asp:BoundField>
-            <asp:BoundField HeaderText="<%$ Resources:Resource, OverDueTime %>" DataField="OverdueLength" ReadOnly="true" HeaderStyle-CssClass="text-primary">
-            </asp:BoundField>
-            <asp:BoundField HeaderText="<%$ Resources:Resource, Fine %>" DataField="Fine" ReadOnly="true" HeaderStyle-CssClass="text-primary">
-            </asp:BoundField>
-        </Columns>
-    </asp:GridView>
-</div>
+    <table style="width: 100%;">
+            <tr>
+                <td colspan="3" style="text-align:center">
+                  <div class="h4">
+                    <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource,Reparation %>" CssClass="h4"></asp:Label>
+                </div>
+                        </td>
+            </tr>
+            <tr>
+                <div class="form-group">
+                <td style="text-align:right" class="auto-style1">
+                      <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource,Barcode %>" CssClass="col-md-3 control-label"></asp:Label>
+                    </td>
+                  <td style="text-align:center" class="auto-style2">
+                    <div class="col-md-9" >
+                        <asp:TextBox ID="TextBox1" runat="server" Width="300px" TextMode="Number" CssClass="form-control"></asp:TextBox>
+                    </div>
+                      </td>
+                </div>
+                <td class="auto-style1">
+                    <asp:RequiredFieldValidator ID="rfvBarcode" runat="server" ControlToValidate="tbBarcode" ErrorMessage="*"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+    
+        <div class="form-group" style="text-align:center">
+            <asp:Label ID="lbBarcode" runat="server" Text="<%$ Resources:Resource,Barcode %>" CssClass="col-md-3 control-label"></asp:Label>
+            <div class="col-md-9" >
+                <asp:TextBox ID="tbBarcode" runat="server" Width="300px" TextMode="Number" CssClass="form-control"></asp:TextBox>
+            </div>
+        </div>
+        <div class="form-group" style="text-align:center">
+             <asp:Label ID="Type" runat="server" Text="<%$ Resources:Resource,Type %>" CssClass="col-md-3 control-label"></asp:Label>
+             <div class="col-md-9">
+                 <div class="select">
+                     <asp:DropDownList ID="TypeField" runat="server" Width="300px" CssClass="form-control">
+                         <asp:ListItem Text="<%$ Resources:Resource,Damage %>" Value="Damage" Selected="True"></asp:ListItem>
+                         <asp:ListItem Text="<%$ Resources:Resource,Lost %>" Value="Lost"></asp:ListItem>
+                     </asp:DropDownList>
+                     </div>
+                 </div>
+        </div>
+        <div class="form-group" style="text-align:center">
+            <div class="col-md-9">
+             <label class="col-md-3"></label>
+            <asp:Button ID="fineReparation" runat="server" Text="<%$ Resources:Resource,Reparation %>" OnClick="fineReparation_Click" CssClass="btn btn-fill btn-default"/>
+        </div>
+                </div>
+                </table>
+ 
+
+
+    
 <%--<script src="../../assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.js"></script>
 <script src="../../assets/vendors/bootstrap.min.js" type="text/javascript"></script>
