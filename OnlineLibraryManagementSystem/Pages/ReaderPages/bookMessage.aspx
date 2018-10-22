@@ -52,6 +52,9 @@
     <asp:Label ID="pages" runat="server" Text=""></asp:Label><br/>
     <asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
     <asp:Label ID="publisher" runat="server" Text=""></asp:Label><br/>
+            <asp:Label ID="Label14" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="Label15" runat="server" Text="Label"></asp:Label>
+            <br/>
     </div>
     <asp:Button ID="reserve" runat="server" Text="<%$ Resources:Resource,Reserve %>" OnClick="reserve_Click" />
     

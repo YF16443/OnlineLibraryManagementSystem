@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/ReaderPages/MasterPage.master" AutoEventWireup="true" CodeFile="ShowReaderInfo.aspx.cs" Inherits="Pages_ShowReaderInfo" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-</asp:Content>
-<asp:Content ID="Content2" runat="server" contentplaceholderid="body">
+
+<asp:Content ID="head" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
         .style1 {
             width: 100%;
@@ -14,10 +13,6 @@
             font-family: Consolas;
             margin:auto;
 
-        }
-        .auto-style1 {
-            text-align: center;
-            margin:0 auto;
         }
         .auto-style2 {
             width: 50%;
@@ -35,9 +30,6 @@
         .auto-style5 {
             font-size: xx-large;
         }
-        .auto-style7 {
-            font-size: large;
-        }
         .auto-style8 {
             font-size: x-large;
             background-color: #e8e8e8;
@@ -45,11 +37,14 @@
         .auto-style9 {
             font-size: x-large;
         }
-
     </style>
-    <div class="auto-style1">
+</asp:Content>
+
+<asp:Content ID="body" runat="server" contentplaceholderid="body">
+    <div style="text-align:center;">
         <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource,ReaderInfo %>" CssClass="auto-style5"></asp:Label>
-        <br /> <br />
+        <br />
+        <br />
         <table class ="style1">
             <tr>
                 <td class="auto-style2">
@@ -57,14 +52,6 @@
                 </td>
                 <td class="auto-style4">
                     <asp:Label ID="TextBoxName" runat="server" Text="name"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Account %>"></asp:Label>
-                </td>
-                <td class="auto-style4">
-                    <asp:Label ID="TextBoxAccount" runat="server" Text="Account"></asp:Label>
                 </td>
             </tr>
             <tr>
@@ -93,9 +80,11 @@
             </tr>
         </table>
         <br />
-        <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand2">
+        <div style="margin:0px; text-align:center;">
+        <table style="text-align:center; margin: 0px auto; width:100%;">
+        <asp:Repeater ID="Repeater1" runat="server">
             <HeaderTemplate>
-            <table class ="style2">
+                <table>
                 <tr class ="auto-style9">
                     <td>
                         <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, BookTitle %>"></asp:Label>
@@ -110,8 +99,10 @@
                         <asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource, OverDueTime %>"></asp:Label>
                     </td>
                 </tr>
+                </table>
             </HeaderTemplate>
             <ItemTemplate>
+            <table>
             <tr class="auto-style9">
                 <td>
                     <%# DataBinder.Eval(Container.DataItem, "title") %>
@@ -126,8 +117,10 @@
                     <%# DataBinder.Eval(Container.DataItem, "overdueTime") %>
                 </td>
             </tr>
+            </table>
             </ItemTemplate>
             <AlternatingItemTemplate>
+            <table>
             <tr class ="auto-style8">
                 <td>
                     <%# DataBinder.Eval(Container.DataItem, "title") %>
@@ -142,13 +135,12 @@
                     <%# DataBinder.Eval(Container.DataItem, "overdueTime") %>
                 </td>
             </tr>
-            </AlternatingItemTemplate>
-            <FooterTemplate>
             </table>
-            </FooterTemplate>
+            </AlternatingItemTemplate>
         </asp:Repeater>
+        </table>
+        </div>
         <div class="style1">
-            <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="auto-style7" />
         </div>
     </div>
 </asp:Content>
