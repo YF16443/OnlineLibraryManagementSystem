@@ -39,5 +39,8 @@
     <br />
     <asp:PasswordRecovery ID="PasswordRecovery1" runat="server">
     </asp:PasswordRecovery>
+    <br />
+    <br />
+    <asp:FileUpload ID="FileUpload1" runat="server" />
 </asp:Content>
 
