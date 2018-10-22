@@ -28,7 +28,7 @@ public partial class Pages_bookMessage : System.Web.UI.Page
             {
                 if (reader.HasRows)
                 {
-                    Image1.ImageUrl = "~/Images/Cover/2.jpg";/*reader["ImageURL"].ToString()*/
+                    Image1.ImageUrl = reader["ImageURL"].ToString();
                         
                     title.Text =   reader["Title"].ToString();
                     author.Text =  reader["Author"].ToString();

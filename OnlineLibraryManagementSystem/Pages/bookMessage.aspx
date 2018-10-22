@@ -6,7 +6,7 @@
     
     <%-- '<%#Eval("ImageURL") %>' --%>
     <div>
-    <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/Cover/2.jpg"/>
+    <asp:Image ID="Image1" runat="server"/>
         </div>
     <asp:Label ID="title" runat="server" Text=""></asp:Label><br />
     <asp:Label ID="author" runat="server" Text=""></asp:Label><br />
