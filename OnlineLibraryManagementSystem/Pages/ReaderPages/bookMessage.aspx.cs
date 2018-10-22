@@ -29,17 +29,30 @@ public partial class Pages_bookMessage : BasePage
                 if (reader.HasRows)
                 {
                     Image1.ImageUrl = reader["ImageURL"].ToString();
+                    Label1.Text = "书名：";
+                    Label2.Text = "作者：";
+                    Label3.Text = "出版日期：";
+                    Label4.Text = "价格：";
+                    Label5.Text = " ISBN13：";
+                    Label6.Text = " ISBN10：";
+                    //Label7.Text = " 子标题：";
+                    //Label8.Text = "来源：";
+                    //Label9.Text = " 装订方式：";
+                    //Label10.Text = " 翻译人：";
+                    //Label11.Text = " 分类：";
+                    Label12.Text = " 页数：";
+                    Label13.Text = " 出版社：";
                     title.Text =   reader["Title"].ToString();
                     author.Text =  reader["Author"].ToString();
                     pubDate.Text = Convert.ToDateTime(reader["PubDate"]).ToString("yyyy-MM-dd");
                     price.Text =   reader["Price"].ToString();
                     isbn13.Text = reader["ISBN13"].ToString();
                     isbn10.Text = reader["ISBN10"].ToString();
-                    subtitle.Text = reader["SubTitle"].ToString();
-                    origintitle.Text = reader["OriginTitle"].ToString();
-                    binding.Text = reader["Binding"].ToString();
-                    translator.Text = reader["Translator"].ToString();
-                    catalog.Text = reader["Catalog"].ToString();
+                    //subtitle.Text = reader["SubTitle"].ToString();
+                    //origintitle.Text = reader["OriginTitle"].ToString();
+                    //binding.Text = reader["Binding"].ToString();
+                    //translator.Text = reader["Translator"].ToString();
+                    //catalog.Text = reader["Catalog"].ToString();
                     pages.Text = reader["Pages"].ToString();
                     publisher.Text = reader["Publisher"].ToString();
                     break;
