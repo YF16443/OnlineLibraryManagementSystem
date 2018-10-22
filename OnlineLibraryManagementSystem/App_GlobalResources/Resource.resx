@@ -526,6 +526,32 @@
   <data name="Pages" xml:space="preserve">
     <value>Pages &amp; 页数</value>
   </data>
+  <data name="AdminLogin" xml:space="preserve">
+    <value>Admin Login @ 超级管理员登录</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone Number &amp; 手机号</value>
+  </data>
+  <data name="ISBN10" xml:space="preserve">
+    <value>ISBN10 &amp; ISBN10</value>
+    <comment>ISBN10</comment>
+  </data>
+  <data name="ISBN13" xml:space="preserve">
+    <value>ISBN13 &amp; ISBN13</value>
+    <comment>ISBN13</comment>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Pages &amp; 页数</value>
+    <comment>页数</comment>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price &amp; 价格</value>
+    <comment>价格</comment>
+  </data>
+  <data name="Pubdate" xml:space="preserve">
+    <value>Pubdate &amp; 出版日期</value>
+    <comment>出版日期</comment>
+  </data>
   <data name="Updata" xml:space="preserve">
     <value>Updata &amp; 更新</value>
   </data>
