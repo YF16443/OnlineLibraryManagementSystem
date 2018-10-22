@@ -34,6 +34,7 @@
                             </AnonymousTemplate>
                             <LoggedInTemplate>
                                 <asp:HyperLink ID="hlMyAccount" runat="server" Text="<%$ Resources:Resource,MyAccount %>" NavigateUrl="~/Pages/ReaderPages/ShowReaderInfo.aspx"></asp:HyperLink>
+                                &nbsp;
                                 <asp:LinkButton ID="lbLogout" runat="server" Text="<%$ Resources:Resource,Logout %>" OnClick="lbLogout_Click">Logout</asp:LinkButton>
                             </LoggedInTemplate>
                         </asp:LoginView>
