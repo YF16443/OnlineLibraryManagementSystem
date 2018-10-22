@@ -151,7 +151,6 @@
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
-    <comment>注册按钮</comment>
   </data>
   <data name="Account" xml:space="preserve">
     <value>Account</value>
@@ -235,7 +234,6 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
-    <comment>查找书库或书架</comment>
   </data>
   <data name="Search_Type" xml:space="preserve">
     <value>Search_Type</value>
@@ -299,6 +297,218 @@
   </data>
   <data name="Author" xml:space="preserve">
     <value>Author</value>
-    <comment>作者</comment>
+  </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>AboutUs</value>
+    <comment>网站官方信息</comment>
+  </data>
+  <data name="BookCirculation" xml:space="preserve">
+    <value>Circulation</value>
+    <comment>图书借出和归还</comment>
+  </data>
+  <data name="PersonalInfo" xml:space="preserve">
+    <value>My Account</value>
+    <comment>读者个人信息</comment>
+  </data>
+  <data name="StacksManagement" xml:space="preserve">
+    <value>Stacks Management</value>
+    <comment>书库和书架管理</comment>
+  </data>
+  <data name="BookManagement" xml:space="preserve">
+    <value>Book Management</value>
+    <comment>图书管理</comment>
+  </data>
+  <data name="ReaderManagement" xml:space="preserve">
+    <value>Reader Management</value>
+    <comment>读者管理</comment>
+  </data>
+  <data name="Issue" xml:space="preserve">
+    <value>Issue</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Sign Out</value>
+    <comment>退出当前帐号</comment>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Barcode" xml:space="preserve">
+    <value>Barcode</value>
+  </data>
+  <data name="ReaderId" xml:space="preserve">
+    <value>Reader Id</value>
+  </data>
+  <data name="Add_Books" xml:space="preserve">
+    <value>Add_Books</value>
+    <comment>添加图书</comment>
+  </data>
+  <data name="ISBN" xml:space="preserve">
+    <value>ISBN</value>
+    <comment>ISBN(ISSN)</comment>
+  </data>
+  <data name="Print_Barcode" xml:space="preserve">
+    <value>Print_Barcode</value>
+    <comment>打印条形码</comment>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
+    <comment>数量</comment>
+  </data>
+  <data name="AddShelf" xml:space="preserve">
+    <value>AddShelf</value>
+  </data>
+  <data name="AddStack" xml:space="preserve">
+    <value>AddStack</value>
+  </data>
+  <data name="AddBook" xml:space="preserve">
+    <value>AddBook</value>
+  </data>
+  <data name="AddPeriodical" xml:space="preserve">
+    <value>AddPeriodical</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Publisher" xml:space="preserve">
+    <value>Publisher</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Cover</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+    <comment>书库位置</comment>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>ChangePassword</value>
+  </data>
+  <data name="ChangeReaderInfomation" xml:space="preserve">
+    <value>Change Reader Infomation</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Comfirm New Password</value>
+  </data>
+  <data name="LogInNotice" xml:space="preserve">
+    <value>Please log in first</value>
+  </data>
+  <data name="NewEmail" xml:space="preserve">
+    <value>New Email Address</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="NewPhone" xml:space="preserve">
+    <value>New Phone Number</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>Wrong Password</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="LibrarianManagement" xml:space="preserve">
+    <value>Librarian Management</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>My Account</value>
+  </data>
+  <data name="NoticeManagement" xml:space="preserve">
+    <value>Notice Management</value>
+  </data>
+  <data name="OperationHistory" xml:space="preserve">
+    <value>Operation History</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="SystemSettings" xml:space="preserve">
+    <value>System Settings</value>
+  </data>
+  <data name="Reserve" xml:space="preserve">
+    <value>Reserve</value>
+  </data>
+  <data name="Reservation_Fail" xml:space="preserve">
+    <value>Reservation Failed!</value>
+  </data>
+  <data name="LibrarianLogin" xml:space="preserve">
+    <value>Librarian Login</value>
+  </data>
+  <data name="Reservation_Success" xml:space="preserve">
+    <value>Reservation Success!\nPlease arrive for issuing within 2 hours.</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+    <comment>状态</comment>
+  </data>
+  <data name="Fine" xml:space="preserve">
+    <value>Fine</value>
+    <comment>欠款</comment>
+  </data>
+  <data name="Returned" xml:space="preserve">
+    <value>Returned</value>
+  </data>
+  <data name="Returned_Not" xml:space="preserve">
+    <value>Not Returned</value>
+  </data>
+  <data name="Select_Shelf" xml:space="preserve">
+    <value>Select_Shelf</value>
+    <comment>Select_Shelf</comment>
+  </data>
+  <data name="Damage" xml:space="preserve">
+    <value>Damaged</value>
+  </data>
+  <data name="Lost" xml:space="preserve">
+    <value>Lost</value>
+  </data>
+  <data name="Reparation" xml:space="preserve">
+    <value>Reparation</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="DamageAlert" xml:space="preserve">
+    <value>Need to pay</value>
+  </data>
+  <data name="Yuan" xml:space="preserve">
+    <value>Yuan</value>
+  </data>
+  <data name="LibrarianRegister" xml:space="preserve">
+    <value>LibrarianRegister</value>
+    <comment>管理员注册</comment>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+    <comment>密码</comment>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>删除</comment>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>Edit</comment>
+  </data>
+  <data name="Alter" xml:space="preserve">
+    <value>Alter</value>
+    <comment>修改</comment>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+    <comment>选择</comment>
   </data>
 </root>

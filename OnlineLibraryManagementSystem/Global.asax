@@ -5,11 +5,11 @@
     void Application_Start(object sender, EventArgs e)
     {
         // 在应用程序启动时运行的代码
-        ScriptManager.ScriptResourceMapping.AddDefinition("jquery", new ScriptResourceDefinition { 
-        Path = "~/scripts/jquery-3.0.0.min.js", DebugPath = "~/scripts/jquery-3.0.0.js", 
-        CdnPath = "http://ajax.microsoft.com/ajax/jQuery/jquery-3.0.0.min.js", CdnDebugPath = 
+        ScriptManager.ScriptResourceMapping.AddDefinition("jquery", new ScriptResourceDefinition {
+            Path = "~/scripts/jquery-3.0.0.min.js", DebugPath = "~/scripts/jquery-3.0.0.js",
+            CdnPath = "http://ajax.microsoft.com/ajax/jQuery/jquery-3.0.0.min.js", CdnDebugPath =
         "http://ajax.microsoft.com/ajax/jQuery/jquery-3.0.0.js" });
-
+        TimerTasks.Task();
     }
 
     void Application_End(object sender, EventArgs e)
