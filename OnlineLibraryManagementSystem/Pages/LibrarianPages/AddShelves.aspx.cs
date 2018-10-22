@@ -33,7 +33,6 @@ public partial class Pages_AddShelves : BasePage
 
     protected void Page_LoadComplete(object sender, EventArgs e)
     {
-        Help.LibrarianMenuInit(this, sender, e);
     }
 
     protected void AddShelves(object sender, EventArgs e)

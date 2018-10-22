@@ -16,7 +16,6 @@ public partial class Pages_IssueBookDemo : BasePage
 
     protected void Page_LoadComplete(object sender, EventArgs e)
     {
-        Help.LibrarianMenuInit(this, sender, e);
     }
 
     protected void btIssue_Click(object sender, EventArgs e)

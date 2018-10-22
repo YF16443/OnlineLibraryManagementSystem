@@ -18,15 +18,6 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
 
     }
 
-    protected void Page_LoadComplete(object sender, EventArgs e)
-    {
-        var lbLogin = (Master.FindControl("LoginView") as LoginView).FindControl("lbLogin") as LinkButton;
-        if (lbLogin != null)
-        {
-            lbLogin.PostBackUrl = "~/Pages/ReaderLogin.aspx";
-        }
-    }
-
     protected void brSearch_Click(object sender, EventArgs e)
     {
         // 输入过滤，未完成

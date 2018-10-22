@@ -15,8 +15,8 @@ public partial class Pages_ShowReaderInfo : BasePage
         if (! IsPostBack)
         {
             //注意这里改成了通过Session获取
-            string account = (string)Session["id"];
-            if(account == null)
+            string readerId = (string)Session["id"];
+            if(readerId == null)
             {
                 //exception-handler
                 return;
@@ -24,36 +24,39 @@ public partial class Pages_ShowReaderInfo : BasePage
             //Database connection test
             string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
             MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
-            string selectReaderSql = "select * from Readers where Account = ?account;";
-            string selectBookSql = "select IssueTime, ReturnTime,Title " +
-                "from  IssueRecords, BookBarcodes, Books " +
-                "where  BookBarcodes.BookBarcode =   IssueRecords.BookBarcode and  BookBarcodes.BookId = Books.BookId " +
-                "and IssueRecords.ReaderId = ?reader_id;";
+            string selectReaderSql = "select * from Readers where ReaderId = ?readerId;";
+            string selectBookSql = "select " +
+                                   "IssueTime, ReturnTime, Title " +
+                                   "from " +
+                                   "IssueRecords, BookBarcodes, Books " +
+                                   "where " +
+                                   "BookBarcodes.BookBarcode = IssueRecords.BookBarcode " +
+                                   "and " +
+                                   "BookBarcodes.BookId = Books.BookId " +
+                                   "and " +
+                                   "IssueRecords.ReaderId = ?readerId;";
             try
             {
                 OLMSDBConnection.Open();
                 MySqlCommand cmd = new MySqlCommand(selectReaderSql, OLMSDBConnection);
-                cmd.Parameters.AddWithValue("?account", account);
+                cmd.Parameters.AddWithValue("?readerId", readerId);
                 MySqlDataReader reader = cmd.ExecuteReader();
-                UInt32 id = 0;
                 while (reader.Read())
                 {
                     if (reader.HasRows)
                     {
                         TextBoxEmail.Text = (string)reader["Email"];
-                        TextBoxAccount.Text = (string)reader["Account"];
                         TextBoxName.Text = (string)reader["Name"];
                         TextBoxTelephone.Text = (string)reader["Phone"];
                         string idNumber = (string)reader["idNumber"];
                         idNumber = "XXXXXXXXXXXXXX" + idNumber.Substring(idNumber.Length - 4);
                         TextBoxIDNumber.Text = idNumber;
-                        id = (UInt32)reader["ReaderId"];
                         break;
                     }
                 }
                 reader.Close();
                 MySqlCommand cmd2 = new MySqlCommand(selectBookSql, OLMSDBConnection);
-                cmd2.Parameters.AddWithValue("?reader_id", id);
+                cmd2.Parameters.AddWithValue("?readerId", readerId);
                 ArrayList issueRecords = new ArrayList();
                 MySqlDataReader reader2 = cmd2.ExecuteReader();
                 while (reader2.Read())
@@ -118,22 +121,8 @@ public partial class Pages_ShowReaderInfo : BasePage
         //返回上一个页面  Response.Redirect()
         return;
     }
-
-    protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
-    {
-
-    }
-
-    protected void Repeater1_ItemCommand1(object source, RepeaterCommandEventArgs e)
-    {
-
-    }
-
-    protected void Repeater1_ItemCommand2(object source, RepeaterCommandEventArgs e)
-    {
-
-    }
 }
+
 public class Record
 {
     public string title { get; set; }
