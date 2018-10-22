@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Pages_LibrarianPages_FineInfo : System.Web.UI.Page
+public partial class Pages_LibrarianPages_FineInfo : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -31,12 +31,24 @@ public partial class Pages_LibrarianPages_FineInfo : System.Web.UI.Page
         foreach (DataRow dr in searchResult.Rows)
         {
             string status = dr["Status"].ToString();
-            if (status == "3")
-                dr["newStatus"] = "未归还";
-            if (status == "1")
-                dr["newStatus"] = "已归还";
-            if (status == "2") 
-                dr["newStatus"] = "已损坏或丢失";
+            if(Session["PreferredCulture"].ToString()=="zh-CN")
+            {
+                if (status == "3")
+                    dr["newStatus"] = "未归还";
+                if (status == "1")
+                    dr["newStatus"] = "已归还";
+                if (status == "2")
+                    dr["newStatus"] = "已损坏或丢失";
+            }
+            else
+            {
+                if (status == "3")
+                    dr["newStatus"] = "Not Returned";
+                if (status == "1")
+                    dr["newStatus"] = "Returned";
+                if (status == "2")
+                    dr["newStatus"] = "Damaged or Lost";
+            }
         }
         FineOverdue.DataSource = searchResult;
         FineOverdue.DataBind();

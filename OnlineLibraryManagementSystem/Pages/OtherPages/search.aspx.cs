@@ -68,7 +68,7 @@ public partial class Pages_search : BasePage
                     book.Title = (string)reader["Title"];
                     book.Author = (string)reader["Author"];
                     books_list.Add(book);
-                    book.href = "/Pages/bookMessage.aspx?book_id=" + reader["BookId"].ToString();
+                    book.href = "/Pages/ReaderPages/bookMessage.aspx?book_id=" + reader["BookId"].ToString();
                 }
             }
             Repeater1.DataSource = books_list;
