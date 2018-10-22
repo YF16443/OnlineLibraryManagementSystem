@@ -49,33 +49,41 @@
             <tr>
                 <td class="auto-style2">
                     <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, Name %>"></asp:Label>
+                    &nbsp;
                 </td>
                 <td class="auto-style4">
                     <asp:Label ID="TextBoxName" runat="server" Text="name"></asp:Label>
+                    &nbsp;
                 </td>
             </tr>
             <tr>
                 <td class="auto-style2">
                     <asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, IDNumber %>"></asp:Label>
+                    &nbsp;
                 </td>
                 <td class="auto-style4">
                     <asp:Label ID="TextBoxIDNumber" runat="server" Text="IdNumber"></asp:Label>
+                    &nbsp;
                 </td>
             </tr>
             <tr>
                 <td class="auto-style2">
                     <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, Telephone %>"></asp:Label>
+                    &nbsp;
                 </td>
                 <td class="auto-style4">
                     <asp:Label ID="TextBoxTelephone" runat="server" Text="phone"></asp:Label>
+                    &nbsp;
                 </td>
             </tr>
             <tr>
                 <td class="auto-style2">
                     <asp:Label ID="Label6" runat="server" Text="<%$ Resources:Resource, Email %>"></asp:Label>
+                    &nbsp;
                 </td>
                 <td class="auto-style4">
                     <asp:Label ID="TextBoxEmail" runat="server" Text="email"></asp:Label>
+                    &nbsp;
                 </td>
             </tr>
         </table>
