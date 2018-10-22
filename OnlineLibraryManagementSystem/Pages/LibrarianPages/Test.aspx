@@ -188,7 +188,7 @@
                         </asp:LoginView>
                             </li>
                             <li>
-                                <div class="select" style="position:relative;bottom:0px">
+                                <div class="select" style="position:relative; top:20px">
                                     <asp:DropDownList ID="ddlLanguages" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlLanguages_SelectedIndexChanged" CssClass="form-control">
                                         <asp:ListItem Value="zh-CN">简体中文</asp:ListItem>
                                         <asp:ListItem Value="en-US">English</asp:ListItem>
