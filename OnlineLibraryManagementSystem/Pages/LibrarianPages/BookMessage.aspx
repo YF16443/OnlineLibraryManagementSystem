@@ -2,11 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
-        .auto-style2 {
-            width: 930px;
-            height: 200px;
-            text-align:center;
-        }
         .auto-style3 {
             width: 618px;
             float: left;
@@ -16,9 +11,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
     
     <%-- '<%#Eval("ImageURL") %>' --%>
-    <div style="border: #333333; border-style: dashed; border-top-width: 1px;
-              border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px">
-    <div class="auto-style2">
+    
+    <div>
      <div style="text-align:center;float:left;width:200px">
     <asp:Image ID="Image1" runat="server" Width="110" Hight="120"/>
      </div>
@@ -59,16 +53,18 @@
     <asp:Label ID="Label12" runat="server" Text="Label"></asp:Label>
             <asp:TextBox ID="TextBoxpages" runat="server"></asp:TextBox>
             <br/>
-    <asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
+          <asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
             <asp:TextBox ID="TextBoxpublisher" runat="server"></asp:TextBox>
             <br/>
+     <asp:Label ID="Label14" runat="server" Text="Label"></asp:Label>
+         <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
+            <br/>  
     </div>
         </div>
-    </div>
-    <br />
+    <br/>
     <asp:FileUpload ID="FileUpload1" runat="server" Height="27px" />
+    <br/>
     <asp:Button ID="ButtonUpload" runat="server" Text="<%$ Resources:Resource,Upload %>" OnClick="Upload_Click" />
-    <br>
         <asp:Button ID="Alter" runat="server" Text="<%$ Resources:Resource,Alter %>" OnClick="Alter_Click" />
 
 </asp:Content>
