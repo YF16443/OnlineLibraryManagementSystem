@@ -1,15 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="IssueBookDemo.aspx.cs" Inherits="Pages_IssueBookDemo" %>
 
-<asp:Content ID="head" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="head" ContentPlaceHolderID="header" Runat="Server">
+    <a> <asp:Label runat="server" Text="<%$ Resources:Resource, Issue %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="body" ContentPlaceHolderID="body" Runat="Server">
     <div>
         <table style="width: 100%;">
-            <tr>
-                <td colspan="3" style="text-align:center">
-                    <asp:Label ID="lbTitle" runat="server" Text="<%$ Resources:Resource,Issue %>"></asp:Label>
-                </td>
-            </tr>
             <tr style="margin:10px,0px,5px,0px">
                 <td style="width:37%; text-align:right; padding:5px,5px,2.5px,5px;">
                     <asp:Label ID="lbReaderId" runat="server" Text="<%$ Resources:Resource,ReaderId %>"></asp:Label>
