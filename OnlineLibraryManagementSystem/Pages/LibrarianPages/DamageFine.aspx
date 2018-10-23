@@ -23,31 +23,15 @@
             height: 93px;
         }
     </style>
-     <!-- Bootstrap core CSS     -->
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" >
-
-    <!--  Paper Dashboard CSS    -->
-    <link href="../../assets/css/amaze.css" rel="stylesheet" >
-
-    <!--     Fonts and icons     -->
-    <link href="../../assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../../assets/css/font-muli.css" rel='stylesheet' type='text/css'>
-    <link href="../../assets/css/themify-icons.css" rel="stylesheet">
-    <!--    JQuery UI     -->
-    <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet">
-    <link href="../../assets/vendors/sweetalert/css/sweetalert2.min.css" rel="Stylesheet" >
+    
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="header" Runat="Server">
+    <a> <asp:Label runat="server" Text="<%$ Resources:Resource, Reparation %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
     <div>
     </div>
         <table style="width: 100%;">
-            <tr>
-                <td colspan="3" style="text-align:center">
-                    <h4>
-                    <asp:Label ID="lbTitle" runat="server" Text="<%$ Resources:Resource,Reparation %>"></asp:Label>
-                        </h4>
-                </td>
-            </tr>
             <tr>
                 <td style="text-align:right" class="auto-style3">
                     <asp:Label ID="lbBarcode" runat="server" Text="<%$ Resources:Resource,Barcode %>"></asp:Label>

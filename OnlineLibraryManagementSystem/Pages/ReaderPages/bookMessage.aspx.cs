@@ -152,7 +152,7 @@ public partial class Pages_bookMessage : BasePage
             }
             else
             {
-                string reservingTime = DateTime.Now.ToString();
+                string reservingTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 int reservingReaderId = 0;
                 if (Session["id"] != null)
                 {
