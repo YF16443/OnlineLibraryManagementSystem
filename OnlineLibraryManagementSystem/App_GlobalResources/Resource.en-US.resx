@@ -134,7 +134,7 @@
     <comment>读者名</comment>
   </data>
   <data name="ReaderRegister" xml:space="preserve">
-    <value>Rearer Register</value>
+    <value>Reader Register</value>
     <comment>读者注册的title</comment>
   </data>
   <data name="Telephone" xml:space="preserve">
@@ -524,11 +524,9 @@
   </data>
   <data name="Pages" xml:space="preserve">
     <value>Pages</value>
-    <comment>页数</comment>
   </data>
   <data name="Price" xml:space="preserve">
     <value>Price</value>
-    <comment>Price</comment>
   </data>
   <data name="Pubdate" xml:space="preserve">
     <value>Pubdate</value>
@@ -536,19 +534,9 @@
   </data>
   <data name="Upload" xml:space="preserve">
     <value>Upload</value>
-    <comment>上传</comment>
-  </data>
-  <data name="Price" xml:space="preserve">
-    <value>Price</value>
   </data>
   <data name="PublishDate" xml:space="preserve">
     <value>Publish Date</value>
-  </data>
-  <data name="Pages" xml:space="preserve">
-    <value>Pages</value>
-  </data>
-  <data name="Upload" xml:space="preserve">
-    <value>Upload</value>
   </data>
   <data name="Updata" xml:space="preserve">
     <value>Updata</value>
