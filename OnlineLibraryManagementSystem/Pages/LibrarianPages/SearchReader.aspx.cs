@@ -14,7 +14,7 @@ public partial class Pages_SearchReader : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+     
     }
 
     protected void Search(object sender, EventArgs e)

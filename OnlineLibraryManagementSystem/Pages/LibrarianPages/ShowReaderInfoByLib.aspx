@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="ShowReaderInfoByLib.aspx.cs" Inherits="Pages_ShowReaderInfo" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="header" runat="Server">
+    <a> <asp:Label runat="server" Text="<%$ Resources:Resource, ReaderInfo %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" contentplaceholderid="body">
     <style type="text/css">

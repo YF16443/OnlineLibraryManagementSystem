@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="SearchReader.aspx.cs" Inherits="Pages_SearchReader" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="header" runat="Server">
+    <a> <asp:Label runat="server" Text="<%$ Resources:Resource, Search %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
@@ -14,11 +15,11 @@
                     <asp:Listitem value="2" Text="<%$ Resources:Resource, Name %>"></asp:Listitem> 
                 </asp:DropDownList>
             </td>
-            <td style="width:30%; text-align:center;">
+            <td style="width:30%; text-align:center;" >
                 <asp:TextBox ID="TextSearch" runat="server" OnTextChanged="TextSearch_TextChanged" Width="400px" ></asp:TextBox>
             </td>
             <td style:30%;>
-                <asp:Button ID="Button2" runat="server" Text="<%$ Resources:Resource, Search %>" BorderColor="Black" ForeColor="Black" Width="100px" OnClick="Search" />
+                <asp:Button ID="Button2" runat="server" Text="<%$ Resources:Resource, Search %>" BorderColor="Black" ForeColor="Black" Width="100px" OnClick="Search"  UseSubmitBehavior="False" />
             </td>
         </tr>
     </table>
