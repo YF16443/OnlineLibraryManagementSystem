@@ -47,7 +47,7 @@ public partial class Pages_ChangePassword : BasePage
             ChangePasswordCmd.ExecuteNonQuery();
             conn.Close();
             Session["id"] = null;
-            Response.Write("<script type='text/javascript'>alert('OK');location.href='Login.aspx';</script>");
+            Response.Write("<script type='text/javascript'>alert('OK');location.href='../ReaderLogin.aspx';</script>");
         }
         else
             Response.Write("<script>alert('" + Resources.Resource.WrongPassword + "')</script>");

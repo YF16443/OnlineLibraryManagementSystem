@@ -66,11 +66,7 @@ public partial class Pages_bookMessage : BasePage
                     break;
                 }
             }
-
             reader.Close();
-
-
-
         }
         catch (MySqlException ex)
         {
@@ -103,10 +99,6 @@ public partial class Pages_bookMessage : BasePage
                 }
             }
             reader1.Close();
-
-
-
-
         }
         catch (MySqlException ex)
         {
@@ -188,6 +180,7 @@ public partial class Pages_bookMessage : BasePage
         catch(MySqlException ex)
         {
             System.Diagnostics.Debug.Write(ex.Message);
+            throw;
         }
         finally
         {
