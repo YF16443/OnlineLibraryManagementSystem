@@ -66,11 +66,7 @@ public partial class Pages_bookMessage : BasePage
                     break;
                 }
             }
-
             reader.Close();
-
-
-
         }
         catch (MySqlException ex)
         {
@@ -103,10 +99,6 @@ public partial class Pages_bookMessage : BasePage
                 }
             }
             reader1.Close();
-
-
-
-
         }
         catch (MySqlException ex)
         {
@@ -160,7 +152,7 @@ public partial class Pages_bookMessage : BasePage
             }
             else
             {
-                string reservingTime = DateTime.Now.ToString();
+                string reservingTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 int reservingReaderId = 0;
                 if (Session["id"] != null)
                 {
@@ -188,6 +180,7 @@ public partial class Pages_bookMessage : BasePage
         catch(MySqlException ex)
         {
             System.Diagnostics.Debug.Write(ex.Message);
+            throw;
         }
         finally
         {

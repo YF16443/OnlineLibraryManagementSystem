@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="AddBooks.aspx.cs" Inherits="Pages_Addbooks_ISBN" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="header" Runat="Server">
+      <a><asp:Label runat="server" Text="<%$ Resources:Resource, Add_Books %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" contentplaceholderid="body">
     <style type="text/css">
@@ -33,7 +34,6 @@
         }
     </style>
     <div class="auto-style1">
-        <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource,Add_Books %>" CssClass="auto-style5"></asp:Label>
         <br /> 
         <table class ="style1">
             <tr>

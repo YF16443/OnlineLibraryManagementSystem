@@ -9,7 +9,7 @@ using System.Configuration;
 using System.Text.RegularExpressions;
 using System.Text;
 
-public partial class Pages_LibrarianPages_EditShelf : System.Web.UI.Page
+public partial class Pages_LibrarianPages_EditShelf : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -48,9 +48,6 @@ public partial class Pages_LibrarianPages_EditShelf : System.Web.UI.Page
                 OLMSDBConnection.Close();
             }
         }
-    }
-    protected void Page_LoadComplete(object sender, EventArgs e)
-    {
     }
 
     protected void Alter_ShelfInfo(object sender, EventArgs e)

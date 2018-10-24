@@ -20,7 +20,7 @@ public partial class Pages_OtherPages_LibrarianRegister :BasePage
         string name, Account, password, idNumber, telephone, ppassword;
         if (TextBoxName.Text == "")
         {
-            Response.Write("<script>window.alert('用户名name不能为空!');</script>");
+            Response.Write("<script>window.alert('User name can not be empty!');</script>");
             return;
         }
         else
@@ -29,7 +29,7 @@ public partial class Pages_OtherPages_LibrarianRegister :BasePage
         }
         if (TextBoxAccount.Text == "")
         {
-            Response.Write("<script>window.alert('账户名account不能为空!');</script>");
+            Response.Write("<script>window.alert('Account can not be empty!');</script>");
             return;
         }
         else
@@ -59,7 +59,7 @@ public partial class Pages_OtherPages_LibrarianRegister :BasePage
                     Int64 count = (Int64)reader["num"];
                     if (count > 0)
                     {
-                        Response.Write("<script>window.alert('账号已存在');</script>");
+                        Response.Write("<script>window.alert('The account already exists!');</script>");
                         return;
                     }
                     break;
@@ -74,13 +74,13 @@ public partial class Pages_OtherPages_LibrarianRegister :BasePage
             int result = cmd.ExecuteNonQuery();
             if (result == 1)
             {
-                Response.Write("<script>window.alert('插入数据成功');</script>");
+                Response.Write("<script>window.alert('Registration is successful!');</script>");
                 //Response.Redirect()
                 return;
             }
             else
             {
-                Response.Write("<script>window.alert('插入数据失败');</script>");
+                Response.Write("<script>window.alert('Failed');</script>");
                 //Response.Redirect()
                 return;
             }

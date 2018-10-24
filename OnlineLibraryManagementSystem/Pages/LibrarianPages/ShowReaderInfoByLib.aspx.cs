@@ -109,13 +109,14 @@ public partial class Pages_ShowReaderInfo : BasePage
             }
         }
     }
+
     protected void Submit(object sender, EventArgs e)
     {
         string name, readerId, password, idNumber, phone, email;
         readerId = TextBoxAccount.Text;
         if (TextBoxName.Text == "")
         {
-            Response.Write("<script>window.alert('用户名name不能为空!');</script>");
+            Response.Write("<script>window.alert('User name can not be empty!');</script>");
             return;
         }
         else
@@ -124,7 +125,7 @@ public partial class Pages_ShowReaderInfo : BasePage
         }
         if (TextBoxPhone.Text == "")
         {
-            Response.Write("<script>window.alert('手机号Phone不能为空!');</script>");
+            Response.Write("<script>window.alert('Phone can not be empty!');</script>");
             return;
         }
         else
@@ -135,7 +136,7 @@ public partial class Pages_ShowReaderInfo : BasePage
         }
         if (TextBoxIDNumber.Text == "")
         {
-            Response.Write("<script>window.alert('身份证号不能为空!');</script>");
+            Response.Write("<script>window.alert('IDNumber can not be empty!');</script>");
             return;
         }
         else
@@ -144,13 +145,13 @@ public partial class Pages_ShowReaderInfo : BasePage
             idNumber = TextBoxIDNumber.Text;
             if (idNumber.Length != 18)
             {
-                Response.Write("<script>window.alert('身份证号不合法!');</script>");
+                Response.Write("<script>window.alert('The ID number is not in the right format!');</script>");
                 return;
             }
         }
         if (TextBoxPassword.Text == "")
         {
-            Response.Write("<script>window.alert('密码Password不能为空!');</script>");
+            Response.Write("<script>window.alert('Password can not be empty!');</script>");
             return;
         }
         else
@@ -185,7 +186,7 @@ public partial class Pages_ShowReaderInfo : BasePage
                     Int64 count = (Int64)reader["num"];
                     if (count > 0)
                     {
-                        Response.Write("<script>window.alert('账号已存在 或 身份证号输入错误!');</script>");
+                        Response.Write("<script>window.alert('Account already exists or IDNumber is wrong!');</script>");
                         return;
                     }
                     break;
@@ -204,12 +205,12 @@ public partial class Pages_ShowReaderInfo : BasePage
             int result = cmd.ExecuteNonQuery();
             if (result == 1)
             {
-                Response.Write("<script>window.alert('插入数据成功');</script>");
+                Response.Write("<script>window.alert('Modification is successful!');</script>");
                 return;
             }
             else
             {
-                Response.Write("<script>window.alert('插入数据失败');</script>");
+                Response.Write("<script>window.alert('Failed');</script>");
                 //Response.Redirect()
                 return;
             }
@@ -226,6 +227,7 @@ public partial class Pages_ShowReaderInfo : BasePage
         }
 
     }
+
     protected void Delete(object sender, EventArgs e)
     {
         string readerId = TextBoxAccount.Text;
@@ -247,7 +249,7 @@ public partial class Pages_ShowReaderInfo : BasePage
                     Int64 count = (Int64)reader["num"];
                     if (count > 0)
                     {
-                        Response.Write("<script>window.alert('有未还图书!');</script>");
+                        Response.Write("<script>window.alert('Please return the book first!');</script>");
                         return;
                     }
                     break;
@@ -264,7 +266,7 @@ public partial class Pages_ShowReaderInfo : BasePage
                     
                     if (reader1["Status"].ToString() == "1")
                     {
-                        Response.Write("<script>window.alert('有欠款未还!');</script>");
+                        Response.Write("<script>window.alert('Please pay the fine first!');</script>");
                         return;
                     }
                     break;
@@ -277,12 +279,12 @@ public partial class Pages_ShowReaderInfo : BasePage
             int result = cmd.ExecuteNonQuery();
             if (result == 1)
             {
-                Response.Write("<script>window.alert('删除成功');</script>");
+                Response.Write("<script>window.alert(' The removal completed successfully!');</script>");
                 return;
             }
             else
             {
-                Response.Write("<script>window.alert('删除失败');</script>");
+                Response.Write("<script>window.alert('Failed');</script>");
                 //Response.Redirect()
                 return;
             }
@@ -300,6 +302,7 @@ public partial class Pages_ShowReaderInfo : BasePage
 
 
     }
+
     protected void Cancel(object sender, EventArgs e)
     {
         //返回上一个页面  Response.Redirect()

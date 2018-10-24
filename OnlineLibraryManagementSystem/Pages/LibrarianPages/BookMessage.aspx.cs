@@ -32,22 +32,12 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                     if (reader.HasRows)
                     {
                         Image1.ImageUrl = reader["ImageURL"].ToString();
-                        //Label7.Text = " 子标题：";
-                        //Label8.Text = "来源：";
-                        //Label9.Text = " 装订方式：";
-                        //Label10.Text = " 翻译人：";
-                        //Label11.Text = " 分类：";
                         TextBoxtitle.Text = reader["Title"].ToString();
                         TextBoxauthor.Text = reader["Author"].ToString();
                         TextBoxpubdate.Text = Convert.ToDateTime(reader["PubDate"]).ToString("yyyy-MM-dd");
                         TextBoxprice.Text = reader["Price"].ToString();
                         TextBoxisbn13.Text = reader["ISBN13"].ToString();
                         TextBoxisbn10.Text = reader["ISBN10"].ToString();
-                        //subtitle.Text = reader["SubTitle"].ToString();
-                        //origintitle.Text = reader["OriginTitle"].ToString();
-                        //binding.Text = reader["Binding"].ToString();
-                        //translator.Text = reader["Translator"].ToString();
-                        //catalog.Text = reader["Catalog"].ToString();
                         TextBoxpages.Text = reader["Pages"].ToString();
                         TextBoxpublisher.Text = reader["Publisher"].ToString();
                         break;
