@@ -261,8 +261,6 @@
 <script src="../../assets/vendors/jquery.bootstrap-wizard.js"></script>
 <!--  Notifications Plugin    -->
 <script src="../../assets/vendors/bootstrap-notify.js"></script>
-<!-- DateTimePicker Plugin -->
-<script src="../../assets/vendors/bootstrap-datetimepicker.js"></script>
 <!-- Vector Map plugin -->
 <script src="../../assets/vendors/jquery-jvectormap.js"></script>
 <!-- Sliders Plugin -->
