@@ -547,4 +547,13 @@
   <data name="Phone" xml:space="preserve">
     <value>Phone Number</value>
   </data>
+  <data name="IncomeReport" xml:space="preserve">
+    <value>Income Report</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
 </root>

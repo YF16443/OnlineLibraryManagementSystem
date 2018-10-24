@@ -519,12 +519,14 @@
   </data>
   <data name="Price" xml:space="preserve">
     <value>Price &amp; 价格</value>
+    <comment>价格</comment>
   </data>
   <data name="PublishDate" xml:space="preserve">
     <value>Publish Date &amp; 出版日期</value>
   </data>
   <data name="Pages" xml:space="preserve">
     <value>Pages &amp; 页数</value>
+    <comment>页数</comment>
   </data>
   <data name="AdminLogin" xml:space="preserve">
     <value>Admin Login @ 超级管理员登录</value>
@@ -540,19 +542,20 @@
     <value>ISBN13 &amp; ISBN13</value>
     <comment>ISBN13</comment>
   </data>
-  <data name="Pages" xml:space="preserve">
-    <value>Pages &amp; 页数</value>
-    <comment>页数</comment>
-  </data>
-  <data name="Price" xml:space="preserve">
-    <value>Price &amp; 价格</value>
-    <comment>价格</comment>
-  </data>
   <data name="Pubdate" xml:space="preserve">
     <value>Pubdate &amp; 出版日期</value>
     <comment>出版日期</comment>
   </data>
   <data name="Updata" xml:space="preserve">
     <value>Updata &amp; 更新</value>
+  </data>
+  <data name="IncomeReport" xml:space="preserve">
+    <value>Income Report &amp; 收入报表</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount &amp; 金额</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time &amp; 时间</value>
   </data>
 </root>

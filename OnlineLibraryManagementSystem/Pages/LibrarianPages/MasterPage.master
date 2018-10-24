@@ -21,10 +21,14 @@
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="../../assets/css/demo.css" rel="stylesheet" >
 
+    <!--  Paper Dashboard CSS    -->
+    <link href="../../assets/css/amaze.css" rel="stylesheet" >
+
     <!--     Fonts and icons     -->
     <link href="../../assets/css/font-awesome.min.css" rel="stylesheet">
     <link href="../../assets/css/font-muli.css" rel='stylesheet' type='text/css'>
     <link href="../../assets/css/themify-icons.css" rel="stylesheet">
+    <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet">
 
     <link href="../../assets/vendors/sweetalert/css/sweetalert2.min.css" rel="Stylesheet" >
     <asp:ContentPlaceHolder id="head" runat="server"></asp:ContentPlaceHolder>
@@ -245,6 +249,7 @@
 <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
 <script src="../../assets/vendors/moment.min.js"></script>
 <!--  Charts Plugin -->
+<script src="../../assets/vendors/chartist.min.js"></script>
 <script src="../../assets/vendors/charts/flot/jquery.flot.js"></script>
 <script src="../../assets/vendors/charts/flot/jquery.flot.resize.js"></script>
 <script src="../../assets/vendors/charts/flot/jquery.flot.pie.js"></script>
