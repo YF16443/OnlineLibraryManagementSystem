@@ -1,24 +1,22 @@
 ﻿<html>
     <head>
-        <link href="../../assets/vendors/daterangepicker/daterangepicker.css" rel="stylesheet" />
-        <script src="../../assets/vendors/daterangepicker/daterangepicker.js"></script>
-        <link href="../../assets/vendors/daterangepicker/daterangepicker.min.css" rel="stylesheet" />
-        <script src="../../assets/vendors/daterangepicker/daterangepicker.min.js"></script>
-        <script src="../../assets/vendors/daterangepicker/test/moment.js"></script>
-        <script src="../../assets/vendors/daterangepicker/test/moment.min.js"></script>
-        <script src="../../assets/vendors/daterangepicker/test/jquery-2.2.3.min.js"></script>
-        <script src="../../Scripts/Knockout.js"></script>
-        <script src="../../Scripts/bootstrap.min.js"></script>
-        <script src="../../Scripts/bootstrap.js"></script>
+                <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+        <link href="../../assets/vendors/jquery-date-range-picker-master/dist/daterangepicker.css" rel="stylesheet" />
+        <script src="../../assets/vendors/jquery-date-range-picker-master/src/jquery.daterangepicker.js"></script>
+
     </head>
     <body>
-        <div class="daterangepicker-container" data-bind="daterangepicker: dateRange, daterangepickerOptions: {standalone: true}"></div>
+      <input id="date-range1" size="60" value="">
     </body>
     <script>
-$("input").daterangepicker({
-  minDate: moment().subtract(2, 'years')
-}, function (startDate, endDate, period) {
-  $(this).val(startDate.format('L') + ' – ' + endDate.format('L'))
-});
+        var jq=$.noConflict();
+        $('#date-range1').dateRangePicker(
+            {batchMode: 'week', 
+                showShortcuts: false,
+    language:'en',
+            });
     </script>
 </html>
