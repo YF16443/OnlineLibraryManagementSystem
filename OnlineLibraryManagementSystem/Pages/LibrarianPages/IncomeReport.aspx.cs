@@ -34,15 +34,15 @@ public partial class Pages_LibrarianPages_IncomeReport : BasePage
 
         foreach (DataRow dr in dtResult.Rows)
         {
-            string Deposit = ConfigurationManager.AppSettings["Deposit"].ToString();
+            double Deposit = Convert.ToDouble(ConfigurationManager.AppSettings["Deposit"].ToString());
             if (Session["PreferredCulture"].ToString() == "zh-CN")
             {
-                dr["Amount"] = Deposit + "元";
+                dr["Amount"] = Deposit.ToString() + "元";
                 dr["Type"] = "押金";
             }
             else
             {
-                dr["Amount"] = Deposit + " Yuan";
+                dr["Amount"] = Deposit.ToString() + " Yuan";
                 dr["Type"] = "Deposit";
             }
         }

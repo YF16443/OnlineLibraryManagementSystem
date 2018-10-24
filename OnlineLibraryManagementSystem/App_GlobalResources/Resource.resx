@@ -558,4 +558,7 @@
   <data name="Time" xml:space="preserve">
     <value>Time &amp; 时间</value>
   </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset &amp; 复位</value>
+  </data>
 </root>

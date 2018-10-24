@@ -555,4 +555,7 @@
   <data name="Amount" xml:space="preserve">
     <value>金额</value>
   </data>
+  <data name="Reset" xml:space="preserve">
+    <value>复位</value>
+  </data>
 </root>
