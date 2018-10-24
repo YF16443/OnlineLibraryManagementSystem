@@ -61,7 +61,7 @@ public partial class Pages_LibrarianPages_EditShelf : System.Web.UI.Page
         string pattern = "^\\d{1,10}$";
         if (TextBoxShelfId.Text == "")
         {
-            Response.Write("<script>alert('书架id不为空')</script>");
+            Response.Write("<script>alert('ShelfId Is Null!')</script>");
             return;
         }
         else if(System.Text.RegularExpressions.Regex.IsMatch(TextBoxShelfId.Text, pattern))
@@ -70,10 +70,18 @@ public partial class Pages_LibrarianPages_EditShelf : System.Web.UI.Page
         }
         else
         {
-            Response.Write("<script>alert('书架ID格式不正确')</script>");
+            Response.Write("<script>alert('Error ShelfId!')</script>");
             return;
         }
-        newsummary = TextBoxSummary.Text;
+        if (TextBoxSummary.Text == "" ||TextBoxSummary.Text.Trim().Length==0)
+        {
+            Response.Write("<script>alert('Shelf_Summary Is Null!')</script>");
+            return;
+        }
+        else
+        {
+            newsummary = TextBoxSummary.Text.Trim();
+        }
         //数据库
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
@@ -82,29 +90,32 @@ public partial class Pages_LibrarianPages_EditShelf : System.Web.UI.Page
         try
         {
             OLMSDBConnection.Open();
-            MySqlCommand cmdselectshelfid = new MySqlCommand(selectshelfid, OLMSDBConnection);
-            MySqlDataReader readerselect = cmdselectshelfid.ExecuteReader();
-            while (readerselect.Read())
+            if (newshelfid != Session["ID"].ToString())
             {
-                if (readerselect.HasRows)
+                MySqlCommand cmdselectshelfid = new MySqlCommand(selectshelfid, OLMSDBConnection);
+                MySqlDataReader readerselect = cmdselectshelfid.ExecuteReader();
+                while (readerselect.Read())
                 {
-                    Int64 count = (Int64)readerselect["num"];
-                    if (count > 0)
+                    if (readerselect.HasRows)
                     {
-                        Response.Write("<script>window.alert('该书架ID已存在,请重新修改');</script>");
-                        return;
+                        Int64 count = (Int64)readerselect["num"];
+                        if (count > 0)
+                        {
+                            Response.Write("<script>window.alert('ShelfId Is Exist!');</script>");
+                            return;
+                        }
+                        break;
                     }
-                    break;
                 }
+                readerselect.Close();
             }
-            readerselect.Close();
             MySqlCommand cmdupdateshelf = new MySqlCommand(updateshelf, OLMSDBConnection);
             int resultupdate = 0;
             resultupdate = cmdupdateshelf.ExecuteNonQuery();
             if (resultupdate != 0)
             {
                 Session["ID"] = newshelfid;
-                Response.Write("<script>alert('修改成功');window.location.href = 'ShelfInfo.aspx';</script>");
+                Response.Write("<script>alert('Edited Successfully!');window.location.href = 'ShelfInfo.aspx';</script>");
             }
         }
         catch (MySqlException ex)

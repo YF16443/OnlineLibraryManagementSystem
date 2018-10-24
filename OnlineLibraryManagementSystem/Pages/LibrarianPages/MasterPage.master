@@ -104,7 +104,7 @@
 							<ul class="nav">
 								<li><a href="Search_Stacks_Shelves.aspx">
                                     <asp:Label ID="Label12" runat="server" Text="<%$ Resources:Resource,Search %>"></asp:Label></a></li>
-								<li><a href="EditStack.aspx">
+								<li><a href="AddStacks.aspx">
                                     <asp:Label ID="Label13" runat="server" Text="<%$ Resources:Resource,AddStack %>"></asp:Label></a></li>
 								<li><a href="AddShelves.aspx">
                                     <asp:Label ID="Label14" runat="server" Text="<%$ Resources:Resource,AddShelf %>"></asp:Label></a></li>

@@ -49,12 +49,12 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
                 gvStacksResult.DataSource = null;
                 gvStacksResult.DataBind();
             }
-            if (TextBoxID.Text == "")
+            if (TextBoxID.Text == ""||TextBoxID.Text.Trim().Length==0)
             {
-                Response.Write("<script>alert('查询ID不为空')</script>");
+                Response.Write("<script>alert('Search Text Is Null!')</script>");
                 return;
             }
-            else id = TextBoxID.Text;
+            else id = TextBoxID.Text.Trim();
             //数据库
             string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
             MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
@@ -71,7 +71,13 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
                         Int64 count = (Int64)reader["num"];
                         if (count == 0)
                         {
-                            Response.Write("<script>window.alert('不存在该项');</script>");
+                            gvStacksResult.Enabled = false;
+                            gvStacksResult.DataSource = null;
+                            gvStacksResult.DataBind();  
+                            gvShelvesResult.Enabled = false;
+                            gvShelvesResult.DataSource = null;
+                            gvShelvesResult.DataBind();
+                            Response.Write("<script>window.alert('Not Found!');</script>");
                             return;
                         }
                         break;
@@ -215,12 +221,12 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
             }
             if (result != 0)
             {
-                Response.Write("<script>alert('删除成功')</script>");
+                Response.Write("<script>alert('Deleted Successfully')</script>");
                 return;
             }
             else
             {
-                Response.Write("<script>alert('请选择删除的项')</script>");
+                Response.Write("<script>alert('Please Select Item!')</script>");
                 return;
             }
         }

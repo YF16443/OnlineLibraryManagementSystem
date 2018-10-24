@@ -180,12 +180,12 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
             { }
             if (result != 0)
             {
-                Response.Write("<script>alert('删除成功')</script>");
+                Response.Write("<script>alert('Deleted Successfully!')</script>");
                 
             }
             else
             {
-                Response.Write("<script>alert('请选择删除的项')</script>");
+                Response.Write("<script>alert('Please Select Book!')</script>");
                 
             }
         }
