@@ -66,7 +66,7 @@
             </tr>
                <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, Shelf_Summary %>"></asp:Label>
+                    <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, Shelf_Timestamp %>"></asp:Label>
                 </td>
                 <td class="auto-style4">
                     &nbsp

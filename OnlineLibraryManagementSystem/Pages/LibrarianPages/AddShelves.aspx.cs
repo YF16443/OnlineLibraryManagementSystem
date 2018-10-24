@@ -42,7 +42,16 @@ public partial class Pages_AddShelves : BasePage
         string nowdate = "";
         string shelfid = "";
         stackid = DropDownList1.SelectedItem.Text;
-        shelf_summary = TextBoxShelf_Summary.Text;
+        if (TextBoxShelf_Summary.Text == "" || TextBoxShelf_Summary.Text.Trim().Length == 0)
+        {
+            Page.ClientScript.RegisterStartupScript(GetType(), "key", "<script language='javascript'>alert('Shelf_Summary Is Null!');</script>");
+            //Response.Write("<script>alert('Shelf_Summary is null!')</script>");
+            return;
+        }
+        else
+        {
+            shelf_summary = TextBoxShelf_Summary.Text.Trim();
+        }
         //数据库
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
@@ -63,7 +72,7 @@ public partial class Pages_AddShelves : BasePage
                     Int64 count = (Int64)reader1["num2"];
                     if (count==0)
                     {
-                        Response.Write("<script>window.alert('不存在该书库');</script>");
+                        Response.Write("<script>window.alert('Stack Does Not Exist!');</script>");
                         return;
                     }
                     break;
@@ -81,7 +90,8 @@ public partial class Pages_AddShelves : BasePage
             }
             if (result != 0)
             {
-                Response.Write("<script>alert('创建书架成功,书架id为:"+shelfid+"')</script>");
+                Page.ClientScript.RegisterStartupScript(GetType(), "key", "<script language='javascript'>alert('Created Successfully!ShelfId:" + shelfid + "');</script>");
+                //Response.Write("<script>alert('创建书架成功,书架id为:"+shelfid+"')</script>");
                 return;
             }
         }

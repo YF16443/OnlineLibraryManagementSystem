@@ -41,31 +41,39 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
         string newstackid = "";
         string newsummary = "";
         string newposition = "";
-        String pattern = "[A-Z]-\\d{3}";
-        if (TextBoxStackId.Text == "")
+        String pattern = "^[A-Z]-\\d{3}$";
+        if (TextBoxStackId.Text == ""||TextBoxStackId.Text.Trim().Length==0)
         {
-            Response.Write("<script>alert('书库ID不为空')</script>");
+            Response.Write("<script>alert('StackId Is Null!')</script>");
             return;
         }
-        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxStackId.Text, pattern)&&TextBoxStackId.Text.Length==5)
+        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxStackId.Text.Trim(), pattern))
         {
-            newstackid = TextBoxStackId.Text;
+            newstackid = TextBoxStackId.Text.Trim();
         }
         else
         {
-            Response.Write("<script>alert('书库ID格式不正确')</script>");
+            Response.Write("<script>alert('Error StackId!\\nStackId Example:A-101')</script>");
             return;
         }
-        if (TextBoxPosition.Text == "")
+        if (TextBoxPosition.Text == ""||TextBoxPosition.Text.Trim().Length==0)
         {
-            Response.Write("<script>alert('书库位置不为空')</script>");
+            Response.Write("<script>alert('Stack Position Is Null')</script>");
             return;
         }
         else
         {
-            newposition = TextBoxPosition.Text;
+            newposition = TextBoxPosition.Text.Replace(" ","");
         }
-        newsummary = TextBoxSummary.Text;
+        if (TextBoxSummary.Text == "" || TextBoxSummary.Text.Trim().Length == 0)
+        {
+            Response.Write("<script>alert('Stack_Summary Is Null')</script>");
+            return;
+        }
+        else
+        {
+            newsummary = TextBoxSummary.Text.Trim();
+        }
         //数据库
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
@@ -74,29 +82,32 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
         try
         {
             OLMSDBConnection.Open();
-            MySqlCommand cmdselectstackid = new MySqlCommand(selectnewstackid, OLMSDBConnection);
-            MySqlDataReader readerselect = cmdselectstackid.ExecuteReader();
-            while (readerselect.Read())
+            if (newstackid != Session["ID"].ToString())
             {
-                if (readerselect.HasRows)
+                MySqlCommand cmdselectstackid = new MySqlCommand(selectnewstackid, OLMSDBConnection);
+                MySqlDataReader readerselect = cmdselectstackid.ExecuteReader();
+                while (readerselect.Read())
                 {
-                    Int64 count = (Int64)readerselect["num"];
-                    if (count > 0)
+                    if (readerselect.HasRows)
                     {
-                        Response.Write("<script>window.alert('该书库ID已存在,请重新修改');</script>");
-                        return;
+                        Int64 count = (Int64)readerselect["num"];
+                        if (count > 0)
+                        {
+                            Response.Write("<script>window.alert('StackId Is Exist!');</script>");
+                            return;
+                        }
+                        break;
                     }
-                    break;
                 }
+                readerselect.Close();
             }
-            readerselect.Close();
             MySqlCommand cmdupdatestack = new MySqlCommand(updatestack, OLMSDBConnection);
             int result = 0;
             result = cmdupdatestack.ExecuteNonQuery();
             if (result != 0)
             {
-                Session["ID"] = TextBoxStackId.Text;
-                Response.Write("<script>alert('修改成功');window.location.href = 'StackInfo.aspx';</script>");
+                Session["ID"] = newstackid;
+                Response.Write("<script>alert('Edited Successfully!');window.location.href = 'StackInfo.aspx';</script>");
             }
         }
         catch (MySqlException ex)
