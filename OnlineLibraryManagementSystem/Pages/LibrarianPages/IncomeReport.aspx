@@ -17,6 +17,8 @@
 
     <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet">
     <link href="../../assets/vendors/sweetalert/css/sweetalert2.min.css" rel="Stylesheet" >
+    <link href="../../assets/vendors/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="../../assets/vendors/daterangepicker/daterangepicker.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" Runat="Server">
     <a> <asp:Label runat="server" Text="<%$ Resources:Resource, IncomeReport %>" CssClass="navbar-brand"></asp:Label> </a>
@@ -24,10 +26,6 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="body" Runat="Server">
     <div class="card">
         <div class="content">
-            <h4 class="title">DataTables.net</h4>
-                                    <div class="toolbar">
-                                        <!--        Here you can write extra buttons/actions for the toolbar              -->
-                                    </div>
              <div class="material-datatables">
         <asp:GridView ID="Income" runat="server" CssClass="table table-striped table-no-bordered table-hover" AutoGenerateColumns="False" style="width:100%;cellspacing:0">
             <Columns>
@@ -79,25 +77,25 @@
 <script src="../../assets/js/amaze.js"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="../../assets/js/demo.js"></script>
+<!--Date Range Picker-->
+<script src="../../assets/vendors/daterangepicker/daterangepicker.js"></script>
+<script src="../../assets/vendors/daterangepicker/daterangepicker.min.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#Income').DataTable({
-            "pagingType": "full_numbers",
-            "lengthMenu": [
-                [10, 25, 50, -1],
-                [10, 25, 50, "All"]
-            ],
-            responsive: true,
-            language: {
-                search: "_INPUT_",
-                searchPlaceholder: "Search records",
-            }
-
-        });
-
-
-    });
+     $(document).ready(function () {
+         var oTable = $('#' + '<%=Income.ClientID%>').dataTable({
+                    "searching": false,
+                    "sDom": "Rlfrtip",
+                    "bAutoWidth": false,
+                    "bFilter": true,
+                    "bPagination": true,
+                    "sPaginationType": "full_numbers",
+                    "bStateSave": true,
+                    "bPaginate": true,
+                    "bInfo": true,
+                   
+                });
+            });
 </script>
 </asp:Content>
 

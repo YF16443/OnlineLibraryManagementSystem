@@ -42,9 +42,37 @@ public partial class Pages_LibrarianPages_IncomeReport : BasePage
             }
             else
             {
-                dr["Amount"] = Deposit + "Yuan";
+                dr["Amount"] = Deposit + " Yuan";
                 dr["Type"] = "Deposit";
             }
+        }
+        MySqlCommand getFine_sql = new MySqlCommand("select ReaderId,ReturnTime,Fine from IssueRecords where Fine is not null and Status != 3");
+        var result2Adapter = new MySqlDataAdapter();
+        result2Adapter.SelectCommand = getFine_sql;
+        result2Adapter.SelectCommand.Connection = OLMSDBConnection;
+        var result2Set = new DataSet();
+
+        OLMSDBConnection.Open();
+        result2Adapter.Fill(result2Set);
+        OLMSDBConnection.Close();
+        DataTable search2Result = result2Set.Tables[0];
+
+        foreach(DataRow dr in search2Result.Rows)
+        {
+            DataRow newdr = dtResult.NewRow();
+            newdr["ReaderId"] = dr["ReaderId"];
+            newdr["Time"] = dr["ReturnTime"];
+            if (Session["PreferredCulture"].ToString() == "zh-CN")
+            {
+                newdr["Amount"] = dr["Fine"].ToString() + "元";
+                newdr["Type"] = "罚款";
+            }
+            else
+            {
+                newdr["Amount"] = dr["Fine"].ToString() + " Yuan";
+                newdr["Type"] = "Fine";
+            }
+            dtResult.Rows.Add(newdr);
         }
         Income.DataSource = dtResult;
         Income.DataBind();
