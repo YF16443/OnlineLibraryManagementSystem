@@ -22,39 +22,31 @@ public partial class Pages_AddStacks : BasePage
         String position = "";
         String stack_summary = "";
         String nowdate = "";
-        String pattern = "^[A-Z]-\\d{3}$";
+        String pattern = "[A-Z]-\\d{3}";
         if (TextBoxStackId.Text == "")
         {
-            Response.Write("<script>alert('StackId is null!')</script>");
+            Response.Write("<script>alert('书库ID不为空')</script>");
             return;
         }
-        else if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxStackId.Text.Trim(), pattern))
+        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxStackId.Text, pattern)&&TextBoxStackId.Text.Length==5)
         {
-            stackid = TextBoxStackId.Text.Trim();
+            stackid = TextBoxStackId.Text;
         }
         else
         {
-            Response.Write("<script>alert('Error StackId!\\nStackId Example:A-101')</script>");
+            Response.Write("<script>alert('书库ID格式不正确')</script>");
             return;
         }
-        if (TextBoxPosition.Text == ""||TextBoxPosition.Text.Trim().Length==0)
+        if (TextBoxPosition.Text == "")
         {
-            Response.Write("<script>alert('Stack Position Is Null!')</script>");
-            return;
-        }
-        else
-        {
-            position = TextBoxPosition.Text.Trim();
-        }
-        if (TextBoxSummary.Text == "" || TextBoxSummary.Text.Trim().Length == 0)
-        {
-            Response.Write("<script>alert('Stack_Summary Is Null!')</script>");
+            Response.Write("<script>alert('书库位置不为空')</script>");
             return;
         }
         else
         {
-            stack_summary = TextBoxSummary.Text.Trim();
+            position = TextBoxPosition.Text;
         }
+        stack_summary = TextBoxSummary.Text;
         //数据库
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
@@ -75,7 +67,7 @@ public partial class Pages_AddStacks : BasePage
                     Int64 count = (Int64)reader["num"];
                     if (count > 0)
                     {
-                        Response.Write("<script>window.alert('StackId Is Exist!');</script>");
+                        Response.Write("<script>window.alert('该书库已存在');</script>");
                         return;
                     }
                     break;
@@ -87,7 +79,7 @@ public partial class Pages_AddStacks : BasePage
             result = cmdinsert.ExecuteNonQuery();
             if (result != 0)
             {
-                Response.Write("<script>alert('Created Successfully!')</script>");
+                Response.Write("<script>alert('创建书库成功')</script>");
             }
         }
         catch (MySqlException ex)

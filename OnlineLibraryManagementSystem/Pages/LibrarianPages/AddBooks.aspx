@@ -54,7 +54,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <asp:Image ID="Image1" ImageUrl="~/Images/default.jpg" runat="server" Width="200" Hight="400"/>
+                    <asp:Image ID="Image1" ImageUrl="~/Images/Cover/爱情盛宴.jpg" runat="server" Width="200" Hight="400"/>
                 </td>
             </tr>
             <tr>
@@ -147,7 +147,7 @@
         </table>
         </br>
         <div class="style1">
-            </div>
+            </div> 
              <asp:Button ID="AddButton" runat="server" Text="<%$ Resources:Resource, Add %>" OnClick="Addbooks"  CausesValidation="False" CssClass="auto-style7" />
             <asp:Button ID="Print_BarcodeButton" runat="server" Text="<%$ Resources:Resource, Print_Barcode %>" OnClick="Print_Barcode"  CausesValidation="False" CssClass="auto-style7" />
         </div>
