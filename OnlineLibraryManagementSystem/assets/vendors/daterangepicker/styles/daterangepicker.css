@@ -378,11 +378,13 @@
 
 .daterangepicker.opened {
     display: -ms-inline-flexbox;
-    display: inline-flex
+    display: inline-flex;
+    z-index: 999;
 }
 
 .daterangepicker.expanded .calendar {
-    display: block
+    display: block;
+    z-index: 999;
 }
 
 .daterangepicker.hide-periods .calendar .calendar-title, .daterangepicker.hide-periods .periods, .daterangepicker.hide-weekdays .weekdays, .daterangepicker.single .calendar .calendar-title, .daterangepicker.single .custom-range-buttons, .daterangepicker.single .custom-range-inputs, .daterangepicker.single .ranges, .daterangepicker.standalone .custom-range-buttons {
@@ -395,7 +397,8 @@
 
 .daterangepicker.single {
     -ms-flex-direction: column;
-    flex-direction: column
+    flex-direction: column;
+    z-index: 999;
 }
 
     .daterangepicker.single .controls {
