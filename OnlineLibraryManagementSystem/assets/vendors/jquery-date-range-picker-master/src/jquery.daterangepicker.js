@@ -498,7 +498,7 @@
                 initiated = true;
             }, 0);
 
-            box.delegate("#id", "click", (function (evt) {
+            box.delegate("#id", "click", function (evt) {
                 evt.stopPropagation();
             });
 
