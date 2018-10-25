@@ -47,7 +47,7 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
             Response.Write("<script>alert('StackId Is Null!')</script>");
             return;
         }
-        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxStackId.Text.Trim(), pattern))
+        if (TextBoxStackId.Text.Trim().Length==5&&System.Text.RegularExpressions.Regex.IsMatch(TextBoxStackId.Text.Trim(), pattern))
         {
             newstackid = TextBoxStackId.Text.Trim();
         }

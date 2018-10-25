@@ -1,23 +1,25 @@
-﻿<html>
+﻿
+      <html> 
     <head>
-        <link rel="stylesheet" href="../../Content/bootstrap.min.css">
-		<script src="../../Scripts/jquery-3.3.1.min.js"></script>
-        <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
-        <link href="../../assets/vendors/jquery-date-range-picker-master/dist/daterangepicker.css" rel="stylesheet" />
-        <script src="../../assets/vendors/jquery-date-range-picker-master/src/jquery.daterangepicker.js"></script>
+        <link href="../../assets/vendors/daterangepicker/styles/vendor.css" rel="stylesheet" 
+        <link href="../../assets/vendors/daterangepicker/styles/daterangepicker.css" rel="stylesheet" />
+
+ 
+
     </head>
-
     <body>
-      <input id="date-range1" size="60" value="">
+      <input class="daterangepicker-field"></input>
     </body>
-
+                  <script src="../../assets/vendors/daterangepicker/scripts/vendor.js"></script>
+        <script src="../../assets/vendors/daterangepicker/scripts/daterangepicker.js"></script>
     <script>
-        var jq=$.noConflict();
-        $("#date-range1").dateRangePicker({
-                batchMode: 'week', 
-                showShortcuts: false,
-                language:'en',
-            });
+      $(".daterangepicker-field").daterangepicker({
+  forceUpdate: true,
+  single:true,
+  callback: function(startDate, endDate, period){
+    var title = startDate.format('L') + ' – ' + endDate.format('L');
+    $(this).val(title)
+  }
+});
     </script>
 </html>

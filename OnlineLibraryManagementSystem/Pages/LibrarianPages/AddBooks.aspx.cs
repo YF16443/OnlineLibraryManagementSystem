@@ -37,34 +37,39 @@ public partial class Pages_Addbooks_ISBN : BasePage
     {
         //扫描ISBN获得图书信息并添加
         string isbn = "";
-        string isbnparttern = "^[0-9A-Z]+$";
+        string isbnparttern = "^[0-9A-Z]{13}$";
+        string quantityparttern = "^[1-9]\\d*$";
         string quantity = "";//新加书本数量
-        if (TextBoxISBN.Text == "")
+        if (TextBoxISBN.Text == ""||TextBoxISBN.Text.Trim().Length==0)
         {
-            Response.Write("<script>alert('ISBN不为空')</script>");
+            Response.Write("<script>alert('ISBN Is Null!')</script>");
             return;
 
         }
-        else if (TextBoxISBN.Text.Length == 13 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN.Text, isbnparttern))
+        else if (TextBoxISBN.Text.Trim().Length == 13 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN.Text.Trim(), isbnparttern))
         {
-            isbn = TextBoxISBN.Text;
+            isbn = TextBoxISBN.Text.Trim();
         }
         else
         {
-            Response.Write("<script>alert('ISBN格式不正确')</script>");
+            Response.Write("<script>alert('Error ISBN! ')</script>");
             return;
         }
-        if (TextBoxQuantity.Text == "")
+        if (TextBoxQuantity.Text == "" || TextBoxQuantity.Text.Trim().Length == 0)
         {
-            Response.Write("<script>alert('书本数量不为空')</script>");
+            Response.Write("<script>alert('Books\\' Quantity Is Null !')</script>");
             return;
         }
-        else if (int.Parse(TextBoxQuantity.Text) <= 0)
+        else if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxQuantity.Text.Trim(), "^[0]\\d+$"))
         {
-            Response.Write("<script>alert('书本数量必须大于0')</script>");
+            quantity = TextBoxQuantity.Text.Trim().Substring(1,TextBoxQuantity.Text.Trim().Length-1);
+        }
+        else if (!System.Text.RegularExpressions.Regex.IsMatch(TextBoxQuantity.Text.Trim(), quantityparttern))
+        {
+            Response.Write("<script>alert('Books\\' Quantity Must Be the Positive Integer!')</script>");
             return;
         }
-        else quantity = TextBoxQuantity.Text;
+        else quantity = TextBoxQuantity.Text.Trim();
         //数据库连接
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
@@ -106,7 +111,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
                     Bookid = readeroldamount["BookId"].ToString();
                 }
                 readeroldamount.Close();
-                int newamount = oldamount + int.Parse(TextBoxQuantity.Text);
+                int newamount = oldamount + int.Parse(quantity);
                 string updatebook = "update Books set Amount='" + newamount.ToString() + "' where ISBN13='" + isbn + "';";
                 MySqlCommand cmdupate = new MySqlCommand(updatebook, OLMSDBConnection);
                 int update = 0;
@@ -121,7 +126,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
                 }
                 if (updateresult != 0 && update != 0)
                 {
-                    Response.Write("<script>alert('该书本已存在，书本数量增加" + TextBoxQuantity.Text + "本，更新为" + newamount.ToString() + "本')</script>");
+                    Response.Write("<script>alert('This Book Is Exist，Add " + quantity + " Books!\\nThe Amount Is Updated to " + newamount.ToString() + "!')</script>");
                     return;
                 }
             }
@@ -133,90 +138,92 @@ public partial class Pages_Addbooks_ISBN : BasePage
             }
             else
             {
-                Response.Write("<script>alert('未找到该图书')</script>");
+                Response.Write("<script>alert('Not Found The Book!')</script>");
                 return;
             }
-            string pubdateparttern = "[0-9]{4}-(0?[0-9]|1[0-2])-(0?[1-9]|[12]?[0-9]|3[01])";
+            string pubdateparttern = "^[0-9]{4}-(0?[0-9]|1[0-2])-(0?[1-9]|[12]?[0-9]|3[01])$";
             string pubdate = "";
-            if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxPubdate.Text, pubdateparttern))
+            if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxPubdate.Text.Trim(), pubdateparttern))
             {
-                pubdate = TextBoxPubdate.Text;
+                pubdate = TextBoxPubdate.Text.Trim();
             }
             else
             {
-                Response.Write("<script>alert('出版日期格式为YYYY-XX-MM')</script>");
+                Response.Write("<script>alert('Error Pubdate!\\nPubdate Example:YYYY-XX-MM')</script>");
                 return;
             }
-            string priceparttern = "^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*$";
+            string float_priceparttern = "^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*$";//正浮点数
+            string integer_priceparttern = "^[1-9]\\d*$";//正整数
             string price = "";
-            if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxPrice.Text, priceparttern))
+            if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxPrice.Text.Trim(), float_priceparttern)||System.Text.RegularExpressions.Regex.IsMatch(TextBoxPrice.Text.Trim(),integer_priceparttern))
             {
-                price = TextBoxPrice.Text;
+                price = TextBoxPrice.Text.Trim();
             }
             else
             {
-                Response.Write("<script>alert('价格格式不正确')</script>");
+                Response.Write("<script>alert('Error Price Format!')</script>");
                 return;
             }
             string pagesparttern = "^[1-9]\\d*$";
             string pages = "";
-            if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxPages.Text, pagesparttern))
+            if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxPages.Text.Trim(), pagesparttern))
             {
-                pages = TextBoxPages.Text;
+                pages = TextBoxPages.Text.Trim();
             }
             else
             {
-                Response.Write("<script>alert('页数格式不正确')</script>");
+                Response.Write("<script>alert('Error Pages Format!')</script>");
                 return;
             }
             string isbn13 = "";
-            if (TextBoxISBN13.Text.Length == 13 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN13.Text, isbnparttern))
+            if (TextBoxISBN13.Text.Trim().Length == 13 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN13.Text.Trim(), isbnparttern))
             {
                 isbn13 = TextBoxISBN13.Text;
             }
             else
             {
-                Response.Write("<script>alert('ISBN13格式不正确')</script>");
+                Response.Write("<script>alert('Error ISBN13!')</script>");
                 return;
             }
             string isbn10 = "";
-            if (TextBoxISBN10.Text.Length == 10 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN10.Text, isbnparttern))
+            string isbn10parttern = "^[0-9A-Z]{10}$";
+            if (TextBoxISBN10.Text.Length == 10 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN10.Text, isbn10parttern))
             {
                 isbn10 = TextBoxISBN10.Text;
             }
             else
             {
-                Response.Write("<script>alert('ISBN13格式不正确')</script>");
+                Response.Write("<script>alert('Error ISBN10!')</script>");
                 return;
             }
             string title = "";
-            if (TextBoxTitle.Text != "")
+            if (TextBoxTitle.Text.Trim()!="")
             {
-                title = TextBoxTitle.Text;
+                title = TextBoxTitle.Text.Trim();
             }
             else
             {
-                Response.Write("<script>alert('标题不为空')</script>");
+                Response.Write("<script>alert('Title Is Null!')</script>");
                 return;
             }
             string author = "";
-            if (TextBoxAuthor.Text != "")
+            if (TextBoxAuthor.Text.Trim()!= "")
             {
-                author = TextBoxAuthor.Text;
+                author = TextBoxAuthor.Text.Trim();
             }
             else
             {
-                Response.Write("<script>alert('作者不为空')</script>");
+                Response.Write("<script>alert('Author Is Null!')</script>");
                 return;
             }
             string publisher = "";
-            if (TextBoxPublisher.Text != "")
+            if (TextBoxPublisher.Text.Trim() != "")
             {
-                publisher = TextBoxPublisher.Text;
+                publisher = TextBoxPublisher.Text.Trim();
             }
             else
             {
-                Response.Write("<script>alert('出版社不为空')</script>");
+                Response.Write("<script>alert('Publisher Is Null!')</script>");
                 return;
             }
             string ImageURLSave = Image1.ImageUrl;
@@ -296,7 +303,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
             readeramount.Close();
             if ((result1 != 0) && (result2 != 0))
             {
-                Response.Write("<script>alert('添加书本成功,该书本数量目前为" + amount + "')</script>");
+                Response.Write("<script>alert('Add Book Successfully!\\nThe Amount Is" + amount + "!')</script>");
                 return;
             }
         }
@@ -315,7 +322,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
         //下载图片
         if (path.Equals(""))
         {
-            throw new Exception("未指定保存文件的路径");
+            throw new Exception("Not Found The Path!");
         }
         string imgName = Url.ToString().Substring(Url.ToString().LastIndexOf("/") + 1);
         string imgType = ".jpg";
@@ -352,9 +359,9 @@ public partial class Pages_Addbooks_ISBN : BasePage
     {
         //打印条形码，待组长更改
         string isbn = "";
-        if (TextBoxISBN.Text == "")
+        if (TextBoxISBN.Text.Trim() == "")
         {
-            Response.Write("<script>alert('ISBN不为空')</script>");
+            Response.Write("<script>alert('ISBN Is Null!')</script>");
         }
         else isbn = TextBoxISBN.Text;
         Book book = BookInfoQuery.GetByISBN(isbn);
@@ -367,7 +374,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
         }
         else
         {
-            Response.Write("Book Not Found");
+            Response.Write("Book Not Found!");
         }
     }
     protected string addslashes(string str)
@@ -385,15 +392,15 @@ public partial class Pages_Addbooks_ISBN : BasePage
 
     protected void ButtonSearch_Click(object sender, EventArgs e)
     {
-        string isbnparttern = "^[0-9A-Z]+$";
+        string isbnparttern = "^[0-9A-Z]{13}$";
         string isbn = "";
-        if (TextBoxISBN.Text.Length == 13 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN.Text, isbnparttern))
+        if (TextBoxISBN.Text.Trim().Length == 13 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN.Text.Trim(), isbnparttern))
         {
-            isbn = TextBoxISBN.Text;
+            isbn = TextBoxISBN.Text.Trim();
         }
         else
         {
-            Response.Write("<script>alert('ISBN13格式不正确')</script>");
+            Response.Write("<script>alert('Error ISBN!')</script>");
             return;
         }
         Book book;
@@ -404,7 +411,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
         }
         else
         {
-            Response.Write("<script>alert('未找到该图书')</script>");
+            Response.Write("<script>alert('Not Found The Book!')</script>");
             return;
         }
         string path = HttpRuntime.AppDomainAppPath.ToString() + "Images\\Cover\\";
@@ -460,7 +467,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
                     Directory.CreateDirectory(wantPath);
                     this.FileUpload1.SaveAs(Server.MapPath("~/Images/Cover/") + fileName);
                     Image1.ImageUrl = "~/Images/Cover/" + fileName;
-                    Response.Write("<script>alert('上传成功')</script>");
+                    Response.Write("<script>alert('Upload Successfully!')</script>");
                 }
                 else
                 {
@@ -468,14 +475,14 @@ public partial class Pages_Addbooks_ISBN : BasePage
                     this.FileUpload1.SaveAs(Server.MapPath("~/Images/Cover/") +
                     fileName);
                     Image1.ImageUrl = "~/Images/Cover/" + fileName;
-                    Response.Write("<script>alert('上传成功')</script>");
+                    Response.Write("<script>alert('Upload Successfully!')</script>");
 
                 }
 
             }
             else
             {
-                Response.Write("<script>alert('格式不正确')</script>");
+                Response.Write("<script>alert('Error Format!')</script>");
                 return;
             }
         }

@@ -28,7 +28,7 @@ public partial class Pages_AddStacks : BasePage
             Response.Write("<script>alert('StackId is null!')</script>");
             return;
         }
-        else if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxStackId.Text.Trim(), pattern))
+        else if (TextBoxStackId.Text.Trim().Length==5&&System.Text.RegularExpressions.Regex.IsMatch(TextBoxStackId.Text.Trim(), pattern))
         {
             stackid = TextBoxStackId.Text.Trim();
         }
