@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -77,5 +79,32 @@ public partial class Pages_LibrarianPages_IncomeReport : BasePage
         Income.DataSource = dtResult;
         Income.DataBind();
         Income.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+    }
+
+    protected void search_Click(object sender, EventArgs e)
+    {
+        String Da = Request["date"].ToString();
+        String[] range = Regex.Split(Da, " – ", RegexOptions.IgnoreCase);
+        String start = range[0];
+        String end = range[1];
+        DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
+        dtFormat.ShortDatePattern = "dd/MM/yyyy";
+        DateTime startDate = Convert.ToDateTime(start, dtFormat);
+        DateTime endDate = Convert.ToDateTime(end, dtFormat);
+        DataTable rangeResult = new DataTable();
+        //DataTable news= (DataTable)ViewState["Table"];
+        //foreach(DataRow row in news.Rows)
+        //{
+        //    DateTime selectTime = (DateTime)row["time"];
+        //    if (DateTime.Compare(startDate, selectTime) < 0 && DateTime.Compare(endDate, selectTime) > 0)  
+        //    {
+        //        rangeResult.ImportRow(row);
+        //    }
+        //}
+        //Income.DataSource = rangeResult;
+        //Income.DataBind();
+        //Income.HeaderRow.TableSection = TableRowSection.TableHeader;
+        //System.Diagnostics.Debug.Write(start);
     }
 }
