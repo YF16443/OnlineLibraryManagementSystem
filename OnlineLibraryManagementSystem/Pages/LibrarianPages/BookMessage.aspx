@@ -110,7 +110,6 @@
                         </Columns>
                     </asp:GridView>
     </div>
-    <asp:Button ID="Button1" runat="server" Text="Button"  Style="align-content:center"/>
     <br/>
 
 </asp:Content>
