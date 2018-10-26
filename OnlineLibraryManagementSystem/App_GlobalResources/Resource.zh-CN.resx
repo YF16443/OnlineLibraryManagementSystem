@@ -558,4 +558,13 @@
   <data name="Reset" xml:space="preserve">
     <value>复位</value>
   </data>
+  <data name="Total_Deposit" xml:space="preserve">
+    <value>总押金</value>
+  </data>
+  <data name="Total_Fine" xml:space="preserve">
+    <value>总罚款</value>
+  </data>
+  <data name="Total_Income" xml:space="preserve">
+    <value>总收入</value>
+  </data>
 </root>

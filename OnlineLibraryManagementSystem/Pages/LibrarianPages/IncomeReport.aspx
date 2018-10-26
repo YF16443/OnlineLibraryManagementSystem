@@ -32,9 +32,40 @@
                     </Columns>
                 </asp:GridView>
             </div>
+            </br></br>
+
+            <fieldset>
+                <div class="form-group">
+                    <h5><asp:Label ID="Total_Deposit" runat="server" Text="<%$ Resources:Resource, Total_Deposit %>" CssClass="col-sm-1 control-label"></asp:Label></h5>
+                    <div class="col-sm-2">
+                        <asp:TextBox ID="Total_Deposit_Text" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <h5><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Yuan %>" CssClass="col-sm-1 control-label"></asp:Label></h5>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div class="form-group">
+                    <h5><asp:Label ID="Total_Fine" runat="server" Text="<%$ Resources:Resource, Total_Fine %>" CssClass="col-sm-1 control-label"></asp:Label></h5>
+                    <div class="col-sm-2">
+                        <asp:TextBox ID="Total_Fine_Text" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <h5><asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Yuan %>" CssClass="col-sm-1 control-label"></asp:Label></h5>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div class="form-group">
+                    <h5><asp:Label ID="Total" runat="server" Text="<%$ Resources:Resource, Total_Income %>" CssClass="col-sm-1 control-label"></asp:Label></h5>
+                    <div class="col-sm-2">
+                        <asp:TextBox ID="Total_Text" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <h5><asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, Yuan %>" CssClass="col-sm-1 control-label"></asp:Label></h5>
+                </div>
+            </fieldset>
+
         </div>
     </div>
-
     <script src="../../assets/vendors/DataTables/jQuery-1.12.4/jquery-1.12.4.min.js"></script>
     <script type="text/javascript">
         var $124 = $;

@@ -34,9 +34,14 @@ public partial class Pages_LibrarianPages_IncomeReport : BasePage
         dtResult.Columns.Add("Amount");
         dtResult.Columns.Add("Type");
 
+        Double totalDeposit = 0;
+        Double totalFine = 0;
+        Double total = 0;
+
         foreach (DataRow dr in dtResult.Rows)
         {
             double Deposit = Convert.ToDouble(ConfigurationManager.AppSettings["Deposit"].ToString());
+            totalDeposit += Deposit;
             if (Session["PreferredCulture"].ToString() == "zh-CN")
             {
                 dr["Amount"] = Deposit.ToString() + "元";
@@ -64,6 +69,7 @@ public partial class Pages_LibrarianPages_IncomeReport : BasePage
             DataRow newdr = dtResult.NewRow();
             newdr["ReaderId"] = dr["ReaderId"];
             newdr["Time"] = dr["ReturnTime"];
+            totalFine += Convert.ToDouble(dr["Fine"].ToString());
             if (Session["PreferredCulture"].ToString() == "zh-CN")
             {
                 newdr["Amount"] = dr["Fine"].ToString() + "元";
@@ -81,6 +87,10 @@ public partial class Pages_LibrarianPages_IncomeReport : BasePage
         Income.DataBind();
         Income.HeaderRow.TableSection = TableRowSection.TableHeader;
 
+        total = totalDeposit + totalFine;
+        Total_Deposit_Text.Text = totalDeposit.ToString();
+        Total_Fine_Text.Text = totalFine.ToString();
+        Total_Text.Text = total.ToString();
     }
 
     protected void search_Click(object sender, EventArgs e)
@@ -98,12 +108,37 @@ public partial class Pages_LibrarianPages_IncomeReport : BasePage
         DataTable dtResult = ViewState["normal"] as DataTable;
         DataTable rangeResult = dtResult.Clone();
 
+        Double totalDeposit = 0;
+        Double totalFine = 0;
+        Double total = 0;
+
         foreach (DataRow dr in dtResult.Rows)
         {
             DateTime selectTime = (DateTime)dr["time"];
             System.Diagnostics.Debug.WriteLine(selectTime);
+
             if (DateTime.Compare(startDate, selectTime) < 0 && DateTime.Compare(endDate, selectTime) > 0)
             {
+                if (dr["Type"].ToString() == "罚款")
+                {
+                    String Money = Regex.Replace(dr["Amount"].ToString(),"元","");
+                    totalFine += Convert.ToDouble(Money);
+                }
+                if (dr["Type"].ToString() == "Fine")
+                {
+                    String Money = Regex.Replace(dr["Amount"].ToString(), " Yuan", "");
+                    totalFine += Convert.ToDouble(Money);
+                }
+                if (dr["Type"].ToString() == "押金")
+                {
+                    String Money = Regex.Replace(dr["Amount"].ToString(), "元", "");
+                    totalDeposit += Convert.ToDouble(Money);
+                }
+                if (dr["Type"].ToString() == "Deposit")
+                {
+                    String Money = Regex.Replace(dr["Amount"].ToString(), " Yuan", "");
+                    totalDeposit += Convert.ToDouble(Money);
+                }
                 rangeResult.ImportRow(dr);
                 System.Diagnostics.Debug.WriteLine("push");
             }
@@ -116,6 +151,10 @@ public partial class Pages_LibrarianPages_IncomeReport : BasePage
         Income.DataSource = rangeResult;
         Income.DataBind();
         Income.HeaderRow.TableSection = TableRowSection.TableHeader;
+        total = totalDeposit + totalFine;
+        Total_Deposit_Text.Text = totalDeposit.ToString();
+        Total_Fine_Text.Text = totalFine.ToString();
+        Total_Text.Text = total.ToString();
     }
 
     protected void reset_Click(object sender, EventArgs e)

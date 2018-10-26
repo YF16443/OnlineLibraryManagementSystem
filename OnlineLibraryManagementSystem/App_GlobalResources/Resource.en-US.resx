@@ -559,4 +559,13 @@
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
+  <data name="Total_Deposit" xml:space="preserve">
+    <value>Total Deposit</value>
+  </data>
+  <data name="Total_Fine" xml:space="preserve">
+    <value>Total Fine</value>
+  </data>
+  <data name="Total_Income" xml:space="preserve">
+    <value>Total Income</value>
+  </data>
 </root>
