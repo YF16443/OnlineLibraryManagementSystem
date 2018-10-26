@@ -567,4 +567,7 @@
   <data name="Total_Income" xml:space="preserve">
     <value>总收入</value>
   </data>
+  <data name="IssueReport" xml:space="preserve">
+    <value>借书统计</value>
+  </data>
 </root>

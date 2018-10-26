@@ -568,4 +568,7 @@
   <data name="Total_Income" xml:space="preserve">
     <value>Total Income</value>
   </data>
+  <data name="IssueReport" xml:space="preserve">
+    <value>Issue Report</value>
+  </data>
 </root>
