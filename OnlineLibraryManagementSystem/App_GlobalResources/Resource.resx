@@ -1,0 +1,564 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="IsDeposit" xml:space="preserve">
+    <value>deposit &amp; 300元押金</value>
+    <comment>读者是否缴纳300元押金</comment>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email @ 邮箱</value>
+    <comment>读者邮箱</comment>
+  </data>
+  <data name="IdNumber" xml:space="preserve">
+    <value>IdNumber &amp; 身份证号</value>
+    <comment>读者身份证号</comment>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name &amp; 姓名</value>
+    <comment>读者名</comment>
+  </data>
+  <data name="ReaderRegister" xml:space="preserve">
+    <value>RearerRegister &amp; 读者注册</value>
+    <comment>读者注册的title</comment>
+  </data>
+  <data name="Telephone" xml:space="preserve">
+    <value>Telephone &amp; 联系电话</value>
+    <comment>读者联系电话</comment>
+  </data>
+  <data name="TestString" xml:space="preserve">
+    <value>English &amp; 中文</value>
+    <comment>多语言测试用字符串</comment>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel &amp; 取消</value>
+    <comment>取消按钮</comment>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register &amp; 注册</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account &amp; 账户名</value>
+    <comment>读者账户名</comment>
+  </data>
+  <data name="BookTitle" xml:space="preserve">
+    <value>BookTitle &amp; 书名</value>
+    <comment>借阅图书的名字</comment>
+  </data>
+  <data name="IssueTime" xml:space="preserve">
+    <value>IssueTime &amp; 借阅时间</value>
+    <comment>借阅图书的日期</comment>
+  </data>
+  <data name="OverDueTime" xml:space="preserve">
+    <value>OverDueTime &amp; 逾期时间</value>
+    <comment>逾期时间 30天之后为逾期</comment>
+  </data>
+  <data name="ReturnTime" xml:space="preserve">
+    <value>ReturnTime &amp; 还书时间</value>
+    <comment>归还图书的日期</comment>
+  </data>
+  <data name="ReaderInfo" xml:space="preserve">
+    <value>ReaderInfo &amp; 读者信息</value>
+    <comment>显示读者信息</comment>
+  </data>
+  <data name="Login_Login" xml:space="preserve">
+    <value>Login</value>
+    <comment>登录</comment>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Password </value>
+    <comment>密码</comment>
+  </data>
+  <data name="Login_Remember" xml:space="preserve">
+    <value>RememberMe</value>
+    <comment>下次记住我</comment>
+  </data>
+  <data name="Login_UsrName" xml:space="preserve">
+    <value>UserName </value>
+    <comment>用户名</comment>
+  </data>
+  <data name="Add_Stacks" xml:space="preserve">
+    <value>Add_Stacks &amp; 添加书库</value>
+    <comment>添加书库</comment>
+  </data>
+  <data name="Add_Shelves" xml:space="preserve">
+    <value>Add_Shelves &amp; 添加书架</value>
+    <comment>添加书架</comment>
+  </data>
+  <data name="StackId" xml:space="preserve">
+    <value>StackId &amp; 书库ID</value>
+    <comment>书库ID</comment>
+  </data>
+  <data name="Stack_Summary" xml:space="preserve">
+    <value>Stack_Summary &amp; 书库摘要</value>
+    <comment>书库所放书籍摘要</comment>
+  </data>
+  <data name="Stack_Timestamp" xml:space="preserve">
+    <value>Stack_Timestamp &amp; 建库时间</value>
+    <comment>建立书库时间</comment>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add &amp; 添加</value>
+    <comment>添加</comment>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID &amp; 查询ID</value>
+    <comment>书库（书架）ID</comment>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search &amp; 搜索</value>
+  </data>
+  <data name="Search_Type" xml:space="preserve">
+    <value>Search_Type &amp; 查询类型</value>
+    <comment>查询类型</comment>
+  </data>
+  <data name="ShelfId" xml:space="preserve">
+    <value>ShelfId &amp; 书架ID</value>
+    <comment>书架ID</comment>
+  </data>
+  <data name="Shelf_Summary" xml:space="preserve">
+    <value>Shelf_Summary &amp; 书架摘要</value>
+    <comment>书架所放书架书籍摘要</comment>
+  </data>
+  <data name="Shelf_Timestamp" xml:space="preserve">
+    <value>Shelf_Timestamp &amp; 建架时间</value>
+    <comment>建立书架时间</comment>
+  </data>
+  <data name="Shelf" xml:space="preserve">
+    <value>Shelf &amp; 书架</value>
+    <comment>书架</comment>
+  </data>
+  <data name="Stack" xml:space="preserve">
+    <value>Stack &amp; 书库</value>
+    <comment>书库</comment>
+  </data>
+  <data name="Issue_BookID" xml:space="preserve">
+    <value>BookID</value>
+    <comment>图书编号</comment>
+  </data>
+  <data name="Issue_Issue" xml:space="preserve">
+    <value>Issue</value>
+    <comment>借出</comment>
+  </data>
+  <data name="Issue_Reader" xml:space="preserve">
+    <value>Reader</value>
+    <comment>读者</comment>
+  </data>
+  <data name="Issue_Return" xml:space="preserve">
+    <value>Return</value>
+    <comment>借还</comment>
+  </data>
+  <data name="Issue_Scan" xml:space="preserve">
+    <value>Scan</value>
+    <comment>扫描条形码</comment>
+  </data>
+  <data name="Issue_Title" xml:space="preserve">
+    <value>Issue &amp; Return Books</value>
+    <comment>借出图书</comment>
+  </data>
+  <data name="Book" xml:space="preserve">
+    <value>Book&amp;图书</value>
+    <comment>图书</comment>
+  </data>
+  <data name="Check" xml:space="preserve">
+    <value>Check&amp;查看详情</value>
+    <comment>查看详情</comment>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>News&amp;报纸</value>
+    <comment>报纸</comment>
+  </data>
+  <data name="Periodical" xml:space="preserve">
+    <value>Periodical&amp;期刊</value>
+    <comment>期刊</comment>
+  </data>
+  <data name="BookPeriodicalNews" xml:space="preserve">
+    <value>BookPeriodicalNews&amp;图书期刊报纸</value>
+    <comment>图书期刊报纸</comment>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default&amp;默认</value>
+    <comment>默认</comment>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Author&amp;作者</value>
+  </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>AboutUs&amp;关于我们</value>
+    <comment>网站官方信息</comment>
+  </data>
+  <data name="BookCirculation" xml:space="preserve">
+    <value>Circulation &amp; 图书借还</value>
+    <comment>图书借出和归还</comment>
+  </data>
+  <data name="PersonalInfo" xml:space="preserve">
+    <value>My Account &amp; 我的账号</value>
+    <comment>读者个人信息</comment>
+  </data>
+  <data name="StacksManagement" xml:space="preserve">
+    <value>Stacks Management &amp; 书库管理</value>
+    <comment>书库和书架管理</comment>
+  </data>
+  <data name="BookManagement" xml:space="preserve">
+    <value>Book Management &amp; 图书管理</value>
+    <comment>图书管理</comment>
+  </data>
+  <data name="ReaderManagement" xml:space="preserve">
+    <value>Reader Management &amp; 读者管理</value>
+    <comment>读者管理</comment>
+  </data>
+  <data name="Issue" xml:space="preserve">
+    <value>Issue &amp; 借出</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>Return &amp; 归还</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Sign Out &amp; 退出</value>
+    <comment>退出当前帐号</comment>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title &amp; 标题</value>
+  </data>
+  <data name="Barcode" xml:space="preserve">
+    <value>Barcode &amp; 书号</value>
+  </data>
+  <data name="ReaderId" xml:space="preserve">
+    <value>Reader Id &amp; 读者帐号</value>
+  </data>
+  <data name="Add_Books" xml:space="preserve">
+    <value>Add_Books &amp; 添加图书</value>
+    <comment>添加图书</comment>
+  </data>
+  <data name="ISBN" xml:space="preserve">
+    <value>ISBN &amp; ISBN</value>
+    <comment>ISBN(ISSN)</comment>
+  </data>
+  <data name="Print_Barcode" xml:space="preserve">
+    <value>Print_Barcode &amp; 打印条形码</value>
+    <comment>打印条形码</comment>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity &amp; 数量</value>
+    <comment>数量</comment>
+  </data>
+  <data name="AddShelf" xml:space="preserve">
+    <value>Add Shelf &amp; 添加书架</value>
+  </data>
+  <data name="AddStack" xml:space="preserve">
+    <value>Add Stack &amp; 添加书库</value>
+  </data>
+  <data name="AddBook" xml:space="preserve">
+    <value>添加图书</value>
+  </data>
+  <data name="AddPeriodical" xml:space="preserve">
+    <value>添加期刊</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details &amp; 详细信息</value>
+  </data>
+  <data name="Publisher" xml:space="preserve">
+    <value>Publisher &amp; 出版社</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Cover &amp; 封面</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>ChangePassword &amp; 更改密码</value>
+  </data>
+  <data name="ChangeReaderInfomation" xml:space="preserve">
+    <value>Change Reader Infomation &amp; 更改读者信息</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Comfirm New Password &amp; 确认新密码</value>
+  </data>
+  <data name="LogInNotice" xml:space="preserve">
+    <value>Please log in first &amp; 请先登录</value>
+  </data>
+  <data name="NewEmail" xml:space="preserve">
+    <value>New Email Address &amp; 新电子邮件地址</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password &amp; 新密码</value>
+  </data>
+  <data name="NewPhone" xml:space="preserve">
+    <value>New Phone Number &amp; 新电话号码</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Old Password &amp; 原密码</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit &amp; 提交</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>Wrong Password &amp; 密码错误</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category &amp; 类别</value>
+  </data>
+  <data name="LibrarianManagement" xml:space="preserve">
+    <value>Librarian Management &amp; 图书管理员管理</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login &amp; 登录</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout &amp; 登出</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>My Account &amp; 我的帐号</value>
+  </data>
+  <data name="NoticeManagement" xml:space="preserve">
+    <value>Notice Management &amp; 公告管理</value>
+  </data>
+  <data name="OperationHistory" xml:space="preserve">
+    <value>Operation History &amp; 操作历史</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics &amp; 数据统计</value>
+  </data>
+  <data name="SystemSettings" xml:space="preserve">
+    <value>System Settings &amp; 系统配置</value>
+  </data>
+  <data name="Reserve" xml:space="preserve">
+    <value>Reserve &amp; 预约</value>
+  </data>
+  <data name="Reservation_Fail" xml:space="preserve">
+    <value>Reservation Failed! &amp; 预约失败！</value>
+  </data>
+  <data name="LibrarianLogin" xml:space="preserve">
+    <value>Librarian Login &amp; 管理员登录</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position &amp; 位置</value>
+    <comment>书库位置</comment>
+  </data>
+  <data name="Reservation_Success" xml:space="preserve">
+    <value>Reservation Success!\nPlease arrive for issuing within 2 hours. &amp; 预约成功！\n请于两小时内到达借阅！</value>
+  </data>
+  <data name="Fine" xml:space="preserve">
+    <value>Fine &amp; 欠款</value>
+    <comment>欠款</comment>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status &amp; 状态</value>
+    <comment>状态</comment>
+  </data>
+  <data name="Returned" xml:space="preserve">
+    <value>Returned &amp; 已归还</value>
+  </data>
+  <data name="Returned_Not" xml:space="preserve">
+    <value>Not Returned &amp; 未归还</value>
+  </data>
+  <data name="Select_Shelf" xml:space="preserve">
+    <value>Select_Shelf &amp; 选择书架</value>
+    <comment>选择书架</comment>
+  </data>
+  <data name="Damage" xml:space="preserve">
+    <value>Damaged &amp; 损坏</value>
+  </data>
+  <data name="Lost" xml:space="preserve">
+    <value>Lost &amp; 丢失</value>
+  </data>
+  <data name="Reparation" xml:space="preserve">
+    <value>Reparation &amp; 赔偿</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type &amp; 类型</value>
+  </data>
+  <data name="DamageAlert" xml:space="preserve">
+    <value>Need to pay &amp; 需要赔偿</value>
+  </data>
+  <data name="Yuan" xml:space="preserve">
+    <value>Yuan &amp; 元</value>
+  </data>
+  <data name="LibrarianRegister" xml:space="preserve">
+    <value>LibrarianRegister &amp; 管理员注册</value>
+    <comment>管理员注册</comment>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password &amp; 密码</value>
+    <comment>密码</comment>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete &amp; 删除</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit &amp;&amp; 编辑</value>
+    <comment>编辑</comment>
+  </data>
+  <data name="Alter" xml:space="preserve">
+    <value>Alter &amp;&amp; 修改</value>
+    <comment>修改</comment>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select &amp; 选择</value>
+    <comment>选择项</comment>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload &amp; 上传</value>
+    <comment>上传</comment>
+  </data>
+  <data name="FineManagement" xml:space="preserve">
+    <value>Fine Management &amp; 罚款管理</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price &amp; 价格</value>
+    <comment>价格</comment>
+  </data>
+  <data name="PublishDate" xml:space="preserve">
+    <value>Publish Date &amp; 出版日期</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Pages &amp; 页数</value>
+    <comment>页数</comment>
+  </data>
+  <data name="AdminLogin" xml:space="preserve">
+    <value>Admin Login @ 超级管理员登录</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone Number &amp; 手机号</value>
+  </data>
+  <data name="ISBN10" xml:space="preserve">
+    <value>ISBN10 &amp; ISBN10</value>
+    <comment>ISBN10</comment>
+  </data>
+  <data name="ISBN13" xml:space="preserve">
+    <value>ISBN13 &amp; ISBN13</value>
+    <comment>ISBN13</comment>
+  </data>
+  <data name="Pubdate" xml:space="preserve">
+    <value>Pubdate &amp; 出版日期</value>
+    <comment>出版日期</comment>
+  </data>
+  <data name="Updata" xml:space="preserve">
+    <value>Updata &amp; 更新</value>
+  </data>
+  <data name="IncomeReport" xml:space="preserve">
+    <value>Income Report &amp; 收入报表</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount &amp; 金额</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time &amp; 时间</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset &amp; 复位</value>
+  </data>
+</root>

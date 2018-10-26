@@ -13,7 +13,6 @@ using System.IO;
 
 public partial class Pages_LibrarianPages_BookMessage : BasePage
 {
-    public static SortInfo siForGv = null;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -85,12 +84,6 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                    DropDownList1.Items.Add(reader3["ShelfId"].ToString() + "," + reader3["StackId"].ToString());
                 }
                 reader3.Close();
-
-                ////////////////////////////////////////////////Barcode表/////////////////////////////////////////
-                string selectbarcode = "select * from BookBarcodes where BookId='" + bookId + "';";
-                //数据库
-                BindDataTogvResult(selectbarcode);
-
             }
                 catch (MySqlException ex)
             {
@@ -289,102 +282,6 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                 Response.Write("<script>alert('Error Format!')</script>");
                 return;
             }
-        }
-    }
-    protected void gvBookBarcodeResult_Sorting(object sender, GridViewSortEventArgs e)
-    {
-        if (siForGv == null)
-        {
-            return;
-        }
-        GridView SortGv = (GridView)sender;
-        siForGv.SortExpression = e.SortExpression;
-        int page = SortGv.PageIndex;
-        siForGv.SortDataBind(SortGv, page, false);
-
-    }
-    protected void gvBookBarcodeResult_PageIndexChanging(object sender, GridViewPageEventArgs e)
-    {
-        if (siForGv == null)
-        {
-            return;
-        }
-        GridView SortGv = (GridView)sender;
-        int page = e.NewPageIndex;
-        siForGv.SortDataBind(SortGv, page, true);
-    }
-
-    protected void gvBookBarcodeResult_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void ButtonPrint_Barcode_Click(object sender, EventArgs e)
-    {
-        string barcode = "";
-        int index = 0;
-        //barcode = ((Button)sender).CommandArgument.ToString();
-        index=((GridViewRow)((Button)sender).NamingContainer).RowIndex;
-        barcode = gvBookBarcodeResult.Rows[index].Cells[0].Text;
-        //Barcode generation test
-        if (barcode!="")
-        {
-            //Response.Write("<script>alert('" + barcode10 + "')</script>");
-            var barcodeImage = MyBarcodeGenerator.Generate(barcode) as System.Drawing.Image;
-            MyBarcodeGenerator.ShowBarcode(barcode, this.Response);
-        }
-        else
-        {
-            Response.Write("<script>alert('Error!')<script/>");
-        }
-    }
-    protected void BindDataTogvResult(string str)
-    {
-        //绑定gvbarcode
-        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
-        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
-        try
-        {
-            MySqlCommand cmdselectbarcodeinfo = new MySqlCommand(str, OLMSDBConnection);
-            MySqlDataAdapter info = new MySqlDataAdapter(cmdselectbarcodeinfo);
-            DataSet infoset = new DataSet();
-            info.Fill(infoset);
-            DataTable searchResult = infoset.Tables[0];
-            searchResult.Columns.Add("newStatus");
-            foreach (DataRow row in searchResult.Rows)
-            {
-                string status = row["Status"].ToString();
-                if (Session["PreferredCulture"].ToString() == "zh-CN")
-                {
-                    if (status == "0")
-                        row["newStatus"] = "在馆无预约";
-                    if (status == "1")
-                        row["newStatus"] = "已借出";
-                    if (status == "2")
-                        row["newStatus"] = "已预约";
-                }
-                else
-                {
-                    if (status == "0")
-                        row["newStatus"] = "No Reservation";
-                    if (status == "1")
-                        row["newStatus"] = "On Loan";
-                    if (status == "2")
-                        row["newStatus"] = "Aleardy Reserved";
-                }
-            }
-            siForGv = new SortInfo(infoset.Tables[0]);
-            gvBookBarcodeResult.Enabled = true;
-            gvBookBarcodeResult.DataSource = searchResult;
-            gvBookBarcodeResult.DataBind();
-        }
-        catch (MySqlException ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
-        finally
-        {
-            OLMSDBConnection.Close();
         }
     }
 }
