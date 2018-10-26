@@ -59,7 +59,7 @@ public partial class Pages_LibrarianPages_IncomeReport : BasePage
         OLMSDBConnection.Close();
         DataTable search2Result = result2Set.Tables[0];
 
-        foreach(DataRow dr in search2Result.Rows)
+        foreach (DataRow dr in search2Result.Rows)
         {
             DataRow newdr = dtResult.NewRow();
             newdr["ReaderId"] = dr["ReaderId"];
@@ -76,6 +76,7 @@ public partial class Pages_LibrarianPages_IncomeReport : BasePage
             }
             dtResult.Rows.Add(newdr);
         }
+        ViewState["normal"] = dtResult;
         Income.DataSource = dtResult;
         Income.DataBind();
         Income.HeaderRow.TableSection = TableRowSection.TableHeader;
@@ -89,22 +90,39 @@ public partial class Pages_LibrarianPages_IncomeReport : BasePage
         String start = range[0];
         String end = range[1];
         DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
-        dtFormat.ShortDatePattern = "dd/MM/yyyy";
+        dtFormat.ShortDatePattern = "MM/dd/yyyy";
         DateTime startDate = Convert.ToDateTime(start, dtFormat);
         DateTime endDate = Convert.ToDateTime(end, dtFormat);
-        DataTable rangeResult = new DataTable();
-        //DataTable news= (DataTable)ViewState["Table"];
-        //foreach(DataRow row in news.Rows)
-        //{
-        //    DateTime selectTime = (DateTime)row["time"];
-        //    if (DateTime.Compare(startDate, selectTime) < 0 && DateTime.Compare(endDate, selectTime) > 0)  
-        //    {
-        //        rangeResult.ImportRow(row);
-        //    }
-        //}
-        //Income.DataSource = rangeResult;
-        //Income.DataBind();
-        //Income.HeaderRow.TableSection = TableRowSection.TableHeader;
-        //System.Diagnostics.Debug.Write(start);
+        System.Diagnostics.Debug.WriteLine(startDate);
+        System.Diagnostics.Debug.WriteLine(endDate);
+        DataTable dtResult = ViewState["normal"] as DataTable;
+        DataTable rangeResult = dtResult.Clone();
+
+        foreach (DataRow dr in dtResult.Rows)
+        {
+            DateTime selectTime = (DateTime)dr["time"];
+            System.Diagnostics.Debug.WriteLine(selectTime);
+            if (DateTime.Compare(startDate, selectTime) < 0 && DateTime.Compare(endDate, selectTime) > 0)
+            {
+                rangeResult.ImportRow(dr);
+                System.Diagnostics.Debug.WriteLine("push");
+            }
+        }
+        if (rangeResult.Rows.Count == 0)
+        {
+            DataRow blankRow = rangeResult.NewRow();
+            rangeResult.Rows.Add(blankRow);
+        }
+        Income.DataSource = rangeResult;
+        Income.DataBind();
+        Income.HeaderRow.TableSection = TableRowSection.TableHeader;
+    }
+
+    protected void reset_Click(object sender, EventArgs e)
+    {
+        DataTable dtResult = ViewState["normal"] as DataTable;
+        Income.DataSource = dtResult;
+        Income.DataBind();
+        Income.HeaderRow.TableSection = TableRowSection.TableHeader;
     }
 }
