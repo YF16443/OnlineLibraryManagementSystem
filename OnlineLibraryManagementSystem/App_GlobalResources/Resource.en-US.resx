@@ -559,4 +559,16 @@
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
+  <data name="Barcode_Timestamp" xml:space="preserve">
+    <value>Barcode_Timestamp</value>
+    <comment>书号添加时间</comment>
+  </data>
+  <data name="BookId" xml:space="preserve">
+    <value>BookId</value>
+    <comment>图书ID</comment>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+    <comment>打印</comment>
+  </data>
 </root>
