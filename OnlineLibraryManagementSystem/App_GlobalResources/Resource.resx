@@ -561,4 +561,22 @@
   <data name="Reset" xml:space="preserve">
     <value>Reset &amp; 复位</value>
   </data>
+  <data name="Total_Deposit" xml:space="preserve">
+    <value>Total Deposit &amp; 总押金</value>
+  </data>
+  <data name="Total_Fine" xml:space="preserve">
+    <value>Total Fine &amp; 总罚款</value>
+  </data>
+  <data name="Total_Income" xml:space="preserve">
+    <value>Total Income &amp; 总收入</value>
+  </data>
+  <data name="IssueReport" xml:space="preserve">
+    <value>Issue Report &amp; 借书统计</value>
+  </data>
+  <data name="Arrears" xml:space="preserve">
+    <value>Arrears &amp; 欠费金额</value>
+  </data>
+  <data name="ReaderReport" xml:space="preserve">
+    <value>Reader Credit Report &amp; 读者信用统计</value>
+  </data>
 </root>
