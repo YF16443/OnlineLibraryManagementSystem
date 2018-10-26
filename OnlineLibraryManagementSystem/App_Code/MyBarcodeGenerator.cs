@@ -16,9 +16,8 @@ public static class MyBarcodeGenerator
     {
         var settings = new BarcodeSettings
         {
-            Type = BarCodeType.EAN13,
+            Type = BarCodeType.EAN128,
             Data = barcode,
-            UseChecksum = CheckSumMode.ForceEnable,
             ShowTextOnBottom = true,
             TextAlignment = StringAlignment.Center
         };
