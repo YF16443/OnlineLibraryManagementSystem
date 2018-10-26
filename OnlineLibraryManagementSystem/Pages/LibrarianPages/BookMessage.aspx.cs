@@ -13,6 +13,7 @@ using System.IO;
 
 public partial class Pages_LibrarianPages_BookMessage : BasePage
 {
+    public static SortInfo siForGv = null;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -21,7 +22,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
             MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
             try
-            { 
+            {
                 string book_id_sql = "select * from Books where BookId=" + bookId;
                 OLMSDBConnection.Open();
                 MySqlCommand cmd1 = new MySqlCommand(book_id_sql, OLMSDBConnection);
@@ -50,20 +51,20 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
 
 
                 ////////////////////////////////////////////////图书位置信息/////////////////////////////////////////
-               string shelfid = "";
-               string stackid = "";
+                string shelfid = "";
+                string stackid = "";
 
-               string book_shelfid = "select Shelfid from BookBarcodes where BookId='" + bookId + "';";
+                string book_shelfid = "select Shelfid from BookBarcodes where BookId='" + bookId + "';";
 
-               MySqlCommand cmd2 = new MySqlCommand(book_shelfid, OLMSDBConnection);
-               MySqlDataReader reader1 = cmd2.ExecuteReader();
+                MySqlCommand cmd2 = new MySqlCommand(book_shelfid, OLMSDBConnection);
+                MySqlDataReader reader1 = cmd2.ExecuteReader();
 
-               while (reader1.Read())
-               {
+                while (reader1.Read())
+                {
                     if (reader1.HasRows)
                     {
-                       shelfid = reader1["Shelfid"].ToString();
-                       break;
+                        shelfid = reader1["Shelfid"].ToString();
+                        break;
                     }
                 }
                 reader1.Close();
@@ -81,11 +82,17 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                 MySqlDataReader reader3 = cmdadditems.ExecuteReader();
                 while (reader3.Read())
                 {
-                   DropDownList1.Items.Add(reader3["ShelfId"].ToString() + "," + reader3["StackId"].ToString());
+                    DropDownList1.Items.Add(reader3["ShelfId"].ToString() + "," + reader3["StackId"].ToString());
                 }
                 reader3.Close();
+
+                ////////////////////////////////////////////////Barcode表/////////////////////////////////////////
+                string selectbarcode = "select * from BookBarcodes where BookId='" + bookId + "';";
+                //数据库
+                BindDataTogvResult(selectbarcode);
+
             }
-                catch (MySqlException ex)
+            catch (MySqlException ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -134,7 +141,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             Response.Write("<script>alert('Author Is Null!')</script>");
             return;
         }
-        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxpubdate.Text.Trim(), pubdateparttern) )
+        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxpubdate.Text.Trim(), pubdateparttern))
         {
             newpubdate = TextBoxpubdate.Text.Trim();
         }
@@ -143,7 +150,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             Response.Write("<script>alert('Error Pubdate!\\nPubdate Example:YYYY-XX-MM')</script>");
             return;
         }
-        if (TextBoxisbn13.Text.Trim().Length ==13 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxisbn13.Text.Trim(), isbn13parttern))
+        if (TextBoxisbn13.Text.Trim().Length == 13 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxisbn13.Text.Trim(), isbn13parttern))
         {
             newisbn13 = TextBoxisbn13.Text.Trim();
         }
@@ -161,7 +168,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             Response.Write("<script>alert('Error ISBN10 Format!')</script>");
             return;
         }
-        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxprice.Text.Trim(), float_priceparttern)||System.Text.RegularExpressions.Regex.IsMatch(TextBoxprice.Text.Trim(),integer_priceparttern))
+        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxprice.Text.Trim(), float_priceparttern) || System.Text.RegularExpressions.Regex.IsMatch(TextBoxprice.Text.Trim(), integer_priceparttern))
         {
             newprice = TextBoxprice.Text.Trim();
         }
@@ -190,7 +197,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         }
         string[] shelf = DropDownList1.SelectedItem.Text.Split(',');
         newshelfid = shelf[0];
-       
+
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         try
@@ -204,7 +211,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             MySqlCommand cmdupdateshelfid = new MySqlCommand(updateshelfid, OLMSDBConnection);
             int result1 = 0;
             result1 = cmdupdateshelfid.ExecuteNonQuery();
-            if (result != 0 && result1!=0)
+            if (result != 0 && result1 != 0)
             {
                 Response.Write("<script>alert('Edited Successfully!')</script>");
                 return;
@@ -282,6 +289,102 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                 Response.Write("<script>alert('Error Format!')</script>");
                 return;
             }
+        }
+    }
+    protected void gvBookBarcodeResult_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        if (siForGv == null)
+        {
+            return;
+        }
+        GridView SortGv = (GridView)sender;
+        siForGv.SortExpression = e.SortExpression;
+        int page = SortGv.PageIndex;
+        siForGv.SortDataBind(SortGv, page, false);
+
+    }
+    protected void gvBookBarcodeResult_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        if (siForGv == null)
+        {
+            return;
+        }
+        GridView SortGv = (GridView)sender;
+        int page = e.NewPageIndex;
+        siForGv.SortDataBind(SortGv, page, true);
+    }
+
+    protected void gvBookBarcodeResult_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void ButtonPrint_Barcode_Click(object sender, EventArgs e)
+    {
+        string barcode = "";
+        int index = 0;
+        //barcode = ((Button)sender).CommandArgument.ToString();
+        index = ((GridViewRow)((Button)sender).NamingContainer).RowIndex;
+        barcode = gvBookBarcodeResult.Rows[index].Cells[0].Text;
+        //Barcode generation test
+        if (barcode != "")
+        {
+            //Response.Write("<script>alert('" + barcode10 + "')</script>");
+            var barcodeImage = MyBarcodeGenerator.Generate(barcode) as System.Drawing.Image;
+            MyBarcodeGenerator.ShowBarcode(barcode, this.Response);
+        }
+        else
+        {
+            Response.Write("<script>alert('Error!')<script/>");
+        }
+    }
+    protected void BindDataTogvResult(string str)
+    {
+        //绑定gvbarcode
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+        try
+        {
+            MySqlCommand cmdselectbarcodeinfo = new MySqlCommand(str, OLMSDBConnection);
+            MySqlDataAdapter info = new MySqlDataAdapter(cmdselectbarcodeinfo);
+            DataSet infoset = new DataSet();
+            info.Fill(infoset);
+            DataTable searchResult = infoset.Tables[0];
+            searchResult.Columns.Add("newStatus");
+            foreach (DataRow row in searchResult.Rows)
+            {
+                string status = row["Status"].ToString();
+                if (Session["PreferredCulture"].ToString() == "zh-CN")
+                {
+                    if (status == "0")
+                        row["newStatus"] = "在馆无预约";
+                    if (status == "1")
+                        row["newStatus"] = "已借出";
+                    if (status == "2")
+                        row["newStatus"] = "已预约";
+                }
+                else
+                {
+                    if (status == "0")
+                        row["newStatus"] = "No Reservation";
+                    if (status == "1")
+                        row["newStatus"] = "On Loan";
+                    if (status == "2")
+                        row["newStatus"] = "Aleardy Reserved";
+                }
+            }
+            siForGv = new SortInfo(infoset.Tables[0]);
+            gvBookBarcodeResult.Enabled = true;
+            gvBookBarcodeResult.DataSource = searchResult;
+            gvBookBarcodeResult.DataBind();
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            OLMSDBConnection.Close();
         }
     }
 }
