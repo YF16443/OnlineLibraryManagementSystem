@@ -570,4 +570,10 @@
   <data name="IssueReport" xml:space="preserve">
     <value>借书统计</value>
   </data>
+  <data name="ReaderReport" xml:space="preserve">
+    <value>读者信用统计</value>
+  </data>
+  <data name="Arrears" xml:space="preserve">
+    <value>欠费金额</value>
+  </data>
 </root>

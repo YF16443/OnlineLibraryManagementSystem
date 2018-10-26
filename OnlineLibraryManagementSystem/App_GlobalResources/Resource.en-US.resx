@@ -571,4 +571,10 @@
   <data name="IssueReport" xml:space="preserve">
     <value>Issue Report</value>
   </data>
+  <data name="ReaderReport" xml:space="preserve">
+    <value>Reader Credit Report</value>
+  </data>
+  <data name="Arrears" xml:space="preserve">
+    <value>Arrears</value>
+  </data>
 </root>
