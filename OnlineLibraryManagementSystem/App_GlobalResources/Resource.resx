@@ -579,4 +579,10 @@
   <data name="ReaderReport" xml:space="preserve">
     <value>Reader Credit Report &amp; 读者信用统计</value>
   </data>
+  <data name="NoticeId" xml:space="preserve">
+    <value>NoticeId &amp; 公告号</value>
+  </data>
+  <data name="Notice" xml:space="preserve">
+    <value>Notice &amp; 公告</value>
+  </data>
 </root>

@@ -577,4 +577,12 @@
   <data name="Arrears" xml:space="preserve">
     <value>Arrears</value>
   </data>
+  <data name="NoticeId" xml:space="preserve">
+    <value>NoticeId</value>
+    <comment>公告号</comment>
+  </data>
+  <data name="Notice" xml:space="preserve">
+    <value>Notice</value>
+    <comment>公告</comment>
+  </data>
 </root>
