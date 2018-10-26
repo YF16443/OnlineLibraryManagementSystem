@@ -559,6 +559,24 @@
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
+  <data name="Total_Deposit" xml:space="preserve">
+    <value>Total Deposit</value>
+  </data>
+  <data name="Total_Fine" xml:space="preserve">
+    <value>Total Fine</value>
+  </data>
+  <data name="Total_Income" xml:space="preserve">
+    <value>Total Income</value>
+  </data>
+  <data name="IssueReport" xml:space="preserve">
+    <value>Issue Report</value>
+  </data>
+  <data name="ReaderReport" xml:space="preserve">
+    <value>Reader Credit Report</value>
+  </data>
+  <data name="Arrears" xml:space="preserve">
+    <value>Arrears</value>
+  </data>
   <data name="Barcode_Timestamp" xml:space="preserve">
     <value>Barcode_Timestamp</value>
     <comment>书号添加时间</comment>
