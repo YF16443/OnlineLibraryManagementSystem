@@ -618,4 +618,40 @@
   <data name="VerificationFail" xml:space="preserve">
     <value>Verification Failed!</value>
   </data>
+  <data name="AccountError" xml:space="preserve">
+    <value>Account cannot be empty</value>
+  </data>
+  <data name="DamageFineRate" xml:space="preserve">
+    <value>Damage Fine Rate </value>
+  </data>
+  <data name="DepositError" xml:space="preserve">
+    <value>Please pay the deposit </value>
+  </data>
+  <data name="Failure" xml:space="preserve">
+    <value>Failure</value>
+  </data>
+  <data name="IdNumberError" xml:space="preserve">
+    <value>Id number cannot be empty</value>
+  </data>
+  <data name="IDNmberLegel" xml:space="preserve">
+    <value>Id number is not legal </value>
+  </data>
+  <data name="IdOrAccountError" xml:space="preserve">
+    <value>The account number already exists or the id card number input error </value>
+  </data>
+  <data name="LostFineRate" xml:space="preserve">
+    <value>Lost Fine Rate</value>
+  </data>
+  <data name="MaximunReservation" xml:space="preserve">
+    <value>Maximun Reservation </value>
+  </data>
+  <data name="OverdueFinePerDay" xml:space="preserve">
+    <value>Overdue Fine/Day</value>
+  </data>
+  <data name="Successful" xml:space="preserve">
+    <value>Successful</value>
+  </data>
+  <data name="UserNameError" xml:space="preserve">
+    <value>The user name cannot be empty</value>
+  </data>
 </root>
