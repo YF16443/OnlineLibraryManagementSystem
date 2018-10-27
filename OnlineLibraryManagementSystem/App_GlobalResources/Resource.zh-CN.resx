@@ -189,8 +189,8 @@
     <comment>下次记住我</comment>
   </data>
   <data name="Login_UsrName" xml:space="preserve">
-    <value>用户名 </value>
-    <comment>用户名</comment>
+    <value>账号</value>
+    <comment>账号</comment>
   </data>
   <data name="Add_Stacks" xml:space="preserve">
     <value>添加书库</value>
@@ -529,7 +529,7 @@
     <value>超级管理员登录</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>手机号</value>
+    <value>电话</value>
   </data>
   <data name="ISBN10" xml:space="preserve">
     <value>ISBN10</value>
@@ -614,5 +614,8 @@
   </data>
   <data name="VerificationFail" xml:space="preserve">
     <value>验证失败！</value>
+  </data>
+  <data name="LoginFailure" xml:space="preserve">
+    <value>您的登录尝试不成功，请重试。</value>
   </data>
 </root>

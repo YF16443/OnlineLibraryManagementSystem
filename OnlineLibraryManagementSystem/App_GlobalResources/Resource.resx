@@ -189,8 +189,8 @@
     <comment>下次记住我</comment>
   </data>
   <data name="Login_UsrName" xml:space="preserve">
-    <value>UserName </value>
-    <comment>用户名</comment>
+    <value>ID</value>
+    <comment>账号</comment>
   </data>
   <data name="Add_Stacks" xml:space="preserve">
     <value>Add_Stacks &amp; 添加书库</value>
@@ -532,7 +532,7 @@
     <value>Admin Login @ 超级管理员登录</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Phone Number &amp; 手机号</value>
+    <value>Phone Number &amp; 电话</value>
   </data>
   <data name="ISBN10" xml:space="preserve">
     <value>ISBN10 &amp; ISBN10</value>
@@ -617,5 +617,29 @@
   </data>
   <data name="VerificationSuccess" xml:space="preserve">
     <value>Verification Success! &amp; 验证成功！</value>
+  </data>
+  <data name="LoginFailure" xml:space="preserve">
+    <value>Your login attempt was unsuccessful. Please try again. &amp; 您的登录尝试不成功，请重试。</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>&lt;asp:Login ID="Login1" runat="server" LoginButtonText="&lt;%$ Resources:Resource,Login_Login %&gt;" PasswordLabelText="&lt;%$ Resources:Resource,Login_Password %&gt;" RememberMeText="&lt;%$ Resources:Resource,Login_Remember %&gt;" TitleText="&lt;%$ Resources:Resource,Login_Login %&gt;" UserNameLabelText="&lt;%$ Resources:Resource,Phone %&gt;" Width="300px" DestinationPageUrl="~/Pages/SearchDemo.aspx" OnAuthenticate="Login1_Authenticate" CssClass="content" EnableTheming="True" PasswordRequiredErrorMessage="*" style="left: 0px; top: 0px" UserNameRequiredErrorMessage="*" FailureText="&lt;%$ Resources:Resource,LoginFailure %&gt;"&gt;</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>&lt;CheckBoxStyle HorizontalAlign="Left" /&gt;</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>&lt;LabelStyle CssClass="col-sm-2 control-label" Font-Bold="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" VerticalAlign="Middle" /&gt;</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value>&lt;LoginButtonStyle CssClass="btn btn-sm" /&gt;</value>
+  </data>
+  <data name="String4" xml:space="preserve">
+    <value>&lt;TextBoxStyle CssClass="form-control input-no-border" /&gt;</value>
+  </data>
+  <data name="String5" xml:space="preserve">
+    <value>&lt;TitleTextStyle Font-Bold="True" Font-Italic="False" Font-Size="X-Large" VerticalAlign="Top" Wrap="True" /&gt;</value>
+  </data>
+  <data name="String6" xml:space="preserve">
+    <value>&lt;/asp:Login&gt;</value>
   </data>
 </root>
