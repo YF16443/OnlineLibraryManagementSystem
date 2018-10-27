@@ -39,14 +39,13 @@ public static class BookInfoQuery
         {
             return null;
         }
-        
-        Stream responseStream = response.GetResponseStream();
-        var responseReader = new StreamReader(responseStream);
-        string bookInfo = responseReader.ReadToEnd();
-        responseReader.Close();
-        responseStream.Close();
+            Stream responseStream = response.GetResponseStream();
+            var responseReader = new StreamReader(responseStream);
+            string bookInfo = responseReader.ReadToEnd();
+            responseReader.Close();
+            responseStream.Close();
 
-        return bookInfo;
+            return bookInfo;
     }
 }
 
@@ -69,4 +68,12 @@ public class Book
     public string author_intro { get; set; }           //
     public string summary { get; set; }                //
     public string price { get; set; }                  //
+    public tags[] tags { get; set; }
+}
+[Serializable]
+public class tags
+{
+    public string count { get; set; }//
+    public string name { get; set; }//
+    public string title { get; set; }//
 }

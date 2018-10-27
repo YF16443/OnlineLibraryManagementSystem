@@ -18,26 +18,50 @@ public partial class Pages_AddStacks : BasePage
 
     protected void AddStacks(object sender, EventArgs e)
     {
-        String stack_summary = "";
         String stackid = "";
+        String position = "";
+        String stack_summary = "";
         String nowdate = "";
+        String pattern = "^[A-Z]-\\d{3}$";
         if (TextBoxStackId.Text == "")
         {
-            Response.Write("<script>alert('书库ID不为空')</script>");
+            Response.Write("<script>alert('StackId is null!')</script>");
+            return;
+        }
+        else if (TextBoxStackId.Text.Trim().Length==5&&System.Text.RegularExpressions.Regex.IsMatch(TextBoxStackId.Text.Trim(), pattern))
+        {
+            stackid = TextBoxStackId.Text.Trim();
         }
         else
         {
-            stackid = TextBoxStackId.Text;
+            Response.Write("<script>alert('Error StackId!\\nStackId Example:A-101')</script>");
+            return;
         }
-        stack_summary = TextBoxSummary.Text;
-        nowdate = DateTime.Now.ToString("yyyy-MM-dd");
+        if (TextBoxPosition.Text == ""||TextBoxPosition.Text.Trim().Length==0)
+        {
+            Response.Write("<script>alert('Stack Position Is Null!')</script>");
+            return;
+        }
+        else
+        {
+            position = TextBoxPosition.Text.Trim();
+        }
+        if (TextBoxSummary.Text == "" || TextBoxSummary.Text.Trim().Length == 0)
+        {
+            Response.Write("<script>alert('Stack_Summary Is Null!')</script>");
+            return;
+        }
+        else
+        {
+            stack_summary = TextBoxSummary.Text.Trim();
+        }
         //数据库
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         //检查同ID书库是否存在
         string selectStack = "select count(*) as num from Stacks where StackId='" + stackid + "';";
         //创建书库
-        string insertStack = "insert into Stacks(StackId,Summary,Timestamp) " + "values('" + stackid + "','" + stack_summary + "','" + nowdate + "');";
+        string insertStack = "insert into Stacks(StackId,Position,Summary) " + "values('" + stackid +"','"+position+ "','" + stack_summary  + "');";
         //打开数据库
         try
         {
@@ -51,7 +75,7 @@ public partial class Pages_AddStacks : BasePage
                     Int64 count = (Int64)reader["num"];
                     if (count > 0)
                     {
-                        Response.Write("<script>window.alert('该书库已存在');</script>");
+                        Response.Write("<script>window.alert('StackId Is Exist!');</script>");
                         return;
                     }
                     break;
@@ -63,7 +87,7 @@ public partial class Pages_AddStacks : BasePage
             result = cmdinsert.ExecuteNonQuery();
             if (result != 0)
             {
-                Response.Write("<script>alert('创建书库成功')</script>");
+                Response.Write("<script>alert('Created Successfully!')</script>");
             }
         }
         catch (MySqlException ex)
@@ -74,10 +98,5 @@ public partial class Pages_AddStacks : BasePage
         {
             OLMSDBConnection.Close();
         }
-    }
-    protected void Cancel(object sender, EventArgs e)
-    {
-        //返回上一界面;
-        return;
     }
 }

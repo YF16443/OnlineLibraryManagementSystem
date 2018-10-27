@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPage.master" AutoEventWireup="true" CodeFile="ShelfInfo.aspx.cs" Inherits="Pages_ShelfInfo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="ShelfInfo.aspx.cs" Inherits="Pages_ShelfInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -30,6 +30,7 @@
         }
         .auto-style7 {
             font-size: large;
+            text-align: center;
         }
     </style>
     <div class="auto-style1">
@@ -65,7 +66,7 @@
             </tr>
                <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, Shelf_Summary %>"></asp:Label>
+                    <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, Shelf_Timestamp %>"></asp:Label>
                 </td>
                 <td class="auto-style4">
                     &nbsp
@@ -74,6 +75,7 @@
             </tr>
         </table>
         <div class="style1">
+            <asp:Button ID="EditButton" runat="server" Text="<%$ Resources:Resource, Edit %>" OnClick="Edit_ShelfInfo" CausesValidation="False" CssClass="auto-style7" />
              <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="auto-style7" />
         </div>
     </div>

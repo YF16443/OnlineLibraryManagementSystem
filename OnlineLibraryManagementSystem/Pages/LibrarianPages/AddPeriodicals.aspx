@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPage.master" AutoEventWireup="true" CodeFile="AddPeriodicals.aspx.cs" Inherits="Pages_LibrarianPages_AddPeriodicals" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="AddPeriodicals.aspx.cs" Inherits="Pages_LibrarianPages_AddPeriodicals" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

@@ -36,6 +36,6 @@ public partial class Pages_ChangeReaderInfomation : BasePage
         cmd.Parameters.Add(param);
         cmd.ExecuteNonQuery();
         conn.Close();
-        Response.Write("<script type='text/javascript'>alert('OK');location.href='SearchDemo.aspx';</script>");
+        Response.Write("<script type='text/javascript'>alert('OK');location.href='../SearchDemo.aspx';</script>");
     }
 }

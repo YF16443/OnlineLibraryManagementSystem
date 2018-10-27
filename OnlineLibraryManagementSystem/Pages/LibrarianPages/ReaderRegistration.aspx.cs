@@ -15,6 +15,7 @@ public partial class Pages_ReaderRegistration : BasePage
     {
      
     }
+
     protected void RegisterReader(object sender, EventArgs e)
     {
         string name, readerId, password, idNumber, telephone, email;
@@ -123,6 +124,7 @@ public partial class Pages_ReaderRegistration : BasePage
         }
         
     }
+
     protected void Cancel(object sender, EventArgs e)
     {
         //返回上一个页面  

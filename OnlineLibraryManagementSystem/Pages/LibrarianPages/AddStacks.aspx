@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPage.master" AutoEventWireup="true" CodeFile="AddStacks.aspx.cs" Inherits="Pages_AddStacks" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="AddStacks.aspx.cs" Inherits="Pages_AddStacks" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="header" runat="Server">
+        <a> <asp:Label runat="server" Text="<%$ Resources:Resource, Add_Stacks %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" contentplaceholderid="body">
     <style type="text/css">
@@ -33,7 +34,6 @@
         }
     </style>
     <div class="auto-style1">
-        <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource,Add_Stacks %>" CssClass="auto-style5"></asp:Label>
         <br /> <br />
         <table class ="style1">
             <tr>
@@ -44,9 +44,17 @@
                     <asp:TextBox ID="TextBoxStackId" runat="server"></asp:TextBox>
                 </td>
             </tr>
+             <tr>
+                <td class="auto-style2">
+                    <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource,Position %>"></asp:Label>
+                </td>
+                <td class="auto-style4">
+                    <asp:TextBox ID="TextBoxPosition" runat="server"></asp:TextBox>
+                </td>
+            </tr>
             <tr>
                 <td class="auto-style2">
-                    <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Stack_Summary %>"></asp:Label>
+                    <asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Stack_Summary %>"></asp:Label>
                 </td>
                 <td class="auto-style4">
                     <asp:TextBox ID="TextBoxSummary" runat="server"></asp:TextBox>
@@ -55,7 +63,8 @@
         </table>
         <div class="style1">
               <asp:Button ID="AddButton" runat="server" Text="<%$ Resources:Resource, Add %>" OnClick="AddStacks"  CausesValidation="False" CssClass="auto-style7" />
-              <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="auto-style7" />
+            <br>
+            <asp:Label ID="Label6" runat="server" Text="（StackId Example：A-101）"></asp:Label>
         </div>
     </div>
   

@@ -4,20 +4,20 @@
 <asp:Content ID="Content2" runat="server" contentplaceholderid="body">
     <style type="text/css">
         .style1 {
-            width: 30%;
+            width: 35%;
             text-align: center;
             font-family: Consolas;
             float:left;
         }
         .style2 {
-            width: 30%;
+            width: 35%;
             text-align: center;
             font-family: Consolas;
             margin:auto;
         }
         .style3{
             float:left;
-            width: 70%;
+            width: 65%;
         }
         .auto-style1 {
             text-align: center;
@@ -78,7 +78,26 @@
                     <asp:Label ID="TextBoxEmail" runat="server" Text="email"></asp:Label>
                 </td>
             </tr>
-        </table>
+    </table>
+    <table>
+        <tr>
+            <td class="auto-style2" style="text-align:center">
+                <br />
+                <asp:LinkButton ID="lbChangePassword" runat="server" Text="<%$ Resources:Resource, ChangePassword %>" PostBackUrl="~/Pages/ReaderPages/ChangePassword.aspx"></asp:LinkButton>
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style4" style="text-align:center">
+                <asp:LinkButton ID="lbChangeReaderInfomation" runat="server" Text="<%$ Resources:Resource, ChangeReaderInfomation %>" PostBackUrl="~/Pages/ReaderPages/ChangeReaderInfomation.aspx"></asp:LinkButton>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style4" style="text-align:center">
+                <asp:LinkButton ID="lbForgotPassword" runat="server" Text="<%$ Resources:Resource, ForgotPassword %>" PostBackUrl="~/Pages/ReaderPages/ForgotPassword.aspx"></asp:LinkButton>
+            </td>
+        </tr>
+    </table>
         </div>
         <div class = "style3">
             <asp:GridView ID="GridView1" runat="server" CellPadding="20" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">

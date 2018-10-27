@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPage.master" AutoEventWireup="true" CodeFile="StackInfo.aspx.cs" Inherits="Pages_StackInfo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="StackInfo.aspx.cs" Inherits="Pages_StackInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -47,6 +47,15 @@
             </tr>
             <tr>
                 <td class="auto-style2">
+                    <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource,Position %>"></asp:Label>
+                </td>
+                <td class="auto-style4">
+                    &nbsp
+                    <asp:Label ID="LabelPosition" runat="server" Text="LabelPosition"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style2">
                     <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Stack_Summary %>"></asp:Label>
                 </td>
                 <td class="auto-style4">
@@ -65,6 +74,7 @@
             </tr>
         </table>
         <div class="style1">
+            <asp:Button ID="EditButton" runat="server" Text="<%$ Resources:Resource, Edit %>" OnClick="Edit_StackInfo" CausesValidation="False" CssClass="auto-style7" />
               <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="auto-style7" />
         </div>
     </div>
