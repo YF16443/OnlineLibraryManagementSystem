@@ -660,4 +660,16 @@
   <data name="CategoryName" xml:space="preserve">
     <value>类别名</value>
   </data>
+  <data name="History" xml:space="preserve">
+    <value>操作历史</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="Records" xml:space="preserve">
+    <value>记录号</value>
+  </data>
+  <data name="LibrarianId" xml:space="preserve">
+    <value>管理员号</value>
+  </data>
 </root>

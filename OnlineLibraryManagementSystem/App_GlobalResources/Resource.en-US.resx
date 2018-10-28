@@ -663,4 +663,16 @@
   <data name="CategoryName" xml:space="preserve">
     <value>Category Name</value>
   </data>
+  <data name="History" xml:space="preserve">
+    <value>OperationHistory</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="Records" xml:space="preserve">
+    <value>Records</value>
+  </data>
+  <data name="LibrarianId" xml:space="preserve">
+    <value>LibrarianId</value>
+  </data>
 </root>
