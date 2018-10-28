@@ -597,4 +597,16 @@
     <value>Notice</value>
     <comment>公告</comment>
   </data>
+  <data name="History" xml:space="preserve">
+    <value>OperationHistory</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="Records" xml:space="preserve">
+    <value>Records</value>
+  </data>
+  <data name="LibrarianId" xml:space="preserve">
+    <value>LibrarianId</value>
+  </data>
 </root>
