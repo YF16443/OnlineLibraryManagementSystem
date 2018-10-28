@@ -447,7 +447,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         string account = "";
         if (string.IsNullOrEmpty((string)Session["lid"]))
         {
-            Response.Write("<script>alert('Account Is Null!')</script>");
+           Response.Write("<script>alert('Account Is Null!')</script>");
             return;
         }
         else
@@ -504,17 +504,19 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             string updatebook = "update Books set Amount='" + newamount + "' where BookId='" + bookid + "';";
             MySqlCommand cmdupdatebook = new MySqlCommand(updatebook, OLMSDBConnection);
             resultupdatebook = cmdupdatebook.ExecuteNonQuery();
-        }
+           }
             //重新绑定gridview
             string selectbarcode = "select * from BookBarcode where BookId='" + bookid + "';";
             BindDataTogvResult(selectbarcode);
-            if (resultbarcode != 0)
+            if (resultbarcode != 0&&resultupdatebook!=0&&resultbookmanagement!=0)
             {
                 Response.Write("<script>alert('Deleted Successfully!')</script>");
+                return;
             }
             else
             {
                 Response.Write("<script>alert('Can\\'t Delete!')</script>");
+                return;
             }
        
     }
