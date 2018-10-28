@@ -189,8 +189,8 @@
     <comment>下次记住我</comment>
   </data>
   <data name="Login_UsrName" xml:space="preserve">
-    <value>UserName </value>
-    <comment>用户名</comment>
+    <value>ID &amp; 账户</value>
+    <comment>账户</comment>
   </data>
   <data name="Add_Stacks" xml:space="preserve">
     <value>Add_Stacks &amp; 添加书库</value>
@@ -674,5 +674,8 @@
   </data>
   <data name="LibrarianId" xml:space="preserve">
     <value>LibrarianId &amp; 管理员号</value>
+  </data>
+  <data name="LoginFailure" xml:space="preserve">
+    <value>Your login attempt was unsuccessful. Please try again. &amp; 您的登录尝试不成功，请重试。</value>
   </data>
 </root>
