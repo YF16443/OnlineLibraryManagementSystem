@@ -654,4 +654,13 @@
   <data name="UserNameError" xml:space="preserve">
     <value>The user name cannot be empty</value>
   </data>
+  <data name="CategoryManagement" xml:space="preserve">
+    <value>Category Management</value>
+  </data>
+  <data name="CategoryId" xml:space="preserve">
+    <value>CategoryI ID</value>
+  </data>
+  <data name="CategoryName" xml:space="preserve">
+    <value>Category Name</value>
+  </data>
 </root>

@@ -654,4 +654,13 @@
   <data name="UserNameError" xml:space="preserve">
     <value>The user name cannot be empty &amp; 用户名name不能为空</value>
   </data>
+  <data name="CategoryManagement" xml:space="preserve">
+    <value>Category Management &amp; 类别管理</value>
+  </data>
+  <data name="CategoryId" xml:space="preserve">
+    <value>Category ID &amp; 类别编号</value>
+  </data>
+  <data name="CategoryName" xml:space="preserve">
+    <value>Category Name &amp; 类别名</value>
+  </data>
 </root>
