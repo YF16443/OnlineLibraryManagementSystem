@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="IsDeposit" xml:space="preserve">
-    <value>deposit &amp; 300元押金</value>
+    <value>deposit &amp; 押金</value>
     <comment>读者是否缴纳300元押金</comment>
   </data>
   <data name="Email" xml:space="preserve">
@@ -590,5 +590,68 @@
   <data name="Print" xml:space="preserve">
     <value>Print &amp; 打印</value>
     <comment>打印</comment>
+  </data>
+  <data name="NoticeId" xml:space="preserve">
+    <value>NoticeId &amp; 公告号</value>
+  </data>
+  <data name="Notice" xml:space="preserve">
+    <value>Notice &amp; 公告</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Forgot Password &amp; 找回密码</value>
+  </data>
+  <data name="VerifyIdNumber" xml:space="preserve">
+    <value>Please Enter Your ID Number &amp; 请输入您的身份证号</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>Verify &amp; 验证</value>
+  </data>
+  <data name="InvalidId" xml:space="preserve">
+    <value>Invalid ID Number! &amp; 身份证号不合法！</value>
+  </data>
+  <data name="PasswordSent" xml:space="preserve">
+    <value>The password has been sent to your email address. &amp; 密码已发送至您的邮箱。</value>
+  </data>
+  <data name="VerificationFail" xml:space="preserve">
+    <value>Verification Failed! &amp; 验证失败！</value>
+  </data>
+  <data name="VerificationSuccess" xml:space="preserve">
+    <value>Verification Success! &amp; 验证成功！</value>
+  </data>
+  <data name="AccountError" xml:space="preserve">
+    <value>Account cannot be empty &amp; 账户名account不能为空</value>
+  </data>
+  <data name="DamageFineRate" xml:space="preserve">
+    <value>Damage Fine Rate &amp; 损坏罚款比例</value>
+  </data>
+  <data name="DepositError" xml:space="preserve">
+    <value>Please pay the deposit &amp; 请缴纳押金</value>
+  </data>
+  <data name="Failure" xml:space="preserve">
+    <value>Failure &amp; 失败</value>
+  </data>
+  <data name="IdNumberError" xml:space="preserve">
+    <value>Id number cannot be empty &amp; 身份证号不能为空</value>
+  </data>
+  <data name="IDNumberLegel" xml:space="preserve">
+    <value>Id number is not legal &amp; 身份证号不合法</value>
+  </data>
+  <data name="IdOrAccountError" xml:space="preserve">
+    <value>The account number already exists or the id card number input error &amp; 账号已存在或身份证号输入错误</value>
+  </data>
+  <data name="LostFineRate" xml:space="preserve">
+    <value>Lost Fine Rate &amp; 丢失罚款比例</value>
+  </data>
+  <data name="MaximunReservation" xml:space="preserve">
+    <value>Maximun Reservation &amp; 最大预约数目</value>
+  </data>
+  <data name="OverdueFinePerDay" xml:space="preserve">
+    <value>Overdue Fine/Day &amp; 逾期罚款/天</value>
+  </data>
+  <data name="Successful" xml:space="preserve">
+    <value>Successful &amp; 成功</value>
+  </data>
+  <data name="UserNameError" xml:space="preserve">
+    <value>The user name cannot be empty &amp; 用户名name不能为空</value>
   </data>
 </root>

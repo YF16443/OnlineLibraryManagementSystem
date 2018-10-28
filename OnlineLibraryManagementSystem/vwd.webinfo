@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<!-- 
+  Visual Studio global web project settings.
+-->
+<VisualWebDeveloper>
+
+  <Globals>
+    
+  
+    <UserProperties App_3Themes_4主题1_4json-schema_1json__JSONSchema="http://json.schemastore.org/webextension"/>
+  </Globals>
+</VisualWebDeveloper>

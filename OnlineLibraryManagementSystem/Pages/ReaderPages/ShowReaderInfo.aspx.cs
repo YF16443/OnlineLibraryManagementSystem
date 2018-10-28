@@ -1,7 +1,7 @@
 ﻿using MySql.Data.MySqlClient;using System;using System.Collections;using System.Collections.Generic;using System.Configuration;using System.Linq;using System.Web;using System.Web.UI;using System.Web.UI.WebControls;public partial class Pages_ShowReaderInfo : BasePage{    private static DateTime GetDateTime(string timeStamp)    {        DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));        long time = long.Parse(timeStamp + "0000000");        TimeSpan toNow = new TimeSpan(time);        return dtStart.Add(toNow);    }    protected void Page_Load(object sender, EventArgs e)    {        if (!IsPostBack)        {
             //注意这里改成了通过Session获取
             //string id = (string)Session["id"];
-            string id = "123";
+            string id = "751";
             if (id == null)            {
                 //exception-handler
                 return;            }
