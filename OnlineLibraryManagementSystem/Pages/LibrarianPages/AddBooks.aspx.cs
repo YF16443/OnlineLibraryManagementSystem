@@ -108,8 +108,8 @@ public partial class Pages_Addbooks_ISBN : BasePage
             string lid = "";
             if (string.IsNullOrEmpty((string)Session["lid"]))
             {
-                Response.Write("<script>alert('Account Is Null!')</script>");
-                return;
+               Response.Write("<script>alert('Account Is Null!')</script>");
+               return;
             }
             else librarianaccount = Session["lid"].ToString();
             string seleclid = "select LibrarianId from Librarians where Account='" + librarianaccount + "';";
