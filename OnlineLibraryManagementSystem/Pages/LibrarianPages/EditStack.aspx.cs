@@ -38,6 +38,11 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
 
     protected void Alter_StackInfo(object sender, EventArgs e)
     {
+        //检查登陆
+        if (string.IsNullOrEmpty((string)Session["lid"]))
+        {
+            Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='/Pages/LibrarianLogin.aspx';</script>");
+        }
         string newstackid = "";
         string newsummary = "";
         string newposition = "";

@@ -102,7 +102,7 @@ public partial class Pages_LibrarianPages_IncomeReport : BasePage
         DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
         dtFormat.ShortDatePattern = "MM/dd/yyyy";
         DateTime startDate = Convert.ToDateTime(start, dtFormat);
-        DateTime endDate = Convert.ToDateTime(end, dtFormat);
+        DateTime endDate = Convert.ToDateTime(end, dtFormat).AddDays(1);
         System.Diagnostics.Debug.WriteLine(startDate);
         System.Diagnostics.Debug.WriteLine(endDate);
         DataTable dtResult = ViewState["normal"] as DataTable;

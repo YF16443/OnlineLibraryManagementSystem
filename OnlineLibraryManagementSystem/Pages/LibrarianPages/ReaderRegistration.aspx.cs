@@ -13,7 +13,8 @@ public partial class Pages_ReaderRegistration : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-     
+        string value = ConfigurationManager.AppSettings.Get("Deposit") + Resources.Resource.IsDeposit;
+        IsDeposit.Text = value;
     }
 
     protected void RegisterReader(object sender, EventArgs e)
@@ -22,7 +23,7 @@ public partial class Pages_ReaderRegistration : BasePage
 
         if (TextBoxName.Text == "")
         {
-            Response.Write("<script>window.alert('用户名name不能为空!');</script>");
+            Response.Write("<script>window.alert('" + Resources.Resource.UserNameError + "!');</script>");
             return;
         }
         else
@@ -31,7 +32,7 @@ public partial class Pages_ReaderRegistration : BasePage
         }
         if(TextBoxAccount.Text == "")
         {
-            Response.Write("<script>window.alert('账户名account不能为空!');</script>");
+            Response.Write("<script>window.alert('" + Resources.Resource.AccountError + "!');</script>");
             return;
         }
         else
@@ -41,7 +42,7 @@ public partial class Pages_ReaderRegistration : BasePage
         }
         if (TextBoxIDNumber.Text == "")
         {
-            Response.Write("<script>window.alert('身份证号不能为空!');</script>");
+            Response.Write("<script>window.alert('" + Resources.Resource.IdNumberError + "!');</script>");
             return;
         }
         else
@@ -50,7 +51,7 @@ public partial class Pages_ReaderRegistration : BasePage
             idNumber = TextBoxIDNumber.Text;
             if(idNumber.Length != 18)
             {
-                Response.Write("<script>window.alert('身份证号不合法!');</script>");
+                Response.Write("<script>window.alert('" + Resources.Resource.IDNumberLegel + "!');</script>");
                 return;
             }
             password = idNumber.Substring(idNumber.Length - 6);
@@ -59,7 +60,7 @@ public partial class Pages_ReaderRegistration : BasePage
         email = TextBoxEmail.Text;
         if (! IsDeposit.Checked)
         {
-            Response.Write("<script>window.alert('请缴纳押金!');</script>");
+            Response.Write("<script>window.alert('" + Resources.Resource.DepositError + "!');</script>");
             return;
         }
         //链接数据库
@@ -67,8 +68,14 @@ public partial class Pages_ReaderRegistration : BasePage
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         //检测同账号是否注册过
         string selectReaderSql = "select count(*) as num from Readers where ReaderId = ?readerId or IdNumber = ?idNumber;";
-        string insertReaderSql = "INSERT INTO Readers(ReaderId, Phone, Password, Name, IdNumber, Email) " +
+        string insertReaderSql1 = "INSERT INTO Readers(ReaderId, Phone, Password, Name, IdNumber, Email) " +
             "VALUES(?readerId, ?telephone, ?password, ?name, ?idNumber, ?email);";
+        string insertReaderSql2 = "INSERT INTO Readers(ReaderId, Phone, Password, Name, IdNumber) " +
+            "VALUES(?readerId, ?telephone, ?password, ?name, ?idNumber);";
+        string insertReaderSql3 = "INSERT INTO Readers(ReaderId, Password, Name, IdNumber, Email) " +
+            "VALUES(?readerId, ?password, ?name, ?idNumber, ?email);";
+        string insertReaderSql4 = "INSERT INTO Readers(ReaderId, Password, Name, IdNumber) " +
+            "VALUES(?readerId, ?password, ?name, ?idNumber);";
         try
         {
             OLMSDBConnection.Open();
@@ -83,7 +90,7 @@ public partial class Pages_ReaderRegistration : BasePage
                     Int64 count = (Int64)reader["num"];
                     if(count > 0)
                     {
-                        Response.Write("<script>window.alert('账号已存在 或 身份证号输入错误!');</script>");
+                        Response.Write("<script>window.alert('" + Resources.Resource.IdOrAccountError + "!');</script>");
                         return;
                     }
                     break;
@@ -91,23 +98,43 @@ public partial class Pages_ReaderRegistration : BasePage
             }
             reader.Close();
 
-            MySqlCommand cmd = new MySqlCommand(insertReaderSql, OLMSDBConnection);
+            MySqlCommand cmd = null;
+            if(telephone == "" && email == "")
+            {
+                cmd = new MySqlCommand(insertReaderSql4, OLMSDBConnection);
+            }
+            else if(telephone != "")
+            {
+                cmd = new MySqlCommand(insertReaderSql2, OLMSDBConnection);
+                cmd.Parameters.AddWithValue("?telephone", telephone);
+            }else if(email != "")
+            {
+                cmd = new MySqlCommand(insertReaderSql3, OLMSDBConnection);
+                cmd.Parameters.AddWithValue("?email", email);
+            }
+            else
+            {
+                cmd = new MySqlCommand(insertReaderSql1, OLMSDBConnection);
+                cmd.Parameters.AddWithValue("?email", email);
+                cmd.Parameters.AddWithValue("?telephone", telephone);
+            }
+                
             cmd.Parameters.AddWithValue("?readerId", readerId);
             cmd.Parameters.AddWithValue("?name", name);
             cmd.Parameters.AddWithValue("?password", password);
             cmd.Parameters.AddWithValue("?idNumber", idNumber);
-            cmd.Parameters.AddWithValue("?telephone", telephone);
-            cmd.Parameters.AddWithValue("?email", email);
+            
+            
             int result = cmd.ExecuteNonQuery();
             if(result == 1)
             {
-                Response.Write("<script>window.alert('插入数据成功');</script>");
+                Response.Write("<script>alert('" + Resources.Resource.Successful + "');</script>");
                 //Response.Redirect()
                 return;
             }
             else
             {
-                Response.Write("<script>window.alert('插入数据失败');</script>");
+                Response.Write("<script>alert('" + Resources.Resource.Failure + "');</script>");
                 //Response.Redirect()
                 return;
             }
