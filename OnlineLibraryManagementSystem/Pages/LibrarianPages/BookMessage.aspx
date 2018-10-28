@@ -78,7 +78,8 @@
     </div>
         </div>
     <div>
-        <asp:GridView ID="gvBookBarcodeResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvBookBarcodeResult_Sorting" OnPageIndexChanging="gvBookBarcodeResult_PageIndexChanging" OnSelectedIndexChanged="gvBookBarcodeResult_SelectedIndexChanged">
+        <div>
+        <asp:GridView ID="gvBookBarcodeResult" runat="server"  HorizontalAlign="Center" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvBookBarcodeResult_Sorting" OnPageIndexChanging="gvBookBarcodeResult_PageIndexChanging" OnSelectedIndexChanged="gvBookBarcodeResult_SelectedIndexChanged">
                         <Columns>
                             <asp:BoundField HeaderText="<%$ Resources:Resource, Barcode %>" SortExpression="BookBarcode" DataField="BookBarcode" ReadOnly="True">
                             <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
@@ -103,13 +104,17 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="<%$ Resources:Resource, Select %>">
                                 <ItemTemplate>
-                                <asp:CheckBox id="CheckBoxDeleteBook" runat="Server" style="zoom:200%; text-align:center" />
+                                <asp:CheckBox id="CheckBoxDeleteBarcode" runat="Server" style="zoom:200%; text-align:center" />
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
-    </div>
+                </div>
+                <div style="text-align:right; width:40.8%">
+                 <asp:Button ID="ButtonDelete" runat="server" Text="<%$ Resources:Resource, Delete %>" OnClick="ButtonDelete_Click" />
+            </div>
+        </div>
     <br/>
 
 </asp:Content>

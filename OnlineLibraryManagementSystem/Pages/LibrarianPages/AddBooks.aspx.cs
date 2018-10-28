@@ -35,6 +35,11 @@ public partial class Pages_Addbooks_ISBN : BasePage
 
     protected void Addbooks(object sender, EventArgs e)
     {
+        //检查登陆
+        if (string.IsNullOrEmpty((string)Session["lid"]))
+        {
+            Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='/Pages/LibrarianLogin.aspx';</script>");
+        }
         //扫描ISBN获得图书信息并添加
         string isbn = "";
         string isbnparttern = "^[0-9A-Z]{13}$";
@@ -98,6 +103,23 @@ public partial class Pages_Addbooks_ISBN : BasePage
                 }
             }
             readerisbn.Close();
+            //查询librarianid
+            string librarianaccount = "";
+            string lid = "";
+            if (string.IsNullOrEmpty((string)Session["lid"]))
+            {
+                Response.Write("<script>alert('Account Is Null!')</script>");
+                return;
+            }
+            else librarianaccount = Session["lid"].ToString();
+            string seleclid = "select LibrarianId from Librarians where Account='" + librarianaccount + "';";
+            MySqlCommand cmdseleclid = new MySqlCommand(seleclid, OLMSDBConnection);
+            MySqlDataReader readerlid = cmdseleclid.ExecuteReader();
+            if (readerlid.Read())
+            {
+                lid = readerlid["LibrarianId"].ToString();
+            }
+            readerlid.Close();
             int oldamount = 0;
             //如果书库中存在这本书，只更新书本数量
             if (updateflag == 1)
@@ -124,7 +146,12 @@ public partial class Pages_Addbooks_ISBN : BasePage
                     MySqlCommand cmdinsertBookBarcode = new MySqlCommand(insertBookBarcode, OLMSDBConnection);
                     updateresult = cmdinsertBookBarcode.ExecuteNonQuery();
                 }
-                if (updateresult != 0 && update != 0)
+                //记录操作
+                string insertexistbookmanagement = "insert into BookManagementRecords(Operation,BookId,LibrarianId,Amount) Values('Add','" + Bookid + "','" + lid + "','" + quantity + "');";
+                MySqlCommand cmdinsertexistbookmanagement = new MySqlCommand(insertexistbookmanagement, OLMSDBConnection);
+                int insertexistresult = 0;
+                insertexistresult = cmdinsertexistbookmanagement.ExecuteNonQuery();
+                if (updateresult != 0 && update != 0&& insertexistresult!=0)
                 {
                     Response.Write("<script>alert('This Book Is Exist，Add " + quantity + " Books!\\nThe Amount Is Updated to " + newamount.ToString() + "!')</script>");
                     return;
@@ -301,7 +328,12 @@ public partial class Pages_Addbooks_ISBN : BasePage
                 amount = readeramount["Amount"].ToString();
             }
             readeramount.Close();
-            if ((result1 != 0) && (result2 != 0))
+            //记录操作
+            string insertbookmanagement = "insert into BookManagementRecords(Operation,BookId,LibrarianId,Amount) values('Add','" + Bookid + "','" + lid + "','" + quantity + "');";
+            MySqlCommand cmdinsertbookmanagement = new MySqlCommand(insertbookmanagement, OLMSDBConnection);
+            int resultinsertbookmanagement = 0;
+            resultinsertbookmanagement = cmdinsertbookmanagement.ExecuteNonQuery();
+            if ((result1 != 0) && (result2 != 0)&&(resultinsertbookmanagement!=0))
             {
                 Response.Write("<script>alert('Add Book Successfully!\\nThe Amount Is" + amount + "!')</script>");
                 return;
@@ -355,28 +387,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
         imgPath = path + fileName + imgType;
         return imgPath;
     }
-    protected void Print_Barcode(object sender, EventArgs e)
-    {
-        //打印条形码，待组长更改
-        string isbn = "";
-        if (TextBoxISBN.Text.Trim() == "")
-        {
-            Response.Write("<script>alert('ISBN Is Null!')</script>");
-        }
-        else isbn = TextBoxISBN.Text;
-        Book book = BookInfoQuery.GetByISBN(isbn);
 
-        //Barcode generation test
-        if (book != null)
-        {
-            var barcodeImage = MyBarcodeGenerator.Generate(book.isbn10) as System.Drawing.Image;
-            MyBarcodeGenerator.ShowBarcode(book.isbn13, this.Response);
-        }
-        else
-        {
-            Response.Write("Book Not Found!");
-        }
-    }
     protected string addslashes(string str)
     {
         //处理单引号

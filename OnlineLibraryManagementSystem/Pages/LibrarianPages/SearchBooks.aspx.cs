@@ -136,6 +136,11 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
 
     protected void brDelete_Click(object sender, EventArgs e)
     {
+        //检查登陆
+        if (string.IsNullOrEmpty((string)Session["lid"]))
+        {
+            Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='/Pages/LibrarianLogin.aspx';</script>");
+        }
         //删除图书或期刊
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
@@ -145,6 +150,7 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
             CheckBox cb = new CheckBox();
             string id = "";
             int result = 0;
+            int resultinsertbookmanagement = 0;
             if (ddlClass.SelectedValue.ToString() == "Books")//删除图书
             {
                 foreach (GridViewRow row in gvBookResult.Rows)
@@ -166,7 +172,7 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
                                                      "where " + (ddlField.SelectedValue.ToString().Equals("ISBN") ? "ISBN13 like '%" + keyword + "%' or ISBN10 like '%" + keyword + "%';" : ddlField.Text.ToString() + " like '%" + keyword + "%';"), OLMSDBConnection);
                 MySqlDataAdapter resultAdapter = new MySqlDataAdapter(getResult_sql);
                 DataSet resultSet = new DataSet();
-                
+
                 resultAdapter.Fill(resultSet);
 
                 DataTable searchResult = resultSet.Tables[0];
@@ -177,15 +183,15 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
             }
             if (ddlClass.SelectedValue.ToString() == "Periodical")//删除期刊
             { }
-            if (result != 0)
+            if (result != 0 && resultinsertbookmanagement != 0)
             {
                 Response.Write("<script>alert('Deleted Successfully!')</script>");
-                
+
             }
             else
             {
                 Response.Write("<script>alert('Please Select Book!')</script>");
-                
+
             }
         }
         catch (MySqlException ex)
