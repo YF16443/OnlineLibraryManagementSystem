@@ -6,7 +6,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" Runat="Server">
-    <a> <asp:Label runat="server" Text="<%$ Resources:Resource, Search %>" CssClass="navbar-brand"></asp:Label> </a>
+    <a> <asp:Label runat="server" Text="<%$ Resources:Resource, History %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="body" Runat="Server">
 
