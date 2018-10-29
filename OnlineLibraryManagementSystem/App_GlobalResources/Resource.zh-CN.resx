@@ -711,10 +711,8 @@
   <data name="ReservationAlready" xml:space="preserve">
     <value>您已预约过此书！</value>
   </data>
-  <data name="CategoryIdRequire" xml:space="preserve">
-    <value>请输入类别编号！</value>
-  </data>
-  <data name="CategoryNameRequire" xml:space="preserve">
-    <value>请输入类别名！</value>
+  <data name="ISSN" xml:space="preserve">
+    <value>ISSN</value>
+    <comment>期刊ISSN</comment>
   </data>
 </root>

@@ -714,10 +714,8 @@
   <data name="ReservationAlready" xml:space="preserve">
     <value>You have already reserved this book!</value>
   </data>
-  <data name="CategoryIdRequire" xml:space="preserve">
-    <value>Category ID is required!</value>
-  </data>
-  <data name="CategoryNameRequire" xml:space="preserve">
-    <value>Category Name is required!</value>
+  <data name="ISSN" xml:space="preserve">
+    <value>ISSN</value>
+    <comment>期刊ISSN</comment>
   </data>
 </root>
