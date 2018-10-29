@@ -670,7 +670,7 @@
     <value>Category Management</value>
   </data>
   <data name="CategoryId" xml:space="preserve">
-    <value>CategoryI ID</value>
+    <value>Category ID</value>
   </data>
   <data name="CategoryName" xml:space="preserve">
     <value>Category Name</value>
@@ -707,6 +707,12 @@
   </data>
   <data name="EditSuccess" xml:space="preserve">
     <value>Edit Success!</value>
+  </data>
+  <data name="CategoryIdExist" xml:space="preserve">
+    <value>Category ID already exists!</value>
+  </data>
+  <data name="ReservationAlready" xml:space="preserve">
+    <value>You have already reserved this book!</value>
   </data>
   <data name="ISSN" xml:space="preserve">
     <value>ISSN</value>

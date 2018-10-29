@@ -116,9 +116,11 @@ public partial class Pages_bookMessage : BasePage
         {
             //未登录时提示登录
             Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='../ReaderLogin.aspx';</script>");
+            return;
         }
         string bookId = Request["book_id"];
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        string readerId = Session["id"].ToString();
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         try
         {
@@ -129,10 +131,16 @@ public partial class Pages_bookMessage : BasePage
             MySqlDataReader bookReader = cmd1.ExecuteReader();
             Boolean bookAva = false;
             string reserveBarcode = null;
-            while(bookReader.Read()&&!bookAva)
+            while(bookReader.Read())
             {
                 if(bookReader.HasRows)
                 {
+                    //已预约
+                    if (bookReader["ReservingReaderId"].ToString().Equals(readerId))
+                    {
+                        Response.Write("<script>alert('" + Resources.Resource.ReservationAlready + "')</script>");
+                        return;
+                    }
                     //有可预约图书
                     if((int)bookReader["Status"]==0)
                     {
@@ -154,12 +162,8 @@ public partial class Pages_bookMessage : BasePage
             {
                 string reservingTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 int reservingReaderId = 0;
-                if (Session["id"] != null)
-                {
-                    string readerId = Session["id"].ToString();
-                    reservingReaderId = int.Parse(readerId);
+                reservingReaderId = int.Parse(readerId);
 
-                }
                 System.Diagnostics.Debug.Write(reservingReaderId);
                 string reserve_sql = "update BookBarcodes set Status=2, ReservingTime=?reservingtime,ReservingReaderId=?reservingreaderid where BookBarcode=?bookbarcode";
                 MySqlCommand cmd2 = new MySqlCommand(reserve_sql, OLMSDBConnection);

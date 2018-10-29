@@ -705,6 +705,12 @@
   <data name="EditSuccess" xml:space="preserve">
     <value>修改成功！</value>
   </data>
+  <data name="CategoryIdExist" xml:space="preserve">
+    <value>类别编号已存在！</value>
+  </data>
+  <data name="ReservationAlready" xml:space="preserve">
+    <value>您已预约过此书！</value>
+  </data>
   <data name="ISSN" xml:space="preserve">
     <value>ISSN</value>
     <comment>期刊ISSN</comment>

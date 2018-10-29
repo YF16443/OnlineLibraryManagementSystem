@@ -90,4 +90,46 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
         Category.PageIndex = e.NewPageIndex;
         GridviewBind();
     }
+
+    protected void Add_Click(object sender, EventArgs e)
+    {
+        if (!rfvId.IsValid || !rfvName.IsValid)
+        {
+            GridviewBind();
+            return;
+        }
+        int id = int.Parse(newId.Text);
+        string name = newName.Text;
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
+        conn.Open();
+        MySqlCommand cmd = conn.CreateCommand();
+        cmd.CommandText = "select * from BookCategories where CategoryId=@i";
+        MySqlParameter param;
+        param = new MySqlParameter("@i", id);
+        cmd.Parameters.Add(param);
+        object res = cmd.ExecuteScalar();
+        if (res != null)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.CategoryIdExist + "');", true);
+            GridviewBind();
+            return;
+        }
+        cmd.CommandText = "insert into BookCategories(CategoryId,Name) values(@id,@n);";
+        param = new MySqlParameter("@id", id);
+        cmd.Parameters.Add(param);
+        param = new MySqlParameter("@n", name);
+        cmd.Parameters.Add(param);
+        int result = cmd.ExecuteNonQuery();
+        if (result == 1)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.Successful + "');", true);
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.Failure + "');", true);
+        }
+        Category.EditIndex = -1;
+        GridviewBind();
+    }
 }
