@@ -67,6 +67,6 @@
             <asp:Label ID="Label6" runat="server" Text="（StackId Example：A-101）"></asp:Label>
         </div>
     </div>
-  
       
+
 </asp:Content>
