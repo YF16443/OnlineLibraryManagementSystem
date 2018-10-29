@@ -654,4 +654,16 @@
   <data name="UserNameError" xml:space="preserve">
     <value>The user name cannot be empty</value>
   </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="LoginFailure" xml:space="preserve">
+    <value>Login Failure</value>
+  </data>
+  <data name="Magazine" xml:space="preserve">
+    <value>Magazine</value>
+  </data>
+  <data name="Newspaper" xml:space="preserve">
+    <value>Newspaper</value>
+  </data>
 </root>

@@ -69,14 +69,14 @@
 							    <ul class="nav">
 								    <li><a href="AddBooks.aspx">
                                         <asp:Label ID="Label6" runat="server" Text="<%$ Resources:Resource,AddBook %>"></asp:Label></a></li>
-                                    <%--<li><a href="AddPeriodicals.aspx">
-                                        <asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource,AddPeriodical %>"></asp:Label></a></li>--%>
+                                    <li><a href="AddPeriodicals.aspx">
+                                        <asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource,AddPeriodical %>"></asp:Label></a></li>
                                     <li><a href="SearchBooks.aspx">
                                         <asp:Label ID="Label8" runat="server" Text="<%$ Resources:Resource,Search %>"></asp:Label></a></li>
-							        <%--<li><a href="OperationHistory.aspx">
+							        <li><a href="OperationHistory.aspx">
                                         <asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource,OperationHistory %>"></asp:Label></a></li>
 								    <li><a href="CategoryManagement.aspx">
-                                        <asp:Label ID="Label10" runat="server" Text="<%$ Resources:Resource,Category %>"></asp:Label></a></li>--%>
+                                        <asp:Label ID="Label10" runat="server" Text="<%$ Resources:Resource,Category %>"></asp:Label></a></li>
 							    </ul>
 						    </div>
 					    </li>

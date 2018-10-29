@@ -654,4 +654,16 @@
   <data name="UserNameError" xml:space="preserve">
     <value>The user name cannot be empty &amp; 用户名name不能为空</value>
   </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country &amp; 国家</value>
+  </data>
+  <data name="LoginFailure" xml:space="preserve">
+    <value>Login Failure &amp; 登录失败</value>
+  </data>
+  <data name="Magazine" xml:space="preserve">
+    <value>Magazine &amp; 杂志</value>
+  </data>
+  <data name="Newspaper" xml:space="preserve">
+    <value>Newspaper &amp; 报纸</value>
+  </data>
 </root>
