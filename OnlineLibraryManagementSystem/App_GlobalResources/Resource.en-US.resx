@@ -654,6 +654,18 @@
   <data name="UserNameError" xml:space="preserve">
     <value>The user name cannot be empty</value>
   </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="LoginFailure" xml:space="preserve">
+    <value>Login Failure</value>
+  </data>
+  <data name="Magazine" xml:space="preserve">
+    <value>Magazine</value>
+  </data>
+  <data name="Newspaper" xml:space="preserve">
+    <value>Newspaper</value>
+  </data>
   <data name="CategoryManagement" xml:space="preserve">
     <value>Category Management</value>
   </data>
@@ -677,5 +689,8 @@
   </data>
   <data name="LoginFailure" xml:space="preserve">
     <value>Your login attempt was unsuccessful. Please try again.</value>
+  </data>
+  <data name="PhoneNotRegister" xml:space="preserve">
+    <value>The phone number is not registered!</value>
   </data>
 </root>
