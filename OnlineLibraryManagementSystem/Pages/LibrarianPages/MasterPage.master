@@ -134,19 +134,38 @@
 						    </div>
 					    </li>
 					    <li>
-						    <a href="">
+                             <a data-toggle="collapse" href="#Statistics" class="collapsed" aria-expanded="false">
 							    <i class="ti-bar-chart"></i>
 							    <p>
-                                    <asp:Label ID="Label18" runat="server" Text="<%$ Resources:Resource,Statistics %>"></asp:Label>
+                                    <asp:Label ID="Label20" runat="server" Text="<%$ Resources:Resource,Statistics %>"></asp:Label>
+								    <b class="caret"></b>
 							    </p>
 						    </a>
+                            <div class="collapse" id="Statistics" role="navigation" aria-expanded="false" style="height: 0px;">
+							    <ul class="nav">
+								    <li><a href="IncomeReport.aspx">
+                                        <asp:Label ID="Label18" runat="server" Text="<%$ Resources:Resource,IncomeReport %>"></asp:Label></a></li>
+								    <li><a href="IssueReport.aspx">
+                                        <asp:Label ID="Label23" runat="server" Text="<%$ Resources:Resource,IssueReport %>"></asp:Label></a></li>
+                                    <li><a href="ReaderReport.aspx">
+                                        <asp:Label ID="Label25" runat="server" Text="<%$ Resources:Resource,ReaderReport %>"></asp:Label></a></li>
+							    </ul>
+						    </div>
 					    </li>
 					    <li>
-						    <a href="">
+						    <a data-toggle="collapse" href="#Notice" class="collapsed" aria-expanded="false">
 							    <i class="ti-clipboard"></i>
 							    <p>
-                                <asp:Label ID="Label19" runat="server" Text="<%$ Resources:Resource,NoticeManagement %>"></asp:Label></p>
+                                    <asp:Label ID="Label19" runat="server" Text="<%$ Resources:Resource,NoticeManagement %>"></asp:Label>
+                                    <b class="caret"></b>
+							    </p>
 						    </a>
+                            <div class="collapse" id="Notice" role="navigation" aria-expanded="false" style="height: 0px;">
+							    <ul class="nav">
+								    <li><a href="SearchNotice.aspx">
+                                        <asp:Label ID="Label26" runat="server" Text="<%$ Resources:Resource,Search %>"></asp:Label></a></li>
+							    </ul>
+						    </div>
 					    </li>
                         <li>
                             <a href="../AboutUs.aspx">
