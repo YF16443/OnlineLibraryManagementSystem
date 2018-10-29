@@ -9,7 +9,7 @@
             <tr>
                 <td></td>
                 <td style="text-align:center; width:300px">
-                    <asp:Login ID="Login1" runat="server" LoginButtonText="<%$ Resources:Resource,Login_Login %>" PasswordLabelText="<%$ Resources:Resource,Login_Password %>" RememberMeText="<%$ Resources:Resource,Login_Remember %>" TitleText="<%$ Resources:Resource,Login_Login %>" UserNameLabelText="<%$ Resources:Resource,Phone %>" Width="300px" DestinationPageUrl="~/Pages/SearchDemo.aspx" OnAuthenticate="Login1_Authenticate" CssClass="content" EnableTheming="True" PasswordRequiredErrorMessage="*" style="left: 0px; top: 0px" UserNameRequiredErrorMessage="*" FailureText="<%$ Resources:Resource,LoginFailure %>">
+                    <asp:Login ID="Login1" runat="server" LoginButtonText="<%$ Resources:Resource,Login_Login %>" PasswordLabelText="<%$ Resources:Resource,Login_Password %>" RememberMeText="<%$ Resources:Resource,Login_Remember %>" TitleText="<%$ Resources:Resource,Login_Login %>" UserNameLabelText="<%$ Resources:Resource,Phone %>" Width="300px" DestinationPageUrl="~/Pages/SearchDemo.aspx" OnAuthenticate="Login1_Authenticate" CssClass="content" EnableTheming="True" PasswordRequiredErrorMessage="*" style="left: 0px; top: 0px" UserNameRequiredErrorMessage="*" FailureText="<%$ Resources:Resource,LoginFailure %>" PasswordRecoveryUrl="~/Pages/ReaderPages/ForgotPassword.aspx" PasswordRecoveryText="<%$ Resources:Resource,ForgotPassword %>">
                         <CheckBoxStyle HorizontalAlign="Left" />
                         <LabelStyle CssClass="col-sm-2 control-label" Font-Bold="False" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" VerticalAlign="Middle" />
                         <LoginButtonStyle CssClass="btn btn-sm" />

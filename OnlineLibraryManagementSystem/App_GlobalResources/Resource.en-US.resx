@@ -678,4 +678,7 @@
   <data name="LoginFailure" xml:space="preserve">
     <value>Your login attempt was unsuccessful. Please try again.</value>
   </data>
+  <data name="PhoneNotRegister" xml:space="preserve">
+    <value>The phone number is not registered!</value>
+  </data>
 </root>

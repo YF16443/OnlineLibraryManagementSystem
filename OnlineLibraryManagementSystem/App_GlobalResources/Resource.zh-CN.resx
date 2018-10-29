@@ -675,4 +675,7 @@
   <data name="LoginFailure" xml:space="preserve">
     <value>您的登录尝试不成功，请重试。</value>
   </data>
+  <data name="PhoneNotRegister" xml:space="preserve">
+    <value>手机号未注册！</value>
+  </data>
 </root>

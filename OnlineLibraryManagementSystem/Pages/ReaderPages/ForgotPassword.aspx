@@ -4,25 +4,37 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
     <div>
+        <form>
             <table  style="width: 100%;">
-            <tr  style="margin:10px,0px,5px,0px">
-                <td style="width:100%; text-align:center; padding:5px,5px,2.5px,5px;">
-                    <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, VerifyIdNumber %>"></asp:Label>
-                    &nbsp;
-                </td>
+             <tr>
+                  <td style="width:45%; text-align:right">
+                     <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Phone %>"></asp:Label>
+                  </td>
+                  <td style="width:20%; text-align:center">
+                     <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
+                  </td>
+                  <td style="width:35%">
+                      <asp:RequiredFieldValidator ID="rfvPhone" runat="server" ControlToValidate="txtPhone" ErrorMessage="*"></asp:RequiredFieldValidator>
+                  </td>
             </tr>
-            <tr style="margin:10px,0px,5px,0px">
-                <td style="width:100%; text-align:center; padding:5px,5px,2.5px,5px;">
+            <tr>
+                <td style="width:45%; text-align:right">
+                    <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, IdNumber %>"></asp:Label>
+                </td>
+                <td style="width:20%; text-align:center">
                     <asp:TextBox ID="TextBoxId" runat="server"></asp:TextBox>
-                     &nbsp;
+                </td>
+                <td style="width:35%">
+                      <asp:RequiredFieldValidator ID="rfvId" runat="server" ControlToValidate="TextBoxId" ErrorMessage="*"></asp:RequiredFieldValidator>
                 </td>
             </tr>
-            <tr style="width: 100%;">
-                <td style="width:100%; text-align:center; padding:5px,5px,2.5px,5px;">
-                    <asp:Button ID="Verify" runat="server" Text="<%$ Resources:Resource, Verify %>" OnClick="Verify_Click" />
+            <tr>
+                <td colspan="3" style="text-align:center">
+                    <asp:Button ID="Verify" runat="server" Text="<%$ Resources:Resource, Verify %>" OnClick="Verify_Click" CausesValidation="true"/>
                 </td>
             </tr>
             </table>
+            </form>
         </div>
 </asp:Content>
 
