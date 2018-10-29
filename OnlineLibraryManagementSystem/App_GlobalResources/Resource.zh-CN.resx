@@ -699,4 +699,10 @@
   <data name="SetFineRules" xml:space="preserve">
     <value>罚款规则设置</value>
   </data>
+  <data name="EditFail" xml:space="preserve">
+    <value>修改失败!</value>
+  </data>
+  <data name="EditSuccess" xml:space="preserve">
+    <value>修改成功！</value>
+  </data>
 </root>

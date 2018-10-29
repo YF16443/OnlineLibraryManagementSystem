@@ -702,4 +702,10 @@
   <data name="SetFineRules" xml:space="preserve">
     <value>Fine Rules Setting</value>
   </data>
+  <data name="EditFail" xml:space="preserve">
+    <value>Edit Failed!</value>
+  </data>
+  <data name="EditSuccess" xml:space="preserve">
+    <value>Edit Success!</value>
+  </data>
 </root>

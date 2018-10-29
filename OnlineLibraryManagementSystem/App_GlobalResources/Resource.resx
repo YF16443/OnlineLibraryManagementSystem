@@ -702,4 +702,10 @@
   <data name="Settings" xml:space="preserve">
     <value>Settings &amp; 系统设置</value>
   </data>
+  <data name="EditFail" xml:space="preserve">
+    <value>Edit Failed! &amp; 修改失败!</value>
+  </data>
+  <data name="EditSuccess" xml:space="preserve">
+    <value>Edit Success! &amp; 修改成功！</value>
+  </data>
 </root>

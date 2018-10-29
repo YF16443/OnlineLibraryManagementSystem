@@ -12,6 +12,13 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if(!IsPostBack)
+        {
+            GridviewBind();
+        }
+    }
+    public void GridviewBind()
+    {
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         var OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
 
@@ -28,6 +35,7 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
         DataTable searchResult = resultSet.Tables[0];
 
         Category.DataSource = searchResult;
+        Category.DataKeyNames = new string[] { "CategoryId" };
         Category.DataBind();
         Category.HeaderRow.TableSection = TableRowSection.TableHeader;
     }
@@ -35,7 +43,7 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
     protected void Category_RowEditing(object sender, GridViewEditEventArgs e)
     {
         Category.EditIndex = e.NewEditIndex;
-
+        GridviewBind();
     }
 
     protected void Category_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -45,6 +53,41 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
 
     protected void Category_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
+        int categoryId = int.Parse(Category.DataKeys[e.RowIndex].Values[0].ToString());
+        string name = ((TextBox)Category.Rows[e.RowIndex].FindControl("txtName")).Text;
+       
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
+        conn.Open();
+        MySqlCommand cmd = conn.CreateCommand();
+        cmd.CommandText = "update BookCategories set Name=@n where CategoryId=@i";
+        MySqlParameter param;
+        param = new MySqlParameter("@n", name);
+        cmd.Parameters.Add(param);
+        param = new MySqlParameter("@i", categoryId);
+        cmd.Parameters.Add(param);
+        int result = cmd.ExecuteNonQuery();
+        if (result == 1)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditSuccess + "');", true);
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditFail + "');", true);
+        }
+        Category.EditIndex = -1;
+        GridviewBind();
+    }
 
+    protected void Category_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        Category.EditIndex = -1;
+        GridviewBind();
+    }
+
+    protected void Category_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        Category.PageIndex = e.NewPageIndex;
+        GridviewBind();
     }
 }
