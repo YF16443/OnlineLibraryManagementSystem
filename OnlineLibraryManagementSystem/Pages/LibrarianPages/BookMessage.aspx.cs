@@ -16,7 +16,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
     public static SortInfo siForGv = null;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Page.IsPostBack)
+        if (!this.IsPostBack)
         {
             string bookId = Request["book_id"];
             string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
@@ -107,6 +107,11 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
 
     protected void Alter_Click(object sender, EventArgs e)
     {
+        //检查登陆
+        if (string.IsNullOrEmpty((string)Session["lid"]))
+        { 
+           Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='/Pages/LibrarianLogin.aspx';</script>");
+        }
         string bookId = Request["book_id"];
         string newtitle = "";
         string newauthor = "";
@@ -201,8 +206,9 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         try
-        {
+        { 
             OLMSDBConnection.Open();
+            //更新书本
             string updatebook = "update Books set Title='" + newtitle + "',Author='" + newauthor + "',PubDate='" + newpubdate + "',Price='" + newprice + "',ISBN13='" + newisbn13 + "',ISBN10='" + newisbn10 + "',Pages='" + newpages + "',Publisher='" + newpublisher + "',ImageURL='" + Image1.ImageUrl + "' where BookId='" + bookId + "';";
             MySqlCommand cmdupdatebook = new MySqlCommand(updatebook, OLMSDBConnection);
             int result = 0;
@@ -211,7 +217,42 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             MySqlCommand cmdupdateshelfid = new MySqlCommand(updateshelfid, OLMSDBConnection);
             int result1 = 0;
             result1 = cmdupdateshelfid.ExecuteNonQuery();
-            if (result != 0 && result1 != 0)
+            //查管理员id
+            string librarianid = "";
+            string librarianaccount = "";
+            if (string.IsNullOrEmpty((string)Session["lid"]))
+            {
+                Response.Write("<script>alert('Account Is Null!')</script>");
+                return;
+            }
+            else
+            {
+                librarianaccount = Session["lid"].ToString();
+            }
+            string selectlibrarianid = "select LibrarianId from Librarians where Account='" + librarianaccount + "';";
+            MySqlCommand cmdselectlibrarianid = new MySqlCommand(selectlibrarianid, OLMSDBConnection);
+            MySqlDataReader readerlibrarianid = cmdselectlibrarianid.ExecuteReader();
+            if (readerlibrarianid.Read())
+            {
+                librarianid = readerlibrarianid["LibrarianId"].ToString();
+            }
+            readerlibrarianid.Close();
+            //查书本数量
+            string amount = "";
+            string selectbookamount = "select Amount from Books where BookId='" + bookId + "';";
+            MySqlCommand cmdselectbookamount = new MySqlCommand(selectbookamount, OLMSDBConnection);
+            MySqlDataReader readerbookamount = cmdselectbookamount.ExecuteReader();
+            if (readerbookamount.Read())
+            {
+                amount = readerbookamount["Amount"].ToString();
+            }
+            readerbookamount.Close();
+            //记录操作
+            string insertbookmanagement = "insert into BookManagementRecords(Operation,Bookid,LibrarianId,Amount) values('Alter','" + bookId + "','" + librarianid + "','" + amount + "');";
+            int result2 = 0;
+            MySqlCommand cmdinsertbookmanagement = new MySqlCommand(insertbookmanagement, OLMSDBConnection);
+            result2 = cmdinsertbookmanagement.ExecuteNonQuery();
+            if (result != 0 && result1 != 0&& result2!=0)
             {
                 Response.Write("<script>alert('Edited Successfully!')</script>");
                 return;
@@ -377,6 +418,107 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             gvBookBarcodeResult.Enabled = true;
             gvBookBarcodeResult.DataSource = searchResult;
             gvBookBarcodeResult.DataBind();
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            OLMSDBConnection.Close();
+        }
+    }
+
+    protected void ButtonDelete_Click(object sender, EventArgs e)
+    {
+        //检查登陆
+        if (string.IsNullOrEmpty((string)Session["lid"]))
+        {
+            Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='/Pages/LibrarianLogin.aspx';</script>");
+        }
+        //删除Barcode
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+        try
+        {
+            OLMSDBConnection.Open();
+            CheckBox cb = new CheckBox();
+            string bookbarcode = "";
+            string bookid = Request["book_id"];
+            string account = "";
+            if (string.IsNullOrEmpty((string)Session["lid"]))
+            {
+                Response.Write("<script>alert('Account Is Null!')</script>");
+                return;
+            }
+            else
+            {
+                account = Session["lid"].ToString();
+            }
+            string librarianid = "";
+            string oldamount = "";
+            string newamount = "";
+            int amount = 0;
+            int resultbarcode = 0;
+            int resultupdatebook = 0;
+            int resultbookmanagement = 0;
+            //删除barcode
+            foreach (GridViewRow row in gvBookBarcodeResult.Rows)
+            {
+                cb = (CheckBox)row.FindControl("CheckBoxDeleteBarcode");
+                if (cb != null && cb.Checked == true)
+                {
+                    bookbarcode = row.Cells[0].Text;
+                    string deletebookbarcode = "delete from BookBarcodes where  BookBarcode='" + bookbarcode + "';";
+                    MySqlCommand cmddeletbookbarcode = new MySqlCommand(deletebookbarcode, OLMSDBConnection);
+                    resultbarcode += cmddeletbookbarcode.ExecuteNonQuery();
+                    amount += 1;
+                }
+            }
+
+            //查询书本原有数量
+            string selectbookamout = "select Amount from Books where BookId='" + bookid + "';";
+            MySqlCommand cmdselectbookamout = new MySqlCommand(selectbookamout, OLMSDBConnection);
+            MySqlDataReader readeroldamount = cmdselectbookamout.ExecuteReader();
+            if (readeroldamount.Read())
+            {
+                oldamount = readeroldamount["Amount"].ToString();
+            }
+            readeroldamount.Close();
+        //查询管理员id
+            string selectlibrarianid = "select LibrarianId from Librarians where Account='" + account + "';";
+            MySqlCommand cmdselectlibrarianid = new MySqlCommand(selectlibrarianid, OLMSDBConnection);
+            MySqlDataReader readerlid = cmdselectlibrarianid.ExecuteReader();
+            if (readerlid.Read())
+            {
+                librarianid = readerlid["LibrarianId"].ToString();
+            }
+            readerlid.Close();
+            if(resultbarcode!=0)
+            { 
+                //插入操作记录
+                string insertbookmanagement = "insert BookManagementRecords(Operation,BookId,LibrarianId,Amount) Values('Delete','" + bookid + "','" + librarianid + "','" + amount + "');";
+                MySqlCommand cmdinsertbookmanagement = new MySqlCommand(insertbookmanagement, OLMSDBConnection);
+                resultbookmanagement = cmdinsertbookmanagement.ExecuteNonQuery();
+                //更新书本数量
+                newamount = (int.Parse(oldamount) - amount).ToString();
+                string updatebook = "update Books set Amount='" + newamount + "' where BookId='" + bookid + "';";
+                MySqlCommand cmdupdatebook = new MySqlCommand(updatebook, OLMSDBConnection);
+                resultupdatebook = cmdupdatebook.ExecuteNonQuery();
+           }
+            //重新绑定gridview
+            string selectbarcode = "select * from BookBarcodes where BookId='" + bookid + "';";
+            BindDataTogvResult(selectbarcode);
+            if (resultbarcode != 0&&resultupdatebook!=0&&resultbookmanagement!=0)
+            {
+                Response.Write("<script>alert('Deleted Successfully!')</script>");
+                return;
+            }
+            else
+            {
+                Response.Write("<script>alert('Can\\'t Delete!')</script>");
+                return;
+            }
         }
         catch (MySqlException ex)
         {

@@ -189,8 +189,8 @@
     <comment>下次记住我</comment>
   </data>
   <data name="Login_UsrName" xml:space="preserve">
-    <value>User Name</value>
-    <comment>用户名</comment>
+    <value>ID</value>
+    <comment>账户</comment>
   </data>
   <data name="Add_Stacks" xml:space="preserve">
     <value>Add Stacks</value>
@@ -665,5 +665,32 @@
   </data>
   <data name="Newspaper" xml:space="preserve">
     <value>Newspaper</value>
+  </data>
+  <data name="CategoryManagement" xml:space="preserve">
+    <value>Category Management</value>
+  </data>
+  <data name="CategoryId" xml:space="preserve">
+    <value>CategoryI ID</value>
+  </data>
+  <data name="CategoryName" xml:space="preserve">
+    <value>Category Name</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>OperationHistory</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="Records" xml:space="preserve">
+    <value>Records</value>
+  </data>
+  <data name="LibrarianId" xml:space="preserve">
+    <value>LibrarianId</value>
+  </data>
+  <data name="LoginFailure" xml:space="preserve">
+    <value>Your login attempt was unsuccessful. Please try again.</value>
+  </data>
+  <data name="PhoneNotRegister" xml:space="preserve">
+    <value>The phone number is not registered!</value>
   </data>
 </root>

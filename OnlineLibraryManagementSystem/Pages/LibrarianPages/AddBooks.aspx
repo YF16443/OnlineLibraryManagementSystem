@@ -26,9 +26,6 @@
             height: 35px;
             font-size: x-large;
         }
-        .auto-style5 {
-            font-size: xx-large;
-        }
         .auto-style7 {
             font-size: large;
         }
@@ -148,7 +145,6 @@
         <div class="style1">
             </div>
              <asp:Button ID="AddButton" runat="server" Text="<%$ Resources:Resource, Add %>" OnClick="Addbooks"  CausesValidation="False" CssClass="auto-style7" />
-            <asp:Button ID="Print_BarcodeButton" runat="server" Text="<%$ Resources:Resource, Print_Barcode %>" OnClick="Print_Barcode"  CausesValidation="False" CssClass="auto-style7" />
         </div>
     </div>   
 </asp:Content>
