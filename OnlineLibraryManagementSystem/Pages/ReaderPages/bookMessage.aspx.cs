@@ -116,6 +116,7 @@ public partial class Pages_bookMessage : BasePage
         {
             //未登录时提示登录
             Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='../ReaderLogin.aspx';</script>");
+            return;
         }
         string bookId = Request["book_id"];
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
