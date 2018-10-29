@@ -702,6 +702,9 @@
   <data name="Settings" xml:space="preserve">
     <value>Settings &amp; 系统设置</value>
   </data>
+  <data name="CategoryIdExist" xml:space="preserve">
+    <value>Category ID already exists! &amp; 类别编号已存在！</value>
+  </data>
   <data name="EditFail" xml:space="preserve">
     <value>Edit Failed! &amp; 修改失败!</value>
   </data>

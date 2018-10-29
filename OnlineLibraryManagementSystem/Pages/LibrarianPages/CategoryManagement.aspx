@@ -4,6 +4,25 @@
     <a> <asp:Label runat="server" Text="<%$ Resources:Resource, CategoryManagement %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="body" ContentPlaceHolderID="body" Runat="Server">
+    <div class="card">
+        <div class="content">
+            <div class="form-group">
+                <label><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, CategoryId %>"></asp:Label></label>
+                <asp:TextBox ID="newId" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvId" runat="server" ControlToValidate="newId" ErrorMessage="*"></asp:RequiredFieldValidator>
+            </div>
+            <div class="form-group">
+                <label><asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, CategoryName %>"></asp:Label></label>
+                <asp:TextBox ID="newName" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="newName" ErrorMessage="*"></asp:RequiredFieldValidator>
+            </div>
+            <asp:Button ID="Add" runat="server" Text="<%$ Resources:Resource, Add %>" CssClass="btn btn-fill btn-default" OnClick="Add_Click" />
+        </div>
+    </div>
+
+    <div class="card">
+
+   <div class="content">
     <div class="material-datatables">
         <asp:GridView ID="Category" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-no-bordered table-hover" OnRowEditing="Category_RowEditing" OnRowDataBound="Category_RowDataBound" OnRowUpdating="Category_RowUpdating" style="width:100%;cellspacing:0" OnRowCancelingEdit="Category_RowCancelingEdit" OnPageIndexChanging="Category_PageIndexChanging">
             <Columns>
@@ -24,6 +43,7 @@
             </Columns>
         </asp:GridView>
     </div>
+         </div></div>
 
     <script src="../../assets/vendors/DataTables/jQuery-1.12.4/jquery-1.12.4.min.js"></script>
     <script type="text/javascript">
