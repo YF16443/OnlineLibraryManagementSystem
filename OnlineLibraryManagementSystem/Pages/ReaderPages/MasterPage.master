@@ -40,7 +40,7 @@
                                 <li>
                                     <asp:LoginView ID="LoginView" runat="server">
                                         <AnonymousTemplate>
-                                            <asp:LinkButton ID="lbLogin" runat="server" Text="<%$ Resources:Resource,Login %>" PostBackUrl="~/Pages/LibrarianLogin.aspx"></asp:LinkButton>
+                                            <asp:LinkButton ID="lbLogin" runat="server" Text="<%$ Resources:Resource,Login %>" PostBackUrl="~/Pages/ReaderLogin.aspx"></asp:LinkButton>
                                         </AnonymousTemplate>
                                         
                                         <LoggedInTemplate>
