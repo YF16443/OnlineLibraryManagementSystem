@@ -58,7 +58,7 @@ public partial class Pages_SearchDemo : BasePage
         else
         {
             gvPeriodicalResult.Enabled = true;
-            getResult_sql = new MySqlCommand("select Title " +
+            getResult_sql = new MySqlCommand("select * " +
                                              "from Periodicals " +
                                              "where " + (ddlField.SelectedValue.ToString() + " like '%" + keyword + "%';"), OLMSDBConnection);
             // 同上
@@ -78,17 +78,45 @@ public partial class Pages_SearchDemo : BasePage
         resultAdapter.Fill(resultSet);
         OLMSDBConnection.Close();
 
-        DataTable searchResult = resultSet.Tables[0];
-        siForGv = new SortInfo(resultSet.Tables[0]);
 
         if (ddlClass.SelectedValue.ToString().Equals("Books"))
         {
+            DataTable searchResult = resultSet.Tables[0];
+            siForGv = new SortInfo(resultSet.Tables[0]);
             gvBookResult.DataSource = searchResult;
             gvBookResult.DataBind();
         }
            
         else
         {
+            DataTable searchResult = resultSet.Tables[0];
+            searchResult.Columns.Add("NewType");
+            foreach (DataRow row in searchResult.Rows)
+            {
+                if (Session["PreferredCulture"].ToString() == "zh-CN")
+                {
+                    if (row["Type"].ToString() == "0")
+                    {
+                        row["NewType"] = "杂志";
+                    }
+                    if (row["Type"].ToString() == "1")
+                    {
+                        row["NewType"] = "报纸";
+                    }
+                }
+                else
+                {
+                    if (row["Type"].ToString() == "0")
+                    {
+                        row["NewType"] = "Magazine";
+                    }
+                    if (row["Type"].ToString() == "1")
+                    {
+                        row["NewType"] = "Newspaper";
+                    }
+                }
+            }
+            siForGv = new SortInfo(resultSet.Tables[0]);
             gvPeriodicalResult.DataSource = searchResult;
             gvPeriodicalResult.DataBind();
         }

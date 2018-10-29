@@ -708,4 +708,8 @@
   <data name="EditSuccess" xml:space="preserve">
     <value>Edit Success!</value>
   </data>
+  <data name="ISSN" xml:space="preserve">
+    <value>ISSN</value>
+    <comment>期刊ISSN</comment>
+  </data>
 </root>

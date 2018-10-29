@@ -59,11 +59,31 @@
                         </Columns>
                     </asp:GridView>
                     <br />
-                    <asp:GridView ID="gvPeriodicalResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" ShowHeader="False" Enabled="False">
+                    <asp:GridView ID="gvPeriodicalResult" runat="server" HorizontalAlign="Center"  AutoGenerateColumns="False"  Enabled="False" AllowSorting="True" OnSorting="gvBookResult_Sorting" OnPageIndexChanging="gvBookResult_PageIndexChanging">
                         <Columns>
-                            <asp:HyperLinkField ShowHeader="False" DataTextField="Title">
-                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                            </asp:HyperLinkField>
+                             <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True">
+                                <ItemStyle Height="84px" HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" CssClass="resultImg" />
+                            </asp:ImageField>
+                             <asp:BoundField HeaderText="<%$ Resources:Resource, Title %>"  DataField="Title" ReadOnly="True">
+                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                            </asp:BoundField>
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, ISSN %>" SortExpression="Title" DataField="ISSN" ReadOnly="True">
+                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                            </asp:BoundField>
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, Country %>"  DataField="Country" ReadOnly="True">
+                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                            </asp:BoundField>
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, Type %>"  DataField="NewType" ReadOnly="True">
+                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                            </asp:BoundField>
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, Price %>" SortExpression="Price" DataField="Price" ReadOnly="True">
+                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                            </asp:BoundField>
+                            <asp:TemplateField HeaderText="<%$ Resources:Resource, Select %>">
+                                <ItemTemplate>
+                                <asp:CheckBox id="CheckBoxDeletePeriodical" runat="Server" style="zoom:200%;" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                 </td>

@@ -705,4 +705,8 @@
   <data name="EditSuccess" xml:space="preserve">
     <value>修改成功！</value>
   </data>
+  <data name="ISSN" xml:space="preserve">
+    <value>ISSN</value>
+    <comment>期刊ISSN</comment>
+  </data>
 </root>
