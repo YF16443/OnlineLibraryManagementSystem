@@ -49,7 +49,6 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
             }
             if (TextBoxID.Text == ""||TextBoxID.Text.Trim().Length==0)
             {
-                Response.Write("<script>alert('Search Text Is Null!')</script>");
                 return;
             }
             else id = TextBoxID.Text.Trim();
