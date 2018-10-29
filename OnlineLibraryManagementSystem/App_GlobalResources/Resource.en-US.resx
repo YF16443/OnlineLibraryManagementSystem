@@ -209,7 +209,7 @@
     <comment>书库所放书籍摘要</comment>
   </data>
   <data name="Stack_Timestamp" xml:space="preserve">
-    <value>Stack Timestamp</value>
+    <value>Created Time</value>
     <comment>建立书库时间</comment>
   </data>
   <data name="Add" xml:space="preserve">
@@ -225,7 +225,7 @@
     <comment>书架所放书籍摘要</comment>
   </data>
   <data name="Shelf_Timestamp" xml:space="preserve">
-    <value>Shelf Timestamp</value>
+    <value>Created Time</value>
     <comment>建立书架时间</comment>
   </data>
   <data name="ID" xml:space="preserve">
