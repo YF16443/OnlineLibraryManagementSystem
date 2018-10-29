@@ -718,4 +718,10 @@
     <value>ISSN &amp; ISSN</value>
     <comment>期刊ISSN</comment>
   </data>
+  <data name="CategoryIdRequire" xml:space="preserve">
+    <value>Category ID is required! &amp; 请输入类别编号！</value>
+  </data>
+  <data name="CategoryNameRequire" xml:space="preserve">
+    <value>Category Name is required! &amp; 请输入类别名！</value>
+  </data>
 </root>
