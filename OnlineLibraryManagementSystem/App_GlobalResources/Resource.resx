@@ -711,4 +711,7 @@
   <data name="EditSuccess" xml:space="preserve">
     <value>Edit Success! &amp; 修改成功！</value>
   </data>
+  <data name="ReservationAlready" xml:space="preserve">
+    <value>You have already reserved this book! &amp; 您已预约过此书！</value>
+  </data>
 </root>

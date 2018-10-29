@@ -708,4 +708,7 @@
   <data name="CategoryIdExist" xml:space="preserve">
     <value>类别编号已存在！</value>
   </data>
+  <data name="ReservationAlready" xml:space="preserve">
+    <value>您已预约过此书！</value>
+  </data>
 </root>
