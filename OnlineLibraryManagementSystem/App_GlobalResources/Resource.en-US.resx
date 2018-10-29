@@ -658,7 +658,7 @@
     <value>Country</value>
   </data>
   <data name="LoginFailure" xml:space="preserve">
-    <value>Login Failure</value>
+    <value>Your login attempt was unsuccessful. Please try again.</value>
   </data>
   <data name="Magazine" xml:space="preserve">
     <value>Magazine</value>
@@ -687,10 +687,19 @@
   <data name="LibrarianId" xml:space="preserve">
     <value>LibrarianId</value>
   </data>
-  <data name="LoginFailure" xml:space="preserve">
-    <value>Your login attempt was unsuccessful. Please try again.</value>
-  </data>
   <data name="PhoneNotRegister" xml:space="preserve">
     <value>The phone number is not registered!</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SetCompensation" xml:space="preserve">
+    <value>Compensation Setting</value>
+  </data>
+  <data name="SetDeposit" xml:space="preserve">
+    <value>Deposit Setting</value>
+  </data>
+  <data name="SetFineRules" xml:space="preserve">
+    <value>Fine Rules Setting</value>
   </data>
 </root>

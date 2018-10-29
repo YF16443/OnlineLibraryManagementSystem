@@ -673,7 +673,7 @@
     <value>管理员号</value>
   </data>
   <data name="LoginFailure" xml:space="preserve">
-    <value>您的登录尝试不成功，请重试。</value>
+    <value>登录失败</value>
   </data>
   <data name="PhoneNotRegister" xml:space="preserve">
     <value>手机号未注册！</value>
@@ -681,13 +681,22 @@
   <data name="Country" xml:space="preserve">
     <value>国家</value>
   </data>
-  <data name="LoginFailure" xml:space="preserve">
-    <value>登录失败</value>
-  </data>
   <data name="Magazine" xml:space="preserve">
     <value>杂志</value>
   </data>
   <data name="Newspaper" xml:space="preserve">
     <value>报纸</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>系统设置</value>
+  </data>
+  <data name="SetCompensation" xml:space="preserve">
+    <value>赔偿设置</value>
+  </data>
+  <data name="SetDeposit" xml:space="preserve">
+    <value>押金设置</value>
+  </data>
+  <data name="SetFineRules" xml:space="preserve">
+    <value>罚款规则设置</value>
   </data>
 </root>
