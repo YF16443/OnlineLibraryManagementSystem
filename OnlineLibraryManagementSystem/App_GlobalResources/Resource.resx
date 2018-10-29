@@ -676,7 +676,7 @@
     <value>LibrarianId &amp; 管理员号</value>
   </data>
   <data name="LoginFailure" xml:space="preserve">
-    <value>Your login attempt was unsuccessful. Please try again. &amp; 您的登录尝试不成功，请重试。</value>
+    <value>Login Failure &amp; 登录失败</value>
   </data>
   <data name="PhoneNotRegister" xml:space="preserve">
     <value>The phone number is not registered! &amp; 手机号未注册！</value>
@@ -684,13 +684,31 @@
   <data name="Country" xml:space="preserve">
     <value>Country &amp; 国家</value>
   </data>
-  <data name="LoginFailure" xml:space="preserve">
-    <value>Login Failure &amp; 登录失败</value>
-  </data>
   <data name="Magazine" xml:space="preserve">
     <value>Magazine &amp; 杂志</value>
   </data>
   <data name="Newspaper" xml:space="preserve">
     <value>Newspaper &amp; 报纸</value>
+  </data>
+  <data name="SetCompensation" xml:space="preserve">
+    <value>Compensation Setting &amp; 赔偿设置</value>
+  </data>
+  <data name="SetDeposit" xml:space="preserve">
+    <value>Deposit Setting &amp; 押金设置</value>
+  </data>
+  <data name="SetFineRules" xml:space="preserve">
+    <value>Fine Rules Setting &amp; 罚款规则设置</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings &amp; 系统设置</value>
+  </data>
+  <data name="CategoryIdExist" xml:space="preserve">
+    <value>Category ID already exists! &amp; 类别编号已存在！</value>
+  </data>
+  <data name="EditFail" xml:space="preserve">
+    <value>Edit Failed! &amp; 修改失败!</value>
+  </data>
+  <data name="EditSuccess" xml:space="preserve">
+    <value>Edit Success! &amp; 修改成功！</value>
   </data>
 </root>

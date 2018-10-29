@@ -1,8 +1,9 @@
 ﻿
       <html> 
     <head>
-        <link href="../../assets/vendors/daterangepicker/styles/vendor.css" rel="stylesheet" 
-        <link href="../../assets/vendors/daterangepicker/styles/daterangepicker.css" rel="stylesheet" />
+     <link href="../../assets/vendors/daterangepicker/styles/vendor.css" rel="stylesheet" 
+     <link href="../../assets/vendors/daterangepicker/styles/daterangepicker.css" rel="stylesheet" />
+
 
  
 
@@ -12,6 +13,7 @@
     </body>
                   <script src="../../assets/vendors/daterangepicker/scripts/vendor.js"></script>
         <script src="../../assets/vendors/daterangepicker/scripts/daterangepicker.js"></script>
+
     <script>
       $(".daterangepicker-field").daterangepicker({
   forceUpdate: true,

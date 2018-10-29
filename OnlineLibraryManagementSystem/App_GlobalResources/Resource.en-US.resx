@@ -658,7 +658,7 @@
     <value>Country</value>
   </data>
   <data name="LoginFailure" xml:space="preserve">
-    <value>Login Failure</value>
+    <value>Your login attempt was unsuccessful. Please try again.</value>
   </data>
   <data name="Magazine" xml:space="preserve">
     <value>Magazine</value>
@@ -670,7 +670,7 @@
     <value>Category Management</value>
   </data>
   <data name="CategoryId" xml:space="preserve">
-    <value>CategoryI ID</value>
+    <value>Category ID</value>
   </data>
   <data name="CategoryName" xml:space="preserve">
     <value>Category Name</value>
@@ -687,10 +687,28 @@
   <data name="LibrarianId" xml:space="preserve">
     <value>LibrarianId</value>
   </data>
-  <data name="LoginFailure" xml:space="preserve">
-    <value>Your login attempt was unsuccessful. Please try again.</value>
-  </data>
   <data name="PhoneNotRegister" xml:space="preserve">
     <value>The phone number is not registered!</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SetCompensation" xml:space="preserve">
+    <value>Compensation Setting</value>
+  </data>
+  <data name="SetDeposit" xml:space="preserve">
+    <value>Deposit Setting</value>
+  </data>
+  <data name="SetFineRules" xml:space="preserve">
+    <value>Fine Rules Setting</value>
+  </data>
+  <data name="EditFail" xml:space="preserve">
+    <value>Edit Failed!</value>
+  </data>
+  <data name="EditSuccess" xml:space="preserve">
+    <value>Edit Success!</value>
+  </data>
+  <data name="CategoryIdExist" xml:space="preserve">
+    <value>Category ID already exists!</value>
   </data>
 </root>
