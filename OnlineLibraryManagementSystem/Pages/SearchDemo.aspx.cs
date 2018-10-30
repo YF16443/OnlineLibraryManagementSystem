@@ -184,7 +184,7 @@ public partial class Pages_SearchDemo : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         var OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
 
-        MySqlCommand getDeposit_sql = new MySqlCommand("select * from Notices ORDER BY NoticeId DESC LIMIT 5");
+        MySqlCommand getDeposit_sql = new MySqlCommand("select * from Notices ORDER BY NoticeId DESC LIMIT 3");
         var result1Adapter = new MySqlDataAdapter();
         result1Adapter.SelectCommand = getDeposit_sql;
         result1Adapter.SelectCommand.Connection = OLMSDBConnection;
@@ -197,7 +197,7 @@ public partial class Pages_SearchDemo : BasePage
 
         DataTable dtResult = new DataTable();
         dtResult = search1Result.Copy();
-        String [] notices= { "", "", "", "", "" };
+        String [] notices= { "No announcement", "No announcement", "No announcement", "", "" };
         int i = 0;
         foreach (DataRow dr in dtResult.Rows)
         {
@@ -206,7 +206,11 @@ public partial class Pages_SearchDemo : BasePage
         notice1.Text = notices[0].ToString();
         notice2.Text = notices[1].ToString();
         notice3.Text = notices[2].ToString();
-        notice4.Text = notices[3].ToString();
-        notice5.Text = notices[4].ToString();
+
+    }
+
+    protected void tbSearch_TextChanged1(object sender, EventArgs e)
+    {
+
     }
 }

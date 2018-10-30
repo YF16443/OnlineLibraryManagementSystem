@@ -20,8 +20,8 @@
             <div class="material-datatables">
                 <asp:GridView ID="GridView1" runat="server" CssClass="table table-striped table-no-bordered table-hover" AutoGenerateColumns="False" style="width:100%;cellspacing:0"  >
                     <Columns>
-                        <asp:BoundField HeaderText="<%$ Resources:Resource, NoticeId %>" DataField="NoticeId" ReadOnly="true" />
-                        <asp:BoundField HeaderText="<%$ Resources:Resource, Details %>" DataField="Details" ReadOnly="true" />
+
+                        <asp:BoundField HeaderText="<%$ Resources:Resource, Notice %>" DataField="Details" ReadOnly="true" />
                         <asp:BoundField HeaderText="<%$ Resources:Resource, Time %>" DataField="Timestamp" ReadOnly="true" />
                         
                     </Columns>

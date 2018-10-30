@@ -6,7 +6,7 @@ ul {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 750px;
     overflow: hidden;
     padding: 20px;
 }
@@ -20,7 +20,7 @@ ul {
 }
 
 .first {
-    background: url("../images/4.jpg") center no-repeat;
+    background: url("../images/5.jpg") center no-repeat;
 }
 
     .first a,
@@ -45,7 +45,7 @@ ul {
     }
 
 .second {
-    background: url("../images/4.jpg") center no-repeat;
+    background: url("../images/5.jpg") center no-repeat;
 }
     .second div {
         font-family: 'Open Sans Condensed', sans-serif;
@@ -62,7 +62,7 @@ ul {
     }
 
 .third {
-    background: url("../images/4.jpg") center no-repeat;
+    background: url("../images/5.jpg") center no-repeat;
 }
     .third div {
         font-family: 'Open Sans Condensed', sans-serif;
@@ -79,7 +79,7 @@ ul {
     }
 
 .fourth {
-    background: url("../images/4.jpg") center no-repeat;
+    background: url("../images/5.jpg") center no-repeat;
 }
     .fourth div {
         font-family: 'Open Sans Condensed', sans-serif;
@@ -96,7 +96,7 @@ ul {
     }
 
 .fifth {
-    background: url("../images/4.jpg") center no-repeat;
+    background: url("../images/5.jpg") center no-repeat;
 }
     .fifth div {
         font-family: 'Open Sans Condensed', sans-serif;
