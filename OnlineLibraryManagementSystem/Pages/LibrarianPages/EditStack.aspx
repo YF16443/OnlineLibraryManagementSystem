@@ -42,7 +42,7 @@
                 </td>
                 <td class="auto-style4">
           
-                    <asp:TextBox ID="TextBoxStackId" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBoxStackId" runat="server" ></asp:TextBox>
                 </td>
             </tr>
             <tr>

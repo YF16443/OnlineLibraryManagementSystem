@@ -721,4 +721,8 @@
   <data name="CategoryNameRequire" xml:space="preserve">
     <value>请输入类别名！</value>
   </data>
+  <data name="StackInfo" xml:space="preserve">
+    <value>书库信息</value>
+    <comment>书库信息</comment>
+  </data>
 </root>
