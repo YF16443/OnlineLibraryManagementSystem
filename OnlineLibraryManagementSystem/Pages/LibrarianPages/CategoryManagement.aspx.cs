@@ -55,7 +55,6 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
     {
         int categoryId = int.Parse(Category.DataKeys[e.RowIndex].Values[0].ToString());
         string name = ((TextBox)Category.Rows[e.RowIndex].FindControl("txtName")).Text;
-       
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
         conn.Open();
@@ -93,8 +92,15 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
 
     protected void Add_Click(object sender, EventArgs e)
     {
-        if (!rfvId.IsValid || !rfvName.IsValid)
+        if(newId.Text.Equals(""))
         {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.CategoryIdRequire + "');", true);
+            GridviewBind();
+            return;
+        }
+        if(newName.Text.Equals(""))
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.CategoryNameRequire + "');", true);
             GridviewBind();
             return;
         }

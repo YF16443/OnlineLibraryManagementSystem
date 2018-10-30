@@ -33,7 +33,7 @@ public partial class Pages_LibrarianPages_EditShelf : BasePage
                 MySqlDataReader readershlef = cmdselectshelf.ExecuteReader();
                 if (readershlef.Read())
                 {
-                    TextBoxShelfId.Text = readershlef["ShelfId"].ToString();
+                    LabelShelfid.Text = readershlef["ShelfId"].ToString();//书架ID不可修改
                     TextBoxSummary.Text = readershlef["Summary"].ToString();
                     LabelShelf_Timestamp.Text = readershlef["Timestamp"].ToString();//建架时间不可以改变
                 }
@@ -57,24 +57,9 @@ public partial class Pages_LibrarianPages_EditShelf : BasePage
         {
             Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='/Pages/LibrarianLogin.aspx';</script>");
         }
-        string newshelfid = "";
         string newsummary = "";
         string newstackid = DropDownList1.SelectedItem.Text;
-        string pattern = "^\\d{1,10}$";
-        if (TextBoxShelfId.Text == "")
-        {
-            Response.Write("<script>alert('ShelfId Is Null!')</script>");
-            return;
-        }
-        else if(System.Text.RegularExpressions.Regex.IsMatch(TextBoxShelfId.Text, pattern))
-        { 
-            newshelfid = TextBoxShelfId.Text;
-        }
-        else
-        {
-            Response.Write("<script>alert('Error ShelfId!')</script>");
-            return;
-        }
+        //string pattern = "^\\d{1,10}$";
         if (TextBoxSummary.Text == "" ||TextBoxSummary.Text.Trim().Length==0)
         {
             Response.Write("<script>alert('Shelf_Summary Is Null!')</script>");
@@ -87,12 +72,12 @@ public partial class Pages_LibrarianPages_EditShelf : BasePage
         //数据库
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
-        string selectshelfid = "select count(*) as num from Shelves where ShelfId='" + newshelfid + "';";
-        string updateshelf = "update Shelves set ShelfId='" + newshelfid + "',StackId='" + newstackid + "',Summary='" + newsummary + "' where ShelfId='" + Session["ID"] + "';";
+        //string selectshelfid = "select count(*) as num from Shelves where ShelfId='" + newshelfid + "';";
+        string updateshelf = "update Shelves set StackId='" + newstackid + "',Summary='" + newsummary + "' where ShelfId='" + Session["ID"] + "';";
         try
         {
             OLMSDBConnection.Open();
-            if (newshelfid != Session["ID"].ToString())
+           /* if (newshelfid != Session["ID"].ToString())
             {
                 MySqlCommand cmdselectshelfid = new MySqlCommand(selectshelfid, OLMSDBConnection);
                 MySqlDataReader readerselect = cmdselectshelfid.ExecuteReader();
@@ -110,13 +95,12 @@ public partial class Pages_LibrarianPages_EditShelf : BasePage
                     }
                 }
                 readerselect.Close();
-            }
+            }*/
             MySqlCommand cmdupdateshelf = new MySqlCommand(updateshelf, OLMSDBConnection);
             int resultupdate = 0;
             resultupdate = cmdupdateshelf.ExecuteNonQuery();
             if (resultupdate != 0)
             {
-                Session["ID"] = newshelfid;
                 Response.Write("<script>alert('Edited Successfully!');window.location.href = 'ShelfInfo.aspx';</script>");
             }
         }

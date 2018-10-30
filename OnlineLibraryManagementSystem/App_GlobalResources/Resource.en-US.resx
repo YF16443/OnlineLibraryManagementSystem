@@ -209,7 +209,7 @@
     <comment>书库所放书籍摘要</comment>
   </data>
   <data name="Stack_Timestamp" xml:space="preserve">
-    <value>Stack Timestamp</value>
+    <value>Created Time</value>
     <comment>建立书库时间</comment>
   </data>
   <data name="Add" xml:space="preserve">
@@ -225,7 +225,7 @@
     <comment>书架所放书籍摘要</comment>
   </data>
   <data name="Shelf_Timestamp" xml:space="preserve">
-    <value>Shelf Timestamp</value>
+    <value>Created Time</value>
     <comment>建立书架时间</comment>
   </data>
   <data name="ID" xml:space="preserve">
@@ -710,6 +710,23 @@
   </data>
   <data name="CategoryIdExist" xml:space="preserve">
     <value>Category ID already exists!</value>
+  </data>
+  <data name="ReservationAlready" xml:space="preserve">
+    <value>You have already reserved this book!</value>
+  </data>
+  <data name="ISSN" xml:space="preserve">
+    <value>ISSN</value>
+    <comment>期刊ISSN</comment>
+  </data>
+  <data name="CategoryIdRequire" xml:space="preserve">
+    <value>Category ID is required!</value>
+  </data>
+  <data name="CategoryNameRequire" xml:space="preserve">
+    <value>Category Name is required!</value>
+  </data>
+  <data name="StackInfo" xml:space="preserve">
+    <value>StackInfo</value>
+    <comment>书库信息</comment>
   </data>
   <data name="MoreNotices" xml:space="preserve">
     <value>MoreNotices</value>

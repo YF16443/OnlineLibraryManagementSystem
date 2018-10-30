@@ -92,11 +92,6 @@
                 <asp:LinkButton ID="lbChangeReaderInfomation" runat="server" Text="<%$ Resources:Resource, ChangeReaderInfomation %>" PostBackUrl="~/Pages/ReaderPages/ChangeReaderInfomation.aspx"></asp:LinkButton>
             </td>
         </tr>
-        <tr>
-            <td class="auto-style4" style="text-align:center">
-                <asp:LinkButton ID="lbForgotPassword" runat="server" Text="<%$ Resources:Resource, ForgotPassword %>" PostBackUrl="~/Pages/ReaderPages/ForgotPassword.aspx"></asp:LinkButton>
-            </td>
-        </tr>
     </table>
         </div>
         <div class = "style3">

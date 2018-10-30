@@ -41,7 +41,7 @@
                     <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource,ShelfId %>"></asp:Label>
                 </td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxShelfId" runat="server"></asp:TextBox>
+                    <asp:Label ID="LabelShelfid" runat="server" Text="LabelShelfId"></asp:Label>
                 </td>
             </tr>
             <tr>

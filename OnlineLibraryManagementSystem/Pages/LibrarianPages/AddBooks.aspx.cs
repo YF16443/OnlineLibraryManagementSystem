@@ -335,7 +335,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
             resultinsertbookmanagement = cmdinsertbookmanagement.ExecuteNonQuery();
             if ((result1 != 0) && (result2 != 0)&&(resultinsertbookmanagement!=0))
             {
-                Response.Write("<script>alert('Add Book Successfully!\\nThe Amount Is" + amount + "!')</script>");
+                Response.Write("<script>alert('Add Book Successfully!\\nThe Amount Is " + amount + "!')</script>");
                 return;
             }
         }
