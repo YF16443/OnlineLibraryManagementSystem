@@ -8,6 +8,7 @@ using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Text.RegularExpressions;
 using System.Text;
+using System.Data;
 
 public partial class Pages_LibrarianPages_EditStack : BasePage
 {
@@ -33,16 +34,12 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
             }
             reader.Close();
             OLMSDBConnection.Close();
+            GridviewBind();
         }
     }
 
     protected void Alter_StackInfo(object sender, EventArgs e)
     {
-        //检查登陆
-        if (string.IsNullOrEmpty((string)Session["lid"]))
-        {
-            Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='/Pages/LibrarianLogin.aspx';</script>");
-        }
         string newstackid = "";
         string newsummary = "";
         string newposition = "";
@@ -124,7 +121,70 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
             OLMSDBConnection.Close();
         }
     }
-    
+    public void GridviewBind()
+    {
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        var OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+
+        string stackid = Session["ID"].ToString();
+        MySqlCommand get_sql = new MySqlCommand("select ShelfId,Summary,Timestamp from Shelves where StackId='" + stackid + "';");
+        var resultAdapter = new MySqlDataAdapter();
+        resultAdapter.SelectCommand = get_sql;
+        resultAdapter.SelectCommand.Connection = OLMSDBConnection;
+        var resultSet = new DataSet();
+
+        OLMSDBConnection.Open();
+        resultAdapter.Fill(resultSet);
+        OLMSDBConnection.Close();
+
+        DataTable searchResult = resultSet.Tables[0];
+
+        Shelves.DataSource = searchResult;
+        Shelves.DataKeyNames = new string[] { "ShelfId" };
+        Shelves.DataBind();
+        Shelves.HeaderRow.TableSection = TableRowSection.TableHeader;
+    }
+    protected void Shelves_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        Shelves.EditIndex = e.NewEditIndex;
+        GridviewBind();
+    }
+    protected void Shelves_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        int ShelfId = int.Parse(Shelves.DataKeys[e.RowIndex].Values[0].ToString());
+        string summary = ((TextBox)Shelves.Rows[e.RowIndex].FindControl("txtSummary")).Text;
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
+        conn.Open();
+        MySqlCommand cmd = conn.CreateCommand();
+        cmd.CommandText = "update Shelves set Summary=@s where ShelfId=@i";
+        MySqlParameter param;
+        param = new MySqlParameter("@s", summary);
+        cmd.Parameters.Add(param);
+        param = new MySqlParameter("@i", ShelfId);
+        cmd.Parameters.Add(param);
+        int result = cmd.ExecuteNonQuery();
+        if (result == 1)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditSuccess + "');", true);
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditFail + "');", true);
+        }
+        Shelves.EditIndex = -1;
+        GridviewBind();
+    }
+    protected void Shelves_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        Shelves.EditIndex = -1;
+        GridviewBind();
+    }
+    protected void Shelves_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        Shelves.PageIndex = e.NewPageIndex;
+        GridviewBind();
+    }
     protected void Cancel(object sender, EventArgs e)
     {
         Response.Redirect("StackInfo.aspx");
