@@ -728,4 +728,7 @@
     <value>StackInfo &amp; 书库信息</value>
     <comment>书库信息</comment>
   </data>
+  <data name="MoreNotices" xml:space="preserve">
+    <value>MoreNotices &amp; 更多公告</value>
+  </data>
 </root>
