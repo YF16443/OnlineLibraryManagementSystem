@@ -711,4 +711,7 @@
   <data name="CategoryIdExist" xml:space="preserve">
     <value>Category ID already exists!</value>
   </data>
+  <data name="MoreNotices" xml:space="preserve">
+    <value>MoreNotices</value>
+  </data>
 </root>

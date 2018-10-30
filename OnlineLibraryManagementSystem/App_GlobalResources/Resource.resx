@@ -711,4 +711,7 @@
   <data name="EditSuccess" xml:space="preserve">
     <value>Edit Success! &amp; 修改成功！</value>
   </data>
+  <data name="MoreNotices" xml:space="preserve">
+    <value>MoreNotices &amp; 更多公告</value>
+  </data>
 </root>

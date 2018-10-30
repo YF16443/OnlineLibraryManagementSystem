@@ -708,4 +708,7 @@
   <data name="CategoryIdExist" xml:space="preserve">
     <value>类别编号已存在！</value>
   </data>
+  <data name="MoreNotices" xml:space="preserve">
+    <value>更多公告</value>
+  </data>
 </root>

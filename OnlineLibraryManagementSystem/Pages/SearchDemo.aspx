@@ -3,6 +3,15 @@
 
 
 <asp:Content ID="head" ContentPlaceHolderID="head" Runat="Server">
+    <link href="../../assets/vendors/daterangepicker/styles/vendor.css" rel="stylesheet" />
+    <link href="../../assets/vendors/daterangepicker/styles/daterangepicker.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../../assets/slider/css/edslider.css">
+	<link rel="stylesheet" href="../../assets/slider/css/styles.css">
+	<link rel="stylesheet" href="../../assets/slider/css/animate-custom.css">
     <style type="text/css">
         .resultImg img{
             max-height:84px;
@@ -24,7 +33,8 @@
                     </asp:DropDownList>
                 </td>
                 <td style="width:30%">
-                    <asp:TextBox ID="tbSearch" runat="server" Width="450px"></asp:TextBox>
+                  <asp:textbox id="tbSearch" runat="server" Width="450px" OnTextChanged="tbSearch_TextChanged" ></asp:TextBox>
+                    
                 </td>
                 <td style="width:35%">
                     <asp:DropDownList ID="ddlClass" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged">
@@ -67,5 +77,68 @@
             </tr>
             </table>
     </div>
+    <div class="container" ID="notice" runat="server">
+		<ul class="mySlideshow">
+			<li class="first">
+				<div class="animated fadeInRight">
+                    <asp:label id="notice1" runat="server" text="No announcement!"></asp:label>
+                   
+                </div>
+
+			</li>
+			<li class="second">
+				<div class="animated fadeInLeft">
+                    <asp:label id="notice2" runat="server" text="No announcement!"></asp:label>
+				</div>
+			</li>
+			<li class="third">
+				<div class="animated fadeInRight">
+                    <asp:label id="notice3" runat="server" text="No announcement!"></asp:label>
+				</div>
+			</li>
+			<li class="fourth">
+				<div class="animated fadeInLeft">
+                    <asp:label id="notice4" runat="server" text="No announcement!"></asp:label>
+                    
+				</div>
+			</li>
+			<li class="fifth">
+				<div class="animated fadeInRight">
+                    <asp:label id="notice5" runat="server" text="No announcement!"></asp:label>
+				</div>
+			</li>
+		</ul>
+  <center><a href="ReaderPages/ViewNotice.aspx"><asp:Label ID="search" runat="server" Text="<%$ Resources:Resource, MoreNotices %>"  /></a></center>
+	</div>
+
+	
+	<script src="../../assets/slider/js/jquery-1.11.0.min.js"></script>
+	<script src="../../assets/slider/js/jquery.edslider.js"></script>
+	<script>
+		$(document).ready(function(){
+			//Call plugin
+			$('.mySlideshow').edslider({
+				width : '100%',
+				height: 500
+			});
+		});
+	</script>
+     
+    <script>
+        $("#<%=tbSearch.ClientID %>").bind('input propertychange', function () {
+            var body_notice = document.getElementById('<%=notice.ClientID %>');
+            if ($(this).val()) {
+                body_notice.setAttribute("style","visibility:hidden;");
+            }
+            else {
+                body_notice.setAttribute("style","visibility:visible;");
+      
+            }
+    });
+</script>
+
+
 </asp:Content>
+
+
 
