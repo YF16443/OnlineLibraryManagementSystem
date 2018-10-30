@@ -38,20 +38,24 @@ public partial class Pages_LibrarianPages_IssueReport : BasePage
             if (Session["PreferredCulture"].ToString() == "zh-CN")
             {
                 if (status == "3")
-                    dr["Details"] = "未归还";
+                    dr["Details"] = "逾期未归还";
                 if (status == "1")
                     dr["Details"] = "已归还";
                 if (status == "2")
                     dr["Details"] = "已损坏或丢失";
+                if (status == "0")
+                    dr["Details"] = "未归还";
             }
             else
             {
-                if (status == "3")
+                if (status == "0")
                     dr["Details"] = "Not Returned";
                 if (status == "1")
                     dr["Details"] = "Returned";
                 if (status == "2")
                     dr["Details"] = "Damaged or Lost";
+                if (status == "3")
+                    dr["Details"] = "Overdue not returned";
             }
         }
 
