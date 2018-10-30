@@ -17,7 +17,7 @@ public partial class Pages_LibrarianPages_IssueReport : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         var OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
 
-        MySqlCommand getIssue_sql = new MySqlCommand("select ReaderId,IssueRecords.BookBarcode,IssueTime,ReturnTime,Title from IssueRecords,BookBarcodes,Books where IssueRecords.BookBarcode=BookBarcodes.BookBarcode and BookBarcodes.BookId=Books.BookId;");
+        MySqlCommand getIssue_sql = new MySqlCommand("select ReaderId,IssueRecords.BookBarcode,IssueTime,ReturnTime,Title,IssueRecords.Status from IssueRecords,BookBarcodes,Books where IssueRecords.BookBarcode=BookBarcodes.BookBarcode and BookBarcodes.BookId=Books.BookId;");
         var result1Adapter = new MySqlDataAdapter();
         result1Adapter.SelectCommand = getIssue_sql;
         result1Adapter.SelectCommand.Connection = OLMSDBConnection;
@@ -29,6 +29,31 @@ public partial class Pages_LibrarianPages_IssueReport : BasePage
         DataTable dtResult = result1Set.Tables[0];
 
         dtResult.Columns[1].ColumnName = "Barcode";
+        dtResult.Columns[5].ColumnName = "Status";
+        dtResult.Columns.Add("Details");
+
+        foreach (DataRow dr in dtResult.Rows)
+        {
+            string status = dr["Status"].ToString();
+            if (Session["PreferredCulture"].ToString() == "zh-CN")
+            {
+                if (status == "3")
+                    dr["Details"] = "未归还";
+                if (status == "1")
+                    dr["Details"] = "已归还";
+                if (status == "2")
+                    dr["Details"] = "已损坏或丢失";
+            }
+            else
+            {
+                if (status == "3")
+                    dr["Details"] = "Not Returned";
+                if (status == "1")
+                    dr["Details"] = "Returned";
+                if (status == "2")
+                    dr["Details"] = "Damaged or Lost";
+            }
+        }
 
         ViewState["normal"] = dtResult;
         Issue.DataSource = dtResult;
