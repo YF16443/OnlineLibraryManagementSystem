@@ -3,6 +3,9 @@
 
 
 <asp:Content ID="head" ContentPlaceHolderID="head" Runat="Server">
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style type="text/css">
         .resultImg img{
             max-height:84px;
@@ -11,6 +14,10 @@
     </style>
     <link href="../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
     <link href="../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' type='text/css'>
+    <link rel="stylesheet" href="../../assets/slider/css/edslider.css">
+	<link rel="stylesheet" href="../../assets/slider/css/styles.css">
+	<link rel="stylesheet" href="../../assets/slider/css/animate-custom.css">
 
 </asp:Content>
 <asp:Content ID="body" ContentPlaceHolderID="body" Runat="Server">
@@ -90,10 +97,63 @@
             </tr>
             </table>
     </div>
+    <div class="container" ID="notice" runat="server">
+		<ul class="mySlideshow">
+			<li class="first">
+				<div class="animated fadeInRight">
+                    <asp:label id="notice1" runat="server" text="No announcement!"></asp:label>
+                   
+                </div>
+
+			</li>
+			<li class="second">
+				<div class="animated fadeInLeft">
+                    <asp:label id="notice2" runat="server" text="No announcement!"></asp:label>
+				</div>
+			</li>
+			<li class="third">
+				<div class="animated fadeInRight">
+                    <asp:label id="notice3" runat="server" text="No announcement!"></asp:label>
+				</div>
+			</li>
+		</ul>
+  <center><a href="ReaderPages/ViewNotice.aspx"><asp:Label ID="search" runat="server" Text="<%$ Resources:Resource, MoreNotices %>"  /></a></center>
+	</div>
+
+	
+
+
+
 </asp:Content>
 <asp:Content ID="foot" runat="server" ContentPlaceHolderID="foot">
     <script src="../Scripts/art-Template/template-web.js"></script>
     <script src="../assets/vendors/dropzone/dropzone.min.js"></script>
     <script src="../assets/vendors/jquery.select-bootstrap.js"></script>
+    <script src="../../assets/slider/js/jquery-1.11.0.min.js"></script>
+	<script src="../../assets/slider/js/jquery.edslider.js"></script>
+	<script>
+		$(document).ready(function(){
+			//Call plugin
+			$('.mySlideshow').edslider({
+				width : '100%',
+				height: 498
+			});
+		});
+	</script>
+     
+    <script>
+        $("#<%=tbSearch.ClientID %>").bind('input propertychange', function () {
+            var body_notice = document.getElementById('<%=notice.ClientID %>');
+            if ($(this).val()) {
+                body_notice.setAttribute("style","visibility:hidden;");
+            }
+            else {
+                body_notice.setAttribute("style","visibility:visible;");
+      
+            }
+    });
+</script>
 </asp:Content>
+
+
 

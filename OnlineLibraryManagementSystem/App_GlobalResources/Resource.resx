@@ -642,8 +642,8 @@
   <data name="LostFineRate" xml:space="preserve">
     <value>Lost Fine Rate &amp; 丢失罚款比例</value>
   </data>
-  <data name="MaximunReservation" xml:space="preserve">
-    <value>Maximun Reservation &amp; 最大预约数目</value>
+  <data name="MaximunIssue" xml:space="preserve">
+    <value>Maximun Issue &amp; 最大借阅数目</value>
   </data>
   <data name="OverdueFinePerDay" xml:space="preserve">
     <value>Overdue Fine/Day &amp; 逾期罚款/天</value>
@@ -727,6 +727,9 @@
   <data name="StackInfo" xml:space="preserve">
     <value>StackInfo &amp; 书库信息</value>
     <comment>书库信息</comment>
+  </data>
+  <data name="MoreNotices" xml:space="preserve">
+    <value>MoreNotices &amp; 更多公告</value>
   </data>
   <data name="ShelfInfo" xml:space="preserve">
     <value>ShelfInfo &amp; 书架信息</value>

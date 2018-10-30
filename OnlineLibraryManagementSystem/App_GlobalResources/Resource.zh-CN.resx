@@ -725,6 +725,9 @@
     <value>书库信息</value>
     <comment>书库信息</comment>
   </data>
+  <data name="MoreNotices" xml:space="preserve">
+    <value>更多公告</value>
+  </data>
   <data name="ShelfInfo" xml:space="preserve">
     <value>书架信息</value>
     <comment>书架信息</comment>

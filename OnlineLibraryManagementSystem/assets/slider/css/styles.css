@@ -1,0 +1,113 @@
+
+
+ul {
+    margin: 0;
+    padding: 0 0 20px 30px;
+}
+
+.container {
+    max-width: 750px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.container {
+    margin: auto;
+}
+
+.mySlideshow .animated {
+    position: absolute;
+}
+
+.first {
+    background: url("../images/5.jpg") center no-repeat;
+}
+
+    .first a,
+    .first img {
+        display: block;
+    }
+
+    .first a {
+        top: 80px;
+        left: 39%;
+        margin-left: -165px;
+    }
+
+    .first div {
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-size: 45px;
+        bottom: 200px;
+        left: 50%;
+        width: 320px;
+        text-align: center;
+        margin-left: -160px;
+    }
+
+.second {
+    background: url("../images/5.jpg") center no-repeat;
+}
+    .second div {
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-size: 45px;
+        bottom: 200px;
+        left: 50%;
+        width: 320px;
+        text-align: center;
+        margin-left: -160px;
+    }   
+    .second img {
+        top: 160px;
+        right: 19%;
+    }
+
+.third {
+    background: url("../images/5.jpg") center no-repeat;
+}
+    .third div {
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-size: 45px;
+        bottom: 200px;
+        left: 50%;
+        width: 320px;
+        text-align: center;
+        margin-left: -160px;
+    } 
+    .third img {
+        top: 100px;
+        left: 23%;
+    }
+
+.fourth {
+    background: url("../images/5.jpg") center no-repeat;
+}
+    .fourth div {
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-size: 45px;
+        bottom: 200px;
+        left: 50%;
+        width: 320px;
+        text-align: center;
+        margin-left: -160px;
+    } 
+    .fourth img {
+        top: 320px;
+        right: 8%;
+    }
+
+.fifth {
+    background: url("../images/5.jpg") center no-repeat;
+}
+    .fifth div {
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-size: 45px;
+        bottom: 200px;
+        left: 50%;
+        width: 320px;
+        text-align: center;
+        margin-left: -160px;
+    } 
+    .fifth img {
+        top: 120px;
+        left: 21%;
+    }
