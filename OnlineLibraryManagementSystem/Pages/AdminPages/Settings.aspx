@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/AdminPages/MasterPage.master" AutoEventWireup="true" CodeFile="SetDeposit.aspx.cs" Inherits="Pages_AdminPages_SetDeposit" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/AdminPages/MasterPage.master" AutoEventWireup="true" CodeFile="Settings.aspx.cs" Inherits="Pages_AdminPages_Settings" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="header" runat="Server">
-        <a> <asp:Label runat="server" Text="<%$ Resources:Resource, SetDeposit %>" CssClass="navbar-brand"></asp:Label> </a>
+        <a> <asp:Label runat="server" Text="<%$ Resources:Resource, Settings %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" contentplaceholderid="body">
 

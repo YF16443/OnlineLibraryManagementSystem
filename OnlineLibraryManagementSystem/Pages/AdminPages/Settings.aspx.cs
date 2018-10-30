@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Pages_AdminPages_SetDeposit : BasePage
+public partial class Pages_AdminPages_Settings : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
