@@ -68,14 +68,9 @@ public partial class Pages_ReaderRegistration : BasePage
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         //检测同账号是否注册过
         string selectReaderSql = "select count(*) as num from Readers where ReaderId = ?readerId or IdNumber = ?idNumber;";
-        string insertReaderSql1 = "INSERT INTO Readers(ReaderId, Phone, Password, Name, IdNumber, Email) " +
-            "VALUES(?readerId, ?telephone, ?password, ?name, ?idNumber, ?email);";
-        string insertReaderSql2 = "INSERT INTO Readers(ReaderId, Phone, Password, Name, IdNumber) " +
-            "VALUES(?readerId, ?telephone, ?password, ?name, ?idNumber);";
-        string insertReaderSql3 = "INSERT INTO Readers(ReaderId, Password, Name, IdNumber, Email) " +
-            "VALUES(?readerId, ?password, ?name, ?idNumber, ?email);";
-        string insertReaderSql4 = "INSERT INTO Readers(ReaderId, Password, Name, IdNumber) " +
-            "VALUES(?readerId, ?password, ?name, ?idNumber);";
+        string insertReaderSql = "INSERT INTO Readers(ReaderId, Password, Name, IdNumber, Phone) " +
+            "VALUES(?readerId, ?password, ?name, ?idNumber, ?phone);";
+        string updateEmailSql = "update Readers set Email = ?email where ReaderId = ?readerId";
         try
         {
             OLMSDBConnection.Open();
@@ -98,45 +93,30 @@ public partial class Pages_ReaderRegistration : BasePage
             }
             reader.Close();
 
-            MySqlCommand cmd = null;
-            if(telephone == "" && email == "")
-            {
-                cmd = new MySqlCommand(insertReaderSql4, OLMSDBConnection);
-            }
-            else if(telephone != "")
-            {
-                cmd = new MySqlCommand(insertReaderSql2, OLMSDBConnection);
-                cmd.Parameters.AddWithValue("?telephone", telephone);
-            }else if(email != "")
-            {
-                cmd = new MySqlCommand(insertReaderSql3, OLMSDBConnection);
-                cmd.Parameters.AddWithValue("?email", email);
-            }
-            else
-            {
-                cmd = new MySqlCommand(insertReaderSql1, OLMSDBConnection);
-                cmd.Parameters.AddWithValue("?email", email);
-                cmd.Parameters.AddWithValue("?telephone", telephone);
-            }
-                
+            MySqlCommand cmd = new MySqlCommand(insertReaderSql, OLMSDBConnection);
             cmd.Parameters.AddWithValue("?readerId", readerId);
             cmd.Parameters.AddWithValue("?name", name);
             cmd.Parameters.AddWithValue("?password", password);
             cmd.Parameters.AddWithValue("?idNumber", idNumber);
-            
-            
+            cmd.Parameters.AddWithValue("?phone", telephone);
             int result = cmd.ExecuteNonQuery();
-            if(result == 1)
+            int result3 = 0;
+            if (result == 1 && email != null || email != "")
+            {
+                MySqlCommand cmd3 = new MySqlCommand(updateEmailSql, OLMSDBConnection);
+                cmd3.Parameters.AddWithValue("?readerId", readerId);
+                cmd3.Parameters.AddWithValue("?email", email);
+                result3 = cmd3.ExecuteNonQuery();
+            }
+            if (result == 1 && result3 == 1)
             {
                 Response.Write("<script>alert('" + Resources.Resource.Successful + "');</script>");
                 //Response.Redirect()
-                return;
             }
             else
             {
                 Response.Write("<script>alert('" + Resources.Resource.Failure + "');</script>");
                 //Response.Redirect()
-                return;
             }
 
         }

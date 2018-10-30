@@ -725,4 +725,7 @@
     <value>书库信息</value>
     <comment>书库信息</comment>
   </data>
+  <data name="MaximunIssue" xml:space="preserve">
+    <value>最大借阅数目</value>
+  </data>
 </root>

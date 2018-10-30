@@ -642,9 +642,6 @@
   <data name="LostFineRate" xml:space="preserve">
     <value>Lost Fine Rate</value>
   </data>
-  <data name="MaximunReservation" xml:space="preserve">
-    <value>Maximun Reservation </value>
-  </data>
   <data name="OverdueFinePerDay" xml:space="preserve">
     <value>Overdue Fine/Day</value>
   </data>
@@ -727,5 +724,8 @@
   <data name="StackInfo" xml:space="preserve">
     <value>StackInfo</value>
     <comment>书库信息</comment>
+  </data>
+  <data name="MaximunIssue" xml:space="preserve">
+    <value>Maximun Issue</value>
   </data>
 </root>
