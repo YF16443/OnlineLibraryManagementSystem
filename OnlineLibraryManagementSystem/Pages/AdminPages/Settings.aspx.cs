@@ -20,14 +20,17 @@ public partial class Pages_AdminPages_Settings : BasePage
             Deposit.Text = getValue(depositKey);
             DamageFineRate.Text = getValue(DamageKey);
             LostFineRate.Text = getValue(LostKey);
-            MaximumIssue.Text = getValue(MaximumKey);
+            MaximunIssue.Text = getValue(MaximumKey);
             OverdueFinePerDay.Text = getValue(OverdueFinePerDayKey);
 
         }
     }
     protected void Submit(object sender, EventArgs e)
     {
-
+        if (!Page.IsValid)
+        {
+            return;
+        }
         string item = "appSettings";
         Configuration config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration(System.Web.HttpContext.Current.Request.ApplicationPath);
         AppSettingsSection appSection = (AppSettingsSection)config.GetSection(item);
@@ -37,7 +40,7 @@ public partial class Pages_AdminPages_Settings : BasePage
         setValue(appSection, DamageKey, DamageValue);
         string LostValue = LostFineRate.Text;
         setValue(appSection, LostKey, LostValue);
-        string MaximunValue = MaximumIssue.Text;
+        string MaximunValue = MaximunIssue.Text;
         setValue(appSection, MaximumKey, MaximunValue);
         string OverdueFinePerDayValue = OverdueFinePerDay.Text;
         setValue(appSection, OverdueFinePerDayKey, OverdueFinePerDayValue);

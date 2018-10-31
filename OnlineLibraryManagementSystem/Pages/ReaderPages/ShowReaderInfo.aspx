@@ -2,128 +2,79 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" runat="server" contentplaceholderid="body">
-    <style type="text/css">
-        .style1 {
-            width: 35%;
-            text-align: center;
-            font-family: Consolas;
-            float:left;
-        }
-        .style2 {
-            width: 35%;
-            text-align: center;
-            font-family: Consolas;
-            margin:auto;
-        }
-        .style3{
-            float:left;
-            width: 65%;
-        }
-        .auto-style1 {
-            text-align: center;
-            margin:0 auto;
-        }
-        .auto-style2 {
-            width: auto;
-            text-align: right;
-            height: 35px;
-            font-size: x-large;
-        }
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                <div class="card">
+                <div class="content">
+                    <h3><asp:Label ID="LabelName" runat="server" Text="" CssClass="title"></asp:Label></h3>
+                    <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                        <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li class="active">
+                                <a href="#issue" aria-controls="issue" role="tab" data-toggle="tab">
+                                    <asp:Label ID="Label6" runat="server" Text="<%$ Resources:Resource, IssueRecords %>" ></asp:Label>
+                                </a>
+                            <li>
+                            <li class="">
+                                <a href="#reversation" aria-controls="reversation" role="tab" data-toggle="tab">
+                                    <asp:Label ID="Label8" runat="server" Text="<%$ Resources:Resource, ReversationRecords %>" ></asp:Label>
+                                </a>
+                            <li>
+                        </ul>
+                    </div>
+                    </div>
+                    <div class="tab-content">
+                        <div id="issue" class="tab-pane active" role="tabpanel">
+                            <div class="table-responsive">
+                                <asp:GridView cssClass="table table-hover" ID="GridView1" runat="server" GridLines="None">
+                                    <HeaderStyle cssClass="text-primary"/>
+                                </asp:GridView>
+                             </div>
+                        </div>
+                        <div id="reversation" class="tab-pane" role="tabpanel">
+                            <div class="table-responsive">
+                                <asp:GridView cssClass="table table-hover" ID="GridView2" runat="server" GridLines="None">
+                                    <HeaderStyle cssClass="text-primary"/>
+                                </asp:GridView>
+                             </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-user" style="padding:15px">
+                        <h4><asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, ReaderInfo %>" CssClass="title"></asp:Label></h4>
+                        <div class="form-group label-floating">
+                            <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Name %>" CssClass="control-label"></asp:Label>
+                            <asp:TextBox ID="TextBoxName" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
+                        </div>
+                        <div class="form-group label-floating">
+                            <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, IDNumber %>" CssClass="control-label"></asp:Label>
+                            <asp:TextBox ID="TextBoxIDNumber" runat="server" CssClass="form-control" Enabled="False" ReadOnly="True"></asp:TextBox>
+                        </div>
+                        <div class="form-group label-floating">
+                            <asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource, Telephone %>" CssClass="control-label"></asp:Label>
+                            <asp:TextBox ID="TextBoxTelephone" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
+                        </div>
+                        <div class="form-group label-floating">
+                            <asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Email %>" CssClass="control-label"></asp:Label>
+                            <asp:TextBox ID="TextBoxEmail" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
+                        </div>
+                        <div class="form-footer text-right">
+                            <asp:LinkButton ID="lbChangePassword" runat="server" Text="<%$ Resources:Resource, ChangePassword %>" PostBackUrl="~/Pages/ReaderPages/ChangePassword.aspx"  CssClass="btn btn-rose btn-fill"></asp:LinkButton>
+                            <asp:LinkButton ID="lbChangeReaderInfomation" runat="server" Text="<%$ Resources:Resource, ChangeReaderInfomation %>" PostBackUrl="~/Pages/ReaderPages/ChangeReaderInfomation.aspx"  CssClass="btn btn-rose btn-fill"></asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        .auto-style4 {
-            width: auto;
-            text-align: left;
-            height: 35px;
-            font-size: x-large;
-        }
-        .auto-style5 {
-            font-size: xx-large;
-        }
-        
-    </style>
-    <div class="auto-style1">
-        <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource,ReaderInfo %>" CssClass="auto-style5"></asp:Label>
-        <br /> <br />
-        <div class="style1">
-            <table>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, Name %>"></asp:Label>
-                </td>
-                <td class="auto-style4">
-                    <asp:Label ID="TextBoxName" runat="server" Text="name"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, IDNumber %>"></asp:Label>
-                </td>
-                <td class="auto-style4">
-                    <asp:Label ID="TextBoxIDNumber" runat="server" Text="IdNumber"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, Telephone %>"></asp:Label>
-                </td>
-                <td class="auto-style4">
-                    <asp:Label ID="TextBoxTelephone" runat="server" Text="phone"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label6" runat="server" Text="<%$ Resources:Resource, Email %>"></asp:Label>
-                </td>
-                <td class="auto-style4">
-                    <asp:Label ID="TextBoxEmail" runat="server" Text="email"></asp:Label>
-                </td>
-            </tr>
-    </table>
-    <table>
-        <tr>
-            <td class="auto-style2" style="text-align:center">
-                <br />
-                <asp:LinkButton ID="lbChangePassword" runat="server" Text="<%$ Resources:Resource, ChangePassword %>" PostBackUrl="~/Pages/ReaderPages/ChangePassword.aspx"></asp:LinkButton>
-                <br />
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style4" style="text-align:center">
-                <asp:LinkButton ID="lbChangeReaderInfomation" runat="server" Text="<%$ Resources:Resource, ChangeReaderInfomation %>" PostBackUrl="~/Pages/ReaderPages/ChangeReaderInfomation.aspx"></asp:LinkButton>
-            </td>
-        </tr>
-    </table>
-        </div>
-        <div class = "style3">
-            <asp:GridView ID="GridView1" runat="server" CellPadding="20" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
-            <AlternatingRowStyle BackColor="White" />
-            <EditRowStyle BackColor="#2461BF" />
-            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-            <RowStyle BackColor="#EFF3FB" />
-            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-            <SortedAscendingCellStyle BackColor="#F5F7FB" />
-            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-            <SortedDescendingCellStyle BackColor="#E9EBEF" />
-            <SortedDescendingHeaderStyle BackColor="#4870BE" />
-        </asp:GridView>
-        </div>
-        <div class ="style3">
-            <asp:GridView ID="GridView2" runat="server" CellPadding="20" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
-            <AlternatingRowStyle BackColor="White" />
-            <EditRowStyle BackColor="#2461BF" />
-            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-            <RowStyle BackColor="#EFF3FB" />
-            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-            <SortedAscendingCellStyle BackColor="#F5F7FB" />
-            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-            <SortedDescendingCellStyle BackColor="#E9EBEF" />
-            <SortedDescendingHeaderStyle BackColor="#4870BE" />
-               </asp:GridView>
 
-        </div>
     </div>
 </asp:Content>
