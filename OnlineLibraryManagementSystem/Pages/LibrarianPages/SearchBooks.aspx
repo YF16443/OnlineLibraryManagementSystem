@@ -6,38 +6,45 @@
             max-width:60px;
         }
     </style>
-    <script src="../Scripts/art-Template/template-web.js"></script>
+    <script src="../../Scripts/art-Template/template-web.js"></script>
+    <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
+    <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="body" ContentPlaceHolderID="body" Runat="Server">
     <div style="padding-top:50px">
         <table style="width: 100%;">
             <tr>
                 <td style="width:35%; text-align:right">
-                    <asp:DropDownList ID="ddlField" runat="server">
+                    <div class="col-md-4 col-md-offset-8">
+                    <asp:DropDownList ID="ddlField" runat="server" CssClass="selectpicker" data-style="btn btn-primary btn-round">
                         <asp:ListItem Text="<%$ Resources:Resource,Title %>" Value="Title"></asp:ListItem>
                         <asp:ListItem Text="<%$ Resources:Resource,Author %>" Value="Author"></asp:ListItem>
                         <asp:ListItem Text="ISBN" Value="ISBN"></asp:ListItem>
                         <asp:ListItem Text="ISSN" Value="ISSN" Enabled="false"></asp:ListItem>
                     </asp:DropDownList>
+                        </div>
                 </td>
-                <td style="width:30%">
-                    <asp:TextBox ID="tbSearch" runat="server" Width="450px"></asp:TextBox>
+                <td style="width:20%">
+                    <asp:TextBox ID="tbSearch" runat="server" Width="400px" CssClass="form-control"></asp:TextBox>
                 </td>
-                <td style="width:35%">
-                    <asp:DropDownList ID="ddlClass" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged">
+                <td style="width:45%">
+                    <div class="col-md-3">
+                    <asp:DropDownList ID="ddlClass" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged" CssClass="selectpicker" data-style="btn btn-primary btn-round">
                         <asp:ListItem Text="<%$ Resources:Resource,Book %>" Value="Books" Selected="True"></asp:ListItem>
                         <asp:ListItem Text="<%$ Resources:Resource,Periodical %>" Value="Periodicals"></asp:ListItem>
                     </asp:DropDownList>
-                    <asp:Button ID="brSearch" runat="server" Text="<%$ Resources:Resource,Search %>" OnClick="brSearch_Click" />
-                    <asp:Button ID="brDelete" runat="server" Text="<%$ Resources:Resource,Delete %>" OnClick="brDelete_Click" />
+                         </div>
+                    <asp:Button ID="brSearch" runat="server" Text="<%$ Resources:Resource,Search %>" OnClick="brSearch_Click" CssClass="btn btn-default btn-fill" />
+                    <asp:Button ID="brDelete" runat="server" Text="<%$ Resources:Resource,Delete %>" OnClick="brDelete_Click" CssClass="btn btn-default btn-fill" />
                 </td>
             </tr>
             <tr>
                 <td style="text-align:center; height:30px" colspan="3">&nbsp;</td>
             </tr>
             <tr>
+                <div class="table-responsive">
                 <td style="text-align:center" colspan="3">
-                    <asp:GridView ID="gvBookResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvBookResult_Sorting" OnPageIndexChanging="gvBookResult_PageIndexChanging">
+                    <asp:GridView ID="gvBookResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvBookResult_Sorting" OnPageIndexChanging="gvBookResult_PageIndexChanging" CssClass="table table-no-bordered" >
                         <Columns>
                             <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True">
                                 <ItemStyle Height="84px" HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" CssClass="resultImg" />
@@ -59,7 +66,7 @@
                         </Columns>
                     </asp:GridView>
                     <br />
-                    <asp:GridView ID="gvPeriodicalResult" runat="server" HorizontalAlign="Center"  AutoGenerateColumns="False"  Enabled="False" AllowSorting="True" OnSorting="gvBookResult_Sorting" OnPageIndexChanging="gvBookResult_PageIndexChanging">
+                    <asp:GridView ID="gvPeriodicalResult" runat="server" HorizontalAlign="Center"  AutoGenerateColumns="False"  Enabled="False" AllowSorting="True" OnSorting="gvBookResult_Sorting" OnPageIndexChanging="gvBookResult_PageIndexChanging" CssClass="table table-no-bordered">
                         <Columns>
                              <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True">
                                 <ItemStyle Height="84px" HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" CssClass="resultImg" />
@@ -87,9 +94,13 @@
                         </Columns>
                     </asp:GridView>
                 </td>
+                </div>
             </tr>
             </table>
     </div>
 </asp:Content>
-
-
+<asp:Content ID="foot" runat="server" ContentPlaceHolderID="foot">
+    <script src="../../Scripts/art-Template/template-web.js"></script>
+    <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
+    <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
+</asp:Content>
