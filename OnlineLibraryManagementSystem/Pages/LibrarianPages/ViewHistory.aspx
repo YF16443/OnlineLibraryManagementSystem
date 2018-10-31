@@ -54,6 +54,7 @@
     <script src="../../assets/vendors/daterangepicker/scripts/vendor.js"></script>
     <script src="../../assets/vendors/daterangepicker/scripts/daterangepicker.js"></script>
     <script>
+       <script>
         var income = $124('#body_Income').DataTable({
             "searching": false,
             "lengthChange": false,
@@ -69,6 +70,7 @@
                 $(this).val(title);
             }
         });
+        
         
 </script>
 
