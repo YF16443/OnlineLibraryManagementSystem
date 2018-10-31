@@ -29,6 +29,7 @@ public partial class Pages_SearchDemo : BasePage
 
     protected void brSearch_Click(object sender, EventArgs e)
     {
+        this.notice.Style.Add("display", "none");
         // 输入过滤，未完成
         if (tbSearch.Text.ToString().Length == 0)
         {
