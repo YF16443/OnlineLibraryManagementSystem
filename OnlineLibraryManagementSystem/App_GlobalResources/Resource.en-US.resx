@@ -201,7 +201,7 @@
     <comment>添加书架</comment>
   </data>
   <data name="StackId" xml:space="preserve">
-    <value>Stack Id</value>
+    <value>StackId</value>
     <comment>书库ID</comment>
   </data>
   <data name="Stack_Summary" xml:space="preserve">

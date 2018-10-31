@@ -14,7 +14,7 @@
     <div style="padding-top:50px">
         <table style="width: 100%;">
             <tr>
-                <td style="width:35%; text-align:right">
+                <td style="width:40%; text-align:right">
                     <div class="col-md-4 col-md-offset-8">
                     <asp:DropDownList ID="ddlField" runat="server" CssClass="selectpicker" data-style="btn btn-primary btn-round">
                         <asp:ListItem Text="<%$ Resources:Resource,Title %>" Value="Title"></asp:ListItem>
@@ -27,8 +27,8 @@
                 <td style="width:20%">
                     <asp:TextBox ID="tbSearch" runat="server" Width="400px" CssClass="form-control"></asp:TextBox>
                 </td>
-                <td style="width:45%">
-                    <div class="col-md-3">
+                <td style="width:40%">
+                    <div class="col-md-4">
                     <asp:DropDownList ID="ddlClass" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged" CssClass="selectpicker" data-style="btn btn-primary btn-round">
                         <asp:ListItem Text="<%$ Resources:Resource,Book %>" Value="Books" Selected="True"></asp:ListItem>
                         <asp:ListItem Text="<%$ Resources:Resource,Periodical %>" Value="Periodicals"></asp:ListItem>

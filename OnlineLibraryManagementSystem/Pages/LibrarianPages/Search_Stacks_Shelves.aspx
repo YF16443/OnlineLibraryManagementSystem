@@ -15,7 +15,7 @@
             text-align:center;
         }
         .auto-style2 {
-            width: 40%;
+            width: 45%;
             height: 35px;
             text-align: right;
             font-size: x-large;
@@ -55,10 +55,10 @@
             <tr>
                 <td style="text-align:center; height:30px" colspan="3"> &nbsp;</td>
             </tr>
-            <tr
+            <tr>
                 <div class="table-responsive">
                 <td style="text-align:center" colspan="3">
-                    <asp:GridView ID="gvStacksResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvStacksResult_Sorting" OnPageIndexChanging="gvStacksResult_PageIndexChanging"  CssClass="table table-no-bordered">
+                    <asp:GridView ID="gvStacksResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvStacksResult_Sorting" OnPageIndexChanging="gvStacksResult_PageIndexChanging"  CssClass="table table-no-bordered" style="width:65%">
                         <Columns>
                             <asp:HyperLinkField HeaderText="<%$ Resources:Resource, StackId %>" SortExpression="StackId" DataNavigateUrlFields="StackId" DataNavigateUrlFormatString="~/Pages/LibrarianPages/StackInfo.aspx?StackId={0}" DataTextField="StackId">
                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -77,7 +77,7 @@
                         </Columns>
                     </asp:GridView>
                     <br />
-                    <asp:GridView ID="gvShelvesResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvShelvesResult_Sorting" OnPageIndexChanging="gvShelvesResult_PageIndexChanging" CssClass="table table-no-bordered">
+                    <asp:GridView ID="gvShelvesResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvShelvesResult_Sorting" OnPageIndexChanging="gvShelvesResult_PageIndexChanging" CssClass="table table-no-bordered" style="width:65%">
                         <Columns>
                             <asp:HyperLinkField HeaderText="<%$ Resources:Resource, ShelfId %>" SortExpression="ShelfId" DataNavigateUrlFields="ShelfId" DataNavigateUrlFormatString="~/Pages/LibrarianPages/ShelfInfo.aspx?ShelfId={0}" DataTextField="ShelfId">
                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
