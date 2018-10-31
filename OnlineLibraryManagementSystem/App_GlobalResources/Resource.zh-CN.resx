@@ -741,4 +741,7 @@
   <data name="BackingOut" xml:space="preserve">
     <value>返回</value>
   </data>
+  <data name="MoreNotice" xml:space="preserve">
+    <value>更多公告</value>
+  </data>
 </root>
