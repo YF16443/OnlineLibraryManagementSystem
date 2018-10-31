@@ -2,8 +2,8 @@
 <asp:Content ID="head" ContentPlaceHolderID="header" Runat="Server">
     <a> <asp:Label runat="server" Text="<%$ Resources:Resource, ShelfInfo %>" CssClass="navbar-brand"></asp:Label> </a>
 
-     <link href="../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
-    <link href="../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
+     <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
+    <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="body" runat="server" ContentPlaceHolderId="body">
     <div class="content">
@@ -25,7 +25,7 @@
 	                                        <div class="form-group">
 	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label10" runat="server" Text="<%$ Resources:Resource,StackId %>"></asp:Label>
 	                                            </label>
-                                                <div class="col-sm-10">
+                                                <div class="col-sm-2">
                                                 <asp:DropDownList ID="DropDownList1" runat="server" CssClass="selectpicker" data-style="btn btn-primary btn-round">
                                                 </asp:DropDownList>
 	                                            </div>
@@ -47,7 +47,7 @@
 	                                            </div>
 	                                        </div>
 	                                    </fieldset>
-                                        <div class="form-group">
+                                        <div class="form-group" style="text-align:center">
                                             <asp:Button ID="AlterButton" runat="server" Text="<%$ Resources:Resource, Alter %>" OnClick="Alter_ShelfInfo" CausesValidation="False" CssClass="btn btn-fill btn-default" />
                                         <asp:Button ID="Button2" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="btn btn-fill btn-default" />
                                             </div>
@@ -59,7 +59,7 @@
             </div>
 </asp:Content>
 <asp:Content ID="foot" runat="server" ContentPlaceHolderID="foot">
-    <script src="../Scripts/art-Template/template-web.js"></script>
-    <script src="../assets/vendors/dropzone/dropzone.min.js"></script>
-    <script src="../assets/vendors/jquery.select-bootstrap.js"></script>
+    <script src="../../Scripts/art-Template/template-web.js"></script>
+    <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
+    <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
 </asp:Content>
