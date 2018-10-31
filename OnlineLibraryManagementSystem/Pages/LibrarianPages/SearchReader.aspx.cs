@@ -26,12 +26,12 @@ public partial class Pages_SearchReader : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         System.Diagnostics.Debug.WriteLine("database is ok");
-        String readersql = "";
+        String readersql = "" ;
         if (DropDownList1.SelectedValue == "0")
         {
             readersql = "select * from Readers where ReaderId like " + "\"%" + search + "%\""
                                            + " or " + "Name like " + "\"%" + search + "%\"";
-            ;
+            
         }
         if (DropDownList1.SelectedValue == "1")
         {
@@ -55,6 +55,7 @@ public partial class Pages_SearchReader : BasePage
                 if (sqlreader.HasRows)
                 {
                     Readers reader = new Readers();
+                    reader.ReaderId= sqlreader["ReaderId"].ToString();
                     reader.Name = (string)sqlreader["Name"];
                     reader.Phone = (string)sqlreader["Phone"];
                     if (sqlreader["Email"] == null) { reader.Email = ""; }
@@ -63,8 +64,8 @@ public partial class Pages_SearchReader : BasePage
                     reader.href = "/Pages/LibrarianPages/ShowReaderInfoByLib.aspx?ReaderId=" + sqlreader["ReaderId"].ToString();
                 }
             }
-            Repeater1.DataSource = readers_list;
-            Repeater1.DataBind();
+            GridView1.DataSource = readers_list;
+            GridView1.DataBind();
             sqlreader.Close();
         }
         catch (MySqlException ex)
@@ -96,9 +97,24 @@ public partial class Pages_SearchReader : BasePage
 
     public class Readers
     {
+        public string ReaderId { get; set; }
         public string Name { get; set; }
         public string href { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+    }
+
+    protected void DropDownList1_SelectedIndexChanged1(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+
     }
 }
