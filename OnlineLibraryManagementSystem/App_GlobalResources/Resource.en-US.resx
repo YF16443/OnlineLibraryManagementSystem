@@ -386,7 +386,7 @@
     <value>Change Password</value>
   </data>
   <data name="ChangeReaderInfomation" xml:space="preserve">
-    <value>Change Reader Infomation</value>
+    <value>Edit</value>
   </data>
   <data name="ConfirmNewPassword" xml:space="preserve">
     <value>Comfirm New Password</value>
@@ -734,6 +734,24 @@
   </data>
   <data name="PhoneError" xml:space="preserve">
     <value>The phone number cannot be empty</value>
+  </data>
+  <data name="RequiredFields" xml:space="preserve">
+    <value>Required fields</value>
+  </data>
+  <data name="IDNumberLegel" xml:space="preserve">
+    <value>Id number is not legal</value>
+  </data>
+  <data name="IssueRecords" xml:space="preserve">
+    <value>issue records</value>
+  </data>
+  <data name="ReversationRecords" xml:space="preserve">
+    <value>Reversation Records</value>
+  </data>
+  <data name="ChangeConfiguration" xml:space="preserve">
+    <value>Change the configuration</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Can't be empty</value>
   </data>
   <data name="BackingOut" xml:space="preserve">
     <value>BackingOut</value>

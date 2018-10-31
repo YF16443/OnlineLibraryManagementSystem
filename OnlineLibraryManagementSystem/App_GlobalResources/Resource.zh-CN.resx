@@ -738,6 +738,21 @@
   <data name="PhoneError" xml:space="preserve">
     <value>电话号码不能为空</value>
   </data>
+  <data name="RequiredFields" xml:space="preserve">
+    <value>必填项</value>
+  </data>
+  <data name="IssueRecords" xml:space="preserve">
+    <value>借阅记录</value>
+  </data>
+  <data name="ReversationRecords" xml:space="preserve">
+    <value>预约记录</value>
+  </data>
+  <data name="ChangeConfiguration" xml:space="preserve">
+    <value>更改配置</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>不能为空</value>
+  </data>
   <data name="BackingOut" xml:space="preserve">
     <value>返回</value>
   </data>
