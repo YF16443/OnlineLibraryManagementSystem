@@ -86,7 +86,6 @@ public partial class Pages_SearchDemo : BasePage
             siForGv = new SortInfo(resultSet.Tables[0]);
             gvBookResult.DataSource = searchResult;
             gvBookResult.DataBind();
-            gvBookResult.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         else
@@ -121,7 +120,6 @@ public partial class Pages_SearchDemo : BasePage
             siForGv = new SortInfo(resultSet.Tables[0]);
             gvPeriodicalResult.DataSource = searchResult;
             gvPeriodicalResult.DataBind();
-            gvPeriodicalResult.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
 
