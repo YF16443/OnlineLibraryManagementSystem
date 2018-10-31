@@ -91,6 +91,7 @@ public partial class Pages_AddShelves : BasePage
             if (result != 0)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "key", "<script language='javascript'>alert('Created Successfully!ShelfId:" + shelfid + "');</script>");
+                //ClientScript.RegisterStartupScript(GetType(), "", "window.alert('Created Successfully!ShelfId:" + shelfid + "');", true);
                 //Response.Write("<script>alert('创建书架成功,书架id为:"+shelfid+"')</script>");
                 return;
             }

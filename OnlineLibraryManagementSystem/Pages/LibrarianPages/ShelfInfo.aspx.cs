@@ -33,12 +33,14 @@ public partial class Pages_ShelfInfo : BasePage
             MySqlDataReader reader = cmdselectstack.ExecuteReader();
             if (reader.Read())
             {
-                labelShelfId.Text = reader["ShelfId"].ToString();
-                labelStackId.Text = reader["StackId"].ToString();
-                labelShelf_Summary.Text= reader["Summary"].ToString();
-                labelShelf_Timestamp.Text = reader["Timestamp"].ToString();
+                LabelShelfId.Text = reader["ShelfId"].ToString();
+                LabelStackId.Text = reader["StackId"].ToString();
+                LabelShelf_Summary.Text= reader["Summary"].ToString();
+                //labelShelf_Timestamp.Text = reader["Timestamp"].ToString();
+                LabelShelf_Timestamp.Text = reader["Timestamp"].ToString();
             }
             reader.Close();
+            Session["shelf_stack"] = LabelStackId.Text;
         }
         catch (MySqlException ex)
         {

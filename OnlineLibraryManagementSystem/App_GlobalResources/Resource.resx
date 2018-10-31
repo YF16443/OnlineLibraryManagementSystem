@@ -731,6 +731,16 @@
   <data name="MoreNotices" xml:space="preserve">
     <value>MoreNotices &amp; 更多公告</value>
   </data>
+  <data name="ShelfInfo" xml:space="preserve">
+    <value>ShelfInfo &amp; 书架信息</value>
+    <comment>书架信息</comment>
+  </data>
+  <data name="EmailError" xml:space="preserve">
+    <value>The email cannot be empty &amp; 邮箱不能为空</value>
+  </data>
+  <data name="PhoneError" xml:space="preserve">
+    <value>The phone number cannot be empty &amp; 电话号码不能为空</value>
+  </data>
   <data name="BackingOut" xml:space="preserve">
     <value>BackingOut &amp; 返回</value>
   </data>

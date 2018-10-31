@@ -166,16 +166,11 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
 
     protected void brDelete_Click(object sender, EventArgs e)
     {
-        //检查登陆
-        if (string.IsNullOrEmpty((string)Session["lid"]))
-        {
-            Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='/Pages/LibrarianLogin.aspx';</script>");
-            return;
-        }
         //删除图书或期刊
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
-      
+        try
+        {
             OLMSDBConnection.Open();
             CheckBox cb = new CheckBox();
             string id = "";
@@ -275,6 +270,14 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
                 Response.Write("<script>alert('Please Select Book!')</script>");
 
             }
- 
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            OLMSDBConnection.Close();
+        }
     }
 }

@@ -18,22 +18,28 @@ public partial class Pages_LibrarianPages_EditShelf : BasePage
             //DropDownList1.Items.Clear();
             string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
             MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+            string stackid = Session["shelf_stack"].ToString();
+            DropDownList1.Items.Add(stackid);
             try
             {
                 OLMSDBConnection.Open();
-                string selectstackid = "select StackId from Stacks";
-                MySqlCommand cmdselectstackid = new MySqlCommand(selectstackid, OLMSDBConnection);
-                MySqlDataReader readerstack = cmdselectstackid.ExecuteReader();
-                DropDownList1.DataSource = readerstack;
-                DropDownList1.DataTextField = "StackId";
-                DropDownList1.DataBind();
+                string select_other_stackid = "select StackId from Stacks where StackId<>'"+stackid+"';";
+                MySqlCommand cmdselect_other_stackid = new MySqlCommand(select_other_stackid, OLMSDBConnection);
+                MySqlDataReader readerstack = cmdselect_other_stackid.ExecuteReader();
+                while (readerstack.Read())
+                {
+                    DropDownList1.Items.Add(readerstack["StackId"].ToString());
+                }
+                //DropDownList1.DataSource = readerstack;
+                //DropDownList1.DataTextField = "StackId";
+                //DropDownList1.DataBind();
                 readerstack.Close();
                 string selectshelf = "select * from Shelves where ShelfId='" + Session["ID"] + "';";
                 MySqlCommand cmdselectshelf = new MySqlCommand(selectshelf, OLMSDBConnection);
                 MySqlDataReader readershlef = cmdselectshelf.ExecuteReader();
                 if (readershlef.Read())
                 {
-                    LabelShelfid.Text = readershlef["ShelfId"].ToString();//书架ID不可修改
+                    LabelShelfId.Text = readershlef["ShelfId"].ToString();//书架ID不可修改
                     TextBoxSummary.Text = readershlef["Summary"].ToString();
                     LabelShelf_Timestamp.Text = readershlef["Timestamp"].ToString();//建架时间不可以改变
                 }
@@ -52,11 +58,6 @@ public partial class Pages_LibrarianPages_EditShelf : BasePage
 
     protected void Alter_ShelfInfo(object sender, EventArgs e)
     {
-        //检查登陆
-        if (string.IsNullOrEmpty((string)Session["lid"]))
-        {
-            Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='/Pages/LibrarianLogin.aspx';</script>");
-        }
         string newsummary = "";
         string newstackid = DropDownList1.SelectedItem.Text;
         //string pattern = "^\\d{1,10}$";
