@@ -38,7 +38,7 @@
                     <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, ISBN %>"></asp:Label>
                 </td>
                 <td class="auto-style4">
-                <asp:TextBox ID="TextBoxISBN" runat="server"  ></asp:TextBox>
+                <asp:TextBox ID="TextBoxISBN" runat="server"></asp:TextBox>
                     <asp:Button ID="ButtonSearch" runat="server" Text="<%$ Resources:Resource, Search %>" OnClick="ButtonSearch_Click" />    
                     <br />
                 </td>
@@ -65,14 +65,14 @@
                 <td class="auto-style2">
                 <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, Title %>"></asp:Label>
                 </td>
-                <td class="auto-style4"><asp:TextBox ID="TextBoxTitle" runat="server" ></asp:TextBox></td>
+                <td class="auto-style4"><asp:TextBox ID="TextBoxTitle" runat="server" AutoPostBack="true"></asp:TextBox></td>
             </tr>
               <tr>
                 <td class="auto-style2">
                 <asp:Label ID="Label6" runat="server" Text="<%$ Resources:Resource, Author %>"></asp:Label>
                       </td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxAuthor" runat="server" ></asp:TextBox>
+                    <asp:TextBox ID="TextBoxAuthor" runat="server" AutoPostBack="true"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -80,7 +80,7 @@
                 <asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource, Pubdate %>"></asp:Label>
                  </td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxPubdate" runat="server" ></asp:TextBox>
+                    <asp:TextBox ID="TextBoxPubdate" runat="server" AutoPostBack="true"></asp:TextBox>
                 </td>
             </tr>
              <tr>
@@ -88,7 +88,7 @@
                 <asp:Label ID="Label8" runat="server" Text="<%$ Resources:Resource, Price %>"></asp:Label>
                  </td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxPrice" runat="server" ></asp:TextBox>
+                    <asp:TextBox ID="TextBoxPrice" runat="server" AutoPostBack="true"></asp:TextBox>
                 </td>
             </tr>
              <tr>
@@ -96,7 +96,7 @@
                 <asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource, ISBN13 %>"></asp:Label>
                  </td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxISBN13" runat="server" ></asp:TextBox>
+                    <asp:TextBox ID="TextBoxISBN13" runat="server" AutoPostBack="true"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -104,7 +104,7 @@
                 <asp:Label ID="Label10" runat="server" Text="<%$ Resources:Resource, ISBN10 %>"></asp:Label>
                  </td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxISBN10" runat="server" ></asp:TextBox>
+                    <asp:TextBox ID="TextBoxISBN10" runat="server" AutoPostBack="true"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -112,7 +112,7 @@
                 <asp:Label ID="Label11" runat="server" Text="<%$ Resources:Resource, Pages %>"></asp:Label>
                  </td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxPages" runat="server" ></asp:TextBox>
+                    <asp:TextBox ID="TextBoxPages" runat="server" AutoPostBack="true"></asp:TextBox>
                 </td>
             </tr>
              <tr>
@@ -120,7 +120,7 @@
                 <asp:Label ID="Label12" runat="server" Text="<%$ Resources:Resource, Publisher %>"></asp:Label>
                  </td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxPublisher" runat="server" ></asp:TextBox>
+                    <asp:TextBox ID="TextBoxPublisher" runat="server"  AutoPostBack="true"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -137,7 +137,7 @@
                     <asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Quantity %>"></asp:Label>
                 </td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxQuantity" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBoxQuantity" runat="server" AutoPostBack="true"></asp:TextBox>
                 </td>
             </tr>
         </table>
@@ -147,3 +147,5 @@
             </div>
         </div>
 </asp:Content>
+<asp:Content ID="content4" ContentPlaceHolderID="foot" runat="server">
+ </asp:Content>

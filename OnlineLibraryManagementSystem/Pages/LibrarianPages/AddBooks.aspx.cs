@@ -16,6 +16,8 @@ public partial class Pages_Addbooks_ISBN : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        //TextBoxISBN.Attributes.Add("onkeydown", "if(event.which || event.keyCode){if ((event.which == 13) || (event.keyCode == 13)) {document.getElementById('" + ButtonSearch.UniqueID + "').click();return false;}} else {return true}; ");
+        this.Page.Form.DefaultButton= ButtonSearch.ClientID.Replace('_', '$');
         if (!Page.IsPostBack)
         {
             string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
@@ -432,6 +434,11 @@ public partial class Pages_Addbooks_ISBN : BasePage
         TextBoxISBN10.Text = book.isbn10;
         TextBoxPages.Text = book.pages;
         TextBoxPublisher.Text = book.publisher;
+    }
+
+    protected void TextBoxISBN_KeyPress(object sendere)
+    {
+        //if(TextBoxISBN.)
     }
 
     protected void ButtonUpload_Click(object sender, EventArgs e)
