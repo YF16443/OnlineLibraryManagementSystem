@@ -52,14 +52,7 @@
         <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource,ReaderInfo %>" CssClass="auto-style5"></asp:Label>
         <br /> <br />
         <table class ="style1"> 
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Account %>"></asp:Label>
-                </td>
-                <td class="auto-style4">
-                    <asp:Label ID="TextBoxAccount" runat="server" Text=""></asp:Label>
-                </td>
-            </tr>
+           
             <tr>
                 <td class="auto-style2">
                     <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, Telephone %>"></asp:Label>
@@ -181,7 +174,7 @@
             </FooterTemplate>
         </asp:Repeater>
         <div class="style1">
-            <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="auto-style7" />
+            <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, BackingOut %>" OnClick="Cancel" CausesValidation="False" CssClass="auto-style7" />
         </div>
     </div>
 </asp:Content>

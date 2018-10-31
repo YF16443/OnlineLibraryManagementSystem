@@ -756,4 +756,7 @@
   <data name="Error" xml:space="preserve">
     <value>Can't be empty &amp; 不能为空</value>
   </data>
+  <data name="BackingOut" xml:space="preserve">
+    <value>BackingOut &amp; 返回</value>
+  </data>
 </root>

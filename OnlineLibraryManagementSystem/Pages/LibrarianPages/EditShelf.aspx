@@ -47,7 +47,7 @@
 	                                            </div>
 	                                        </div>
 	                                    </fieldset>
-                                        <div class="form-group" style="text-align:center">
+                                        <div class="form-group">
                                             <asp:Button ID="AlterButton" runat="server" Text="<%$ Resources:Resource, Alter %>" OnClick="Alter_ShelfInfo" CausesValidation="False" CssClass="btn btn-fill btn-default" />
                                         <asp:Button ID="Button2" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="btn btn-fill btn-default" />
                                             </div>
