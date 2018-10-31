@@ -738,4 +738,7 @@
   <data name="PhoneError" xml:space="preserve">
     <value>电话号码不能为空</value>
   </data>
+  <data name="BackingOut" xml:space="preserve">
+    <value>返回</value>
+  </data>
 </root>
