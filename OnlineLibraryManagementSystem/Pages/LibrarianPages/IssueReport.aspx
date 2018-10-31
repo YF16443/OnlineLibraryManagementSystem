@@ -30,6 +30,7 @@
                         <asp:BoundField HeaderText="<%$ Resources:Resource, Title %>" DataField="Title" ReadOnly="true" />
                         <asp:BoundField HeaderText="<%$ Resources:Resource, IssueTime %>" DataField="IssueTime" ReadOnly="true" />
                         <asp:BoundField HeaderText="<%$ Resources:Resource, ReturnTime %>" DataField="ReturnTime" ReadOnly="true" />
+                        <asp:BoundField HeaderText="<%$ Resources:Resource, Details %>" DataField="Details" ReadOnly="true" />
                     </Columns>
                 </asp:GridView>
             </div>

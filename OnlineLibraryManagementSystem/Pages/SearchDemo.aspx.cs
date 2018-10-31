@@ -24,6 +24,7 @@ public partial class Pages_SearchDemo : BasePage
         {
             lbLogin.PostBackUrl = "~/Pages/ReaderLogin.aspx";
         }
+        myshow();
     }
 
     protected void brSearch_Click(object sender, EventArgs e)
@@ -85,8 +86,9 @@ public partial class Pages_SearchDemo : BasePage
             siForGv = new SortInfo(resultSet.Tables[0]);
             gvBookResult.DataSource = searchResult;
             gvBookResult.DataBind();
+            gvBookResult.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
-           
+
         else
         {
             DataTable searchResult = resultSet.Tables[0];
@@ -119,6 +121,7 @@ public partial class Pages_SearchDemo : BasePage
             siForGv = new SortInfo(resultSet.Tables[0]);
             gvPeriodicalResult.DataSource = searchResult;
             gvPeriodicalResult.DataBind();
+            gvPeriodicalResult.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
 
@@ -168,5 +171,46 @@ public partial class Pages_SearchDemo : BasePage
         GridView SortGv = (GridView)sender;
         int page = e.NewPageIndex;
         siForGv.SortDataBind(SortGv, page, true);
+    }
+
+    protected void tbSearch_TextChanged(object sender, EventArgs e)
+    {
+        if (tbSearch.Text == "") this.notice.Style.Add("display", "block");
+        else this.notice.Style.Add("display", "none");
+    }
+    public void myshow()
+    {
+     
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        var OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+
+        MySqlCommand getDeposit_sql = new MySqlCommand("select * from Notices ORDER BY NoticeId DESC LIMIT 3");
+        var result1Adapter = new MySqlDataAdapter();
+        result1Adapter.SelectCommand = getDeposit_sql;
+        result1Adapter.SelectCommand.Connection = OLMSDBConnection;
+        var result1Set = new DataSet();
+
+        OLMSDBConnection.Open();
+        result1Adapter.Fill(result1Set);
+        OLMSDBConnection.Close();
+        DataTable search1Result = result1Set.Tables[0];
+
+        DataTable dtResult = new DataTable();
+        dtResult = search1Result.Copy();
+        String [] notices= { "No announcement", "No announcement", "No announcement", "", "" };
+        int i = 0;
+        foreach (DataRow dr in dtResult.Rows)
+        {
+            notices[i++] = dr["Details"].ToString();
+        }
+        notice1.Text = notices[0].ToString();
+        notice2.Text = notices[1].ToString();
+        notice3.Text = notices[2].ToString();
+
+    }
+
+    protected void tbSearch_TextChanged1(object sender, EventArgs e)
+    {
+
     }
 }

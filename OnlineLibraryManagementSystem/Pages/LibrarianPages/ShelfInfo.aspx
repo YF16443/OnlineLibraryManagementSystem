@@ -2,81 +2,58 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
+<asp:Content ID="header" ContentPlaceHolderID="header" Runat="Server">
+    <a> <asp:Label runat="server" Text="<%$ Resources:Resource, ShelfInfo %>" CssClass="navbar-brand"></asp:Label> </a>
+</asp:Content>
 <asp:Content ID="Content2" runat="server" contentplaceholderid="body">
-    <style type="text/css">
-        .style1 {
-            width: 100%;
-            text-align: center;
-            font-family: Consolas;
-        }
-        .auto-style1 {
-            text-align: center;
-        }
-        .auto-style2 {
-            width: 50%;
-            text-align: right;
-            height: 35px;
-            font-size: x-large;
-        }
-
-        .auto-style4 {
-            width: 50%;
-            text-align: left;
-            height: 35px;
-            font-size: x-large;
-        }
-        .auto-style5 {
-            font-size: xx-large;
-        }
-        .auto-style7 {
-            font-size: large;
-            text-align: center;
-        }
-    </style>
-    <div class="auto-style1">
-        <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource,Details %>" CssClass="auto-style5"></asp:Label>
-        <br /> <br />
-        <table class ="style1">
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, ShelfId %>"></asp:Label>
-                </td>
-                <td class="auto-style4">
-                    &nbsp
-                    <asp:Label ID="labelShelfId" runat="server" Text="labelShelfId"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, StackId %>"></asp:Label>
-                </td>
-                <td class="auto-style4">
-                    &nbsp
-                    <asp:Label ID="labelStackId" runat="server" Text="labelStackId"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Shelf_Summary %>"></asp:Label>
-                </td>
-                <td class="auto-style4">
-                    &nbsp
-                    <asp:Label ID="labelShelf_Summary" runat="server" Text="labelShelf_Summary"></asp:Label>
-                </td>
-            </tr>
-               <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, Shelf_Timestamp %>"></asp:Label>
-                </td>
-                <td class="auto-style4">
-                    &nbsp
-                    <asp:Label ID="labelShelf_Timestamp" runat="server" Text="labelShelf_Timestamp"></asp:Label>
-                </td>
-            </tr>
-        </table>
-        <div class="style1">
-            <asp:Button ID="EditButton" runat="server" Text="<%$ Resources:Resource, Edit %>" OnClick="Edit_ShelfInfo" CausesValidation="False" CssClass="auto-style7" />
-             <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="auto-style7" />
-        </div>
-    </div>
+    <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                    <div class="content">
+	                                    <fieldset>
+	                                        <div class="form-group">
+	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label6" runat="server" Text="<%$ Resources:Resource,ShelfId %>"></asp:Label>
+	                                            </label>
+                                                <div class="col-sm-10">
+                                                    <asp:Label ID="LabelShelfId" runat="server" Text="ShelfId" Cssclass="form-control"></asp:Label>
+	                                            </div>
+	                                        </div>
+	                                    </fieldset>
+                                        <fieldset>
+	                                        <div class="form-group">
+	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label10" runat="server" Text="<%$ Resources:Resource,StackId %>"></asp:Label>
+	                                            </label>
+                                                <div class="col-sm-10">
+                                                    <asp:Label ID="LabelStackId" runat="server" Text="StackId" Cssclass="form-control"></asp:Label>
+	                                            </div>
+	                                        </div>
+	                                    </fieldset>
+                                         <fieldset>
+	                                        <div class="form-group">
+	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label8" runat="server" Text="<%$ Resources:Resource, Stack_Summary %>"></asp:Label></asp:Label></label>
+	                                            <div class="col-sm-10">
+                                                    <asp:Label ID="LabelShelf_Summary" runat="server" Text="Shelf_Summary" Cssclass="form-control"></asp:Label>
+	                                            </div>
+	                                        </div>
+	                                    </fieldset>
+                                         <fieldset>
+	                                        <div class="form-group">
+	                                            <label Class="col-sm-2 control-label"><asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource, Shelf_Timestamp %>"></asp:Label></label>
+	                                            <div class="col-sm-10">
+	                                                <asp:Label ID="LabelShelf_Timestamp" runat="server" Text="Shelf_Timestamp" Cssclass="form-control"></asp:Label>
+	                                            </div>
+	                                        </div>
+	                                    </fieldset>
+                                        <div class="form-group">
+                                        <asp:Button ID="Button1" runat="server" Text="<%$ Resources:Resource, Edit %>"  OnClick="Edit_ShelfInfo" CausesValidation="False" CssClass="btn btn-fill btn-default" />
+                                        <asp:Button ID="Button2" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="btn btn-fill btn-default" />
+                                            </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>   
 </asp:Content>
