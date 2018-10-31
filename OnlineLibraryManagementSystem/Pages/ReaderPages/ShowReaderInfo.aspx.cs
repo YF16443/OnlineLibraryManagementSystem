@@ -146,8 +146,8 @@ public partial class Pages_ShowReaderInfo : BasePage
                         DateTime time = (DateTime)reader3["ReservingTime"];
                         DateTime nowTime = DateTime.Now;
                         TimeSpan delta = nowTime.Subtract(time);
-                        double d = (double)delta.TotalHours;
-                        r.time = String.Format("{0:F}", ReversationTime2 - d);
+                        double d = (double)delta.TotalMinutes;
+                        r.time = String.Format("{0:F}", ReversationTime2*60 - d);
                         reversationRecords.Add(r);
                     }
                 }
