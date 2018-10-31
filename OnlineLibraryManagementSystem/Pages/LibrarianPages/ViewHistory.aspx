@@ -54,8 +54,8 @@
     <script src="../../assets/vendors/daterangepicker/scripts/vendor.js"></script>
     <script src="../../assets/vendors/daterangepicker/scripts/daterangepicker.js"></script>
     <script>
-       <script>
-        var income = $124('#body_Income').DataTable({
+   
+        var income = $124('#<%=GridView1.ClientID %>').DataTable({
             "searching": false,
             "lengthChange": false,
             "order": [[3, 'asc']],
