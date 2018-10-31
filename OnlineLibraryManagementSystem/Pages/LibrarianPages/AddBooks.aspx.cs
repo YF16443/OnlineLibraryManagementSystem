@@ -35,11 +35,6 @@ public partial class Pages_Addbooks_ISBN : BasePage
 
     protected void Addbooks(object sender, EventArgs e)
     {
-        //检查登陆
-        if (string.IsNullOrEmpty((string)Session["lid"]))
-        {
-            Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='/Pages/LibrarianLogin.aspx';</script>");
-        }
         //扫描ISBN获得图书信息并添加
         string isbn = "";
         string isbnparttern = "^[0-9A-Z]{13}$";
