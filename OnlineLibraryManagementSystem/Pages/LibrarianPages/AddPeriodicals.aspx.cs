@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using MySql.Data.MySqlClient;
+using System.IO;
 
 public partial class Pages_LibrarianPages_AddPeriodicals : BasePage
 {
@@ -45,35 +46,161 @@ public partial class Pages_LibrarianPages_AddPeriodicals : BasePage
     {
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
-
-        string imageURL = ""; //这里缺封面相关代码
-        string title = tbTitle.Text.ToString();
-        string country = tbCountry.Text.ToString();
-        string type = ddlShelf.SelectedValue.ToString();
-        string issn = tbISSN.Text.ToString();
-        string price = tbPrice.Text.ToString();
-        string shelf = ddlShelf.SelectedValue.ToString();
-
-        string submit_sql = "insert into " +
-                            "Periodicals(ISSN,ImageURL,Title,Country,Type,ShelfId) " +
-                            "value(@ISSN,@ImageURL,@Title,@Country,@Type,@ShelfId);";
-        var submit_cmd = new MySqlCommand(submit_sql, OLMSDBConnection);
-        submit_cmd.Parameters.AddWithValue("@ISSN", issn);
-        submit_cmd.Parameters.AddWithValue("@ImageURL", imageURL);
-        submit_cmd.Parameters.AddWithValue("@Title", title);
-        submit_cmd.Parameters.AddWithValue("@Country", country);
-        submit_cmd.Parameters.AddWithValue("@Type", type);
-        submit_cmd.Parameters.AddWithValue("@ShelfId", shelf);
-
-        OLMSDBConnection.Open();
-        if (submit_cmd.ExecuteNonQuery() == 1)
+        
+        string title = "";
+        string country = "";
+        string issn = "";
+        string price = "";
+        string integerparttern = "^[1-9]\\d*$";
+        string issnparttern = "^[0-9A-Z]{8}$";
+        if (tbTitle.Text.Trim() != "")
         {
-            Response.Write("<script>alert('Add Periodical Successfully!')</script>");
+            title = tbTitle.Text.Trim();
         }
         else
         {
-            Response.Write("<script>alert('Add Periodical Failure!')</script>");
+            Response.Write("<script>alert('Title Is Null!')</script>");
+            return;
         }
-        OLMSDBConnection.Clone();
+        if (tbCountry.Text.Trim() != "")
+        {
+            country = tbCountry.Text.Trim();
+        }
+        else
+        {
+            Response.Write("<script>alert('Country Is Null!')</script>");
+            return;
+        }
+        if (System.Text.RegularExpressions.Regex.IsMatch(tbISSN.Text.Trim(), issnparttern))
+        {
+            issn = tbISSN.Text.Trim();
+        }
+        else
+        {
+            Response.Write("<script>alert('Error ISSN Format!')</script>");
+            return;
+        }
+        if (System.Text.RegularExpressions.Regex.IsMatch(tbPrice.Text, integerparttern))
+        {
+            price = tbPrice.Text;
+        }
+        else
+        {
+            Response.Write("<script>alert('Price Must Bigger Than Zero!')</script>");
+            return;
+        }
+        string type = ddlType.SelectedValue.ToString();
+        string shelf = ddlShelf.SelectedValue.ToString();
+        string imageURL = imCover.ImageUrl;
+
+        string selectissn = "select count(*) as num from Periodicals where ISSN='" + issn + "';";
+        string submit_sql = "insert into " +
+                            "Periodicals(ISSN,ImageURL,Title,Country,Type,ShelfId,Price) " +
+                            "value(@ISSN,@ImageURL,@Title,@Country,@Type,@ShelfId,@Price);";
+        try
+        { 
+            OLMSDBConnection.Open();
+            MySqlCommand cmdselect = new MySqlCommand(selectissn, OLMSDBConnection);
+            MySqlDataReader reader = cmdselect.ExecuteReader();
+            while (reader.Read())
+            {
+                if (reader.HasRows)
+                {
+                    Int64 count = (Int64)reader["num"];
+                    if (count > 0)
+                    {
+                        Response.Write("<script>alert('Periodical Is Exist!')</script>");
+                        return;
+                    }
+                    break;
+                }
+            }
+            reader.Close();
+            var submit_cmd = new MySqlCommand(submit_sql, OLMSDBConnection);
+            submit_cmd.Parameters.AddWithValue("@ISSN", issn);
+            submit_cmd.Parameters.AddWithValue("@ImageURL", imageURL);
+            submit_cmd.Parameters.AddWithValue("@Title", title);
+            submit_cmd.Parameters.AddWithValue("@Country", country);
+            submit_cmd.Parameters.AddWithValue("@Type", type);
+            submit_cmd.Parameters.AddWithValue("@ShelfId", shelf);
+            submit_cmd.Parameters.AddWithValue("@Price", price);
+                
+            if (submit_cmd.ExecuteNonQuery() == 1)
+            {
+                Response.Write("<script>alert('Add Periodical Successfully!')</script>");
+            }
+            else
+            {
+                Response.Write("<script>alert('Add Periodical Failure!')</script>");
+            }
+    }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            OLMSDBConnection.Close();
+        }
+    }
+
+    protected void ButtonUpload_Click(object sender, EventArgs e)
+    {
+        bool filesValid = false;
+        //文件上传路径
+        string filePath = this.fuCover.PostedFile.FileName;
+        //获取文件名称
+        string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
+        //获取文件大小
+        //string fileSize = Convert.ToString(FileUpload1.PostedFile.ContentLength);
+        //获取文件扩展名
+        //string fileExtend = filePath.Substring(filePath.LastIndexOf(".")+1);
+        //获取文件类型
+        //string fileType = FileUpload1.PostedFile.ContentType;
+
+        if (this.fuCover.HasFile)
+        {
+            //转换成小写形式
+            string fileExtension = System.IO.Path.GetExtension(this.fuCover.FileName).ToLower();
+            string[] restricyExtension = { ".gif", ".jpg", ".bmp", ".png" };
+            //判断文件是否符合要求
+            for (int i = 0; i < restricyExtension.Length; i++)
+            {
+                if (fileExtension == restricyExtension[i])
+                {
+                    filesValid = true;
+
+                }
+
+            }
+            //如果文件符合要求，调用SaveAS()方法上传，并显示相关信息
+            if (filesValid == true)
+            {
+                //判断是否有该路径  
+                string wantPath = Server.MapPath("~/Images/Cover/");
+                if (!Directory.Exists(wantPath))
+                {   //如果不存在就创建
+                    Directory.CreateDirectory(wantPath);
+                    this.fuCover.SaveAs(Server.MapPath("~/Images/Cover/") + fileName);
+                    imCover.ImageUrl = "~/Images/Cover/" + fileName;
+                    Response.Write("<script>alert('Upload Successfully!')</script>");
+                }
+                else
+                {
+
+                    this.fuCover.SaveAs(Server.MapPath("~/Images/Cover/") +
+                    fileName);
+                    imCover.ImageUrl = "~/Images/Cover/" + fileName;
+                    Response.Write("<script>alert('Upload Successfully!')</script>");
+
+                }
+
+            }
+            else
+            {
+                Response.Write("<script>alert('Error Format!')</script>");
+                return;
+            }
+        }
     }
 }

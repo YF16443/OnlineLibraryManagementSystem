@@ -43,7 +43,6 @@
                     <br />
                 </td>
             </tr>
-            <br>
             <tr>
                 <td>
                     &nbsp
@@ -124,6 +123,7 @@
                     <asp:TextBox ID="TextBoxPublisher" runat="server" ></asp:TextBox>
                 </td>
             </tr>
+            <tr>
                 <td class="auto-style2">
                     <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Position %>"></asp:Label>
                     
@@ -141,10 +141,9 @@
                 </td>
             </tr>
         </table>
-        </br>
+        <br/>
         <div class="style1">
-            </div>
              <asp:Button ID="AddButton" runat="server" Text="<%$ Resources:Resource, Add %>" OnClick="Addbooks"  CausesValidation="False" CssClass="auto-style7" />
+            </div>
         </div>
-    </div>   
 </asp:Content>

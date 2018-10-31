@@ -49,7 +49,7 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
         else
         {
             gvPeriodicalResult.Enabled = true;
-            getResult_sql = new MySqlCommand("select Title " +
+            getResult_sql = new MySqlCommand("select * " +
                                              "from Periodicals " +
                                              "where " + (ddlField.SelectedValue.ToString() + " like '%" + keyword + "%';"), OLMSDBConnection);
             // 同上
@@ -69,17 +69,47 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
         resultAdapter.Fill(resultSet);
         OLMSDBConnection.Close();
 
-        DataTable searchResult = resultSet.Tables[0];
-        siForGv = new SortInfo(resultSet.Tables[0]);
+        //DataTable searchResult = resultSet.Tables[0];
+        //siForGv = new SortInfo(resultSet.Tables[0]);
 
         if (ddlClass.SelectedValue.ToString().Equals("Books"))
         {
+            DataTable searchResult = resultSet.Tables[0];
+            siForGv = new SortInfo(resultSet.Tables[0]);
             gvBookResult.DataSource = searchResult;
             gvBookResult.DataBind();
         }
 
         else
         {
+            DataTable searchResult = resultSet.Tables[0];
+            searchResult.Columns.Add("NewType");
+            foreach (DataRow row in searchResult.Rows)
+            {
+                if (Session["PreferredCulture"].ToString() == "zh-CN")
+                {
+                    if (row["Type"].ToString() == "0")
+                    {
+                        row["NewType"] = "杂志";
+                    }
+                    if (row["Type"].ToString() == "1")
+                    {
+                        row["NewType"] = "报纸";
+                    }
+                }
+                else
+                {
+                    if (row["Type"].ToString() == "0")
+                    {
+                        row["NewType"] = "Magazine";
+                    }
+                    if (row["Type"].ToString() == "1")
+                    {
+                        row["NewType"] = "Newspaper";
+                    }
+                }
+            }
+            siForGv = new SortInfo(resultSet.Tables[0]);
             gvPeriodicalResult.DataSource = searchResult;
             gvPeriodicalResult.DataBind();
         }
@@ -140,17 +170,16 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
         if (string.IsNullOrEmpty((string)Session["lid"]))
         {
             Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='/Pages/LibrarianLogin.aspx';</script>");
+            return;
         }
         //删除图书或期刊
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
-        try
-        {
+      
             OLMSDBConnection.Open();
             CheckBox cb = new CheckBox();
             string id = "";
             int result = 0;
-            int resultinsertbookmanagement = 0;
             if (ddlClass.SelectedValue.ToString() == "Books")//删除图书
             {
                 foreach (GridViewRow row in gvBookResult.Rows)
@@ -181,9 +210,62 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
                 gvBookResult.DataSource = searchResult;
                 gvBookResult.DataBind();
             }
-            if (ddlClass.SelectedValue.ToString() == "Periodical")//删除期刊
-            { }
-            if (result != 0 && resultinsertbookmanagement != 0)
+            if (ddlClass.SelectedValue.ToString() == "Periodicals")//删除期刊
+            {
+                foreach (GridViewRow row in gvPeriodicalResult.Rows)
+                {
+                    cb = (CheckBox)row.FindControl("CheckBoxDeletePeriodical");
+                    if (cb != null && cb.Checked == true)
+                    {
+                        id = row.Cells[1].Text;
+                        string deleteperiodical = "delete from Periodicals where Title='" + id + "';";
+                        MySqlCommand cmddeleteperiodical = new MySqlCommand(deleteperiodical, OLMSDBConnection);
+                        result += cmddeleteperiodical.ExecuteNonQuery();
+                    }
+                }
+                //重新绑定
+                string keyword = tbSearch.Text.ToString();
+                MySqlCommand getResult_sql = new MySqlCommand("select * " +
+                                             "from Periodicals " +
+                                             "where " + (ddlField.SelectedValue.ToString() + " like '%" + keyword + "%';"), OLMSDBConnection);
+                MySqlDataAdapter resultAdapter = new MySqlDataAdapter(getResult_sql);
+                DataSet resultSet = new DataSet();
+
+                resultAdapter.Fill(resultSet);
+
+                DataTable searchResult = resultSet.Tables[0];
+                searchResult.Columns.Add("NewType");
+                foreach (DataRow row in searchResult.Rows)
+                {
+                    if (Session["PreferredCulture"].ToString() == "zh-CN")
+                    {
+                        if (row["Type"].ToString() == "0")
+                        {
+                            row["NewType"] = "杂志";
+                        }
+                        if (row["Type"].ToString() == "1")
+                        {
+                            row["NewType"] = "报纸";
+                        }
+                    }
+                    else
+                    {
+                        if (row["Type"].ToString() == "0")
+                        {
+                            row["NewType"] = "Magazine";
+                        }
+                        if (row["Type"].ToString() == "1")
+                        {
+                            row["NewType"] = "Newspaper";
+                        }
+                    }
+                }
+                siForGv = new SortInfo(resultSet.Tables[0]);
+                gvPeriodicalResult.Enabled = true;
+                gvPeriodicalResult.DataSource = searchResult;
+                gvPeriodicalResult.DataBind();
+            }
+            if (result != 0)
             {
                 Response.Write("<script>alert('Deleted Successfully!')</script>");
 
@@ -193,14 +275,6 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
                 Response.Write("<script>alert('Please Select Book!')</script>");
 
             }
-        }
-        catch (MySqlException ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
-        finally
-        {
-            OLMSDBConnection.Close();
-        }
+ 
     }
 }

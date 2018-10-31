@@ -9,12 +9,10 @@
             <div class="form-group">
                 <label><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, CategoryId %>"></asp:Label></label>
                 <asp:TextBox ID="newId" runat="server" CssClass="form-control"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvId" runat="server" ControlToValidate="newId" ErrorMessage="*"></asp:RequiredFieldValidator>
             </div>
             <div class="form-group">
                 <label><asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, CategoryName %>"></asp:Label></label>
                 <asp:TextBox ID="newName" runat="server" CssClass="form-control"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="newName" ErrorMessage="*"></asp:RequiredFieldValidator>
             </div>
             <asp:Button ID="Add" runat="server" Text="<%$ Resources:Resource, Add %>" CssClass="btn btn-fill btn-default" OnClick="Add_Click" />
         </div>

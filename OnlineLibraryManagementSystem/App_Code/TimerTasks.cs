@@ -134,7 +134,7 @@ public class TimerTasks
     static void Task_ClearReservation(object sender, EventArgs e)
     {
         int overdueReservationDuration = int.Parse(ConfigurationManager.AppSettings["OverdueReservationDuration"].ToString());
-        TimeSpan overdueRes_time = TimeSpan.FromDays(overdueReservationDuration);
+        TimeSpan overdueRes_time = TimeSpan.FromHours(overdueReservationDuration);
         DateTime time_now = DateTime.Now;
 
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;

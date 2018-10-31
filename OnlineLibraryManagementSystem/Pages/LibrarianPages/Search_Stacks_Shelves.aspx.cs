@@ -49,7 +49,6 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
             }
             if (TextBoxID.Text == ""||TextBoxID.Text.Trim().Length==0)
             {
-                Response.Write("<script>alert('Search Text Is Null!')</script>");
                 return;
             }
             else id = TextBoxID.Text.Trim();
@@ -190,11 +189,12 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         try
-        {
+        { 
             OLMSDBConnection.Open();
             CheckBox cb = new CheckBox();
             string id = "";
             int result = 0;
+            int deleteflag = 0;
             if (DropDownList1.SelectedValue.ToString() == "Stacks")
             {
                 foreach (GridViewRow row in gvStacksResult.Rows)
@@ -203,6 +203,22 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
                     if (cb!=null&&cb.Checked == true)
                     {
                         id = (row.Cells[0].Controls[0] as HyperLink).Text;
+                        string selectstacknum = "select Count(*) as numstack from Shelves where StackId='" + id + "';";
+                        MySqlCommand cmdselectstacknum = new MySqlCommand(selectstacknum, OLMSDBConnection);
+                        MySqlDataReader readerstacknum = cmdselectstacknum.ExecuteReader();
+                        if (readerstacknum.Read())
+                        {
+                            if (int.Parse(readerstacknum["numstack"].ToString()) > 0)
+                            {
+                                Response.Write("<script>alert('Can\\' Delete Stack " + id + "')</script >" );
+                                readerstacknum.Close();
+                                deleteflag = 1;
+                                continue;
+                                //break;
+                                //return;
+                            }
+                        }
+                        readerstacknum.Close();
                         string deletestack = "delete from Stacks where StackId='" + id + "';";
                         MySqlCommand cmddeletestack = new MySqlCommand(deletestack, OLMSDBConnection);
                         result += cmddeletestack.ExecuteNonQuery();
@@ -219,6 +235,21 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
                     if (cb!=null&&cb.Checked==true)
                     {
                         id = (row.Cells[0].Controls[0] as HyperLink).Text;
+                        string selectshelfnum = "select count(*) as numshelf from BookBarcodes where ShelfId='" + id + "';";
+                        MySqlCommand cmdselectshelfnum = new MySqlCommand(selectshelfnum, OLMSDBConnection);
+                        MySqlDataReader readershelfnum = cmdselectshelfnum.ExecuteReader();
+                        if (readershelfnum.Read())
+                        {
+                            if (int.Parse(readershelfnum["numshelf"].ToString()) > 0)
+                            {
+                                Response.Write("<script>alert('Can\\'t Delete Shelf " + id + "')</script>");
+                                readershelfnum.Close();
+                                deleteflag = 1;
+                                continue;
+                            //return;
+                        }
+                        }
+                        readershelfnum.Close();
                         string deleteshelf = "delete from Shelves where ShelfId='" + id + "';";
                         MySqlCommand cmddeleteshelf = new MySqlCommand(deleteshelf, OLMSDBConnection);
                         result += cmddeleteshelf.ExecuteNonQuery();
@@ -227,14 +258,14 @@ public partial class Pages_Search_Stacks_Shelves : BasePage
                 string selectshelf = "select * from Shelves where ShelfId like '%" + TextBoxID.Text + "%';";
                 BindDataTogvResult(selectshelf);
             }
-            if (result != 0)
+            if (result != 0&&deleteflag!=1)
             {
                 Response.Write("<script>alert('Deleted Successfully')</script>");
                 return;
             }
             else
             {
-                Response.Write("<script>alert('Please Select Item!')</script>");
+                Response.Write("<script>alert('Please Select Item Again!')</script>");
                 return;
             }
         }
