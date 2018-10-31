@@ -25,9 +25,6 @@
             height: 35px;
             font-size: x-large;
         }
-        .auto-style5 {
-            font-size: xx-large;
-        }
         .auto-style7 {
             font-size: large;
         }
@@ -41,14 +38,8 @@
                 </td>
                 <td class="auto-style4">
                     <asp:TextBox ID="TextBoxName" runat="server"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Account %>"></asp:Label>
-                </td>
-                <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxAccount" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                        ErrorMessage="<%$ Resources:Resource, UserNameError %>" ControlToValidate ="TextBoxName" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -57,6 +48,11 @@
                 </td>
                 <td class="auto-style4">
                     <asp:TextBox ID="TextBoxIDNumber" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                        ErrorMessage="<%$ Resources:Resource, IdNumberError %>" ControlToValidate="TextBoxIDNumber" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+                        ErrorMessage="RegularExpressionValidator" ControlToValidate="TextBoxIDNumber" ValidationExpression="^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$" Display="Dynamic" ForeColor="Red" ></asp:RegularExpressionValidator>
+                    
                 </td>
             </tr>
             <tr>
@@ -65,6 +61,8 @@
                 </td>
                 <td class="auto-style4">
                     <asp:TextBox ID="TextBoxTelephone" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                        ErrorMessage="<%$ Resources:Resource, PhoneError %>" ControlToValidate ="TextBoxTelephone" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -73,16 +71,15 @@
                 </td>
                 <td class="auto-style4">
                     <asp:TextBox ID="TextBoxEmail" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+                        ErrorMessage="<%$ Resources:Resource, EmailError %>" ControlToValidate ="TextBoxEmail" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
         </table>
         <br />
-        <asp:checkbox runat="server" Id = "IsDeposit" Text="<%$ Resources:Resource, IsDeposit %>" Checked="TRUE" CssClass="auto-style2"></asp:checkbox>
-        <br /> <br />
+        <asp:checkbox runat="server" Id = "IsDeposit" Text="<%$ Resources:Resource, IsDeposit %>" CssClass="auto-style2"></asp:checkbox>        <br /> <br />
         <div class="style1">
-            <asp:Button ID="SubmitButton" runat="server" Text="<%$ Resources:Resource, Register %>" OnClick="RegisterReader"  CausesValidation="False" CssClass="auto-style7" />
-            <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="auto-style7" />
-        </div>
+            <asp:Button ID="SubmitButton" runat="server" Text="<%$ Resources:Resource, Register %>"  OnClick="RegisterReader"  CausesValidation="True" CssClass="auto-style7" />
     </div>
   
       

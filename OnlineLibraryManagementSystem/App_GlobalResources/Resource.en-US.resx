@@ -729,4 +729,10 @@
     <value>ShelfInfo</value>
     <comment>书架信息</comment>
   </data>
+  <data name="EmailError" xml:space="preserve">
+    <value>The email cannot be empty</value>
+  </data>
+  <data name="PhoneError" xml:space="preserve">
+    <value>The phone number cannot be empty</value>
+  </data>
 </root>

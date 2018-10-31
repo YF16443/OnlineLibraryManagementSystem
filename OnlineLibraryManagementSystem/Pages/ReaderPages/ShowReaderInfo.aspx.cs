@@ -24,7 +24,7 @@ public partial class Pages_ShowReaderInfo : BasePage
         {
             //注意这里改成了通过Session获取
             //string id = (string)Session["id"];
-            string id = "751";
+            string id = "123";
             if (id == null)
             {
                 //exception-handler
@@ -38,11 +38,12 @@ public partial class Pages_ShowReaderInfo : BasePage
                 "from  IssueRecords, BookBarcodes, Books " +
                 "where  BookBarcodes.BookBarcode =   IssueRecords.BookBarcode and  BookBarcodes.BookId = Books.BookId " +
                 "and IssueRecords.ReaderId = ?reader_id;";
+            string selectRevervationSql = "select Books.Title, A.ReservingTime, A.ShelfId, C.StackId, A.BookBarcode from BookBarcodes as A, Books, Shelves  as C" +
+                " where A.status = 2 and A.ReservingReaderId = ?readerid and Books.BookId = A.BookId and A.ShelfId = C.ShelfId;";
             try
             {
                 OLMSDBConnection.Open();
                 MySqlCommand cmd = new MySqlCommand(selectReaderSql, OLMSDBConnection);
-                //这样查询允许的基础是 name和phone字段不能为空
                 cmd.Parameters.AddWithValue("?id", id);
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -115,8 +116,44 @@ public partial class Pages_ShowReaderInfo : BasePage
                         issueRecords.Add(r);
                     }
                 }
+
+                reader2.Close();
+                MySqlCommand cmd3 = new MySqlCommand(selectRevervationSql, OLMSDBConnection);
+                cmd3.Parameters.AddWithValue("?readerid", id);
+                ArrayList reversationRecords = new ArrayList();
+                MySqlDataReader reader3 = cmd3.ExecuteReader();
+                string ReversationTime = "";
+                try
+                {
+                     ReversationTime = ConfigurationManager.AppSettings.Get("OverdueReservationDuration");
+                }
+                catch
+                {
+                    ReversationTime = "";
+                }
+                double ReversationTime2 = double.Parse(ReversationTime);
+                while (reader3.Read())
+                {
+                    if (reader3.HasRows)
+                    {
+                        Record2 r = new Record2();
+                        r.barcode = (string)reader3["BookBarcode"];
+                        r.shelf = reader3.GetString("ShelfId");
+                        r.stack = reader3.GetString("StackId");
+                        r.title = reader3.GetString("Title");
+                        DateTime time = (DateTime)reader3["ReservingTime"];
+                        DateTime nowTime = DateTime.Now;
+                        TimeSpan delta = nowTime.Subtract(time);
+                        double d = (double)delta.TotalHours;
+                        r.time = String.Format("{0:F}", ReversationTime2 - d);
+                        reversationRecords.Add(r);
+                    }
+                }
+
                 GridView1.DataSource = issueRecords;
                 GridView1.DataBind();
+                GridView2.DataSource = reversationRecords;
+                GridView2.DataBind();
             }
             catch (MySqlException ex)
             {
@@ -129,12 +166,13 @@ public partial class Pages_ShowReaderInfo : BasePage
             }
         }
     }
+
     protected void Cancel(object sender, EventArgs e)
     {
         //返回上一个页面  Response.Redirect()
         return;
     }
-      protected void Repeater1_ItemCommand1(object source, RepeaterCommandEventArgs e)
+    protected void Repeater1_ItemCommand1(object source, RepeaterCommandEventArgs e)
     {
 
     }
@@ -156,4 +194,12 @@ public class Record
     public string returnTime { get; set; }
     public string overdueTime { get; set; }
     public string fine { get; set; }
+}
+public class Record2
+{
+    public string title { get; set; }
+    public string time { get; set; }
+    public string shelf { get; set; }
+    public string stack { get; set; }
+    public string barcode { get; set; }
 }

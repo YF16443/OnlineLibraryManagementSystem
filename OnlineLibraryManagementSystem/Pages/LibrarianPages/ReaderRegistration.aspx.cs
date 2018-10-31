@@ -19,43 +19,14 @@ public partial class Pages_ReaderRegistration : BasePage
 
     protected void RegisterReader(object sender, EventArgs e)
     {
-        string name, readerId, password, idNumber, telephone, email;
-
-        if (TextBoxName.Text == "")
+        if (!Page.IsValid)
         {
-            Response.Write("<script>window.alert('" + Resources.Resource.UserNameError + "!');</script>");
             return;
         }
-        else
-        {
-            name = TextBoxName.Text;
-        }
-        if(TextBoxAccount.Text == "")
-        {
-            Response.Write("<script>window.alert('" + Resources.Resource.AccountError + "!');</script>");
-            return;
-        }
-        else
-        {
-            readerId = TextBoxAccount.Text;
-            //这里应该有正则匹配去除非法输入防止篡改数据库
-        }
-        if (TextBoxIDNumber.Text == "")
-        {
-            Response.Write("<script>window.alert('" + Resources.Resource.IdNumberError + "!');</script>");
-            return;
-        }
-        else
-        {
-            //后期补上正则匹配
-            idNumber = TextBoxIDNumber.Text;
-            if(idNumber.Length != 18)
-            {
-                Response.Write("<script>window.alert('" + Resources.Resource.IDNumberLegel + "!');</script>");
-                return;
-            }
-            password = idNumber.Substring(idNumber.Length - 6);
-        }
+        string name,password, idNumber, telephone, email;
+        name = TextBoxName.Text;
+        idNumber = TextBoxIDNumber.Text;
+        password = idNumber.Substring(idNumber.Length - 6);
         telephone = TextBoxTelephone.Text;
         email = TextBoxEmail.Text;
         if (! IsDeposit.Checked)
@@ -67,15 +38,13 @@ public partial class Pages_ReaderRegistration : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         //检测同账号是否注册过
-        string selectReaderSql = "select count(*) as num from Readers where ReaderId = ?readerId or IdNumber = ?idNumber;";
-        string insertReaderSql = "INSERT INTO Readers(ReaderId, Password, Name, IdNumber, Phone) " +
-            "VALUES(?readerId, ?password, ?name, ?idNumber, ?phone);";
-        string updateEmailSql = "update Readers set Email = ?email where ReaderId = ?readerId";
+        string selectReaderSql = "select count(*) as num from Readers where IdNumber = ?idNumber;";
+        string insertReaderSql = "INSERT INTO Readers(Password, Name, IdNumber, Phone, Email) " +
+            "VALUES(?password, ?name, ?idNumber, ?phone, ?email);";
         try
         {
             OLMSDBConnection.Open();
             MySqlCommand cmd2 = new MySqlCommand(selectReaderSql, OLMSDBConnection);
-            cmd2.Parameters.AddWithValue("?readerId", readerId);
             cmd2.Parameters.AddWithValue("?idNumber", idNumber);
             MySqlDataReader reader = cmd2.ExecuteReader();
             while (reader.Read())
@@ -94,21 +63,13 @@ public partial class Pages_ReaderRegistration : BasePage
             reader.Close();
 
             MySqlCommand cmd = new MySqlCommand(insertReaderSql, OLMSDBConnection);
-            cmd.Parameters.AddWithValue("?readerId", readerId);
             cmd.Parameters.AddWithValue("?name", name);
             cmd.Parameters.AddWithValue("?password", password);
             cmd.Parameters.AddWithValue("?idNumber", idNumber);
             cmd.Parameters.AddWithValue("?phone", telephone);
+            cmd.Parameters.AddWithValue("?email", email);
             int result = cmd.ExecuteNonQuery();
-            int result3 = 0;
-            if (result == 1 && email != null || email != "")
-            {
-                MySqlCommand cmd3 = new MySqlCommand(updateEmailSql, OLMSDBConnection);
-                cmd3.Parameters.AddWithValue("?readerId", readerId);
-                cmd3.Parameters.AddWithValue("?email", email);
-                result3 = cmd3.ExecuteNonQuery();
-            }
-            if (result == 1 && result3 == 1)
+            if (result == 1)
             {
                 Response.Write("<script>alert('" + Resources.Resource.Successful + "');</script>");
                 //Response.Redirect()
@@ -134,8 +95,8 @@ public partial class Pages_ReaderRegistration : BasePage
 
     protected void Cancel(object sender, EventArgs e)
     {
-        //返回上一个页面  
         //Response.Redirect("http://localhost:52800/Pages/ShowReaderInfo.aspx?id=111");
         return;
     }
+
 }
