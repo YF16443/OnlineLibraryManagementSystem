@@ -38,7 +38,7 @@ public partial class Pages_ShowReaderInfo : BasePage
                     if (reader.HasRows)
                     {
                         TextBoxEmail.Text = reader["Email"].ToString();
-                        TextBoxAccount.Text = reader["ReaderId"].ToString();
+                    
                         TextBoxName.Text = reader["Name"].ToString();
                         TextBoxPhone.Text = reader["Phone"].ToString();
                         // string idNumber = reader["idNumber"].ToString();
@@ -113,7 +113,7 @@ public partial class Pages_ShowReaderInfo : BasePage
     protected void Submit(object sender, EventArgs e)
     {
         string name, readerId, password, idNumber, phone, email;
-        readerId = TextBoxAccount.Text;
+        readerId = Request["ReaderId"];
         if (TextBoxName.Text == "")
         {
             Response.Write("<script>window.alert('User name can not be empty!');</script>");
@@ -230,7 +230,7 @@ public partial class Pages_ShowReaderInfo : BasePage
 
     protected void Delete(object sender, EventArgs e)
     {
-        string readerId = TextBoxAccount.Text;
+        string readerId = Request["ReaderId"];
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         string selectReaderSql = "select count(*) as num from IssueRecords where ReaderId =?readerId and Status=3;";
@@ -280,6 +280,8 @@ public partial class Pages_ShowReaderInfo : BasePage
             if (result == 1)
             {
                 Response.Write("<script>window.alert(' The removal completed successfully!');</script>");
+                
+                Response.Redirect("SearchReader.aspx");
                 return;
             }
             else
@@ -305,7 +307,8 @@ public partial class Pages_ShowReaderInfo : BasePage
 
     protected void Cancel(object sender, EventArgs e)
     {
-        //返回上一个页面  Response.Redirect()
+        
+        Response.Redirect("SearchReader.aspx");
         return;
     }
 
