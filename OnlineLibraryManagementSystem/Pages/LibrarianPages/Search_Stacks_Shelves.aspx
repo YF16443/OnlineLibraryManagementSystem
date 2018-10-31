@@ -15,7 +15,7 @@
             text-align:center;
         }
         .auto-style2 {
-            width: 45%;
+            width: 40%;
             height: 35px;
             text-align: right;
             font-size: x-large;
