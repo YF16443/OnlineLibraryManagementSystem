@@ -217,7 +217,7 @@
     <comment>添加</comment>
   </data>
   <data name="ShelfId" xml:space="preserve">
-    <value>ShelfId</value>
+    <value>Shelf Id</value>
     <comment>书架ID</comment>
   </data>
   <data name="Shelf_Summary" xml:space="preserve">
