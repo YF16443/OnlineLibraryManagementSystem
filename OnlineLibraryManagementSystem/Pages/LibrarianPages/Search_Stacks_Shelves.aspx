@@ -46,7 +46,7 @@
                     </div>
                 </td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxID" runat="server" Width="450px" CssClass="form-control"> </asp:TextBox></td>
+                    <asp:TextBox ID="TextBoxID" runat="server" Width="450px" CssClass="form-control" AutoPostBack="true"> </asp:TextBox></td>
                 <td class="auto-style5">
                     <asp:Button ID="SearchButton" runat="server" Text="<%$ Resources:Resource,Search %>" OnClick="Search" Cssclass="btn btn-default btn-fill"/>
                     <asp:Button ID="Button1" runat="server" Text="<%$ Resources:Resource, Delete %>" OnClick="Delete"  CausesValidation="False" Cssclass="btn btn-default btn-fill"/>
@@ -100,11 +100,11 @@
             </tr>
         </table>
     </div>
-  
-      
+
+
 </asp:Content>
 <asp:Content ID="foot" runat="server" ContentPlaceHolderID="foot">
     <script src="../../Scripts/art-Template/template-web.js"></script>
     <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
     <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
-</asp:Content>
+</asp:Content> 
