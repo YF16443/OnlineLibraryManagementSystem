@@ -34,17 +34,18 @@ public partial class Pages_LibrarianPages_ViewHistory : BasePage
         dtResult.Columns.Add("LibrarianHerf");
         foreach (DataRow dr in dtResult.Rows)
         {
-           
-                dr["BookHerf"] = "/Pages/ReaderPages/bookMessage.aspx?book_id=" + dr["BookId"].ToString();
-                dr["LibrarianHerf"] = "/Pages/ReaderPages/bookMessage.aspx?book_id=" + dr["BookId"].ToString();
+
+            dr["BookHerf"] = "/Pages/ReaderPages/bookMessage.aspx?book_id=" + dr["BookId"].ToString();
+            dr["LibrarianHerf"] = "/Pages/ReaderPages/bookMessage.aspx?book_id=" + dr["BookId"].ToString();
 
         }
 
         ViewState["normal"] = dtResult;
-        GridView1.DataSource = dtResult;
-        GridView1.DataBind();
-        // GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
+        History.DataSource = dtResult;
+        History.DataBind();
+        History.HeaderRow.TableSection = TableRowSection.TableHeader;
     }
+
     protected void search_Click(object sender, EventArgs e)
     {
         String Da = Request["date"].ToString();
@@ -77,45 +78,17 @@ public partial class Pages_LibrarianPages_ViewHistory : BasePage
             DataRow blankRow = rangeResult.NewRow();
             rangeResult.Rows.Add(blankRow);
         }
-        GridView1.DataSource = rangeResult;
-        GridView1.DataBind();
-        GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
-
-    }
-
-
-
-
-    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-    }
-    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void TextSearch_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void Unnamed2_TextChanged(object sender, EventArgs e)
-    {
+        History.DataSource = rangeResult;
+        History.DataBind();
+        History.HeaderRow.TableSection = TableRowSection.TableHeader;
 
     }
 
     protected void reset_Click(object sender, EventArgs e)
     {
         DataTable dtResult = ViewState["normal"] as DataTable;
-        GridView1.DataSource = dtResult;
-        GridView1.DataBind();
-        //GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
-    }
-
-
-    protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
-    {
-            
+        History.DataSource = dtResult;
+        History.DataBind();
+        History.HeaderRow.TableSection = TableRowSection.TableHeader;
     }
 }
