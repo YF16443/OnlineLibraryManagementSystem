@@ -25,7 +25,7 @@
                         </div>
                 </td>
                 <td style="width:20%">
-                    <asp:TextBox ID="tbSearch" runat="server" Width="380px" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="tbSearch" runat="server" Width="380px" CssClass="form-control" AutoPostBack="true"></asp:TextBox>
                 </td>
                 <td style="width:70%;text-align:left;">
                     <div class="col-md-5">
