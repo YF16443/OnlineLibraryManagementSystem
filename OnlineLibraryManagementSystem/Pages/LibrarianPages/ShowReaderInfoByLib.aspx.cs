@@ -95,8 +95,8 @@ public partial class Pages_ShowReaderInfo : BasePage
                     issueRecords.Add(r);
                     }
                 }
-                Repeater1.DataSource = issueRecords;
-                Repeater1.DataBind();
+                Category.DataSource = issueRecords;
+                Category.DataBind();
             }
             catch(MySqlException ex)
             {
