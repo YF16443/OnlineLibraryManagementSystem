@@ -339,7 +339,7 @@
     <value>Barcode &amp; 书号</value>
   </data>
   <data name="ReaderId" xml:space="preserve">
-    <value>Reader Id &amp; 读者帐号</value>
+    <value>ReaderId &amp; 读者帐号</value>
   </data>
   <data name="Add_Books" xml:space="preserve">
     <value>Add_Books &amp; 添加图书</value>

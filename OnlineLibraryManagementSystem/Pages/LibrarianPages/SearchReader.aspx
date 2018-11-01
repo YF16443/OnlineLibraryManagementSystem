@@ -20,11 +20,11 @@
       <div style="padding-top:50px">
         <table style="width: 100%;">
             <tr>
-                <td style="width:35%; text-align:right">
+                <td style="width:40%; text-align:right">
                     <div class="col-md-4 col-md-offset-8">
                     <asp:DropDownList ID="DropDownList1" runat="server" CssClass="selectpicker" data-style="btn btn-primary btn-round" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged1">
                         <asp:ListItem value="0" Text="<%$ Resources:Resource,Default %>"></asp:ListItem>
-                        <asp:ListItem value="1" Text="<%$ Resources:Resource,ReaderId %>" ></asp:ListItem>
+                        <asp:ListItem value="1" Text="<%$ Resources:Resource,Account %>" ></asp:ListItem>
                         <asp:ListItem value="2" Text="<%$ Resources:Resource,Name %>" ></asp:ListItem>
                     </asp:DropDownList>
                         </div>

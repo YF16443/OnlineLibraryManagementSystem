@@ -339,7 +339,7 @@
     <value>Barcode</value>
   </data>
   <data name="ReaderId" xml:space="preserve">
-    <value>Reader Id</value>
+    <value>ReaderId</value>
   </data>
   <data name="Add_Books" xml:space="preserve">
     <value>Add Books</value>
