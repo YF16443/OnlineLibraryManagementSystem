@@ -20,7 +20,7 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
     protected void brSearch_Click(object sender, EventArgs e)
     {
         // 输入过滤，未完成
-        if (tbSearch.Text.ToString().Length == 0)
+        if (tbSearch.Text.Trim().Length == 0)
         {
             return;
         }
@@ -30,7 +30,7 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
         var OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
 
         MySqlCommand getResult_sql;
-        string keyword = tbSearch.Text.ToString();
+        string keyword = tbSearch.Text.Trim().ToString();
         if (ddlClass.SelectedValue.ToString().Equals("Books"))
         {
             gvBookResult.Enabled = true;

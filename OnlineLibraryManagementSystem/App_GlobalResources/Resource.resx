@@ -339,7 +339,7 @@
     <value>Barcode &amp; 书号</value>
   </data>
   <data name="ReaderId" xml:space="preserve">
-    <value>Reader Id &amp; 读者帐号</value>
+    <value>ReaderId &amp; 读者帐号</value>
   </data>
   <data name="Add_Books" xml:space="preserve">
     <value>Add_Books &amp; 添加图书</value>
@@ -758,5 +758,8 @@
   </data>
   <data name="BackingOut" xml:space="preserve">
     <value>BackingOut &amp; 返回</value>
+  </data>
+  <data name="MoreNotice" xml:space="preserve">
+    <value>MoreNotice &amp; 更多公告</value>
   </data>
 </root>
