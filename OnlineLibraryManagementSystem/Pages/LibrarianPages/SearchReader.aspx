@@ -63,9 +63,37 @@
             </table>
     </div>
     <br />
+        <script src="../../assets/vendors/DataTables/jQuery-1.12.4/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        var $124 = $;
+    </script>
+    <script src="../../assets/vendors/jquery.datatables.js"></script>
+    <script type="text/javascript">
+
+    </script>
 </asp:Content>
 <asp:Content ID="foot" runat="server" ContentPlaceHolderID="foot">
     <script src="../../Scripts/art-Template/template-web.js"></script>
     <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
     <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
+         <script src="../../assets/vendors/daterangepicker/scripts/vendor.js"></script>
+    <script src="../../assets/vendors/daterangepicker/scripts/daterangepicker.js"></script>
+    <script>
+        var income = $124('#body_GridView1').DataTable({
+            "searching": false,
+            "lengthChange": false,
+            "order": [[0, 'asc']],
+        });
+        $(".daterangepicker-field").daterangepicker({
+            forceUpdate: true,
+            startDate: '2018-01-01',
+            endDate: new Date(),
+            single: true,
+            callback: function (startDate, endDate, period) {
+                var title = startDate.format('L') + ' – ' + endDate.format('L');
+                $(this).val(title);
+            }
+        });
+        
+</script>
 </asp:Content>
