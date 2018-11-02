@@ -50,7 +50,7 @@
                                     </asp:LoginView>
                                 </li>
                                 <li>
-                                     <asp:HyperLink ID="hlMyAccount" runat="server" Text="<%$ Resources:Resource,MyAccount %>" NavigateUrl="~/Pages/ReaderPages/ShowReaderInfo.aspx"></asp:HyperLink>
+                                     <asp:HyperLink ID="hlMyAccount" runat="server" Text="<%$ Resources:Resource,MyAccount %>" NavigateUrl="~/Pages/ReaderPages/ShowReaderInfo.aspx" Visible="false"></asp:HyperLink>
                                 </li>
                                 <li>
                                     <div class="select" style="position:relative; top:17px"">
