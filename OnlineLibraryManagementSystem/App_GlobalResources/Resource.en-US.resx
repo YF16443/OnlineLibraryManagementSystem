@@ -759,4 +759,10 @@
   <data name="MoreNotice" xml:space="preserve">
     <value>MoreNotice</value>
   </data>
+  <data name="AddNotice" xml:space="preserve">
+    <value>Add Notice</value>
+  </data>
+  <data name="NoticeIdExist" xml:space="preserve">
+    <value>Notice ID already exists!</value>
+  </data>
 </root>

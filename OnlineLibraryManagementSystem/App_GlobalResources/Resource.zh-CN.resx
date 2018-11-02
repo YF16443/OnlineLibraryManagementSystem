@@ -759,4 +759,10 @@
   <data name="MoreNotice" xml:space="preserve">
     <value>更多公告</value>
   </data>
+  <data name="AddNotice" xml:space="preserve">
+    <value>添加公告</value>
+  </data>
+  <data name="NoticeIdExist" xml:space="preserve">
+    <value>公告编号已存在！</value>
+  </data>
 </root>
