@@ -79,4 +79,27 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
         GridView1.DataBind();
         sqlcon.Close();
     }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        string LibrarianId = TextBox1.Text.ToString();
+        string Account = TextBox2.Text.ToString();
+        string Password = TextBox3.Text.ToString();
+        string Name = TextBox4.Text.ToString();
+        sqlcon = new MySqlConnection(strCon);
+        string sql = "insert into Librarians(LibrarianId,Account,Password,Name) values('" + LibrarianId + "','" + Account + "','" + Password + "','" + Name + "')";
+        string sqlstr = "select LibrarianId,Account,Password,Name from Librarians";
+        sqlcon.Open();
+        MySqlCommand sqlcom = new MySqlCommand(sql, sqlcon);
+        sqlcom.ExecuteNonQuery();
+        MySqlDataAdapter sqlda = new MySqlDataAdapter(sqlstr, sqlcon);
+        DataSet ds = new DataSet();
+        sqlda.Fill(ds);
+        GridView1.DataSource = ds;
+        GridView1.DataBind();
+        sqlcon.Close();
+    }
+
+
+
 }

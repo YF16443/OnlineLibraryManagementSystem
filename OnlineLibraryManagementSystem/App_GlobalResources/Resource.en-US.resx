@@ -217,7 +217,7 @@
     <comment>添加</comment>
   </data>
   <data name="ShelfId" xml:space="preserve">
-    <value>ShelfId</value>
+    <value>Shelf Id</value>
     <comment>书架ID</comment>
   </data>
   <data name="Shelf_Summary" xml:space="preserve">
@@ -758,5 +758,11 @@
   </data>
   <data name="MoreNotice" xml:space="preserve">
     <value>MoreNotice</value>
+  </data>
+  <data name="AddNotice" xml:space="preserve">
+    <value>Add Notice</value>
+  </data>
+  <data name="NoticeIdExist" xml:space="preserve">
+    <value>Notice ID already exists!</value>
   </data>
 </root>
