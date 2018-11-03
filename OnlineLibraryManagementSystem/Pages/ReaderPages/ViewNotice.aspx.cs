@@ -83,32 +83,7 @@ public partial class Pages_ReaderPages_ViewNotice : BasePage
     {
         Response.AddHeader("Refresh", "0");
     }
-    protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
-    {
-        string s = History.DataKeys[e.RowIndex].Value.ToString();
-
-
-        string sqlstr = "delete from Notices where NoticeId=" + s + ";";
-        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
-        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
-        System.Diagnostics.Debug.WriteLine("database is ok");
-        OLMSDBConnection.Open();
-        MySqlCommand cmd = new MySqlCommand(sqlstr, OLMSDBConnection);
-        int result = cmd.ExecuteNonQuery();
-        if (result == 1)
-        {
-            Response.Write("<script>window.alert(' The removal completed successfully!');</script>");
-            bind();
-            return;
-        }
-        else
-        {
-            Response.Write("<script>window.alert('Failed');</script>");
-            //Response.Redirect()
-            return;
-        }
-
-    }
+   
     public void bind()
     {
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
