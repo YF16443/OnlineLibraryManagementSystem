@@ -756,8 +756,8 @@
   <data name="BackingOut" xml:space="preserve">
     <value>BackingOut</value>
   </data>
-  <data name="MoreNotice" xml:space="preserve">
-    <value>MoreNotice</value>
+  <data name="MoreNotices" xml:space="preserve">
+    <value>MoreNotices</value>
   </data>
   <data name="AddNotice" xml:space="preserve">
     <value>Add Notice</value>
