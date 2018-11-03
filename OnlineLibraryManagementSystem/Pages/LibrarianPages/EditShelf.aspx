@@ -17,10 +17,11 @@
 	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label6" runat="server" Text="<%$ Resources:Resource,ShelfId %>"></asp:Label>
 	                                            </label>
                                                 <div class="col-sm-10">
-                                                    <asp:Label ID="LabelShelfId" runat="server" Text="ShelfId" Cssclass="form-control"></asp:Label>
+                                                    <asp:Label ID="LabelShelfId" runat="server" Text="ShelfId" Cssclass="form-control" onkeypress="return doClick(event);"></asp:Label>
 	                                            </div>
 	                                        </div>
 	                                    </fieldset>
+                                        &nbsp
                                         <fieldset>
 	                                        <div class="form-group">
 	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label10" runat="server" Text="<%$ Resources:Resource,StackId %>"></asp:Label>
@@ -31,22 +32,25 @@
 	                                            </div>
 	                                        </div>
 	                                    </fieldset>
+                                        &nbsp
                                          <fieldset>
 	                                        <div class="form-group">
 	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label8" runat="server" Text="<%$ Resources:Resource, Stack_Summary %>"></asp:Label></asp:Label></label>
 	                                            <div class="col-sm-10">
-                                                     <asp:TextBox ID="TextBoxSummary" runat="server" Cssclass="form-control"></asp:TextBox>
+                                                     <asp:TextBox ID="TextBoxSummary" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
 	                                            </div>
 	                                        </div>
 	                                    </fieldset>
+                                        &nbsp
                                          <fieldset>
 	                                        <div class="form-group">
 	                                            <label Class="col-sm-2 control-label"><asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource, Shelf_Timestamp %>"></asp:Label></label>
 	                                            <div class="col-sm-10">
-	                                                <asp:Label ID="LabelShelf_Timestamp" runat="server" Text="Shelf_Timestamp" Cssclass="form-control"></asp:Label>
+	                                                <asp:Label ID="LabelShelf_Timestamp" runat="server" Text="Shelf_Timestamp" Cssclass="form-control" onkeypress="return doClick(event);"></asp:Label>
 	                                            </div>
 	                                        </div>
 	                                    </fieldset>
+                                        &nbsp
                                         <div class="form-group">
                                             <asp:Button ID="AlterButton" runat="server" Text="<%$ Resources:Resource, Alter %>" OnClick="Alter_ShelfInfo" CausesValidation="False" CssClass="btn btn-fill btn-default" />
                                         <asp:Button ID="Button2" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="btn btn-fill btn-default" />
@@ -62,4 +66,35 @@
     <script src="../../Scripts/art-Template/template-web.js"></script>
     <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
     <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
+    <script type="text/javascript">
+        function doClick(event) {
+            //    if ($.trim($('#' + buttonId + '').val()) == '') {
+            //        shorError();
+            //        return;
+            //    }
+            var key;
+ 
+            if (window.event)
+                key = window.event.keyCode;     //IE
+            else
+                key = event.which;     //firefox
+ 
+            if (key == 13) {
+                //                if ($.trim($('#btnVerificationCode').val()) == '') {
+                //                    shorError();
+                //                }
+                try {
+                    if (window.event) {//ie
+                        window.event.keyCode = 0
+                        window.event.returnValue = false;
+                    }
+                    else {//firefox
+                        return false;
+                    }
+                }
+                catch (ex) {
+                }
+            }
+        }
+    </script>
 </asp:Content>

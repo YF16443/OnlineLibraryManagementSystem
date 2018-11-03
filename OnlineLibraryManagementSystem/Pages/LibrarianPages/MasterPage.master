@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    <form id="form" runat="server">
+    <form id="form" runat="server" enctype="multipart/form-data">
         <div class="wrapper">
             <div class="sidebar" data-background-color="brown" data-active-color="danger">
                 <!--

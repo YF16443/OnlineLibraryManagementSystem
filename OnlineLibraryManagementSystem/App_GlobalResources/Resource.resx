@@ -762,4 +762,8 @@
   <data name="MoreNotice" xml:space="preserve">
     <value>MoreNotice &amp; 更多公告</value>
   </data>
+  <data name="Selectimage" xml:space="preserve">
+    <value>Select image &amp; 选择图片</value>
+    <comment>选择图片</comment>
+  </data>
 </root>

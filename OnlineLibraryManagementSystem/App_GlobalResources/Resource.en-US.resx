@@ -759,4 +759,7 @@
   <data name="MoreNotice" xml:space="preserve">
     <value>MoreNotice</value>
   </data>
+  <data name="Selectimage" xml:space="preserve">
+    <value>Select image</value>
+  </data>
 </root>
