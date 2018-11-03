@@ -16,6 +16,10 @@ public partial class Pages_MasterPage : BaseMasterPage
         {
             ddlLanguages.SelectedValue = Session["PreferredCulture"].ToString();
         }
+        if (!string.IsNullOrEmpty((string)Session["id"])) 
+        {
+            hlMyAccount.Visible = true;
+        }
     }
 
     protected void ddlLanguages_SelectedIndexChanged(object sender, EventArgs e)

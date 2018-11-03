@@ -39,6 +39,11 @@ public partial class Pages_LibrarianPages_ViewHistory : BasePage
             dr["LibrarianHerf"] = "/Pages/ReaderPages/bookMessage.aspx?book_id=" + dr["BookId"].ToString();
 
         }
+        if (dtResult.Rows.Count == 0)
+        {
+            DataRow blankRow = dtResult.NewRow();
+            dtResult.Rows.Add(blankRow);
+        }
 
         ViewState["normal"] = dtResult;
         History.DataSource = dtResult;

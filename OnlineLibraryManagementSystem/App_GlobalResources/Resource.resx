@@ -339,7 +339,7 @@
     <value>Barcode &amp; 书号</value>
   </data>
   <data name="ReaderId" xml:space="preserve">
-    <value>Reader Id &amp; 读者帐号</value>
+    <value>ReaderId &amp; 读者帐号</value>
   </data>
   <data name="Add_Books" xml:space="preserve">
     <value>Add_Books &amp; 添加图书</value>
@@ -759,8 +759,11 @@
   <data name="BackingOut" xml:space="preserve">
     <value>BackingOut &amp; 返回</value>
   </data>
-  <data name="MoreNotice" xml:space="preserve">
-    <value>MoreNotice &amp; 更多公告</value>
+  <data name="AddNotice" xml:space="preserve">
+    <value>Add Notice &amp; 添加公告</value>
+  </data>
+  <data name="NoticeIdExist" xml:space="preserve">
+    <value>Notice ID already exists! &amp; 公告编号已存在！</value>
   </data>
   <data name="Selectimage" xml:space="preserve">
     <value>Select image &amp; 选择图片</value>

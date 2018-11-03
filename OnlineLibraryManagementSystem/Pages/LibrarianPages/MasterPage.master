@@ -164,6 +164,8 @@
 							    <ul class="nav">
 								    <li><a href="SearchNotice.aspx">
                                         <asp:Label ID="Label26" runat="server" Text="<%$ Resources:Resource,Search %>"></asp:Label></a></li>
+                                    <li><a href="AddNotice.aspx">
+                                        <asp:Label ID="Label27" runat="server" Text="<%$ Resources:Resource,AddNotice %>"></asp:Label></a></li>
 							    </ul>
 						    </div>
 					    </li>
