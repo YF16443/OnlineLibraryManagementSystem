@@ -134,9 +134,23 @@
             &nbsp
   <fieldset style="text-align:center;">
                     <asp:Button ID="AddButton" runat="server" Text="<%$ Resources:Resource, Add %>" OnClick="Addbooks"  CausesValidation="False" CssClass="btn btn-fill btn-default" />
-                    </fieldset>
+      <input type=button value="<asp:Literal runat="server" Text="<%$ Resources:Resource, Print%>" />" onclick="doPrint()" Class="btn btn-fill btn-default">             
+  </fieldset>
+            &nbsp
+<!--startprint--><!--注意要加上html里star和end的这两个标记-->
+       <asp:DataList ID="DataListbookbarcode" runat="server" RepeatColumns="1" HorizontalAlign="center" Enabled="false">
+           <ItemTemplate>
+               <br>
+               </br>
+                <asp:image ID="Imagebarcode" runat="server"  ImageUrl='<%#"~/Images/Barcode/" +Eval("Name")%>'/>     
+               <br>     
+               </br>       
+            </ItemTemplate>
+        </asp:DataList>
+<!--endprint-->
             </div>
         </div>
+        
 </asp:Content>
 <asp:Content ID="content4" ContentPlaceHolderID="foot" runat="server">
     <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
@@ -172,5 +186,16 @@
                 }
             }
         }
+        function doPrint() {
+            //onreadystatechange = bind();
+            bdhtml=window.document.body.innerHTML;    
+            sprnstr="<!--startprint-->";    
+            eprnstr="<!--endprint-->";    
+            prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);    
+            prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));    
+            window.document.body.innerHTML=prnhtml; 
+            window.print();
+            var result="<%=deletebind() %>";
+        }    
     </script>
  </asp:Content>

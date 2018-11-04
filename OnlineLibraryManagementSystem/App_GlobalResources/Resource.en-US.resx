@@ -350,7 +350,7 @@
     <comment>ISBN(ISSN)</comment>
   </data>
   <data name="Print_Barcode" xml:space="preserve">
-    <value>Print Barcode</value>
+    <value>Print_Barcode</value>
     <comment>打印条形码</comment>
   </data>
   <data name="Quantity" xml:space="preserve">
@@ -767,5 +767,13 @@
   </data>
   <data name="Selectimage" xml:space="preserve">
     <value>Select image</value>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>Display</value>
+    <comment>显示</comment>
+  </data>
+  <data name="Display_Barcode" xml:space="preserve">
+    <value>Display_Barcode</value>
+    <comment>显示二维码</comment>
   </data>
 </root>

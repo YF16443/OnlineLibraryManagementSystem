@@ -766,4 +766,12 @@
     <value>选择图片</value>
     <comment>选择图片</comment>
   </data>
+  <data name="Display" xml:space="preserve">
+    <value>显示</value>
+    <comment>显示</comment>
+  </data>
+  <data name="Display_Barcode" xml:space="preserve">
+    <value>显示条形码</value>
+    <comment>显示二维码</comment>
+  </data>
 </root>

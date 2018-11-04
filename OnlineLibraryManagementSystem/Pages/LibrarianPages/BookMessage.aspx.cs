@@ -328,14 +328,45 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         //Barcode generation test
         if (barcode != "")
         {
+            MyBarcodeGenerator.Generate(barcode);
+            DataTable dt = new DataTable();
+            dt.Columns.Add("name");
+            DataRow dr = dt.NewRow();
+            dr["name"] = barcode+".jpg";
+            dt.Rows.Add(dr);
+            DataListbookbarcode.Enabled = true;
+            DataListbookbarcode.DataSource = dt;
+            DataListbookbarcode.DataBind();
+            Button buttonprint = (Button)row.FindControl("Button2");
+            //ClientScript.RegisterStartupScript(ClientScript.GetType(), "myscript", "<script>doPrint();</script>");
             //Response.Write("<script>alert('" + barcode + "')</script>");
-            var barcodeImage = MyBarcodeGenerator.Generate(barcode) as System.Drawing.Image;
-            MyBarcodeGenerator.ShowBarcode(barcode, this.Response);
+            //var barcodeImage = MyBarcodeGenerator.Generate(barcode) as System.Drawing.Image;
+            //MyBarcodeGenerator.ShowBarcode(barcode, this.Response);
         }
         else
         {
             Response.Write("<script>alert('Error!')<script/>");
         }
+    }
+    /*protected int bind()
+    {
+        //MyBarcodeGenerator.Generate(barcode);
+        DataTable dt = new DataTable();
+        dt.Columns.Add("name");
+        DataRow dr = dt.NewRow();
+        dr["name"] = "711128060.jpg";
+        dt.Rows.Add(dr);
+        DataListbookbarcode.Enabled = true;
+        DataListbookbarcode.DataSource = dt;
+        DataListbookbarcode.DataBind();
+        return 0;
+    }*/
+    protected int deletebind()
+    {
+        DataListbookbarcode.Enabled = false;
+        DataListbookbarcode.DataSource = null;
+        DataListbookbarcode.DataBind();
+        return 0;
     }
     protected void BindDataTogvResult()
     {
@@ -646,4 +677,6 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         readershelfid.Close();
         OLMSDBConnection.Close();
     }
+
+
 }
