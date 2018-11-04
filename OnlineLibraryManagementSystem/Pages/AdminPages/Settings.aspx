@@ -37,6 +37,18 @@
         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
              ErrorMessage="<%$ Resources:Resource, Error %>" ControlToValidate ="OverdueFinePerDay" ForeColor="Red"></asp:RequiredFieldValidator>
     </div>
+    <div class="form-group label-floating">
+        <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, Limitofreservation %>" CssClass="control-label"></asp:Label>
+        <asp:TextBox ID="Limitofreservation" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
+             ErrorMessage="<%$ Resources:Resource, Error %>" ControlToValidate ="OverdueFinePerDay" ForeColor="Red"></asp:RequiredFieldValidator>
+    </div>
+    <div class="form-group label-floating">
+        <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Limitofissue %>" CssClass="control-label"></asp:Label>
+        <asp:TextBox ID="Limitofissue" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
+             ErrorMessage="<%$ Resources:Resource, Error %>" ControlToValidate ="OverdueFinePerDay" ForeColor="Red"></asp:RequiredFieldValidator>
+    </div>
     <div class="form-footer text-right">
     <asp:Button ID="SubmitButton" runat="server" Text="<%$ Resources:Resource, Submit %>" OnClick="Submit"  CausesValidation="True" CssClass="btn btn-rose btn-fill"/>
     <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="btn btn-rose btn-fill"/>   

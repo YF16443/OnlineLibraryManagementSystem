@@ -786,4 +786,10 @@
   <data name="Sure" xml:space="preserve">
     <value>Sure</value>
   </data>
+  <data name="Limitofreservation" xml:space="preserve">
+    <value>Limit of reservation/hour</value>
+  </data>
+  <data name="Limitofissue" xml:space="preserve">
+    <value>Limit of issue/day</value>
+  </data>
 </root>

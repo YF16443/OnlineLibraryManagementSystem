@@ -781,4 +781,10 @@
   <data name="Sure" xml:space="preserve">
     <value>Sure &amp; 确认删除</value>
   </data>
+  <data name="Limitofissue" xml:space="preserve">
+    <value>Limit of issue/day&amp;借出期限/天</value>
+  </data>
+  <data name="Limitofreservation" xml:space="preserve">
+    <value>Limit of reservation/hour&amp;预约期限/小时</value>
+  </data>
 </root>
