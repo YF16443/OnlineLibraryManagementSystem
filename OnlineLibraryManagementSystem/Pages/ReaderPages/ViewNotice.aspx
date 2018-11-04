@@ -5,9 +5,6 @@
     <link href="../../assets/vendors/daterangepicker/styles/daterangepicker.css" rel="stylesheet" />
     
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="header" Runat="Server">
-    <a> <asp:Label runat="server" Text="<%$ Resources:Resource, Notice %>" CssClass="navbar-brand"></asp:Label> </a>
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="body" Runat="Server">
     <div class="card">
         <div class="content">
