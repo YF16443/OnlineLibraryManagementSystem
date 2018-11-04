@@ -46,7 +46,7 @@
                     </div>
                 </td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxID" runat="server" Width="450px" CssClass="form-control"> </asp:TextBox></td>
+                    <asp:TextBox ID="TextBoxID" runat="server" Width="450px" CssClass="form-control" onkeypress="return doClick(event);"> </asp:TextBox></td>
                 <td class="auto-style5">
                     <asp:Button ID="SearchButton" runat="server" Text="<%$ Resources:Resource,Search %>" OnClick="Search" Cssclass="btn btn-default btn-fill"/>
                     <asp:Button ID="Button1" runat="server" Text="<%$ Resources:Resource, Delete %>" OnClick="Delete"  CausesValidation="False" Cssclass="btn btn-default btn-fill"/>
@@ -55,10 +55,10 @@
             <tr>
                 <td style="text-align:center; height:30px" colspan="3"> &nbsp;</td>
             </tr>
-            <tr
+            <tr>
                 <div class="table-responsive">
                 <td style="text-align:center" colspan="3">
-                    <asp:GridView ID="gvStacksResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvStacksResult_Sorting" OnPageIndexChanging="gvStacksResult_PageIndexChanging"  CssClass="table table-no-bordered">
+                    <asp:GridView ID="gvStacksResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvStacksResult_Sorting" OnPageIndexChanging="gvStacksResult_PageIndexChanging"  CssClass="table table-no-bordered" style="width:65%">
                         <Columns>
                             <asp:HyperLinkField HeaderText="<%$ Resources:Resource, StackId %>" SortExpression="StackId" DataNavigateUrlFields="StackId" DataNavigateUrlFormatString="~/Pages/LibrarianPages/StackInfo.aspx?StackId={0}" DataTextField="StackId">
                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -77,7 +77,7 @@
                         </Columns>
                     </asp:GridView>
                     <br />
-                    <asp:GridView ID="gvShelvesResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvShelvesResult_Sorting" OnPageIndexChanging="gvShelvesResult_PageIndexChanging" CssClass="table table-no-bordered">
+                    <asp:GridView ID="gvShelvesResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvShelvesResult_Sorting" OnPageIndexChanging="gvShelvesResult_PageIndexChanging" CssClass="table table-no-bordered" style="width:65%">
                         <Columns>
                             <asp:HyperLinkField HeaderText="<%$ Resources:Resource, ShelfId %>" SortExpression="ShelfId" DataNavigateUrlFields="ShelfId" DataNavigateUrlFormatString="~/Pages/LibrarianPages/ShelfInfo.aspx?ShelfId={0}" DataTextField="ShelfId">
                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -100,11 +100,42 @@
             </tr>
         </table>
     </div>
-  
-      
+
+
 </asp:Content>
 <asp:Content ID="foot" runat="server" ContentPlaceHolderID="foot">
     <script src="../../Scripts/art-Template/template-web.js"></script>
     <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
     <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
-</asp:Content>
+    <script type="text/javascript">
+        function doClick(event) {
+            //    if ($.trim($('#' + buttonId + '').val()) == '') {
+            //        shorError();
+            //        return;
+            //    }
+            var key;
+ 
+            if (window.event)
+                key = window.event.keyCode;     //IE
+            else
+                key = event.which;     //firefox
+ 
+            if (key == 13) {
+                //                if ($.trim($('#btnVerificationCode').val()) == '') {
+                //                    shorError();
+                //                }
+                try {
+                    if (window.event) {//ie
+                        window.event.keyCode = 0
+                        window.event.returnValue = false;
+                    }
+                    else {//firefox
+                        return false;
+                    }
+                }
+                catch (ex) {
+                }
+            }
+        }
+    </script>
+</asp:Content> 

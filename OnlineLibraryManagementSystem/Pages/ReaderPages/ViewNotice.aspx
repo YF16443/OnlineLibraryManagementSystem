@@ -1,11 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/ReaderPages/MasterPage.master" AutoEventWireup="true" CodeFile="ViewNotice.aspx.cs" Inherits="Pages_ReaderPages_ViewNotice" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">  
-   <link href="../../assets/vendors/daterangepicker/styles/vendor.css" rel="stylesheet" />
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <link href="../../assets/vendors/daterangepicker/styles/vendor.css" rel="stylesheet" />
     <link href="../../assets/vendors/daterangepicker/styles/daterangepicker.css" rel="stylesheet" />
+    
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
-      <div class="card">
+<asp:Content ID="Content3" ContentPlaceHolderID="body" Runat="Server">
+    <div class="card">
         <div class="content">
               <div class="row">
                   <div class='col-md-5'>
@@ -18,19 +19,17 @@
             </div>
             
             <div class="material-datatables">
-                <asp:GridView ID="GridView1" runat="server" CssClass="table table-striped table-no-bordered table-hover" AutoGenerateColumns="False" style="width:100%;cellspacing:0"  >
+                <asp:GridView ID="History" runat="server" CssClass="table table-striped table-no-bordered table-hover" AutoGenerateColumns="False" style="width:100%;cellspacing:0"  DataKeyNames="NoticeId">
                     <Columns>
-
+                        <asp:BoundField HeaderText="<%$ Resources:Resource, NoticeId %>" DataField="NoticeId" ReadOnly="true"  />
                         <asp:BoundField HeaderText="<%$ Resources:Resource, Notice %>" DataField="Details" ReadOnly="true" />
                         <asp:BoundField HeaderText="<%$ Resources:Resource, Time %>" DataField="Timestamp" ReadOnly="true" />
-                        
                     </Columns>
                 </asp:GridView>
             </div>
-
-              
+            </br></br>
+            </div>
         </div>
-    </div>
     <script src="../../assets/vendors/DataTables/jQuery-1.12.4/jquery-1.12.4.min.js"></script>
     <script type="text/javascript">
         var $124 = $;
@@ -39,13 +38,16 @@
     <script type="text/javascript">
 
     </script>
-    <script src="../../assets/vendors/daterangepicker/scripts/vendor.js"></script>
+    
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="foot" Runat="Server">
+     <script src="../../assets/vendors/daterangepicker/scripts/vendor.js"></script>
     <script src="../../assets/vendors/daterangepicker/scripts/daterangepicker.js"></script>
     <script>
-        var income = $124('#body_Income').DataTable({
+        var income = $124('#body_History').DataTable({
             "searching": false,
             "lengthChange": false,
-            "order": [[3, 'asc']],
+            "order": [[0, 'asc']],
         });
         $(".daterangepicker-field").daterangepicker({
             forceUpdate: true,

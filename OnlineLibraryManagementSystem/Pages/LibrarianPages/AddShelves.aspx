@@ -22,14 +22,16 @@
 	                                            </div>
 	                                        </div>
 	                                    </fieldset>
+                                        &nbsp
                                          <fieldset>
 	                                        <div class="form-group">
 	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource, Shelf_Summary %>"></asp:Label></asp:Label></label>
 	                                            <div class="col-sm-10">
-                                                    <asp:TextBox ID="TextBoxShelf_Summary" runat="server" Cssclass="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="TextBoxShelf_Summary" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
 	                                            </div>
 	                                        </div>
 	                                    </fieldset>
+                                  &nbsp
                                         <div class="form-group">
                                             <asp:Button ID="AddButton" runat="server" Text="<%$ Resources:Resource, Add %>" OnClick="AddShelves"  CausesValidation="False" CssClass="btn btn-fill btn-default" />
                                          </div>
@@ -44,4 +46,35 @@
     <script src="../../Scripts/art-Template/template-web.js"></script>
     <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
     <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
+    <script type="text/javascript">
+        function doClick(event) {
+            //    if ($.trim($('#' + buttonId + '').val()) == '') {
+            //        shorError();
+            //        return;
+            //    }
+            var key;
+ 
+            if (window.event)
+                key = window.event.keyCode;     //IE
+            else
+                key = event.which;     //firefox
+ 
+            if (key == 13) {
+                //                if ($.trim($('#btnVerificationCode').val()) == '') {
+                //                    shorError();
+                //                }
+                try {
+                    if (window.event) {//ie
+                        window.event.keyCode = 0
+                        window.event.returnValue = false;
+                    }
+                    else {//firefox
+                        return false;
+                    }
+                }
+                catch (ex) {
+                }
+            }
+        }
+    </script>
 </asp:Content>

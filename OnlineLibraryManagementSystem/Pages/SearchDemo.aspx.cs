@@ -29,6 +29,7 @@ public partial class Pages_SearchDemo : BasePage
 
     protected void brSearch_Click(object sender, EventArgs e)
     {
+        this.notice.Style.Add("display", "none");
         // 输入过滤，未完成
         if (tbSearch.Text.ToString().Length == 0)
         {
@@ -86,7 +87,6 @@ public partial class Pages_SearchDemo : BasePage
             siForGv = new SortInfo(resultSet.Tables[0]);
             gvBookResult.DataSource = searchResult;
             gvBookResult.DataBind();
-            gvBookResult.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         else
@@ -121,7 +121,6 @@ public partial class Pages_SearchDemo : BasePage
             siForGv = new SortInfo(resultSet.Tables[0]);
             gvPeriodicalResult.DataSource = searchResult;
             gvPeriodicalResult.DataBind();
-            gvPeriodicalResult.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
 
