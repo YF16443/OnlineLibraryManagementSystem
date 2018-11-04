@@ -46,7 +46,7 @@
                     </div>
                 </td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="TextBoxID" runat="server" Width="450px" CssClass="form-control" AutoPostBack="true"> </asp:TextBox></td>
+                    <asp:TextBox ID="TextBoxID" runat="server" Width="450px" CssClass="form-control" onkeypress="return doClick(event);"> </asp:TextBox></td>
                 <td class="auto-style5">
                     <asp:Button ID="SearchButton" runat="server" Text="<%$ Resources:Resource,Search %>" OnClick="Search" Cssclass="btn btn-default btn-fill"/>
                     <asp:Button ID="Button1" runat="server" Text="<%$ Resources:Resource, Delete %>" OnClick="Delete"  CausesValidation="False" Cssclass="btn btn-default btn-fill"/>
@@ -107,4 +107,35 @@
     <script src="../../Scripts/art-Template/template-web.js"></script>
     <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
     <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
+    <script type="text/javascript">
+        function doClick(event) {
+            //    if ($.trim($('#' + buttonId + '').val()) == '') {
+            //        shorError();
+            //        return;
+            //    }
+            var key;
+ 
+            if (window.event)
+                key = window.event.keyCode;     //IE
+            else
+                key = event.which;     //firefox
+ 
+            if (key == 13) {
+                //                if ($.trim($('#btnVerificationCode').val()) == '') {
+                //                    shorError();
+                //                }
+                try {
+                    if (window.event) {//ie
+                        window.event.keyCode = 0
+                        window.event.returnValue = false;
+                    }
+                    else {//firefox
+                        return false;
+                    }
+                }
+                catch (ex) {
+                }
+            }
+        }
+    </script>
 </asp:Content> 

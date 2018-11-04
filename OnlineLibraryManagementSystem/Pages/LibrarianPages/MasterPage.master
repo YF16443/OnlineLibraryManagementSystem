@@ -6,8 +6,9 @@
 <head runat="server">
     <meta charset="utf-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <link rel="icon" type="image/ico" href="../../Images/headicon.ico">
 
-    <title>Amaze - Bootstrap Admin Dashboard Template</title>
+    <title>Bibliosoft</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport' >
     <meta name="viewport" content="width=device-width" >
@@ -24,7 +25,7 @@
 </head>
 
 <body>
-    <form id="form" runat="server">
+    <form id="form" runat="server" enctype="multipart/form-data">
         <div class="wrapper">
             <div class="sidebar" data-background-color="brown" data-active-color="danger">
                 <!--
@@ -73,7 +74,7 @@
                                         <asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource,AddPeriodical %>"></asp:Label></a></li>
                                     <li><a href="SearchBooks.aspx">
                                         <asp:Label ID="Label8" runat="server" Text="<%$ Resources:Resource,Search %>"></asp:Label></a></li>
-							        <li><a href="OperationHistory.aspx">
+							        <li><a href="ViewHistory.aspx">
                                         <asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource,OperationHistory %>"></asp:Label></a></li>
 								    <li><a href="CategoryManagement.aspx">
                                         <asp:Label ID="Label10" runat="server" Text="<%$ Resources:Resource,Category %>"></asp:Label></a></li>

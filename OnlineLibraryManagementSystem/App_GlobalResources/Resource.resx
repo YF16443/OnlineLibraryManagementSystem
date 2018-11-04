@@ -765,4 +765,8 @@
   <data name="NoticeIdExist" xml:space="preserve">
     <value>Notice ID already exists! &amp; 公告编号已存在！</value>
   </data>
+  <data name="Selectimage" xml:space="preserve">
+    <value>Select image &amp; 选择图片</value>
+    <comment>选择图片</comment>
+  </data>
 </root>

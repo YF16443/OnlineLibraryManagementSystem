@@ -147,23 +147,18 @@ public partial class Pages_LibrarianPages_AddPeriodicals : BasePage
     protected void ButtonUpload_Click(object sender, EventArgs e)
     {
         bool filesValid = false;
-        //文件上传路径
-        string filePath = this.fuCover.PostedFile.FileName;
-        //获取文件名称
-        string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
-        //获取文件大小
-        //string fileSize = Convert.ToString(FileUpload1.PostedFile.ContentLength);
-        //获取文件扩展名
-        //string fileExtend = filePath.Substring(filePath.LastIndexOf(".")+1);
-        //获取文件类型
-        //string fileType = FileUpload1.PostedFile.ContentType;
-
-        if (this.fuCover.HasFile)
+        HttpPostedFile req = Request.Files["fileupload"];
+        if (req == null || req.ContentLength < 0)
         {
-            //转换成小写形式
-            string fileExtension = System.IO.Path.GetExtension(this.fuCover.FileName).ToLower();
+
+            Response.Write("<script>alert('Not Found!')</script>");
+        }
+        else
+        {
+
+            string fileExtension = System.IO.Path.GetExtension(req.FileName.ToString()).ToLower();
             string[] restricyExtension = { ".gif", ".jpg", ".bmp", ".png" };
-            //判断文件是否符合要求
+            string src = req.FileName;
             for (int i = 0; i < restricyExtension.Length; i++)
             {
                 if (fileExtension == restricyExtension[i])
@@ -173,7 +168,6 @@ public partial class Pages_LibrarianPages_AddPeriodicals : BasePage
                 }
 
             }
-            //如果文件符合要求，调用SaveAS()方法上传，并显示相关信息
             if (filesValid == true)
             {
                 //判断是否有该路径  
@@ -181,17 +175,13 @@ public partial class Pages_LibrarianPages_AddPeriodicals : BasePage
                 if (!Directory.Exists(wantPath))
                 {   //如果不存在就创建
                     Directory.CreateDirectory(wantPath);
-                    this.fuCover.SaveAs(Server.MapPath("~/Images/Cover/") + fileName);
-                    imCover.ImageUrl = "~/Images/Cover/" + fileName;
-                    Response.Write("<script>alert('Upload Successfully!')</script>");
+                    req.SaveAs(wantPath + src);
+                    imCover.ImageUrl = "~/Images/Cover/" + src;
                 }
                 else
                 {
-
-                    this.fuCover.SaveAs(Server.MapPath("~/Images/Cover/") +
-                    fileName);
-                    imCover.ImageUrl = "~/Images/Cover/" + fileName;
-                    Response.Write("<script>alert('Upload Successfully!')</script>");
+                    req.SaveAs(wantPath + src);
+                    imCover.ImageUrl = "~/Images/Cover/" + src;
 
                 }
 
@@ -201,6 +191,7 @@ public partial class Pages_LibrarianPages_AddPeriodicals : BasePage
                 Response.Write("<script>alert('Error Format!')</script>");
                 return;
             }
+
         }
     }
-}
+ }

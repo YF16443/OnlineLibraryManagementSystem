@@ -13,7 +13,6 @@ using System.IO;
 
 public partial class Pages_LibrarianPages_BookMessage : BasePage
 {
-    public static SortInfo siForGv = null;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!this.IsPostBack)
@@ -87,9 +86,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                 reader3.Close();
 
                 ////////////////////////////////////////////////Barcode表/////////////////////////////////////////
-                string selectbarcode = "select * from BookBarcodes where BookId='" + bookId + "';";
-                //数据库
-                BindDataTogvResult(selectbarcode);
+                BindDataTogvResult();
 
             }
             catch (MySqlException ex)
@@ -107,11 +104,6 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
 
     protected void Alter_Click(object sender, EventArgs e)
     {
-        //检查登陆
-        if (string.IsNullOrEmpty((string)Session["lid"]))
-        { 
-           Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='/Pages/LibrarianLogin.aspx';</script>");
-        }
         string bookId = Request["book_id"];
         string newtitle = "";
         string newauthor = "";
@@ -208,15 +200,6 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         try
         { 
             OLMSDBConnection.Open();
-            //更新书本
-            string updatebook = "update Books set Title='" + newtitle + "',Author='" + newauthor + "',PubDate='" + newpubdate + "',Price='" + newprice + "',ISBN13='" + newisbn13 + "',ISBN10='" + newisbn10 + "',Pages='" + newpages + "',Publisher='" + newpublisher + "',ImageURL='" + Image1.ImageUrl + "' where BookId='" + bookId + "';";
-            MySqlCommand cmdupdatebook = new MySqlCommand(updatebook, OLMSDBConnection);
-            int result = 0;
-            result = cmdupdatebook.ExecuteNonQuery();
-            string updateshelfid = "update BookBarcodes set ShelfId='" + newshelfid + "' where BookId='" + bookId + "';";
-            MySqlCommand cmdupdateshelfid = new MySqlCommand(updateshelfid, OLMSDBConnection);
-            int result1 = 0;
-            result1 = cmdupdateshelfid.ExecuteNonQuery();
             //查管理员id
             string librarianid = "";
             string librarianaccount = "";
@@ -252,8 +235,18 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             int result2 = 0;
             MySqlCommand cmdinsertbookmanagement = new MySqlCommand(insertbookmanagement, OLMSDBConnection);
             result2 = cmdinsertbookmanagement.ExecuteNonQuery();
+            //更新书本
+            string updatebook = "update Books set Title='" + newtitle + "',Author='" + newauthor + "',PubDate='" + newpubdate + "',Price='" + newprice + "',ISBN13='" + newisbn13 + "',ISBN10='" + newisbn10 + "',Pages='" + newpages + "',Publisher='" + newpublisher + "',ImageURL='" + Image1.ImageUrl + "' where BookId='" + bookId + "';";
+            MySqlCommand cmdupdatebook = new MySqlCommand(updatebook, OLMSDBConnection);
+            int result = 0;
+            result = cmdupdatebook.ExecuteNonQuery();
+            string updateshelfid = "update BookBarcodes set ShelfId='" + newshelfid + "' where BookId='" + bookId + "';";
+            MySqlCommand cmdupdateshelfid = new MySqlCommand(updateshelfid, OLMSDBConnection);
+            int result1 = 0;
+            result1 = cmdupdateshelfid.ExecuteNonQuery();
             if (result != 0 && result1 != 0&& result2!=0)
             {
+                BindDataTogvResult();
                 Response.Write("<script>alert('Edited Successfully!')</script>");
                 return;
             }
@@ -276,23 +269,18 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
     protected void Upload_Click(object sender, EventArgs e)
     {
         bool filesValid = false;
-        //文件上传路径
-        string filePath = this.FileUpload1.PostedFile.FileName;
-        //获取文件名称
-        string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
-        //获取文件大小
-        //string fileSize = Convert.ToString(FileUpload1.PostedFile.ContentLength);
-        //获取文件扩展名
-        //string fileExtend = filePath.Substring(filePath.LastIndexOf(".")+1);
-        //获取文件类型
-        //string fileType = FileUpload1.PostedFile.ContentType;
-
-        if (this.FileUpload1.HasFile)
+        HttpPostedFile req = Request.Files["fileupload"];
+        if (req == null || req.ContentLength < 0)
         {
-            //转换成小写形式
-            string fileExtension = System.IO.Path.GetExtension(this.FileUpload1.FileName).ToLower();
+
+            Response.Write("<script>alert('Not Found!')</script>");
+        }
+        else
+        {
+
+            string fileExtension = System.IO.Path.GetExtension(req.FileName.ToString()).ToLower();
             string[] restricyExtension = { ".gif", ".jpg", ".bmp", ".png" };
-            //判断文件是否符合要求
+            string src = req.FileName;
             for (int i = 0; i < restricyExtension.Length; i++)
             {
                 if (fileExtension == restricyExtension[i])
@@ -302,7 +290,6 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                 }
 
             }
-            //如果文件符合要求，调用SaveAS()方法上传，并显示相关信息
             if (filesValid == true)
             {
                 //判断是否有该路径  
@@ -310,17 +297,13 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                 if (!Directory.Exists(wantPath))
                 {   //如果不存在就创建
                     Directory.CreateDirectory(wantPath);
-                    this.FileUpload1.SaveAs(Server.MapPath("~/Images/Cover/") + fileName);
-                    Image1.ImageUrl = "~/Images/Cover/" + fileName;
-                    Response.Write("<script>alert('Upload Successfully!')</script>");
+                    req.SaveAs(wantPath + src);
+                    Image1.ImageUrl = "~/Images/Cover/" + src;
                 }
                 else
                 {
-
-                    this.FileUpload1.SaveAs(Server.MapPath("~/Images/Cover/") +
-                    fileName);
-                    Image1.ImageUrl = "~/Images/Cover/" + fileName;
-                    Response.Write("<script>alert('Upload Successfully!')</script>");
+                    req.SaveAs(wantPath + src);
+                    Image1.ImageUrl = "~/Images/Cover/" + src;
 
                 }
 
@@ -330,47 +313,22 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                 Response.Write("<script>alert('Error Format!')</script>");
                 return;
             }
+
         }
     }
-    protected void gvBookBarcodeResult_Sorting(object sender, GridViewSortEventArgs e)
-    {
-        if (siForGv == null)
-        {
-            return;
-        }
-        GridView SortGv = (GridView)sender;
-        siForGv.SortExpression = e.SortExpression;
-        int page = SortGv.PageIndex;
-        siForGv.SortDataBind(SortGv, page, false);
 
-    }
-    protected void gvBookBarcodeResult_PageIndexChanging(object sender, GridViewPageEventArgs e)
-    {
-        if (siForGv == null)
-        {
-            return;
-        }
-        GridView SortGv = (GridView)sender;
-        int page = e.NewPageIndex;
-        siForGv.SortDataBind(SortGv, page, true);
-    }
-
-    protected void gvBookBarcodeResult_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-    }
 
     protected void ButtonPrint_Barcode_Click(object sender, EventArgs e)
     {
         string barcode = "";
-        int index = 0;
         //barcode = ((Button)sender).CommandArgument.ToString();
-        index = ((GridViewRow)((Button)sender).NamingContainer).RowIndex;
-        barcode = gvBookBarcodeResult.Rows[index].Cells[0].Text;
+        GridViewRow row = (GridViewRow)(((Button)sender).NamingContainer); 
+        Label barcodelabel = (Label)row.FindControl("BookBarcode");
+        barcode = barcodelabel.Text;
         //Barcode generation test
         if (barcode != "")
         {
-            //Response.Write("<script>alert('" + barcode10 + "')</script>");
+            //Response.Write("<script>alert('" + barcode + "')</script>");
             var barcodeImage = MyBarcodeGenerator.Generate(barcode) as System.Drawing.Image;
             MyBarcodeGenerator.ShowBarcode(barcode, this.Response);
         }
@@ -379,14 +337,16 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             Response.Write("<script>alert('Error!')<script/>");
         }
     }
-    protected void BindDataTogvResult(string str)
+    protected void BindDataTogvResult()
     {
         //绑定gvbarcode
+        string bookid = Request["book_id"];
+        string selectbarcode = "select * from BookBarcodes where BookId='" + bookid + "';";
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         try
         {
-            MySqlCommand cmdselectbarcodeinfo = new MySqlCommand(str, OLMSDBConnection);
+            MySqlCommand cmdselectbarcodeinfo = new MySqlCommand(selectbarcode, OLMSDBConnection);
             MySqlDataAdapter info = new MySqlDataAdapter(cmdselectbarcodeinfo);
             DataSet infoset = new DataSet();
             info.Fill(infoset);
@@ -414,10 +374,11 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                         row["newStatus"] = "Aleardy Reserved";
                 }
             }
-            siForGv = new SortInfo(infoset.Tables[0]);
             gvBookBarcodeResult.Enabled = true;
+            gvBookBarcodeResult.DataKeyNames = new string[] { "BookBarcode" };
             gvBookBarcodeResult.DataSource = searchResult;
             gvBookBarcodeResult.DataBind();
+            gvBookBarcodeResult.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
         catch (MySqlException ex)
         {
@@ -508,7 +469,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
            }
             //重新绑定gridview
             string selectbarcode = "select * from BookBarcodes where BookId='" + bookid + "';";
-            BindDataTogvResult(selectbarcode);
+            BindDataTogvResult();
             if (resultbarcode != 0&&resultupdatebook!=0&&resultbookmanagement!=0)
             {
                 Response.Write("<script>alert('Deleted Successfully!')</script>");
@@ -528,5 +489,161 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         {
             OLMSDBConnection.Close();
         }
+    }
+    protected void gvBookBarcodeResult_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+        string bookbarcode = gvBookBarcodeResult.DataKeys[e.RowIndex].Values[0].ToString();
+        string bookid = Request["book_id"];
+        string account = "";
+        if (string.IsNullOrEmpty((string)Session["lid"]))
+        {
+            Response.Write("<script>alert('Account Is Null!')</script>");
+            return;
+        }
+        else
+        {
+            account = Session["lid"].ToString();
+        }
+        string librarianid = "";
+
+        OLMSDBConnection.Open();
+
+        //查询管理员id
+        string selectlibrarianid = "select LibrarianId from Librarians where Account='" + account + "';";
+        MySqlCommand cmdselectlibrarianid = new MySqlCommand(selectlibrarianid, OLMSDBConnection);
+        MySqlDataReader readerlid = cmdselectlibrarianid.ExecuteReader();
+        if (readerlid.Read())
+        {
+            librarianid = readerlid["LibrarianId"].ToString();
+        }
+        readerlid.Close();
+        //插入操作记录
+        string insertbookmanagement = "insert BookManagementRecords(Operation,BookId,LibrarianId,Amount) Values('Delete','" + bookid + "','" + librarianid + "','1');";
+        MySqlCommand cmdinsertbookmanagement = new MySqlCommand(insertbookmanagement, OLMSDBConnection);
+        int resultbookmanagement = cmdinsertbookmanagement.ExecuteNonQuery();
+        //删除副本
+        string sqlstr = "delete from BookBarcodes where BookBarcode=" + bookbarcode + ";";
+        System.Diagnostics.Debug.WriteLine("database is ok");
+        MySqlCommand cmd = new MySqlCommand(sqlstr, OLMSDBConnection);
+        int result = cmd.ExecuteNonQuery();
+        //更新书本数量
+        string selectamount = "select Amount from Books where BookId='" + bookid + "';";
+        string oldamount = "";
+        MySqlCommand cmdselectbookamount = new MySqlCommand(selectamount, OLMSDBConnection);
+        MySqlDataReader readeroldamount = cmdselectbookamount.ExecuteReader();
+        if (readeroldamount.Read())
+        {
+            oldamount = readeroldamount["Amount"].ToString();
+        }
+        readeroldamount.Close();
+        int newamount = int.Parse(oldamount) - 1;
+        string updatebookamount = "update Books set amount='" + newamount.ToString() + "' where BookId='" + bookid + "';";
+        MySqlCommand cmdupdatebookamount = new MySqlCommand(updatebookamount, OLMSDBConnection);
+        int result1 = cmdupdatebookamount.ExecuteNonQuery();
+        readeroldamount.Close();
+        OLMSDBConnection.Close();
+        if (result!=0&&result1!=0)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('Deleted Successful!');", true);
+            BindDataTogvResult();
+            return;
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('Faid!');", true);
+            //Response.Redirect()
+            return;
+        }
+
+    }
+    protected void gvBookBarcodeResult_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvBookBarcodeResult.PageIndex = e.NewPageIndex;
+        BindDataTogvResult();
+    }
+    protected void gvBookBarcodeResult_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        gvBookBarcodeResult.EditIndex = -1;
+        BindDataTogvResult();
+    }
+    protected void gvBookBarcodeResult_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
+        //记录操作
+        string bookid = Request["book_id"];
+        string account = "";
+        if (string.IsNullOrEmpty((string)Session["lid"]))
+        {
+            Response.Write("<script>alert('Account Is Null!')</script>");
+            return;
+        }
+        else
+        {
+            account = Session["lid"].ToString();
+        }
+        string librarianid = "";
+        conn.Open();
+        //查询管理员id
+        string selectlibrarianid = "select LibrarianId from Librarians where Account='" + account + "';";
+        MySqlCommand cmdselectlibrarianid = new MySqlCommand(selectlibrarianid, conn);
+        MySqlDataReader readerlid = cmdselectlibrarianid.ExecuteReader();
+        if (readerlid.Read())
+        {
+            librarianid = readerlid["LibrarianId"].ToString();
+        }
+        readerlid.Close();
+        //插入操作记录
+        string insertbookmanagement = "insert BookManagementRecords(Operation,BookId,LibrarianId,Amount) Values('Alter','" + bookid + "','" + librarianid + "','1');";
+        MySqlCommand cmdinsertbookmanagement = new MySqlCommand(insertbookmanagement, conn);
+        int resultbookmanagement = cmdinsertbookmanagement.ExecuteNonQuery();
+        conn.Close();
+        //更新
+        string bookbarcode = gvBookBarcodeResult.DataKeys[e.RowIndex].Values[0].ToString();
+        string shelfid = ((DropDownList)gvBookBarcodeResult.Rows[e.RowIndex].FindControl("ddlShelfId")).SelectedItem.Text.ToString();
+        conn.Open();
+        MySqlCommand cmd = conn.CreateCommand();
+        cmd.CommandText = "update BookBarcodes set ShelfId=@s where BookBarcode=@i";
+        MySqlParameter param;
+        param = new MySqlParameter("@s", shelfid);
+        cmd.Parameters.Add(param);
+        param = new MySqlParameter("@i", bookbarcode);
+        cmd.Parameters.Add(param);
+        int result = cmd.ExecuteNonQuery();
+        if (result == 1)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditSuccess + "');", true);
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditFail + "');", true);
+        }
+        gvBookBarcodeResult.EditIndex = -1;
+        BindDataTogvResult();
+    }
+    protected void gvBookBarcodeResult_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        gvBookBarcodeResult.EditIndex = e.NewEditIndex;
+        BindDataTogvResult();
+        //添加项目
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+        OLMSDBConnection.Open();
+        string selectshelfid = "select ShelfId from Shelves";
+        MySqlCommand cmdselectshelfid = new MySqlCommand(selectshelfid, OLMSDBConnection);
+        MySqlDataReader readershelfid = cmdselectshelfid.ExecuteReader();
+        DropDownList ddlshelfid = (DropDownList)(gvBookBarcodeResult.Rows[e.NewEditIndex].FindControl("ddlShelfId"));
+        if (ddlshelfid != null)
+        {
+            ddlshelfid.Items.Clear();
+        }
+        while (readershelfid.Read())
+        {
+            ddlshelfid.Items.Add(readershelfid["ShelfId"].ToString());
+        }
+        readershelfid.Close();
+        OLMSDBConnection.Close();
     }
 }

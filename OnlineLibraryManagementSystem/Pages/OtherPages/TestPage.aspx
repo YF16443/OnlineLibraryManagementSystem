@@ -7,7 +7,7 @@
     <br />
     <asp:Label ID="lbBookInfo" runat="server" Text="Book Information Show Failed"></asp:Label>
     <br />
-    <asp:Button ID="btShowBarcode" runat="server" OnClick="btShowBarcode_Click" Text="Show Barcode" />
+    <asp:Button ID="btShowBarcode" runat="server" OnClick="btShowBarcode_Click" Text="Show Barcode" Cssclass="btn btn-fill btn-default" />
     <br />
     <asp:ChangePassword ID="ChangePassword1" runat="server">
     </asp:ChangePassword>

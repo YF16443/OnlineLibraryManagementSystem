@@ -25,7 +25,7 @@
                         </div>
                 </td>
                 <td style="width:20%">
-                    <asp:TextBox ID="tbSearch" runat="server" Width="380px" CssClass="form-control" AutoPostBack="true"></asp:TextBox>
+                    <asp:TextBox ID="tbSearch" runat="server" Width="380px" CssClass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
                 </td>
                 <td style="width:70%;text-align:left;">
                     <div class="col-md-5">
@@ -103,4 +103,35 @@
     <script src="../../Scripts/art-Template/template-web.js"></script>
     <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
     <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
+    <script type="text/javascript">
+        function doClick(event) {
+            //    if ($.trim($('#' + buttonId + '').val()) == '') {
+            //        shorError();
+            //        return;
+            //    }
+            var key;
+ 
+            if (window.event)
+                key = window.event.keyCode;     //IE
+            else
+                key = event.which;     //firefox
+ 
+            if (key == 13) {
+                //                if ($.trim($('#btnVerificationCode').val()) == '') {
+                //                    shorError();
+                //                }
+                try {
+                    if (window.event) {//ie
+                        window.event.keyCode = 0
+                        window.event.returnValue = false;
+                    }
+                    else {//firefox
+                        return false;
+                    }
+                }
+                catch (ex) {
+                }
+            }
+        }
+    </script>
 </asp:Content>

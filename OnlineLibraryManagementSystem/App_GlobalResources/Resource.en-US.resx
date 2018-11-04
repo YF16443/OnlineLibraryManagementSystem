@@ -765,4 +765,7 @@
   <data name="NoticeIdExist" xml:space="preserve">
     <value>Notice ID already exists!</value>
   </data>
+  <data name="Selectimage" xml:space="preserve">
+    <value>Select image</value>
+  </data>
 </root>
