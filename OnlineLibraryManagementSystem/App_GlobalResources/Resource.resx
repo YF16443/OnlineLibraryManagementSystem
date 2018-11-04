@@ -762,4 +762,10 @@
   <data name="MoreNotice" xml:space="preserve">
     <value>MoreNotice &amp; 更多公告</value>
   </data>
+  <data name="Limitofissue" xml:space="preserve">
+    <value>Limit of issue/day&amp;借出期限/天</value>
+  </data>
+  <data name="Limitofreservation" xml:space="preserve">
+    <value>Limit of reservation/hour&amp;预约期限/小时</value>
+  </data>
 </root>

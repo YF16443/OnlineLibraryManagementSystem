@@ -759,4 +759,10 @@
   <data name="MoreNotice" xml:space="preserve">
     <value>MoreNotice</value>
   </data>
+  <data name="Limitofreservation" xml:space="preserve">
+    <value>Limit of reservation/hour</value>
+  </data>
+  <data name="Limitofissue" xml:space="preserve">
+    <value>Limit of issue/day</value>
+  </data>
 </root>
