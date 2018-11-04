@@ -8,9 +8,11 @@ using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data;
 
-public partial class Pages_LibrarianPages_SearchBooks : BasePage
+public partial class Pages_LibrarianPages_SearchBooks : BasePage, IPostBackEventHandler
 {
     public static SortInfo siForGv = null;
+    private static string global_id = "";
+    //删除图书或期刊
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -163,13 +165,74 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
         siForGv.SortDataBind(SortGv, page, true);
     }
 
-
-    protected void brDelete_Click(object sender, EventArgs e)
+    private int deletebook()
     {
-        //删除图书或期刊
+        int result = 0;
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
-        
+        try
+        {
+            OLMSDBConnection.Open();
+            string deletebook = "delete from Books where Title='" + global_id + "';";
+            MySqlCommand cmddeletebook = new MySqlCommand(deletebook, OLMSDBConnection);
+            result = cmddeletebook.ExecuteNonQuery();
+            //重新绑定gridview,使用函数较方便
+            string keyword = tbSearch.Text.ToString();
+            Response.Write("<script>alert(" + keyword + ")</script>");
+            MySqlCommand getResult_sql = new MySqlCommand("select BookId,Title,ImageURL,Author,Publisher " +
+                                                 "from Books " +
+                                                 "where " + (ddlField.SelectedValue.ToString().Equals("ISBN") ? "ISBN13 like '%" + keyword + "%' or ISBN10 like '%" + keyword + "%';" : ddlField.Text.ToString() + " like '%" + keyword + "%';"), OLMSDBConnection);
+            MySqlDataAdapter resultAdapter = new MySqlDataAdapter(getResult_sql);
+            DataSet resultSet = new DataSet();
+
+            resultAdapter.Fill(resultSet);
+
+            DataTable searchResult = resultSet.Tables[0];
+            siForGv = new SortInfo(resultSet.Tables[0]);
+            gvBookResult.Enabled = true;
+            gvBookResult.DataSource = searchResult;
+            gvBookResult.DataBind();
+        }
+        catch(Exception ex)
+        {
+            //
+        }
+        finally
+        {
+            OLMSDBConnection.Close();
+        }
+        if (result != 0)
+        {
+            Response.Write("<script>alert('Deleted Successfully!')</script>");
+
+        }
+        else
+        {
+            Response.Write("<script>alert('Please Select Book!')</script>");
+
+        }
+        return 1;
+    }
+
+    public void RaisePostBackEvent(string eventArgument)
+    {
+        switch (eventArgument)
+        {
+            case "sure":
+                
+                deletebook();
+                break;
+            case "cancel":
+                
+                break;
+            default:
+                throw new NotSupportedException();
+        }
+    }
+    protected void brDelete_Click(object sender, EventArgs e)
+    {
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         try
         {
             OLMSDBConnection.Open();
@@ -178,6 +241,7 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
             int result = 0;
             if (ddlClass.SelectedValue.ToString() == "Books")//删除图书
             {
+                result = 1;
                 foreach (GridViewRow row in gvBookResult.Rows)
                 {
                     cb = (CheckBox)row.FindControl("CheckBoxDeleteBook");
@@ -204,40 +268,30 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
                         string morebooksSql = "select count(*) as count from BookBarcodes where BookId = (select BookId from Books where title = ?id);";
                         MySqlCommand cmd2 = new MySqlCommand(morebooksSql, OLMSDBConnection);
                         cmd2.Parameters.AddWithValue("?id", id);
-                        MySqlDataReader reader2 = cmd.ExecuteReader();
+                        MySqlDataReader reader2 = cmd2.ExecuteReader();
                         while (reader2.Read())
                         {
                             if (reader2.HasRows)
                             {
                                 Int64 counts = (Int64)reader2["count"];
+                                //多个副本 需要处理
+                                global_id = id;
                                 if (counts > 1)
                                 {
-                                    //多个副本 需要处理
-                                    return;
+                                    
+                                    ScriptManager.RegisterStartupScript(this, this.GetType(), "confirm",
+                                        "if(confirm('" + Resources.Resource.MoreCopy + "'))" + this.ClientScript.GetPostBackEventReference(this, "sure") + "; else " +
+                                        this.ClientScript.GetPostBackEventReference(this, "cancel"), true);
                                 }
+                                else
+                                {
+                                    deletebook();
+                                }
+                                return;
                             }
                         }
-                        string deletebook = "delete from Books where Title='" + id + "';";
-                        MySqlCommand cmddeletebook = new MySqlCommand(deletebook, OLMSDBConnection);
-                        result += cmddeletebook.ExecuteNonQuery();
                     }
                 }
-                //重新绑定gridview,使用函数较方便
-                string keyword = tbSearch.Text.ToString();
-
-                MySqlCommand getResult_sql = new MySqlCommand("select BookId,Title,ImageURL,Author,Publisher " +
-                                                     "from Books " +
-                                                     "where " + (ddlField.SelectedValue.ToString().Equals("ISBN") ? "ISBN13 like '%" + keyword + "%' or ISBN10 like '%" + keyword + "%';" : ddlField.Text.ToString() + " like '%" + keyword + "%';"), OLMSDBConnection);
-                MySqlDataAdapter resultAdapter = new MySqlDataAdapter(getResult_sql);
-                DataSet resultSet = new DataSet();
-
-                resultAdapter.Fill(resultSet);
-
-                DataTable searchResult = resultSet.Tables[0];
-                siForGv = new SortInfo(resultSet.Tables[0]);
-                gvBookResult.Enabled = true;
-                gvBookResult.DataSource = searchResult;
-                gvBookResult.DataBind();
             }
             if (ddlClass.SelectedValue.ToString() == "Periodicals")//删除期刊
             {
