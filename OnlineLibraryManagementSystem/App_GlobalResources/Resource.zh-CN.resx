@@ -759,4 +759,7 @@
   <data name="MoreNotice" xml:space="preserve">
     <value>更多公告</value>
   </data>
+  <data name="MaximunIssue" xml:space="preserve">
+    <value>最大借阅数目</value>
+  </data>
 </root>
