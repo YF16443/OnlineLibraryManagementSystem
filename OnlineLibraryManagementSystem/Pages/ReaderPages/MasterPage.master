@@ -6,8 +6,9 @@
 <head runat="server">
     <meta charset="utf-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <link rel="icon" type="image/ico" href="../../Images/headicon.ico">
 
-    <title>Amaze - Bootstrap Admin Dashboard Template</title>
+    <title>Bibliosoft</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport' >
     <meta name="viewport" content="width=device-width" >
@@ -31,7 +32,7 @@
                     <div class="container-fluid">
                         <div class="navbar-header">
                             <asp:ContentPlaceHolder id="header" runat="server" >
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Images/logo透明背景.png" PostBackUrl="~/Pages/SearchDemo.aspx" Height="43.2px" Width="145.35px" style="position:relative; top:17px"/>
+                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Images/logo透明背景_黑.png" PostBackUrl="~/Pages/SearchDemo.aspx" Height="43.2px" Width="145.35px" style="position:relative; top:17px"/>
                                 <%--<a class="navbar-brand" href="#"> Dashboard </a>--%>
                             </asp:ContentPlaceHolder>  
                         </div>
@@ -50,7 +51,7 @@
                                     </asp:LoginView>
                                 </li>
                                 <li>
-                                     <asp:HyperLink ID="hlMyAccount" runat="server" Text="<%$ Resources:Resource,MyAccount %>" NavigateUrl="~/Pages/ReaderPages/ShowReaderInfo.aspx"></asp:HyperLink>
+                                     <asp:HyperLink ID="hlMyAccount" runat="server" Text="<%$ Resources:Resource,MyAccount %>" NavigateUrl="~/Pages/ReaderPages/ShowReaderInfo.aspx" Visible="false"></asp:HyperLink>
                                 </li>
                                 <li>
                                     <div class="select" style="position:relative; top:17px"">

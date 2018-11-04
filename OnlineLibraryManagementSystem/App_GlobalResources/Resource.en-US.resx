@@ -756,8 +756,20 @@
   <data name="BackingOut" xml:space="preserve">
     <value>BackingOut</value>
   </data>
-  <data name="MoreNotice" xml:space="preserve">
-    <value>MoreNotice</value>
+  <data name="MoreNotices" xml:space="preserve">
+    <value>MoreNotices</value>
+  </data>
+  <data name="AddNotice" xml:space="preserve">
+    <value>Add Notice</value>
+  </data>
+  <data name="NoticeIdExist" xml:space="preserve">
+    <value>Notice ID already exists!</value>
+  </data>
+  <data name="Selectimage" xml:space="preserve">
+    <value>Select image</value>
+  </data>
+  <data name="MaximunIssue" xml:space="preserve">
+    <value>Maximun Issue</value>
   </data>
   <data name="Limitofreservation" xml:space="preserve">
     <value>Limit of reservation/hour</value>

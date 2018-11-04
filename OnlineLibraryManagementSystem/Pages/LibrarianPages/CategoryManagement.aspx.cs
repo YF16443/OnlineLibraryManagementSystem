@@ -92,38 +92,19 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
 
     protected void Add_Click(object sender, EventArgs e)
     {
-        if(newId.Text.Equals(""))
-        {
-            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.CategoryIdRequire + "');", true);
-            GridviewBind();
-            return;
-        }
         if(newName.Text.Equals(""))
         {
             ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.CategoryNameRequire + "');", true);
             GridviewBind();
             return;
         }
-        int id = int.Parse(newId.Text);
         string name = newName.Text;
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
         conn.Open();
         MySqlCommand cmd = conn.CreateCommand();
-        cmd.CommandText = "select * from BookCategories where CategoryId=@i";
         MySqlParameter param;
-        param = new MySqlParameter("@i", id);
-        cmd.Parameters.Add(param);
-        object res = cmd.ExecuteScalar();
-        if (res != null)
-        {
-            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.CategoryIdExist + "');", true);
-            GridviewBind();
-            return;
-        }
-        cmd.CommandText = "insert into BookCategories(CategoryId,Name) values(@id,@n);";
-        param = new MySqlParameter("@id", id);
-        cmd.Parameters.Add(param);
+        cmd.CommandText = "insert into BookCategories(Name) values(@n);";
         param = new MySqlParameter("@n", name);
         cmd.Parameters.Add(param);
         int result = cmd.ExecuteNonQuery();

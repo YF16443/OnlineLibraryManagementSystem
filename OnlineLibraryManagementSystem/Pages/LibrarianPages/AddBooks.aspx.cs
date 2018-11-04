@@ -17,7 +17,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
     protected void Page_Load(object sender, EventArgs e)
     {
         //回车支持搜索
-        this.Page.Form.DefaultButton= ButtonSearch.ClientID.Replace('_', '$');
+        //this.Page.Form.DefaultButton= ButtonSearch.ClientID.Replace('_', '$');
         if (!Page.IsPostBack)
         {
             string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
@@ -430,7 +430,8 @@ public partial class Pages_Addbooks_ISBN : BasePage
         }
         else
         {
-            Response.Write("<script>alert('Error ISBN!')</script>");
+            //Response.Write("<script>alert('Error ISBN!')</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "key", "<script language='javascript'>alert('Error ISBN!');</script>");
             return;
         }
         Book book;
@@ -441,7 +442,8 @@ public partial class Pages_Addbooks_ISBN : BasePage
         }
         else
         {
-            Response.Write("<script>alert('Not Found The Book!')</script>");
+            //Response.Write("<script>alert('Not Found The Book!')</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "key", "<script language='javascript'>alert('Not Found The Book!');</script>");
             return;
         }
         string path = HttpRuntime.AppDomainAppPath.ToString() + "Images\\Cover\\";
@@ -461,22 +463,80 @@ public partial class Pages_Addbooks_ISBN : BasePage
 
     protected void ButtonUpload_Click(object sender, EventArgs e)
     {
-        bool filesValid = false;
-        //文件上传路径
-        string filePath = this.FileUpload1.PostedFile.FileName;
-        //获取文件名称
-        string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
-        //获取文件大小
-        //string fileSize = Convert.ToString(FileUpload1.PostedFile.ContentLength);
-        //获取文件扩展名
-        //string fileExtend = filePath.Substring(filePath.LastIndexOf(".")+1);
-        //获取文件类型
-        //string fileType = FileUpload1.PostedFile.ContentType;
 
-        if (this.FileUpload1.HasFile)
+        bool filesValid = false;
+        HttpPostedFile req = Request.Files["fileupload"];
+        if (req == null || req.ContentLength < 0)
+        {
+
+            Response.Write("<script>alert('Not Found!')</script>");
+        }
+        else
+        {
+
+                string fileExtension = System.IO.Path.GetExtension(req.FileName.ToString()).ToLower();
+                string[] restricyExtension = { ".gif", ".jpg", ".bmp", ".png" };
+                string src = req.FileName;
+                for (int i = 0; i < restricyExtension.Length; i++)
+                {
+                    if (fileExtension == restricyExtension[i])
+                    {
+                        filesValid = true;
+
+                    }
+
+                }
+                if (filesValid == true)
+                {
+                    //判断是否有该路径  
+                    string wantPath = Server.MapPath("~/Images/Cover/");
+                    if (!Directory.Exists(wantPath))
+                    {   //如果不存在就创建
+                        Directory.CreateDirectory(wantPath);
+                        req.SaveAs(wantPath + src);
+                        Image1.ImageUrl = "~/Images/Cover/" + src;
+                    }
+                    else
+                    {
+                        req.SaveAs(wantPath + src);
+                        Image1.ImageUrl = "~/Images/Cover/" + src;
+
+                    }
+
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error Format!')</script>");
+                    return;
+                }
+
+        }
+    }
+    //System.Web.HttpFileCollection file = System.Web.HttpContext.Current.Request.Files;
+    //if (file.Count > 0)
+    //{
+    //文件上传路径
+    //string filePath = document.getElementById("path").value;
+    //HttpPostedFile f = Request.Files[0];
+    //string filePath = file[0].FileName;
+    //Request.Form.Get("upfile").ToString();
+    // Request.Form.Get("path");
+
+    //this.FileUpload1.PostedFile.FileName;
+    //获取文件名称
+    //string fileName = filePath.Substring(filePath.LastIndexOf("\\") + 1);
+    //获取文件大小
+    //string fileSize = Convert.ToString(FileUpload1.PostedFile.ContentLength);
+    //获取文件扩展名
+    //string fileExtend = filePath.Substring(filePath.LastIndexOf(".")+1);
+    //获取文件类型
+    //string fileType = FileUpload1.PostedFile.ContentType;
+
+
+    /*if (filePath != "")
         {
             //转换成小写形式
-            string fileExtension = System.IO.Path.GetExtension(this.FileUpload1.FileName).ToLower();
+            string fileExtension = System.IO.Path.GetExtension(filePath).ToLower();
             string[] restricyExtension = { ".gif", ".jpg", ".bmp", ".png" };
             //判断文件是否符合要求
             for (int i = 0; i < restricyExtension.Length; i++)
@@ -496,7 +556,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
                 if (!Directory.Exists(wantPath))
                 {   //如果不存在就创建
                     Directory.CreateDirectory(wantPath);
-                    this.FileUpload1.SaveAs(Server.MapPath("~/Images/Cover/") + fileName);
+                    //this.FileUpload1.SaveAs(Server.MapPath("~/Images/Cover/") + fileName);
                     Image1.ImageUrl = "~/Images/Cover/" + fileName;
                     //Response.Write("<script>alert('Upload Successfully!')</script>");
                 }
@@ -517,5 +577,107 @@ public partial class Pages_Addbooks_ISBN : BasePage
                 return;
             }
         }
-    }
+    }*/
+    protected void InputFileUploadButton_Click(object sender, EventArgs e)
+    {
+        string retvalue = "ok";
+        bool filesValid = false;
+        HttpPostedFile req = Request.Files["..."];
+        if (req == null || req.ContentLength < 0)
+        {
+
+            Response.Write("没有文件");
+            Response.End();
+        }
+        else
+        {
+            try
+            {
+
+                string extion = System.IO.Path.GetExtension(req.FileName.ToString()).ToLower();
+                string[] restricyExtension = { ".gif", ".jpg", ".bmp", ".png" };
+                string src = req.FileName;
+                for (int i = 0; i < restricyExtension.Length; i++)
+                {
+                    if (extion == restricyExtension[i])
+                    {
+                        filesValid = true;
+
+                    }
+
+                }
+                if (filesValid == true)
+                {
+                    //判断是否有该路径  
+                    string wantPath = Server.MapPath("~/Images/Cover/");
+                    if (!Directory.Exists(wantPath))
+                    {   //如果不存在就创建
+                        Directory.CreateDirectory(wantPath);
+                        //this.FileUpload1.SaveAs(Server.MapPath("~/Images/Cover/") + fileName);
+                        req.SaveAs(wantPath + src);
+                        Image1.ImageUrl = "~/Images/Cover/" + src;
+                        //Response.Write("<script>alert('Upload Successfully!')</script>");
+                    }
+                    else
+                    {
+
+                        //this.FileUpload1.SaveAs(Server.MapPath("~/Images/Cover/") +fileName);
+                        req.SaveAs(wantPath + src);
+                        Image1.ImageUrl = "~/Images/Cover/" + src;
+                        //Response.Write("<script>alert('Upload Successfully!')</script>");
+
+                    }
+
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error Format!')</script>");
+                    return;
+                }
+                // string date = DateTime.Now.ToString("yyyyMMddhhmmss").ToString();
+                //string src = date + extion;
+                //string pathnew = Server.MapPath("~/Images/Cover/");
+                //req.SaveAs(pathnew + src);        //自带的方式保存文件
+
+                /*读取文件流保存
+
+                 Stream stream = req.InputStream;
+                //string src = "test.xls";
+                string fullpathnew = pathnew + src;
+
+                if (!Directory.Exists(pathnew))
+                {
+                    Directory.CreateDirectory(pathnew);
+                }
+
+                BinaryReader br = new BinaryReader(stream);
+                byte[] fileByte = br.ReadBytes((int)stream.Length);
+                // string content = fileByte.ToString();
+                using (FileStream fileStream = new FileStream(fullpathnew, FileMode.Create))
+                {
+                    fileStream.Write(fileByte, 0, fileByte.Length);
+                }*/
+
+            }
+            catch (Exception es)
+            {
+                retvalue = es.Message.ToString();
+
+            }
+            finally
+            {
+                Response.Write(retvalue);
+            }
+        }
+        //string filePath = Server.MapPath("~/Images/Cover/");
+        //if (files.Count != 0)
+       // {
+         //   string fileName = files[0].FileName;
+           // files[0].SaveAs(Path.Combine(filePath, fileName));
+            //Response.Write("<p>上传成功</p>");
+       // }
+        //else
+        //{
+          //  Response.Write("<p>未获取到Files:" + files.Count.ToString() + "</p>");
+        }
 }

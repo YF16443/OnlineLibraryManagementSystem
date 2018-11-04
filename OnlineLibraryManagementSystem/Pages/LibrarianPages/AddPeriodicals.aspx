@@ -2,111 +2,125 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="header" Runat="Server">
       <a><asp:Label runat="server" Text="<%$ Resources:Resource, AddPeriodical %>" CssClass="navbar-brand"></asp:Label> </a>
+    <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
+    <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content ID="body" ContentPlaceHolderID="body" Runat="Server">
-    <style type="text/css">
-        .style1 {
-            width: 100%;
-            text-align: center;
-            font-family: Consolas;
-            margin-top: 0px;
+    <div class="card">
+        <div class="content">
+             <fieldset style="text-align:center;">    
+                <div class="form-group">
+                                                <div >
+                                                <asp:Image ID="imCover" ImageUrl="~/Images/default.jpg" runat="server" Width="200" Hight="400"/>
+                                                </div>
+                    <div>
+                        &nbsp
+                        </div>
+                                                <div>   
+                                                    <asp:Button ID="ButtonUpload" runat="server" Text="<%$ Resources:Resource, Upload %>" OnClick="ButtonUpload_Click" CssClass="btn btn-fill btn-default"/>                      
+                                                    <input type=button value="<asp:Literal runat="server" Text="<%$ Resources:Resource, Selectimage%>" />" onclick=fileupload.click() Class="btn btn-fill btn-default">
+                                                        <input type="file" id="fileupload" name="fileupload"  style="display: none;" onchange="filepath.value=this.value"/>                            
+                                                        <label><input type="Text" id="filepath" name="filepath" value="" class="form-control"></label>
+                                                </div>
+                    </div>                                        
+                </fieldset>
+             <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"><asp:label ID="lbTitle" runat="server" text="<%$ Resources:Resource,Title %>"></asp:label></label>
+	                   <div class="col-sm-11">
+                          <asp:textbox ID="tbTitle" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
+	                    </div>
+	                 </div>
+	              </fieldset>
+            &nbsp
+             <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"><asp:label ID="lbCountry" runat="server" text="<%$ Resources:Resource,Country %>"></asp:label></label>
+	                   <div class="col-sm-11">
+                            <asp:textbox ID="tbCountry" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
+	                    </div>
+	                 </div>
+	              </fieldset>
+            &nbsp
+             <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"><asp:label ID="lbType" runat="server" text="<%$ Resources:Resource,Type %>"></asp:label></label>
+	                   <div class="col-sm-2">
+                            <asp:dropdownlist ID="ddlType" runat="server" CssClass="selectpicker" data-style="btn btn-primary btn-round">
+                                <asp:ListItem Text="<%$ Resources:Resource,Magazine %>" Value="0">Magazine</asp:ListItem>
+                                <asp:ListItem Text="<%$ Resources:Resource,Newspaper %>" Value="1">Newspaper</asp:ListItem>
+                            </asp:dropdownlist>
+	                    </div>
+	                 </div>
+	              </fieldset>
+            &nbsp
+             <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"><asp:label ID="lbISSN" runat="server" text="ISSN"></asp:label></label>
+	                   <div class="col-sm-11">
+                            <asp:textbox ID="tbISSN" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
+	                    </div>
+	                 </div>
+	              </fieldset>
+            &nbsp
+             <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"><asp:label ID="lbPrice" runat="server" text="<%$ Resources:Resource,Price %>" ></asp:label></label>
+	                   <div class="col-sm-11">
+                           <asp:textbox ID="tbPrice" runat="server" TextMode="Number" Cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
+	                    </div>
+	                 </div>
+	              </fieldset>
+            &nbsp
+             <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"> <asp:label ID="lbShelf" runat="server" text="<%$ Resources:Resource,Shelf %>"></asp:label></label>
+	                   <div class="col-sm-2">
+                          <asp:dropdownlist ID="ddlShelf" runat="server" CssClass="selectpicker" data-style="btn btn-primary btn-round"></asp:dropdownlist>
+	                    </div>
+	                 </div>
+	              </fieldset>
+            &nbsp
+             <fieldset style="text-align:center;">
+                    <asp:Button ID="btSubmit" runat="server" Text="<%$ Resources:Resource,Submit %>" OnClick="btSubmit_Click" CssClass="btn btn-fill btn-default"/>
+                    </fieldset>
+            </div>
+        </div>
+ </asp:Content>
+<asp:Content ID="foot" runat="server" ContentPlaceHolderID="foot">
+    <script src="../../Scripts/art-Template/template-web.js"></script>
+    <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
+    <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
+    <script type="text/javascript">
+        function doClick(event) {
+            //    if ($.trim($('#' + buttonId + '').val()) == '') {
+            //        shorError();
+            //        return;
+            //    }
+            var key;
+ 
+            if (window.event)
+                key = window.event.keyCode;     //IE
+            else
+                key = event.which;     //firefox
+ 
+            if (key == 13) {
+                //                if ($.trim($('#btnVerificationCode').val()) == '') {
+                //                    shorError();
+                //                }
+                try {
+                    if (window.event) {//ie
+                        window.event.keyCode = 0
+                        window.event.returnValue = false;
+                    }
+                    else {//firefox
+                        return false;
+                    }
+                }
+                catch (ex) {
+                }
+            }
         }
-        .auto-style1 {
-            width: 100%;
-            text-align: center;
-        }
-        .auto-style2 {
-            width:40%;
-            text-align: right;
-            height: 35px;
-            font-size: x-large;
-        }
-
-        .auto-style4 {
-            width:50%;
-            text-align: left;
-            height: 35px;
-            font-size: x-large;
-        }
-        .auto-style7 {
-            font-size: large;
-        }
-    </style>
-    <table class="style1">
-        <tr id="cover">
-            <td colspan="2">
-                <asp:Image ID="imCover" ImageUrl="~/Images/default.jpg" runat="server" Width="200" Hight="400"/>
-            </td>
-        </tr>
-        <tr id="coverUpload">
-            <td  class="auto-style2">
-                    <asp:Button ID="ButtonUpload" runat="server" Text="<%$ Resources:Resource, Upload %>" OnClick="ButtonUpload_Click" />
-                </td>
-            <td  class="auto-style2">
-                <asp:fileupload ID="fuCover" runat="server"></asp:fileupload>
-            </td>
-        </tr>
-        <tr id="title">
-            <td class="auto-style2">
-                <asp:label ID="lbTitle" runat="server" text="<%$ Resources:Resource,Title %>"></asp:label>
-            </td>
-            <td class="auto-style4">
-                <asp:textbox ID="tbTitle" runat="server"></asp:textbox>
-                <asp:requiredfieldvalidator ID="rfvTitle" runat="server" errormessage="*" ControlToValidate="tbTitle"></asp:requiredfieldvalidator>
-            </td>
-        </tr>
-        <tr id="country">
-            <td class="auto-style2">
-                <asp:label ID="lbCountry" runat="server" text="<%$ Resources:Resource,Country %>"></asp:label>
-            </td>
-            <td class="auto-style4">
-                <asp:textbox ID="tbCountry" runat="server"></asp:textbox>
-                <asp:requiredfieldvalidator ID="rfvCountry" runat="server" errormessage="*" ControlToValidate="tbCountry"></asp:requiredfieldvalidator>
-            </td>
-        </tr>
-        <tr id="type">
-            <td class="auto-style2">
-                <asp:label ID="lbType" runat="server" text="<%$ Resources:Resource,Type %>"></asp:label>
-            </td>
-            <td class="auto-style4">
-                <asp:dropdownlist ID="ddlType" runat="server">
-                    <asp:ListItem Text="<%$ Resources:Resource,Magazine %>" Value="0">Magazine</asp:ListItem>
-                    <asp:ListItem Text="<%$ Resources:Resource,Newspaper %>" Value="1">Newspaper</asp:ListItem>
-                </asp:dropdownlist>
-            </td>
-        </tr>
-        <tr id="issn">
-            <td class="auto-style2">
-                <asp:label ID="lbISSN" runat="server" text="ISSN"></asp:label>
-            </td>
-            <td class="auto-style4">
-                <asp:textbox ID="tbISSN" runat="server"></asp:textbox>
-                <asp:requiredfieldvalidator ID="rfvISSN" runat="server" errormessage="*" ControlToValidate="tbISSN"></asp:requiredfieldvalidator>
-            </td>
-        </tr>
-        <tr id="price">
-            <td class="auto-style2">
-                <asp:label ID="lbPrice" runat="server" text="<%$ Resources:Resource,Price %>" ></asp:label>
-            </td>
-            <td class="auto-style4">
-                <asp:textbox ID="tbPrice" runat="server" TextMode="Number"></asp:textbox>
-                <asp:requiredfieldvalidator ID="rfvPrice" runat="server" errormessage="*" ControlToValidate="tbPrice"></asp:requiredfieldvalidator>
-            </td>
-        </tr>
-        <tr id="shelf">
-            <td class="auto-style2">
-                <asp:label ID="lbShelf" runat="server" text="<%$ Resources:Resource,Shelf %>"></asp:label>
-            </td>
-            <td class="auto-style4">
-                <asp:dropdownlist ID="ddlShelf" runat="server"></asp:dropdownlist>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <asp:Button ID="btSubmit" runat="server" Text="<%$ Resources:Resource,Submit %>" OnClick="btSubmit_Click" CssClass="auto-style7"/>
-            </td>
-            </tr>
-    </table>
+    </script>
 </asp:Content>
-

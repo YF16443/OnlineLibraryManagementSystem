@@ -34,7 +34,7 @@
         <table style="width: 100%;">
             <tr>
                 <td style="text-align:right" class="auto-style3">
-                    <asp:Label ID="lbBarcode" runat="server" Text="<%$ Resources:Resource,Barcode %>"></asp:Label>
+                    <label><asp:Label ID="lbBarcode" runat="server" Text="<%$ Resources:Resource,Barcode %>"></asp:Label>
                 </td>
                 <td style="text-align:center" class="auto-style2">
                     <asp:TextBox ID="tbBarcode" runat="server" Width="300px" CssClass="form-control"></asp:TextBox>
@@ -45,7 +45,7 @@
             </tr>
              <tr>
                 <td style="text-align:right" class="auto-style4">
-                    <asp:Label ID="Type" runat="server" Text="<%$ Resources:Resource,Type %>"></asp:Label>
+                    <label><asp:Label ID="Type" runat="server" Text="<%$ Resources:Resource,Type %>"></asp:Label></label>
                 </td>
                 <td style="text-align:center" class="auto-style5">
                     <div class="select">

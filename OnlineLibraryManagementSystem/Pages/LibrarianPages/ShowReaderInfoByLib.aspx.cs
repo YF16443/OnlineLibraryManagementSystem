@@ -51,7 +51,7 @@ public partial class Pages_ShowReaderInfo : BasePage
                     }
                 }
                 reader.Close();
-                string selectBookSql = "select IssueTime, ReturnTime,Title,IssueRecords.Status,IssueRecords.Fine,IssueRecords.OverdueLength " +
+                string selectBookSql = "select IssueTime, ReturnTime,Title,IssueRecords.Status,IssueRecords.Fine,IssueRecords.OverdueLength,IssueRecords.BookBarcode " +
                                        "from  IssueRecords, BookBarcodes, Books " +
                                        "where  BookBarcodes.BookBarcode =   IssueRecords.BookBarcode and  BookBarcodes.BookId = Books.BookId " +
                                        "and IssueRecords.ReaderId = ?reader_id;";
@@ -65,6 +65,7 @@ public partial class Pages_ShowReaderInfo : BasePage
                     {
                         Record r = new Record();
                         r.title = reader2["Title"].ToString();
+                        r.Barcode = reader2["BookBarcode"].ToString();
                         DateTime issueTime = (DateTime)reader2["IssueTime"];
                         DateTime returnTime=DateTime.Now;
                         if (reader2["ReturnTime"] == null)
@@ -90,8 +91,22 @@ public partial class Pages_ShowReaderInfo : BasePage
                     if (reader2["OverdueLength"] == null) { r.overdueTime = ""; }
                     else {r.overdueTime = reader2["OverdueLength"].ToString();}
 
-                    r.status = reader2["Status"].ToString();
-                    r.issueTime = issueTime.ToString("yyyy-MM-dd");
+                        r.status = reader2["Status"].ToString();
+                        if (Session["PreferredCulture"].ToString() == "zh-CN")
+                        {
+                            if (r.status == "0") r.status = "借出";
+                            else if (r.status == "1") r.status = "已归还";
+                            else if (r.status == "2") r.status = "非正常归还";
+                            else r.status = "逾期未还";
+                        }
+                        else
+                        {
+                            if (r.status == "0") r.status = "Lending";
+                            else if (r.status == "1") r.status = "Returned";
+                            else if (r.status == "2") r.status = "Abnormal returned";
+                            else r.status = "Overdue";
+                        }
+                        r.issueTime = issueTime.ToString("yyyy-MM-dd");
                     issueRecords.Add(r);
                     }
                 }
@@ -335,6 +350,7 @@ public partial class Pages_ShowReaderInfo : BasePage
         public string overdueTime { get; set; }
         public string status { get; set; }
         public string fine { get; set; }
+        public string Barcode { get; set; }
     }
 
 

@@ -759,8 +759,15 @@
   <data name="BackingOut" xml:space="preserve">
     <value>BackingOut &amp; 返回</value>
   </data>
-  <data name="MoreNotice" xml:space="preserve">
-    <value>MoreNotice &amp; 更多公告</value>
+  <data name="AddNotice" xml:space="preserve">
+    <value>Add Notice &amp; 添加公告</value>
+  </data>
+  <data name="NoticeIdExist" xml:space="preserve">
+    <value>Notice ID already exists! &amp; 公告编号已存在！</value>
+  </data>
+  <data name="Selectimage" xml:space="preserve">
+    <value>Select image &amp; 选择图片</value>
+    <comment>选择图片</comment>
   </data>
   <data name="Limitofissue" xml:space="preserve">
     <value>Limit of issue/day&amp;借出期限/天</value>

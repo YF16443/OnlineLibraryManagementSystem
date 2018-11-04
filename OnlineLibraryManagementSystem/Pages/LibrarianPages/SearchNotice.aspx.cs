@@ -42,16 +42,15 @@ public partial class Pages_LibrarianPages_SearchNotice : BasePage
 
         foreach (DataRow dr in dtResult.Rows)
         {
-            /* String temp = "1999-01-01";
+             String temp = "1999-01-01";
              if (dr["Timestamp"].ToString() != "")
              {
                  temp = Convert.ToDateTime(dr["Timestamp"]).ToString("yyyy-MM-dd");
              }
-            DateTime selectTime = Convert.ToDateTime(temp, dtFormat);*/
-            DateTime selectTime = (DateTime)dr["Timestamp"];
+            DateTime selectTime = Convert.ToDateTime(temp, dtFormat);
+            //DateTime selectTime = (DateTime)dr["Timestamp"];
             System.Diagnostics.Debug.WriteLine(selectTime);
-
-            if (DateTime.Compare(startDate, selectTime) < 0 && DateTime.Compare(endDate, selectTime) > 0)
+            if (DateTime.Compare(startDate, selectTime) <= 0 && DateTime.Compare(endDate, selectTime) >= 0)
             {
 
                 rangeResult.ImportRow(dr);

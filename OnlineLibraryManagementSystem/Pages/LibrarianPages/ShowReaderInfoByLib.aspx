@@ -41,6 +41,11 @@
                         <asp:Label ID="lblId" runat="server" Text='<%# Eval("title") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
+                <asp:TemplateField HeaderText="<%$ Resources:Resource, Barcode %>" HeaderStyle-CssClass="text-primary">
+                    <ItemTemplate>
+                        <asp:Label ID="Label10" runat="server" Text='<%# Eval("Barcode") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="<%$ Resources:Resource, IssueTime %>" HeaderStyle-CssClass="text-primary">
                     <ItemTemplate>
                         <asp:Label ID="lblName" runat="server" Text='<%# Eval("issueTime") %>'></asp:Label>

@@ -19,6 +19,7 @@
 	                                            </div>
 	                                        </div>
 	                                    </fieldset>
+                                        &nbsp
 	                                    <fieldset>
 	                                        <div class="form-group">
 	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource,Position %>"></asp:Label></label>
@@ -27,6 +28,7 @@
 	                                            </div>
 	                                        </div>
 	                                    </fieldset>
+                                        &nbsp
                                          <fieldset>
 	                                        <div class="form-group">
 	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Stack_Summary %>"></asp:Label></asp:Label></label>
@@ -35,6 +37,7 @@
 	                                            </div>
 	                                        </div>
 	                                    </fieldset>
+                                        &nbsp
                                          <fieldset>
 	                                        <div class="form-group">
 	                                            <label Class="col-sm-2 control-label"><asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Stack_Timestamp %>"></asp:Label></label>
@@ -43,6 +46,7 @@
 	                                            </div>
 	                                        </div>
 	                                    </fieldset>
+                                        &nbsp
                                         <div class="form-group">
                                         <asp:Button ID="EditButton" runat="server" Text="<%$ Resources:Resource, Edit %>" OnClick="Edit_StackInfo" CausesValidation="False" CssClass="btn btn-fill btn-default" />
                                         <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="btn btn-fill btn-default" />

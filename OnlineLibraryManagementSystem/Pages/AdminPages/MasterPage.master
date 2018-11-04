@@ -6,8 +6,9 @@
 <head runat="server">
     <meta charset="utf-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <link rel="icon" type="image/ico" href="../../Images/headicon.ico">
 
-    <title>Amaze - Bootstrap Admin Dashboard Template</title>
+    <title>Bibliosoft</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport' >
     <meta name="viewport" content="width=device-width" >
@@ -39,19 +40,11 @@
                 <div class="sidebar-wrapper">
 				    <ul class="nav">
 					    <li>
-						    <a data-toggle="collapse" href="#LibrarianManagement" class="collapsed" aria-expanded="false">
-							    <i class="ti-user"></i>
-							    <p>
-                                    <asp:Label ID="Label15" runat="server" Text="<%$ Resources:Resource,LibrarianManagement %>"></asp:Label>
-								    <b class="caret"></b>
-							    </p>
-						    </a>
-						    <div class="collapse" id="LibrarianManagement" role="navigation" aria-expanded="false" style="height: 0px;">
-							    <ul class="nav">
-								    <li><a href="LibrarianRegister.aspx">
-                                        <asp:Label ID="Label16" runat="server" Text="<%$ Resources:Resource,LibrarianRegister %>"></asp:Label></a></li>
-							    </ul>
-						    </div>
+                            <a href="SearchLibrarian.aspx">
+                                <i class="ti-user"></i>
+                                <p><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource,LibrarianManagement %>"></asp:Label></p>
+                            </a>
+
 					    </li>
                         <li>
                              <a href="Settings.aspx">
