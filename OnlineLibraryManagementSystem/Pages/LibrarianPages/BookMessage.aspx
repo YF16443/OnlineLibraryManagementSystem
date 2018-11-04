@@ -1,120 +1,195 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="BookMessage.aspx.cs" Inherits="Pages_LibrarianPages_BookMessage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <style type="text/css">
-        .auto-style3 {
-            width: 618px;
-            float: left;
-        }
-        .auto-style2{
-            font-size:x-large;
-        }
-    </style>
+    <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
+    <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
-    
-    <%-- '<%#Eval("ImageURL") %>' --%>
-    
-    <div style="float:left">
-     <div  class="Image" style="width:350px">
-         <table>
-            <tr>
-            <asp:Image ID="Image1" runat="server" Width="300" Hight="240"/>
-                </tr>
-             <tr>
-                 <td>
-                 &nbsp
-                     </td>
-             </tr>
-             <tr>
-                 <td class="auto-style2">
-                     <asp:Button ID="ButtonUpload" runat="server" Text="<%$ Resources:Resource,Upload %>" OnClick="Upload_Click" />
-                 </td>
-                 <td class="auto-style2">
-                    <asp:FileUpload ID="FileUpload1" runat="server" Text="test" />
-                 </td>
-                     </tr>
-                 </table>
-     </div>
-        <div class="Bookinfo">
-            <asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Title %>" class="auto-style2"></asp:Label>
-            <asp:TextBox ID="TextBoxtitle" runat="server" ></asp:TextBox>
-            <br/>
-            <asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, Author %>" class="auto-style2"></asp:Label>
-            <asp:TextBox ID="TextBoxauthor" runat="server"></asp:TextBox>
-            <br/>
-            <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Pubdate %>" class="auto-style2"></asp:Label>
-            <asp:TextBox ID="TextBoxpubdate" runat="server"></asp:TextBox>
-            <br/>
-            <asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Price %>" class="auto-style2"></asp:Label>
-            <asp:TextBox ID="TextBoxprice" runat="server"></asp:TextBox>
-            <br/>
-            <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, ISBN13 %>" class="auto-style2"></asp:Label>
-            <asp:TextBox ID="TextBoxisbn13" runat="server"></asp:TextBox>
-            <br/>
-            <asp:Label ID="Label6" runat="server" Text="<%$ Resources:Resource, ISBN10 %>" class="auto-style2"></asp:Label>
-            <asp:TextBox ID="TextBoxisbn10" runat="server"></asp:TextBox>
-            <br/>
-<%--    <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
-    <asp:Label ID="subtitle" runat="server" Text=""></asp:Label><br/>
-    <asp:Label ID="Label8" runat="server" Text="Label"></asp:Label>
-    <asp:Label ID="origintitle" runat="server" Text=""></asp:Label>
-    <asp:Label ID="Label9" runat="server" Text="Label"></asp:Label>
-    <asp:Label ID="binding" runat="server" Text=""></asp:Label>
-    <asp:Label ID="Label10" runat="server" Text="Label"></asp:Label>
-    <asp:Label ID="translator" runat="server" Text=""></asp:Label>
-    <asp:Label ID="Label11" runat="server" Text="Label"></asp:Label>
-    <asp:Label ID="catalog" runat="server" Text=""></asp:Label>--%>
-            <asp:Label ID="Label12" runat="server" Text="<%$ Resources:Resource, Pages %>" class="auto-style2"></asp:Label>
-            <asp:TextBox ID="TextBoxpages" runat="server"></asp:TextBox>
-            <br/>
-            <asp:Label ID="Label13" runat="server" Text="<%$ Resources:Resource, Publisher %>" class="auto-style2"></asp:Label>
-            <asp:TextBox ID="TextBoxpublisher" runat="server"></asp:TextBox>
-            <br/>
-            <asp:Label ID="Label14" runat="server" Text="<%$ Resources:Resource, Position %>" class="auto-style2"></asp:Label>
-            <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
-            <br/>
-              <asp:Button ID="Alter" runat="server" Text="<%$ Resources:Resource,Alter %>" OnClick="Alter_Click" class="auto-style2"/>
+    <div class="card">
+        <div class="content">
+         <fieldset style="text-align:center;">    
+                <div class="form-group">
+                   <div >
+                      <asp:Image ID="Image1" runat="server" Width="300" Hight="240"/>
+                      </div>
+                    <div>
+                        &nbsp
+                        </div>
+                           <div> 
+                              <asp:Button ID="ButtonUpload" runat="server" Text="<%$ Resources:Resource,Upload %>" OnClick="Upload_Click" CssClass="btn btn-fill btn-default"/>                         
+                              <input type=button value="<asp:Literal runat="server" Text="<%$ Resources:Resource, Selectimage%>" />" onclick=fileupload.click() Class="btn btn-fill btn-default">
+                              <input type="file" id="fileupload" name="fileupload"  style="display: none;" onchange="filepath.value=this.value"/>                            
+                              <label><input type="Text" id="filepath" name="filepath" value="" class="form-control"></label>
+                          </div>
+                    </div>                                        
+                </fieldset>
+         <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Title %>"></asp:Label></label>
+	                   <div class="col-sm-11">
+                           <asp:TextBox ID="TextBoxtitle" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
+	                    </div>
+	                 </div>
+	              </fieldset>
+         <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"><asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, Author %>"></asp:Label></label>
+	                   <div class="col-sm-11">
+                           <asp:TextBox ID="TextBoxauthor" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
+	                    </div>
+	                 </div>
+	              </fieldset>
+         <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"><asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Pubdate %>"></asp:Label></label>
+	                   <div class="col-sm-11">
+                        <asp:TextBox ID="TextBoxpubdate" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
+	                    </div>
+	                 </div>
+	              </fieldset>
+         <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"><asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Price %>"></asp:Label></label>
+	                   <div class="col-sm-11">
+                           <asp:TextBox ID="TextBoxprice" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
+	                    </div>
+	                 </div>
+	              </fieldset>
+         <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"><asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, ISBN13 %>"></asp:Label></label>
+	                   <div class="col-sm-11">
+                           <asp:TextBox ID="TextBoxisbn13" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
+	                    </div>
+	                 </div>
+	              </fieldset>
+         <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"><asp:Label ID="Label6" runat="server" Text="<%$ Resources:Resource, ISBN10 %>"></asp:Label></label>
+	                   <div class="col-sm-11">
+                           <asp:TextBox ID="TextBoxisbn10" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
+	                    </div>
+	                 </div>
+	              </fieldset>
+         <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"><asp:Label ID="Label12" runat="server" Text="<%$ Resources:Resource, Pages %>"></asp:Label></label>
+	                   <div class="col-sm-11">
+                            <asp:TextBox ID="TextBoxpages" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
+	                    </div>
+	                 </div>
+	              </fieldset>
+         <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"> <asp:Label ID="Label13" runat="server" Text="<%$ Resources:Resource, Publisher %>"></asp:Label></label>
+	                   <div class="col-sm-11">
+	                    <asp:TextBox ID="TextBoxpublisher" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
+                       </div>
+	                 </div>
+	              </fieldset>
+         <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"> <asp:Label ID="Label14" runat="server" Text="<%$ Resources:Resource, Position %>"></asp:Label></label>
+	                   <div class="col-sm-2">
+	                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="selectpicker" data-style="btn btn-primary btn-round"></asp:DropDownList>
+                       </div>
+	                 </div>
+	              </fieldset>
+            <fieldset>
+            <asp:Button ID="Alter" runat="server" Text="<%$ Resources:Resource,Alter %>" OnClick="Alter_Click" CssClass="btn btn-fill btn-default"/>        
+            </fieldset>
+        </div>
     </div>
+    <div class="card">
+   <div class="content">
+    <div class="material-datatables">
+        <asp:GridView ID="gvBookBarcodeResult" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-no-bordered table-hover" OnRowEditing="gvBookBarcodeResult_RowEditing"  OnRowUpdating="gvBookBarcodeResult_RowUpdating" style="width:100%;cellspacing:0" OnRowCancelingEdit="gvBookBarcodeResult_RowCancelingEdit" OnRowDeleting="gvBookBarcodeResult_RowDeleting" OnPageIndexChanging="gvBookBarcodeResult_PageIndexChanging">
+            <Columns>
+                <asp:TemplateField HeaderText="<%$ Resources:Resource, Barcode %>" HeaderStyle-CssClass="text-primary">
+                    <ItemTemplate>
+                        <asp:Label ID="BookBarcode" runat="server" Text='<%# Eval("BookBarcode") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="<%$ Resources:Resource, BookId %>" HeaderStyle-CssClass="text-primary">
+                    <ItemTemplate>
+                        <asp:Label ID="BookId" runat="server" Text='<%# Eval("BookId") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="<%$ Resources:Resource, ShelfId %>" HeaderStyle-CssClass="text-primary">
+                    <EditItemTemplate>
+                        <asp:DropDownList ID="ddlShelfId" runat="server"></asp:DropDownList>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="ShelfId" runat="server" Text='<%# Eval("ShelfId") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                 <asp:TemplateField HeaderText="<%$ Resources:Resource, Status %>" HeaderStyle-CssClass="text-primary">
+                    <ItemTemplate>
+                        <asp:Label ID="Status" runat="server" Text='<%# Eval("newStatus") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                  <asp:TemplateField HeaderText="<%$ Resources:Resource, Barcode_Timestamp %>" HeaderStyle-CssClass="text-primary">
+                    <ItemTemplate>
+                        <asp:Label ID="timestamp" runat="server" Text='<%# Eval("Timestamp") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="<%$ Resources:Resource, Print_Barcode %>">
+                       <ItemTemplate>
+                          <asp:Button ID="ButtonPrint_Barcode" runat="server" Text="<%$ Resources:Resource, Print %>" CommandArgument='<%# Eval("BookBarcode") %>' CommandName="getBookBarcode" OnClick="ButtonPrint_Barcode_Click" Cssclass="btn btn-fill btn-default"/>
+                        </ItemTemplate>
+                   <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                 </asp:TemplateField>
+                <asp:CommandField ShowEditButton="true"  />
+                <asp:CommandField ShowDeleteButton="true" />
+            </Columns>
+        </asp:GridView>
         </div>
-    <div>
-        <div>
-        <asp:GridView ID="gvBookBarcodeResult" runat="server"  HorizontalAlign="Center" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvBookBarcodeResult_Sorting" OnPageIndexChanging="gvBookBarcodeResult_PageIndexChanging" OnSelectedIndexChanged="gvBookBarcodeResult_SelectedIndexChanged">
-                        <Columns>
-                            <asp:BoundField HeaderText="<%$ Resources:Resource, Barcode %>" SortExpression="BookBarcode" DataField="BookBarcode" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
-                            </asp:BoundField>
-                            <asp:BoundField HeaderText="<%$ Resources:Resource, BookId %>" SortExpression="BookId" DataField="BookId" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
-                            </asp:BoundField>
-                            <asp:BoundField DataField="ShelfId" HeaderText="<%$ Resources:Resource, ShelfId %>" SortExpression="ShelfId" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
-                            </asp:BoundField>
-                            <asp:BoundField DataField="newStatus" HeaderText="<%$ Resources:Resource, Status %>" SortExpression="newStatus" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
-                            </asp:BoundField>
-                            <asp:BoundField DataField="Timestamp" HeaderText="<%$ Resources:Resource, Barcode_Timestamp %>" SortExpression="Timestamp" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
-                            </asp:BoundField>
-                            <asp:TemplateField HeaderText="<%$ Resources:Resource, Print_Barcode %>">
-                                <ItemTemplate>
-                                    <asp:Button ID="ButtonPrint_Barcode" runat="server" Text="<%$ Resources:Resource, Print %>" CommandArgument='<%# Eval("BookBarcode") %>' OnClick="ButtonPrint_Barcode_Click" />
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="<%$ Resources:Resource, Select %>">
-                                <ItemTemplate>
-                                <asp:CheckBox id="CheckBoxDeleteBarcode" runat="Server" style="zoom:200%; text-align:center" />
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
-                </div>
-                <div style="text-align:right; width:40.8%">
-                 <asp:Button ID="ButtonDelete" runat="server" Text="<%$ Resources:Resource, Delete %>" OnClick="ButtonDelete_Click" />
-            </div>
-        </div>
-    <br/>
+      </div>
+    </div>
+     <script src="../../assets/vendors/DataTables/jQuery-1.12.4/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        var $124 = $;
+    </script>
+    <script src="../../assets/vendors/jquery.datatables.js"></script> 
+</asp:Content>
+<asp:Content ID="content4" ContentPlaceHolderID="foot" runat="server">
+     <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
+    <script>
+        var income = $124('#body_gvBookBarcodeResult').DataTable({
+            "searching": false,
+            "lengthChange": false,
+            "order": [[0, 'asc']],
+            "bStateSave":true,
+        });
 
+        function doClick(event) {
+            //    if ($.trim($('#' + buttonId + '').val()) == '') {
+            //        shorError();
+            //        return;
+            //    }
+            var key;
+
+            if (window.event)
+                key = window.event.keyCode;     //IE
+            else
+                key = event.which;     //firefox
+
+            if (key == 13) {
+                //                if ($.trim($('#btnVerificationCode').val()) == '') {
+                //                    shorError();
+                //                }
+                try {
+                    if (window.event) {//ie
+                        window.event.keyCode = 0
+                        window.event.returnValue = false;
+                    }
+                    else {//firefox
+                        return false;
+                    }
+                }
+                catch (ex) {
+                }
+            }
+        }
+</script>
 </asp:Content>
