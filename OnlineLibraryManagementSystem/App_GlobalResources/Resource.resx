@@ -769,6 +769,24 @@
     <value>Select image &amp; 选择图片</value>
     <comment>选择图片</comment>
   </data>
+  <data name="DeleteOrNot" xml:space="preserve">
+    <value>Delete or not &amp; 是否继续删除</value>
+  </data>
+  <data name="HasReversation" xml:space="preserve">
+    <value>The book has been booked &amp; 该书已经被预约</value>
+  </data>
+  <data name="MoreCopy" xml:space="preserve">
+    <value>More than one copy\n Are you sure delete? &amp; 多于一个副本\n 确定删除吗</value>
+  </data>
+  <data name="Sure" xml:space="preserve">
+    <value>Sure &amp; 确认删除</value>
+  </data>
+  <data name="Limitofissue" xml:space="preserve">
+    <value>Limit of issue/day&amp;借出期限/天</value>
+  </data>
+  <data name="Limitofreservation" xml:space="preserve">
+    <value>Limit of reservation/hour&amp;预约期限/小时</value>
+  </data>
   <data name="Display" xml:space="preserve">
     <value>Display &amp; 显示</value>
     <comment>显示</comment>

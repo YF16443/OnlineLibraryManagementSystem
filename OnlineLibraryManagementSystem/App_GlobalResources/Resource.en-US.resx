@@ -768,6 +768,30 @@
   <data name="Selectimage" xml:space="preserve">
     <value>Select image</value>
   </data>
+  <data name="MaximunIssue" xml:space="preserve">
+    <value>Maximun Issue</value>
+  </data>
+  <data name="DeleteOrNot" xml:space="preserve">
+    <value>Delete or not</value>
+  </data>
+  <data name="HasReversation" xml:space="preserve">
+    <value>The book has been booked</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>HasReversation</value>
+  </data>
+  <data name="Sure" xml:space="preserve">
+    <value>Sure</value>
+  </data>
+  <data name="Limitofreservation" xml:space="preserve">
+    <value>Limit of reservation/hour</value>
+  </data>
+  <data name="Limitofissue" xml:space="preserve">
+    <value>Limit of issue/day</value>
+  </data>
+  <data name="MoreCopy" xml:space="preserve">
+    <value>More than one copy\n Are you sure delete?</value>
+  </data>
   <data name="Display" xml:space="preserve">
     <value>Display</value>
     <comment>显示</comment>

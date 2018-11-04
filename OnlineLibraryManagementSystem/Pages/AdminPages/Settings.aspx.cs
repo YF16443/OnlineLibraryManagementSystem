@@ -13,6 +13,8 @@ public partial class Pages_AdminPages_Settings : BasePage
     string LostKey = "LostFineRate";
     string MaximumKey = "MaximumIssue";
     string OverdueFinePerDayKey = "OverdueFinePerDay";
+    string LimitofreservationKey = "Limitofreservation";
+    string LimitofissueKey = "Limitofissue";
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -22,7 +24,8 @@ public partial class Pages_AdminPages_Settings : BasePage
             LostFineRate.Text = getValue(LostKey);
             MaximunIssue.Text = getValue(MaximumKey);
             OverdueFinePerDay.Text = getValue(OverdueFinePerDayKey);
-
+            Limitofreservation.Text = getValue(LimitofreservationKey);
+            Limitofissue.Text = getValue(LimitofissueKey);
         }
     }
     protected void Submit(object sender, EventArgs e)
@@ -43,7 +46,11 @@ public partial class Pages_AdminPages_Settings : BasePage
         string MaximunValue = MaximunIssue.Text;
         setValue(appSection, MaximumKey, MaximunValue);
         string OverdueFinePerDayValue = OverdueFinePerDay.Text;
-        setValue(appSection, OverdueFinePerDayKey, OverdueFinePerDayValue);
+        setValue(appSection, MaximumKey, MaximunValue);
+        string LimitofreservationValue = Limitofreservation.Text;
+        setValue(appSection, LimitofreservationKey, LimitofreservationValue);
+        string LimitofissueValue = OverdueFinePerDay.Text;
+        setValue(appSection, LimitofissueKey, LimitofissueValue);
         config.Save();
         Response.Write("<script>alert('" + Resources.Resource.Successful + "')</script>");
     }
