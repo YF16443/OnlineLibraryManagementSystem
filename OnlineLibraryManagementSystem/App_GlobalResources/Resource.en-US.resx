@@ -771,4 +771,19 @@
   <data name="MaximunIssue" xml:space="preserve">
     <value>Maximun Issue</value>
   </data>
+  <data name="MoreCopy" xml:space="preserve">
+    <value>More than one copy</value>
+  </data>
+  <data name="DeleteOrNot" xml:space="preserve">
+    <value>Delete or not</value>
+  </data>
+  <data name="HasReversation" xml:space="preserve">
+    <value>The book has been booked</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>HasReversation</value>
+  </data>
+  <data name="Sure" xml:space="preserve">
+    <value>Sure</value>
+  </data>
 </root>

@@ -769,4 +769,16 @@
   <data name="MaximunIssue" xml:space="preserve">
     <value>最大借阅数目</value>
   </data>
+  <data name="MoreCopy" xml:space="preserve">
+    <value>多于一个副本</value>
+  </data>
+  <data name="DeleteOrNot" xml:space="preserve">
+    <value>是否继续删除</value>
+  </data>
+  <data name="HasReversation" xml:space="preserve">
+    <value>该书已经被预约</value>
+  </data>
+  <data name="Sure" xml:space="preserve">
+    <value>确认删除</value>
+  </data>
 </root>

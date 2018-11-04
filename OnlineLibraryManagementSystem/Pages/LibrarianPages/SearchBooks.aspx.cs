@@ -169,6 +169,7 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
         //删除图书或期刊
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+        
         try
         {
             OLMSDBConnection.Open();
@@ -183,6 +184,39 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage
                     if (cb != null && cb.Checked == true)
                     {
                         id = (row.Cells[1].Controls[0] as HyperLink).Text;
+                        string reversationSql = "select count(*) as count from BookBarcodes where status != 0 and BookId = (select BookId from Books where title = ?id);";
+                        MySqlCommand cmd = new MySqlCommand(reversationSql, OLMSDBConnection);
+                        cmd.Parameters.AddWithValue("?id", id);
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            if (reader.HasRows)
+                            {
+                                Int64 counts = (Int64)reader["count"];
+                                if (counts > 0)
+                                {
+                                    Response.Write("<script>alert('" + Resources.Resource.HasReversation + "')</script>");
+                                    return;
+                                }
+                            }
+                        }
+                        reader.Close();
+                        string morebooksSql = "select count(*) as count from BookBarcodes where BookId = (select BookId from Books where title = ?id);";
+                        MySqlCommand cmd2 = new MySqlCommand(morebooksSql, OLMSDBConnection);
+                        cmd2.Parameters.AddWithValue("?id", id);
+                        MySqlDataReader reader2 = cmd.ExecuteReader();
+                        while (reader2.Read())
+                        {
+                            if (reader2.HasRows)
+                            {
+                                Int64 counts = (Int64)reader2["count"];
+                                if (counts > 1)
+                                {
+                                    //多个副本 需要处理
+                                    return;
+                                }
+                            }
+                        }
                         string deletebook = "delete from Books where Title='" + id + "';";
                         MySqlCommand cmddeletebook = new MySqlCommand(deletebook, OLMSDBConnection);
                         result += cmddeletebook.ExecuteNonQuery();
