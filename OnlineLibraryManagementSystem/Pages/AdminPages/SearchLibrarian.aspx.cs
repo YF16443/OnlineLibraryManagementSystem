@@ -77,6 +77,7 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
         GridView1.DataSource = myds;
         GridView1.DataKeyNames = new string[] { "LibrarianId" };//Ö÷¼ü
         GridView1.DataBind();
+        GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
         sqlcon.Close();
     }
 
