@@ -51,12 +51,13 @@
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:BoundField DataField="LibrarianId" HeaderText="LibrarianId" ReadOnly="True" />
-                            <asp:BoundField DataField="Account" HeaderText="Account" />
-                            <asp:BoundField DataField="Password" HeaderText="Password" />
-                            <asp:BoundField DataField="Name" HeaderText="Name" />
-                            <asp:CommandField HeaderText="选择" ShowSelectButton="True" />
-                            <asp:CommandField HeaderText="编辑" ShowEditButton="True" />
-                            <asp:CommandField HeaderText="删除" ShowDeleteButton="True" />
+                            
+                            <asp:BoundField DataField="Account" HeaderText="<%$ Resources:Resource, Account %>" />
+                            <asp:BoundField DataField="Password" HeaderText="<%$ Resources:Resource, Password %>" />
+                            <asp:BoundField DataField="Name" HeaderText="<%$ Resources:Resource, Name %>" />
+                            <asp:CommandField HeaderText="<%$ Resources:Resource, Select %>" ShowSelectButton="True" />
+                            <asp:CommandField HeaderText="<%$ Resources:Resource, Edit %>" ShowEditButton="True" />
+                            <asp:CommandField HeaderText="<%$ Resources:Resource, Delete %>" ShowDeleteButton="True" />
                         </Columns>
                         <RowStyle BackColor="#F7F7DE" />
                         <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
@@ -83,7 +84,7 @@
                     </td>
                     <td>
                         <asp:TextBox ID="TextBox4" runat="server" Width="105"></asp:TextBox>
-            <asp:Button ID="Button1" runat="server" Text="添加" OnClick="Button1_Click" />
+            <asp:Button ID="Button1" runat="server" Text="<%$ Resources:Resource, Add %>" OnClick="Button1_Click" />
                     </td>
                    
                 </tr>
