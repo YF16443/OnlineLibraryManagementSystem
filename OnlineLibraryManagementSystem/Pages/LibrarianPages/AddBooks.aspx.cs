@@ -137,9 +137,16 @@ public partial class Pages_Addbooks_ISBN : BasePage
                 int update = 0;
                 update = cmdupate.ExecuteNonQuery();
                 int updateresult = 0;
+                //打印的表
+                DataTable dt_exist = new DataTable();
+                dt_exist.Columns.Add("name");
                 for (int i = oldamount; i < newamount; i++)
                 {
                     bookbarcode = Bookid.PadLeft(10, '0') + i.ToString().PadLeft(3, '0');
+                    MyBarcodeGenerator.Generate(bookbarcode);
+                    DataRow dr = dt_exist.NewRow();
+                    dr["name"] = bookbarcode + ".jpg";
+                    dt_exist.Rows.Add(dr);
                     string insertBookBarcode = "insert into BookBarcodes(BookBarcode,BookId,ShelfId) " + "values('" + bookbarcode + "','" + Bookid + "','" + shelfid + "');";
                     MySqlCommand cmdinsertBookBarcode = new MySqlCommand(insertBookBarcode, OLMSDBConnection);
                     updateresult = cmdinsertBookBarcode.ExecuteNonQuery();
@@ -151,6 +158,10 @@ public partial class Pages_Addbooks_ISBN : BasePage
                 insertexistresult = cmdinsertexistbookmanagement.ExecuteNonQuery();
                 if (updateresult != 0 && update != 0&& insertexistresult!=0)
                 {
+                    //绑定bookbarcode
+                    DataListbookbarcode.Enabled = true;
+                    DataListbookbarcode.DataSource = dt_exist;
+                    DataListbookbarcode.DataBind();
                     Response.Write("<script>alert('This Book Is Exist，Add " + quantity + " Books!\\nThe Amount Is Updated to " + newamount.ToString() + "!')</script>");
                     return;
                 }
@@ -330,9 +341,15 @@ public partial class Pages_Addbooks_ISBN : BasePage
             reader2.Close();
             int Quantity = int.Parse(quantity);
             int result2 = 0;
+            DataTable dt = new DataTable();
+            dt.Columns.Add("name");
             for (int i = 0; i < Quantity; i++)
             {
                 bookbarcode = Bookid.PadLeft(10, '0') + i.ToString().PadLeft(3, '0');
+                MyBarcodeGenerator.Generate(bookbarcode);
+                DataRow dr = dt.NewRow();
+                dr["name"] = bookbarcode + ".jpg";
+                dt.Rows.Add(dr);
                 string insertBookBarcode = "insert into BookBarcodes(BookBarcode,BookId,ShelfId) " + "values('" + bookbarcode + "','" + Bookid + "','" + shelfid + "');";
                 MySqlCommand cmdinsertBookBarcode = new MySqlCommand(insertBookBarcode, OLMSDBConnection);
                 result2 = cmdinsertBookBarcode.ExecuteNonQuery();
@@ -353,6 +370,9 @@ public partial class Pages_Addbooks_ISBN : BasePage
             resultinsertbookmanagement = cmdinsertbookmanagement.ExecuteNonQuery();
             if ((resultinsertbook != 0) && (result2 != 0)&&(resultinsertbookmanagement!=0))
             {
+                DataListbookbarcode.Enabled = true;
+                DataListbookbarcode.DataSource = dt;
+                DataListbookbarcode.DataBind();
                 Response.Write("<script>alert('Add Book Successfully!\\nThe Amount Is " + amount + "!')</script>");
                 return;
             }
@@ -424,14 +444,15 @@ public partial class Pages_Addbooks_ISBN : BasePage
         string isbn13parttern = "^[0-9A-Z]{13}$";
         string isbn10parttern="^[0-9A-Z]{10}$";
         string isbn = "";
-        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN.Text.Trim(), isbn13parttern)|| System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN.Text.Trim(), isbn10parttern))
+        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN.Text.Trim(), isbn13parttern) || System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN.Text.Trim(), isbn10parttern))
         {
             isbn = TextBoxISBN.Text.Trim();
         }
         else
         {
             //Response.Write("<script>alert('Error ISBN!')</script>");
-            Page.ClientScript.RegisterStartupScript(GetType(), "key", "<script language='javascript'>alert('Error ISBN!');</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "key", "<script language='javascript'>alert('Error ISBN!');window.location.href = 'AddBooks.aspx';</script>");
+           // Response.Redirect("AddBooks.aspx");
             return;
         }
         Book book;
@@ -680,4 +701,13 @@ public partial class Pages_Addbooks_ISBN : BasePage
         //{
           //  Response.Write("<p>未获取到Files:" + files.Count.ToString() + "</p>");
         }
+
+
+    protected int deletebind()
+    {
+        DataListbookbarcode.Enabled = false;
+        DataListbookbarcode.DataSource = null;
+        DataListbookbarcode.DataBind();
+        return 0;
+    }
 }

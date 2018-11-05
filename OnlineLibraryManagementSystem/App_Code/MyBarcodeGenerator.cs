@@ -12,7 +12,7 @@ using System.Drawing.Imaging;
 /// </summary>
 public static class MyBarcodeGenerator
 {
-    public static Image Generate(string barcode)
+    public static void Generate(string barcode)
     {
         var settings = new BarcodeSettings
         {
@@ -23,10 +23,29 @@ public static class MyBarcodeGenerator
         };
         var generator = new BarCodeGenerator(settings);
         Image barcodeImage = generator.GenerateImage();
-        return barcodeImage;
-    }
+        string path = HttpRuntime.AppDomainAppPath.ToString() + "Images\\Barcode\\";
+        using (Bitmap bitmap = new Bitmap(barcodeImage))
+        {
+            //string wantPath = Server.MapPath("~/Images/Barcode/");
+            if (!Directory.Exists(path))
+            {   //如果不存在就创建
+                Directory.CreateDirectory(path);
+                bitmap.Save(path + barcode + ".jpg");
+            }
+            else
+            {
+                bitmap.Save(path + barcode + ".jpg");
 
-    public static void ShowBarcode(string barcode, HttpResponse response)
+            }
+
+        }
+        //MyBarcodeGenerator.ShowBarcode(book.isbn13, this.Response);
+        //return barcodeImage;
+    }
+        
+        
+
+    /*public static void ShowBarcode(string barcode, HttpResponse response)
     {
         Image barcodeImage = Generate(barcode);
 
@@ -41,5 +60,5 @@ public static class MyBarcodeGenerator
         memoryStream.Close();
         memoryStream.Dispose();
         barcodeImage.Dispose();
-    }
+    }*/
 }

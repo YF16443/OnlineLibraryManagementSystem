@@ -9,6 +9,8 @@ using System.Data;
 using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 using MySql.Data;
+using System.IO;
+using System.Drawing;
 
 public partial class Pages_TestPage : BasePage
 {
@@ -42,12 +44,13 @@ public partial class Pages_TestPage : BasePage
     protected void btShowBarcode_Click(object sender, EventArgs e)
     {
         Book book = (Book)ViewState["book"];
-
+        string path = HttpRuntime.AppDomainAppPath.ToString() + "Images\\Barcode\\";
         //Barcode generation test
         if (book != null)
         {
-            var barcodeImage = MyBarcodeGenerator.Generate(book.isbn10) as System.Drawing.Image;
-            MyBarcodeGenerator.ShowBarcode(book.isbn13, this.Response);
+           // var barcodeImage = MyBarcodeGenerator.Generate(book.isbn10) as System.Drawing.Image;
+       
+            //MyBarcodeGenerator.ShowBarcode(book.isbn13, this.Response);
         }
         else
         {

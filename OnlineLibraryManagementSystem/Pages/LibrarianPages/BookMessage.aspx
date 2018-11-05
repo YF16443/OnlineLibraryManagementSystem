@@ -109,7 +109,7 @@
                     <ItemTemplate>
                         <asp:Label ID="BookBarcode" runat="server" Text='<%# Eval("BookBarcode") %>'></asp:Label>
                     </ItemTemplate>
-                </asp:TemplateField>
+                </asp:TemplateField>              
                 <asp:TemplateField HeaderText="<%$ Resources:Resource, BookId %>" HeaderStyle-CssClass="text-primary">
                     <ItemTemplate>
                         <asp:Label ID="BookId" runat="server" Text='<%# Eval("BookId") %>'></asp:Label>
@@ -133,16 +133,33 @@
                         <asp:Label ID="timestamp" runat="server" Text='<%# Eval("Timestamp") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="<%$ Resources:Resource, Print_Barcode %>">
+                <asp:TemplateField HeaderText="<%$ Resources:Resource, Display_Barcode %>">
                        <ItemTemplate>
-                          <asp:Button ID="ButtonPrint_Barcode" runat="server" Text="<%$ Resources:Resource, Print %>" CommandArgument='<%# Eval("BookBarcode") %>' CommandName="getBookBarcode" OnClick="ButtonPrint_Barcode_Click" Cssclass="btn btn-fill btn-default"/>
-                        </ItemTemplate>
+                          <asp:Button ID="ButtonPrint_Barcode" runat="server" Text="<%$ Resources:Resource, Display %>" CommandArgument='<%# Eval("BookBarcode") %>' CommandName="getBookBarcode" OnClick="ButtonPrint_Barcode_Click" Cssclass="btn btn-fill btn-default" />                           
+                       </ItemTemplate>
                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    </asp:TemplateField>
+                 <asp:TemplateField HeaderText="<%$ Resources:Resource, Print_Barcode %>">
+                     <ItemTemplate>
+                     <input type=button value="<asp:Literal runat="server" Text="<%$ Resources:Resource, Print%>" />" onclick="doPrint()" Class="btn btn-fill btn-default">
+                  </ItemTemplate>
+                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                  </asp:TemplateField>
                 <asp:CommandField ShowEditButton="true"  />
                 <asp:CommandField ShowDeleteButton="true" />
             </Columns>
         </asp:GridView>
+        <!--startprint--><!--注意要加上html里star和end的这两个标记-->
+       <asp:DataList ID="DataListbookbarcode" runat="server" RepeatColumns="1" HorizontalAlign="center" Enabled="false">
+           <ItemTemplate>
+               <br>
+               </br>
+                <asp:image ID="Imagebarcode" runat="server"  ImageUrl='<%#"~/Images/Barcode/" +Eval("Name")%>'/>     
+               <br>     
+               </br>       
+            </ItemTemplate>
+        </asp:DataList>
+<!--endprint-->
         </div>
       </div>
     </div>
@@ -191,5 +208,18 @@
                 }
             }
         }
+        function doPrint() {
+            //onreadystatechange = bind();
+            
+            bdhtml=window.document.body.innerHTML;    
+            sprnstr="<!--startprint-->";    
+            eprnstr="<!--endprint-->";    
+           prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);    
+            prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));    
+            window.document.body.innerHTML=prnhtml; 
+            window.print();
+            var result="<%=deletebind() %>";
+           
+        }    
 </script>
 </asp:Content>
