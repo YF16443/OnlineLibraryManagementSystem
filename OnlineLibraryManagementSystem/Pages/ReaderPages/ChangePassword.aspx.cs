@@ -14,7 +14,7 @@ public partial class Pages_ChangePassword : BasePage
         if (!IsPostBack && string.IsNullOrEmpty((string)Session["id"]))
         {
             //未登录时提示登录
-            Response.Write("<script type='text/javascript'>alert('"+ Resources.Resource.LogInNotice + "');location.href='Login.aspx';</script>");
+            Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='../ReaderLogin.aspx';</script>");
         }
     }
     protected void btChangePassword_Click(object sender, EventArgs e)

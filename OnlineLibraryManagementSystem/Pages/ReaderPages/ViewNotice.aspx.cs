@@ -17,9 +17,8 @@ public partial class Pages_ReaderPages_ViewNotice : BasePage
         if (!IsPostBack)
         {
             bind();
+
         }
-
-
     }
 
     protected void search_Click(object sender, EventArgs e)

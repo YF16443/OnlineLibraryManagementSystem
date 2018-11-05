@@ -22,9 +22,8 @@
                     </td>
                 </tr>
                 <tr>
-                <td>
-                    <asp:Label runat="server" Width="100%" Text="   "></asp:Label>
-                </td>
+                    <td>&nbsp;
+                    </td>
                 </tr>
                 <tr style="margin: 5px,0px,10px,0px">
                     <td style="width: 40%; text-align: right; padding: 5px,5px,2.5px,5px;">
@@ -39,9 +38,8 @@
                     </td>
                 </tr>
                 <tr>
-                <td>
-                    <asp:Label runat="server" Width="100%" Text="   "></asp:Label>
-                </td>
+                    <td>&nbsp;
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="3" style="text-align: center">

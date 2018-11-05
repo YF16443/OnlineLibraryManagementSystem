@@ -22,9 +22,14 @@ public partial class Pages_ShowReaderInfo : BasePage
     {
         if (!IsPostBack)
         {
+            if (string.IsNullOrEmpty((string)Session["id"]))
+            {
+                //未登录时提示登录
+                Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='../ReaderLogin.aspx';</script>");
+            }
             //注意这里改成了通过Session获取
-            //string id = (string)Session["id"];
-            string id = "123";
+            string id = (string)Session["id"];
+            //string id = "123";
             if (id == null)
             {
                 //exception-handler

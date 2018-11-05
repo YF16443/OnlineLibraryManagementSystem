@@ -529,7 +529,7 @@
     <value>超级管理员登录</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>手机号</value>
+    <value>电话</value>
   </data>
   <data name="ISBN10" xml:space="preserve">
     <value>ISBN10</value>

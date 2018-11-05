@@ -532,7 +532,7 @@
     <value>Admin Login @ 超级管理员登录</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Phone Number &amp; 手机号</value>
+    <value>Phone Number &amp; 电话</value>
   </data>
   <data name="ISBN10" xml:space="preserve">
     <value>ISBN10 &amp; ISBN10</value>
