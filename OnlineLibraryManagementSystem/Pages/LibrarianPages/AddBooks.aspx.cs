@@ -444,14 +444,15 @@ public partial class Pages_Addbooks_ISBN : BasePage
         string isbn13parttern = "^[0-9A-Z]{13}$";
         string isbn10parttern="^[0-9A-Z]{10}$";
         string isbn = "";
-        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN.Text.Trim(), isbn13parttern)|| System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN.Text.Trim(), isbn10parttern))
+        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN.Text.Trim(), isbn13parttern) || System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN.Text.Trim(), isbn10parttern))
         {
             isbn = TextBoxISBN.Text.Trim();
         }
         else
         {
             //Response.Write("<script>alert('Error ISBN!')</script>");
-            Page.ClientScript.RegisterStartupScript(GetType(), "key", "<script language='javascript'>alert('Error ISBN!');</script>");
+            Page.ClientScript.RegisterStartupScript(GetType(), "key", "<script language='javascript'>alert('Error ISBN!');window.location.href = 'AddBooks.aspx';</script>");
+           // Response.Redirect("AddBooks.aspx");
             return;
         }
         Book book;
