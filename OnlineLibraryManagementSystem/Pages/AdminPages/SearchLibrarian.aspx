@@ -8,10 +8,6 @@
     <div class="card">
         <div class="content">
             <div class="form-group">
-                <label><asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource,LibrarianId %>"></asp:Label></label>
-                <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group">
                 <label><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Account %>"></asp:Label></label>
                 <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
