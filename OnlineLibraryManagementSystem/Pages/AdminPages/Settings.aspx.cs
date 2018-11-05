@@ -46,7 +46,7 @@ public partial class Pages_AdminPages_Settings : BasePage
         string MaximunValue = MaximunIssue.Text;
         setValue(appSection, MaximumKey, MaximunValue);
         string OverdueFinePerDayValue = OverdueFinePerDay.Text;
-        setValue(appSection, MaximumKey, MaximunValue);
+        setValue(appSection, OverdueFinePerDayKey, OverdueFinePerDayValue);
         string LimitofreservationValue = Limitofreservation.Text;
         setValue(appSection, LimitofreservationKey, LimitofreservationValue);
         string LimitofissueValue = OverdueFinePerDay.Text;
