@@ -60,8 +60,8 @@ public partial class Pages_ReaderPages_ForgotPassword : BasePage
 
         if (idNumber.Equals(idNumberText))
         {
-            SendEmail.Send(email, "OnlineLibraryManagement找回密码",
-                            "尊敬的用户，您的密码为：" + password);
+            SendEmail.Send(email, "OnlineLibraryManagement Get Back Password",
+                            "Dear User, your password is " + password);
             Response.Write("<script>alert('" + Resources.Resource.VerificationSuccess + Resources.Resource.PasswordSent + "')</script>");
         }
         else
