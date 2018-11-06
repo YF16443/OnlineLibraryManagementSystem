@@ -6091,7 +6091,7 @@ star {
     .footer nav ul li {
       display: inline-block;
       padding: 10px 15px;
-      margin: 15px 3px;
+      margin: 0px;
       line-height: 20px;
       text-align: center; }
     .footer nav ul a:not(.btn) {
@@ -6104,7 +6104,7 @@ star {
     color: #364150;
     padding: 10px 15px;
     font-size: 14px;
-    margin: 15px 3px;
+    margin: 3px 3px;
     line-height: 20px;
     text-align: center; }
   .footer .heart {
