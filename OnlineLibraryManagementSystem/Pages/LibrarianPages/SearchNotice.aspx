@@ -51,6 +51,10 @@
             "searching": false,
             "lengthChange": false,
             "order": [[0, 'asc']],
+            columnDefs: [{
+                'targets': [3],
+                'orderable': false
+            }]
         });
         $(".daterangepicker-field").daterangepicker({
             forceUpdate: true,

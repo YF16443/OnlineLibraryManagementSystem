@@ -53,7 +53,11 @@
             "searching": false,
             "lengthChange": false,
             "order": [[0, 'asc']],
-            "bStateSave":true,
+            "bStateSave": true,
+            columnDefs: [{
+                'targets': [2],
+                'orderable': false
+            }]
         });
         
 </script>
