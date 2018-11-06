@@ -26,8 +26,8 @@
                                                 <div>
                                                     <asp:Button ID="ButtonUpload" runat="server" Text="<%$ Resources:Resource, Upload %>" OnClick="ButtonUpload_Click" CssClass="btn btn-fill btn-default"/>                            
                                                     <input type=button value="<asp:Literal runat="server" Text="<%$ Resources:Resource, Selectimage%>" />" onclick=fileupload.click() Class="btn btn-fill btn-default">
-                                                        <input type="file" id="fileupload" name="fileupload"  style="display: none;" onchange="filepath.value=this.value"/>                            
-                                                        <label><input type="Text" id="filepath" name="filepath" value="" class="form-control"></label>
+                                                        <input type="file" id="fileupload" name="fileupload"  style="display: none;" onchange="filepath.value=this.value"/>                                                      
+                                                        <label><input type="Text" id="filepath" name="filepath" value="" class="form-control" style="width:400px;"></label>                                                        
                                                 </div>
                     </div>                                        
                 </fieldset>

@@ -34,6 +34,286 @@ public partial class Pages_Addbooks_ISBN : BasePage
             OLMSDBConnection.Close();
         }
     }
+    protected void addbooks_diy()
+    {
+        string title = "";
+        string author = "";
+        string pubdate = "";
+        string price = "";
+        string pages = "";
+        string publisher = "";
+        string quantity = "";
+        string quantityparttern = "^[1-9]\\d*$";
+        string pubdateparttern = "^[0-9]{4}-(0?[0-9]|1[0-2])-(0?[1-9]|[12]?[0-9]|3[01])$";
+        string float_priceparttern = "^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*$";//正浮点数
+        string integer_priceparttern = "^[1-9]\\d*$";//正整数
+        string pagesparttern = "^[1-9]\\d*$";//正整数
+        string isbn13 = "";
+        string isbn10 = "";
+        string isbn13parttern = "^[0-9A-Z]{13}$";
+        string isbn10parttern = "^[0-9A-Z]{10}$";
+        string imagesave = Image1.ImageUrl;
+        //标题
+        if (TextBoxTitle.Text.Trim().Length!=0)
+        {
+            title = TextBoxTitle.Text.Trim();
+        }
+        else
+        {
+            Response.Write("<script>alert('Title Is Null!')</script>");
+            return;
+        }
+        //作者
+        if (TextBoxAuthor.Text.Trim().Length!=0)
+        {
+            author = TextBoxAuthor.Text.Trim();
+        }
+        else
+        {
+            Response.Write("<script>alert('Author Is Null!')</script>");
+            return;
+        }
+        //出版日期
+        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxPubdate.Text.Trim(), pubdateparttern))
+        {
+            pubdate = TextBoxPubdate.Text.Trim();
+        }
+        else
+        {
+            Response.Write("<script>alert('Error Pubdate!\\nPubdate Example:YYYY-XX-MM')</script>");
+            return;
+        }
+        //价格
+        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxPrice.Text.Trim(), float_priceparttern) || System.Text.RegularExpressions.Regex.IsMatch(TextBoxPrice.Text.Trim(), integer_priceparttern))
+        {
+            price = TextBoxPrice.Text.Trim();
+        }
+        else
+        {
+            Response.Write("<script>alert('Error Price Format!')</script>");
+            return;
+        }
+        //页数
+        if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxPages.Text.Trim(), pagesparttern))
+        {
+            pages = TextBoxPages.Text.Trim();
+        }
+        else
+        {
+            Response.Write("<script>alert('Error Pages Format!')</script>");
+            return;
+        }
+        //出版社
+        if (TextBoxPublisher.Text.Trim().Length!=0)
+        {
+            publisher = TextBoxPublisher.Text.Trim();
+        }
+        else
+        {
+            Response.Write("<script>alert('Publisher Is Null!')</script>");
+            return;
+        }
+        //数量
+        if (TextBoxQuantity.Text.Trim().Length == 0)
+        {
+            Response.Write("<script>alert('Books\\' Quantity Is Null !')</script>");
+            return;
+        }
+        else if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxQuantity.Text.Trim(), "^[0]\\d+$"))
+        {
+            quantity = TextBoxQuantity.Text.Trim().Substring(1, TextBoxQuantity.Text.Trim().Length - 1);
+        }
+        else if (!System.Text.RegularExpressions.Regex.IsMatch(TextBoxQuantity.Text.Trim(), quantityparttern))
+        {
+            Response.Write("<script>alert('Books\\' Quantity Must Be the Positive Integer!')</script>");
+            return;
+        }
+        else quantity = TextBoxQuantity.Text.Trim();
+        //isbn13
+        if (TextBoxISBN13.Text.Trim().Length == 13 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN13.Text.Trim(), isbn13parttern))
+        {
+            isbn13 = TextBoxISBN13.Text.Trim();
+        }
+        else if (TextBoxISBN13.Text.Trim().Length == 0)
+        {
+            isbn13 = "";
+        }
+        else
+        {
+            Response.Write("<script>alert('Error ISBN13!')</script>");
+            return;
+        }
+        //isbn10
+        if (TextBoxISBN10.Text.Trim().Length == 10 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN10.Text.Trim(), isbn10parttern))
+        {
+            isbn10 = TextBoxISBN10.Text.Trim();
+        }
+        else if (TextBoxISBN10.Text.Trim().Length == 0)
+        {
+            isbn10 = "";
+        }
+        else
+        {
+            Response.Write("<script>alert('Error ISBN10!')</script>");
+            return;
+        }
+        //数据库连接
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+        //先检查数据库中是否存在该图书
+        string selectbook = "select count(*) as num from Books where Title ='"+title+"';";
+        int updateflag = 0;
+        string[] shelf = DropDownList1.SelectedItem.Text.Split(',');//书架号
+        string shelfid = shelf[0];
+        string Bookid = "";//bookid
+        string bookbarcode = "";//barcode码
+        //try
+        //{
+            OLMSDBConnection.Open();
+            MySqlCommand cmdselectbook = new MySqlCommand(selectbook, OLMSDBConnection);
+            MySqlDataReader readerbook = cmdselectbook.ExecuteReader();
+            while (readerbook.Read())
+            {
+                if (readerbook.HasRows)
+                {
+                    Int64 count = (Int64)readerbook["num"];
+                    if (count > 0)
+                    {
+                        updateflag = 1;
+                    }
+                    break;
+                }
+            }
+            readerbook.Close();
+            //查询librarianid
+            string librarianaccount = "";
+            string lid = "";
+            if (string.IsNullOrEmpty((string)Session["lid"]))
+            {
+                Response.Write("<script>alert('Account Is Null!')</script>");
+                return;
+            }
+            else librarianaccount = Session["lid"].ToString();
+            string seleclid = "select LibrarianId from Librarians where Account='" + librarianaccount + "';";
+            MySqlCommand cmdseleclid = new MySqlCommand(seleclid, OLMSDBConnection);
+            MySqlDataReader readerlid = cmdseleclid.ExecuteReader();
+            if (readerlid.Read())
+            {
+                lid = readerlid["LibrarianId"].ToString();
+            }
+            readerlid.Close();
+            int oldamount = 0;
+            //如果书库中存在这本书，只更新书本数量
+            if (updateflag == 1)
+            {
+                string selectoldamount = "select Amount,BookId from Books where Title='" + title + "';";
+                MySqlCommand cmdselectoldamount = new MySqlCommand(selectoldamount, OLMSDBConnection);
+                MySqlDataReader readeroldamount = cmdselectoldamount.ExecuteReader();
+                if (readeroldamount.Read())
+                {
+                    oldamount = int.Parse(readeroldamount["Amount"].ToString());
+                    Bookid = readeroldamount["BookId"].ToString();
+                }
+                readeroldamount.Close();
+                int newamount = oldamount + int.Parse(quantity);
+                string updatebook = "update Books set Amount='" + newamount.ToString() + "' where BookId='" + Bookid + "';";
+                MySqlCommand cmdupate = new MySqlCommand(updatebook, OLMSDBConnection);
+                int update = 0;
+                update = cmdupate.ExecuteNonQuery();
+                int updateresult = 0;
+                //打印的表
+                DataTable dt_diy = new DataTable();
+                dt_diy.Columns.Add("name");
+                for (int i = oldamount; i < newamount; i++)
+                {
+                    bookbarcode = Bookid.PadLeft(10, '0') + i.ToString().PadLeft(3, '0');
+                    MyBarcodeGenerator.Generate(bookbarcode);
+                    DataRow dr = dt_diy.NewRow();
+                    dr["name"] = bookbarcode + ".jpg";
+                    dt_diy.Rows.Add(dr);
+                    string insertBookBarcode = "insert into BookBarcodes(BookBarcode,BookId,ShelfId) " + "values('" + bookbarcode + "','" + Bookid + "','" + shelfid + "');";
+                    MySqlCommand cmdinsertBookBarcode = new MySqlCommand(insertBookBarcode, OLMSDBConnection);
+                    updateresult = cmdinsertBookBarcode.ExecuteNonQuery();
+                }
+                //记录操作
+                string insertexistbookmanagement = "insert into BookManagementRecords(Operation,BookId,LibrarianId,Amount) Values('Add','" + Bookid + "','" + lid + "','" + quantity + "');";
+                MySqlCommand cmdinsertexistbookmanagement = new MySqlCommand(insertexistbookmanagement, OLMSDBConnection);
+                int insertexistresult = 0;
+                insertexistresult = cmdinsertexistbookmanagement.ExecuteNonQuery();
+                if (updateresult != 0 && update != 0 && insertexistresult != 0)
+                {
+                    //绑定bookbarcode
+                    DataListbookbarcode.Enabled = true;
+                    DataListbookbarcode.DataSource = dt_diy;
+                    DataListbookbarcode.DataBind();
+                    Response.Write("<script>alert('This Book Is Exist，Add " + quantity + " Books!\\nThe Amount Is Updated to " + newamount.ToString() + "!')</script>");
+                    return;
+                }
+            }
+            else
+            {
+                //插入书
+                string insertBook_diy = "insert into Books(ISBN13,ISBN10,ImageURL,Title,Author,Publisher,PubDate,Pages,Price,Amount) " + "values('"+isbn13+"','"+isbn10+"','" + imagesave + "','" + title + "','" + author + "','" + publisher + "','" + pubdate + "','" + pages + "','" + price + "','" + quantity + "')";
+                MySqlCommand cmdinsertBook_diy = new MySqlCommand(insertBook_diy, OLMSDBConnection);
+                int resultinsertbook = cmdinsertBook_diy.ExecuteNonQuery();
+                //向barcode表中插入数据，先找到bookid
+                string selectBookid = "select BookId from Books where Title='" + title + "';";
+                MySqlCommand cmdselectBookid = new MySqlCommand(selectBookid, OLMSDBConnection);
+                MySqlDataReader reader2 = cmdselectBookid.ExecuteReader();
+                if (reader2.Read())
+                {
+                    Bookid = reader2["BookId"].ToString();
+                }
+                reader2.Close();
+                int Quantity = int.Parse(quantity);
+                int result2 = 0;
+                DataTable dt = new DataTable();
+                dt.Columns.Add("name");
+                for (int i = 0; i < Quantity; i++)
+                {
+                    bookbarcode = Bookid.PadLeft(10, '0') + i.ToString().PadLeft(3, '0');
+                    MyBarcodeGenerator.Generate(bookbarcode);
+                    DataRow dr = dt.NewRow();
+                    dr["name"] = bookbarcode + ".jpg";
+                    dt.Rows.Add(dr);
+                    string insertBookBarcode = "insert into BookBarcodes(BookBarcode,BookId,ShelfId) " + "values('" + bookbarcode + "','" + Bookid + "','" + shelfid + "');";
+                    MySqlCommand cmdinsertBookBarcode = new MySqlCommand(insertBookBarcode, OLMSDBConnection);
+                    result2 = cmdinsertBookBarcode.ExecuteNonQuery();
+                }
+                //找数量
+                string selectamount = "select Amount from Books where BookId='" + Bookid + "';";
+                MySqlCommand cmdselectamount = new MySqlCommand(selectamount, OLMSDBConnection);
+                MySqlDataReader readeramount = cmdselectamount.ExecuteReader();
+                string amount = "";
+                if (readeramount.Read())
+                {
+                    amount = readeramount["Amount"].ToString();
+                }
+                readeramount.Close();
+                //记录操作
+                string insertbookmanagement = "insert into BookManagementRecords(Operation,BookId,LibrarianId,Amount) values('Add','" + Bookid + "','" + lid + "','" + quantity + "');";
+                MySqlCommand cmdinsertbookmanagement = new MySqlCommand(insertbookmanagement, OLMSDBConnection);
+                int resultinsertbookmanagement = 0;
+                resultinsertbookmanagement = cmdinsertbookmanagement.ExecuteNonQuery();
+                if ((resultinsertbook != 0) && (result2 != 0) && (resultinsertbookmanagement != 0))
+                {
+                    DataListbookbarcode.Enabled = true;
+                    DataListbookbarcode.DataSource = dt;
+                    DataListbookbarcode.DataBind();
+                    Response.Write("<script>alert('Add Book Successfully!\\nThe Amount Is " + amount + "!')</script>");
+                    return;
+                }
+            }
+        //}
+       // catch (MySqlException ex)
+      //  {
+       //     Console.WriteLine(ex.Message);
+       // }
+      //  finally
+       // {
+      //     OLMSDBConnection.Close();
+      //  }
+    }
 
     protected void Addbooks(object sender, EventArgs e)
     {
@@ -45,8 +325,14 @@ public partial class Pages_Addbooks_ISBN : BasePage
         string quantity = "";//新加书本数量
         if (TextBoxISBN.Text.Trim().Length==0)
         {
-            Response.Write("<script>alert('ISBN Is Null!')</script>");
-            return;
+            //Response.Write("<script>alert('ISBN Is Null!')</script>");
+            if (TextBoxISBN10.Text.Trim().Length == 0 || TextBoxISBN13.Text.Trim().Length == 0)
+            {
+                addbooks_diy();
+                return;
+            }
+           // Response.Write("<script>alert('ISBN Is Null!')</script>");
+           // return;
 
         }
         else if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN.Text.Trim(), isbn13parttern)|| System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN.Text.Trim(), isbn10parttern))
@@ -73,11 +359,43 @@ public partial class Pages_Addbooks_ISBN : BasePage
             return;
         }
         else quantity = TextBoxQuantity.Text.Trim();
+        //ISBN13
+        string isbn13 = "";
+        if (TextBoxISBN13.Text.Trim().Length == 13 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN13.Text.Trim(), isbn13parttern))
+        {
+            isbn13 = TextBoxISBN13.Text;
+        }
+        else if (TextBoxISBN13.Text.Trim().Length == 0)
+        {
+            addbooks_diy();
+            return;
+        }
+        else
+        {
+            Response.Write("<script>alert('Error ISBN13!')</script>");
+            return;
+        }
+        //ISBN10
+        string isbn10 = "";
+        if (TextBoxISBN10.Text.Length == 10 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN10.Text, isbn10parttern))
+        {
+            isbn10 = TextBoxISBN10.Text;
+        }
+        else if (TextBoxISBN10.Text.Trim().Length == 0)
+        {
+            addbooks_diy();
+            return;
+        }
+        else
+        {
+            Response.Write("<script>alert('Error ISBN10!')</script>");
+            return;
+        }
         //数据库连接
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         //先检查数据库中是否存在该ISBN图书
-        string selectIsbn = "select count(*) as num from Books where ISBN13 = '" + isbn + "' or ISBN10='"+isbn+"';";
+        string selectIsbn = "select count(*) as num from Books where ISBN13 = '" +isbn13+"';";
         int updateflag = 0;
         string[] shelf= DropDownList1.SelectedItem.Text.Split(',');//书架号
         string shelfid = shelf[0];
@@ -122,7 +440,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
             //如果书库中存在这本书，只更新书本数量
             if (updateflag == 1)
             {
-                string selectoldamount = "select Amount,BookId from Books where ISBN13='" + isbn + "' or ISBN10='"+isbn+"';";
+                string selectoldamount = "select Amount,BookId from Books where ISBN13='" +isbn13+"';";
                 MySqlCommand cmdselectoldamount = new MySqlCommand(selectoldamount, OLMSDBConnection);
                 MySqlDataReader readeroldamount = cmdselectoldamount.ExecuteReader();
                 if (readeroldamount.Read())
@@ -212,28 +530,6 @@ public partial class Pages_Addbooks_ISBN : BasePage
             else
             {
                 Response.Write("<script>alert('Error Pages Format!')</script>");
-                return;
-            }
-            //ISBN13
-            string isbn13 = "";
-            if (TextBoxISBN13.Text.Trim().Length == 13 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN13.Text.Trim(), isbn13parttern))
-            {
-                isbn13 = TextBoxISBN13.Text;
-            }
-            else
-            {
-                Response.Write("<script>alert('Error ISBN13!')</script>");
-                return;
-            }
-            //ISBN10
-            string isbn10 = "";
-            if (TextBoxISBN10.Text.Length == 10 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxISBN10.Text, isbn10parttern))
-            {
-                isbn10 = TextBoxISBN10.Text;
-            }
-            else
-            {
-                Response.Write("<script>alert('Error ISBN10!')</script>");
                 return;
             }
             //标题
@@ -331,7 +627,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
                 resultinsertbook = cmdinsertBook_api.ExecuteNonQuery();
             }
             //向barcode表中插入数据，先找到bookid
-            string selectBookid = "select BookId from Books where ISBN13='" + isbn + "' or ISBN10='"+isbn+"';";
+            string selectBookid = "select BookId from Books where ISBN13='" + isbn13 +"';";
             MySqlCommand cmdselectBookid = new MySqlCommand(selectBookid, OLMSDBConnection);
             MySqlDataReader reader2 = cmdselectBookid.ExecuteReader();
             if (reader2.Read())
