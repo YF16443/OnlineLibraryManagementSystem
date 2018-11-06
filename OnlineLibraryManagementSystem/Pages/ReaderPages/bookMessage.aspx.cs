@@ -206,6 +206,7 @@ public partial class Pages_bookMessage : BasePage
         string sqlstr = "update Librarians set BookBarcode='"
             + ((TextBox)(GridView1.Rows[e.RowIndex].Cells[1].Controls[0])).Text.ToString().Trim() + "',BookId='"
             + ((TextBox)(GridView1.Rows[e.RowIndex].Cells[2].Controls[0])).Text.ToString().Trim() + "',ShelfId='"
+            + ((TextBox)(GridView1.Rows[e.RowIndex].Cells[2].Controls[0])).Text.ToString().Trim() + "',Status='"
             + ((TextBox)(GridView1.Rows[e.RowIndex].Cells[3].Controls[0])).Text.ToString().Trim() + "' where BookId='"
             + bookId + "'";
         sqlcom = new MySqlCommand(sqlstr, sqlcon);
@@ -219,7 +220,7 @@ public partial class Pages_bookMessage : BasePage
     public void bind()
     {
         string bookId = Request["book_id"];
-        string sqlstr = "select BookBarcode,BookId,ShelfId from BookBarcodes where BookId ="+bookId;
+        string sqlstr = "select BookBarcode,BookId,ShelfId,Status from BookBarcodes where BookId =" + bookId;
         sqlcon = new MySqlConnection(strCon);
         MySqlDataAdapter myda = new MySqlDataAdapter(sqlstr, sqlcon);
         DataSet myds = new DataSet();
