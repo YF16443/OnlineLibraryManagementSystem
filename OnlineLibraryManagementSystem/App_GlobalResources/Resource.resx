@@ -795,4 +795,10 @@
     <value>Display_Barcode &amp; 显示条形码</value>
     <comment>显示二维码</comment>
   </data>
+  <data name="Librarian" xml:space="preserve">
+    <value>Librarian &amp; 图书管理员</value>
+  </data>
+  <data name="Reader" xml:space="preserve">
+    <value>Reader &amp; 读者</value>
+  </data>
 </root>

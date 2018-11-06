@@ -4135,7 +4135,7 @@ strong {
     overflow: auto;
     z-index: 4;
     box-shadow: inset -1px 0px 0px 0px #cfcfca;
-    width: 260px; }
+    width: 200px; }
   .sidebar .logo-mini {
     display: none; }
   .sidebar .sidebar-background {
@@ -4171,7 +4171,7 @@ strong {
 
 .sidebar,
 .off-canvas-sidebar {
-  width: 260px;
+  width: 200px;
   display: block; }
   .sidebar .logo,
   .off-canvas-sidebar .logo {
@@ -4380,7 +4380,7 @@ strong {
   position: relative;
   z-index: 2;
   float: right;
-  width: calc(100% - 260px);
+  width: calc(100% - 200px);
   min-height: 100%; }
   .main-panel > .content {
     padding: 30px 15px 0 15px;

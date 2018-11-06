@@ -68,7 +68,7 @@
 						    <a data-toggle="collapse" href="#BookManagement" class="collapsed" aria-expanded="false">
 							    <i class="ti-book"></i>
 							    <p>
-                                    <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource,BookManagement %>"></asp:Label>
+                                    <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource,Book %>"></asp:Label>
 								    <b class="caret"></b>
 							    </p>
 						    </a>
@@ -96,7 +96,7 @@
 						    <a data-toggle="collapse" href="#StacksManagement" class="collapsed" aria-expanded="false">
 							    <i class="ti-layout-column3"></i>
 							    <p>
-                                    <asp:Label ID="Label11" runat="server" Text="<%$ Resources:Resource,StacksManagement %>"></asp:Label>
+                                    <asp:Label ID="Label11" runat="server" Text="<%$ Resources:Resource,Stack %>"></asp:Label>
 								    <b class="caret"></b>
 							    </p>
 						    </a>
@@ -118,7 +118,7 @@
 						    <a data-toggle="collapse" href="#ReaderManagement" class="collapsed" aria-expanded="false">
 							    <i class="ti-user"></i>
 							    <p>
-                                    <asp:Label ID="Label15" runat="server" Text="<%$ Resources:Resource,ReaderManagement %>"></asp:Label>
+                                    <asp:Label ID="Label15" runat="server" Text="<%$ Resources:Resource,Reader %>"></asp:Label>
 								    <b class="caret"></b>
 							    </p>
 						    </a>
@@ -137,7 +137,7 @@
 						    <a data-toggle="collapse" href="#FineManagement" class="collapsed" aria-expanded="false">
 							    <i class="ti-money"></i>
 							    <p>
-                                    <asp:Label ID="Label24" runat="server" Text="<%$ Resources:Resource,FineManagement %>"></asp:Label>
+                                    <asp:Label ID="Label24" runat="server" Text="<%$ Resources:Resource,Fine %>"></asp:Label>
 								    <b class="caret"></b>
 							    </p>
 						    </a>
@@ -178,7 +178,7 @@
 						    <a data-toggle="collapse" href="#Notice" class="collapsed" aria-expanded="false">
 							    <i class="ti-clipboard"></i>
 							    <p>
-                                    <asp:Label ID="Label19" runat="server" Text="<%$ Resources:Resource,NoticeManagement %>"></asp:Label>
+                                    <asp:Label ID="Label19" runat="server" Text="<%$ Resources:Resource,Notice %>"></asp:Label>
                                     <b class="caret"></b>
 							    </p>
 						    </a>
