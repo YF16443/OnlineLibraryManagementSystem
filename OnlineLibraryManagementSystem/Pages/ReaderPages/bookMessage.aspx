@@ -62,5 +62,15 @@
     </div>
     <br />
 
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered">
+                        <Columns>
+                            
+                            
+                            <asp:BoundField DataField="BookBarcode" HeaderText="BookBarcode" HeaderStyle-CssClass="text-primary"/>
+                            <asp:BoundField DataField="BookId" HeaderText="<%$ Resources:Resource,BookId %>" HeaderStyle-CssClass="text-primary"/>
+                            <asp:BoundField DataField="ShelfId" HeaderText="<%$ Resources:Resource,ShelfId %>" HeaderStyle-CssClass="text-primary"/>
+                            
+                        </Columns>
+                    </asp:GridView>
 </asp:Content>
 

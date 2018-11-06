@@ -1,27 +1,16 @@
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;            //引入命名空间
-using System.Data.SqlClient;  //引入命名空间
+using System.Data;            
 using MySql.Data.MySqlClient;
 
 public partial class Pages_AdminPages_SearchLibrarian : BasePage
 {
-
-
-    //SqlConnection sqlcon;
-    //SqlCommand sqlcom;
-    //string strCon = "Server=cdb-2x9xtpja.cd.tencentcdb.com;Database=Librarians;Uid=olms;Pwd=123456";
     string strCon = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
     MySqlConnection sqlcon;
     MySqlCommand sqlcom;
     protected void Page_Load(object sender, EventArgs e)
     {
-        //MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         if (!IsPostBack)
         {
             bind();
