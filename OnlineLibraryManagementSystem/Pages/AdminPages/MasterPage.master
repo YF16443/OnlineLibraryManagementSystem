@@ -42,7 +42,7 @@
 					    <li>
                             <a href="SearchLibrarian.aspx">
                                 <i class="ti-user"></i>
-                                <p><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource,LibrarianManagement %>"></asp:Label></p>
+                                <p><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource,Librarian %>"></asp:Label></p>
                             </a>
 
 					    </li>

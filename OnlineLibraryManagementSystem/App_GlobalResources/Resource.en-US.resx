@@ -800,4 +800,10 @@
     <value>Display_Barcode</value>
     <comment>显示二维码</comment>
   </data>
+  <data name="Reader" xml:space="preserve">
+    <value>Reader</value>
+  </data>
+  <data name="Librarian" xml:space="preserve">
+    <value>Librarian</value>
+  </data>
 </root>

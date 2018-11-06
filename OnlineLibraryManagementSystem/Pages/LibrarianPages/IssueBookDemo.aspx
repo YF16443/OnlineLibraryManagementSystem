@@ -5,6 +5,7 @@
         <asp:Label runat="server" Text="<%$ Resources:Resource, Issue %>" CssClass="navbar-brand"></asp:Label>
     </a>
 </asp:Content>
+
 <asp:Content ID="body" ContentPlaceHolderID="body" runat="Server">
     <div>
         <div class="content">

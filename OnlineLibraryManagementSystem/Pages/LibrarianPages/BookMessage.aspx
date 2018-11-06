@@ -176,7 +176,11 @@
             "searching": false,
             "lengthChange": false,
             "order": [[0, 'asc']],
-            "bStateSave":true,
+            "bStateSave": true,
+            columnDefs: [{
+                'targets': [5,6,7,8],
+                'orderable': false
+            }]
         });
 
         function doClick(event) {
