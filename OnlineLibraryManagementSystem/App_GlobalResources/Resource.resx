@@ -801,4 +801,7 @@
   <data name="Reader" xml:space="preserve">
     <value>Reader &amp; 读者</value>
   </data>
+  <data name="InputError" xml:space="preserve">
+    <value>Input Error! &amp; 输入错误</value>
+  </data>
 </root>

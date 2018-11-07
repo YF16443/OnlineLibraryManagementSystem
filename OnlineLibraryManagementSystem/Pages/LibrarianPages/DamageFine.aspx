@@ -40,7 +40,7 @@
                     <asp:TextBox ID="tbBarcode" runat="server" Width="300px" CssClass="form-control"></asp:TextBox>
                 </td>
                 <td class="auto-style1">
-                    <asp:RequiredFieldValidator ID="rfvBarcode" runat="server" ControlToValidate="tbBarcode" ErrorMessage="*"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvBarcode" runat="server" ControlToValidate="tbBarcode" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
              <tr>
