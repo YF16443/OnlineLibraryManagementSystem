@@ -337,7 +337,8 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             DataListbookbarcode.Enabled = true;
             DataListbookbarcode.DataSource = dt;
             DataListbookbarcode.DataBind();
-            Button buttonprint = (Button)row.FindControl("Button2");
+            BindDataTogvResult();
+           // Button buttonprint = (Button)row.FindControl("Button2");
             //ClientScript.RegisterStartupScript(ClientScript.GetType(), "myscript", "<script>doPrint();</script>");
             //Response.Write("<script>alert('" + barcode + "')</script>");
             //var barcodeImage = MyBarcodeGenerator.Generate(barcode) as System.Drawing.Image;
