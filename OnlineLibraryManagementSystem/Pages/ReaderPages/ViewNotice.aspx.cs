@@ -14,10 +14,15 @@ public partial class Pages_ReaderPages_ViewNotice : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (!IsPostBack)
         {
+            if (string.IsNullOrEmpty((string)Session["id"]))
+            {
+                //未登录时提示登录
+                Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='../ReaderLogin.aspx';</script>");
+            }
             bind();
-
         }
     }
 

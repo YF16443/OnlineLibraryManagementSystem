@@ -37,8 +37,14 @@ public partial class Pages_OtherPages_LibrarianRegister :BasePage
             Account = TextBoxAccount.Text;
             //这里应该有正则匹配去除非法输入防止篡改数据库
         }
-  
+
         ppassword = TextBoxPassword.Text;
+        //检测Librarian账号不能与Admin账号相同
+        if (string.Equals(Account, ConfigurationManager.AppSettings["AdminAccount"].ToString()))
+        {
+            Response.Write("<script>window.alert('" + Resources.Resource.LibrarianLogined + "');</script>");
+            return;
+        }
         //链接数据库
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
