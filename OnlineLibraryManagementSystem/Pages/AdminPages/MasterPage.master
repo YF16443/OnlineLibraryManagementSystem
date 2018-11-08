@@ -51,7 +51,13 @@
                                 <i class="ti-settings"></i>
                                 <p><asp:Label ID="Label24" runat="server" Text="<%$ Resources:Resource,Settings %>"></asp:Label></p>
                             </a>
-					    </li>				 
+					    </li>
+                        <li id="changePassword">
+                             <a href="ChangePassword.aspx">
+                                <i class="ti-lock"></i>
+                                <p><asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource,ChangePassword %>"></asp:Label></p>
+                            </a>
+					    </li>
 				    </ul>
                 </div>
             </div>
@@ -74,7 +80,7 @@
                                 <li>
                                     <asp:LoginView ID="LoginView" runat="server">
                                         <AnonymousTemplate>
-                                            <asp:LinkButton ID="lbLogin" runat="server" Text="<%$ Resources:Resource,Login %>" PostBackUrl="~/Pages/LibrarianLogin.aspx"></asp:LinkButton>
+                                            <asp:LinkButton ID="lbLogin" runat="server" Text="<%$ Resources:Resource,Login %>" PostBackUrl="~/Pages/AdminLogin.aspx"></asp:LinkButton>
                                         </AnonymousTemplate>
                                         <LoggedInTemplate>
                                             <asp:LinkButton ID="lbLogout" runat="server" Text="<%$ Resources:Resource,Logout %>" OnClick="lbLogout_Click"></asp:LinkButton>

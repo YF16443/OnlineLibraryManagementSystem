@@ -14,14 +14,14 @@
             <table style="width: 100%;">
                 <tr>
                     <td style="width: 40%; text-align: right" class="auto-style1">
-                        <asp:Label ID="lbBarcode" runat="server" Text="<%$ Resources:Resource,Barcode %>"></asp:Label>
+                        <label><asp:Label ID="lbBarcode" runat="server" Text="<%$ Resources:Resource,Barcode %>"></asp:Label></label>
                         &nbsp;
                     </td>
                     <td style="width: 40%; text-align: center" class="auto-style2">
-                        <asp:TextBox ID="tbBarcode" runat="server" Width="300px" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="tbBarcode" runat="server" Width="300px" CssClass="form-control" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
                     </td>
                     <td>
-                        <asp:RequiredFieldValidator ID="rfvBarcode" runat="server" ControlToValidate="tbBarcode" ErrorMessage="*"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvBarcode" runat="server" ControlToValidate="tbBarcode" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>

@@ -12,7 +12,7 @@
     <div class="form-group">
         <label><asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, Notice %>"></asp:Label></label>
         <asp:TextBox ID="txtdetails" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="5"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvDetails" runat="server" ControlToValidate="txtdetails" ErrorMessage="*"></asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator ID="rfvDetails" runat="server" ControlToValidate="txtdetails" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
     </div>
     <asp:Button ID="Add" runat="server" Text="<%$ Resources:Resource, Add %>" CssClass="btn btn-fill btn-default" OnClick="Add_Click"/>
 </asp:Content>

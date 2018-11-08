@@ -12,11 +12,11 @@
         <div class="content">
             <div class="form-group">
                 <label><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Account %>"></asp:Label></label>
-                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
             </div>
             <div class="form-group">
                 <label><asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Password %>"></asp:Label></label>
-                <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" Text="00010001"></asp:TextBox>
+                <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" Text="00010001" onpaste="return false;" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
             </div>
             <div class="form-group">
                 <label><asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Name %>"></asp:Label></label>
