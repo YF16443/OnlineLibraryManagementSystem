@@ -28,7 +28,7 @@ public partial class Pages_AdminLogin : BasePage
         if (string.Equals(Login1.UserName, AdminAccount) && string.Equals(Login1.Password, AdminPassword))
         {
             //使用Session方式保存账户信息,lid为管理员id
-            Session["aid"] = Login1.UserName;
+            Session["lid"] = Login1.UserName;
             e.Authenticated = true;
         }
         else
