@@ -812,4 +812,17 @@
   <data name="ReaderLogin" xml:space="preserve">
     <value>Reader Login</value>
   </data>
+  <data name="AdminLogined" xml:space="preserve">
+    <value>The admin account is already logged in. You must log out of the account before you can log in to the new account.</value>
+  </data>
+  <data name="LibrarianLogined" xml:space="preserve">
+    <value>A librarian account is already logged in. You must log out of the account before you can log in to the new account.</value>
+  </data>
+  <data name="ReaderLogined" xml:space="preserve">
+    <value>A reader account is already logged in. You must log out of the account before you can log in to the new account.</value>
+  </data>
+  <data name="LibrarianNotAdmin" xml:space="preserve">
+    <value>The librarian account cannot be the same as the super administrator account.</value>
+    <comment>Librarian账号不能与Admin账号相同</comment>
+  </data>
 </root>
