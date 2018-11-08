@@ -74,10 +74,10 @@
                                 <li>
                                     <asp:LoginView ID="LoginView" runat="server">
                                         <AnonymousTemplate>
-                                            <asp:LinkButton ID="lbLogin" runat="server" Text="<%$ Resources:Resource,Login %>" PostBackUrl="~/Pages/LibrarianLogin.aspx"></asp:LinkButton>
+                                            <asp:LinkButton ID="aLogin" runat="server" Text="<%$ Resources:Resource,Login %>" PostBackUrl="~/Pages/AdminLogin.aspx"></asp:LinkButton>
                                         </AnonymousTemplate>
                                         <LoggedInTemplate>
-                                            <asp:LinkButton ID="lbLogout" runat="server" Text="<%$ Resources:Resource,Logout %>" OnClick="lbLogout_Click"></asp:LinkButton>
+                                            <asp:LinkButton ID="aLogout" runat="server" Text="<%$ Resources:Resource,Logout %>" OnClick="aLogout_Click"></asp:LinkButton>
                                         </LoggedInTemplate>
                                     </asp:LoginView>
                                 </li>

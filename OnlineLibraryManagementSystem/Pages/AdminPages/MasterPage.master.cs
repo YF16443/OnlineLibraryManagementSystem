@@ -21,7 +21,7 @@ public partial class Pages_MasterPage : BaseMasterPage
 
     protected void lbSignOut_Click(object sender, EventArgs e)
     {
-        Session["id"] = null;
+        Session["aid"] = null;
     }
 
     protected void ddlLanguages_SelectedIndexChanged(object sender, EventArgs e)
@@ -30,7 +30,7 @@ public partial class Pages_MasterPage : BaseMasterPage
         Response.Redirect(Request.Url.ToString());
     }
 
-    protected void lbLogout_Click(object sender, EventArgs e)
+    protected void aLogout_Click(object sender, EventArgs e)
     {
         FormsAuthentication.SignOut();
         Session.Remove("id");
