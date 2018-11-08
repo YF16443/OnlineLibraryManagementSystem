@@ -152,7 +152,8 @@
                 <asp:CommandField ShowDeleteButton="true" />
             </Columns>
         </asp:GridView>
-        <!--startprint--><!--注意要加上html里star和end的这两个标记-->
+        &nbsp
+<!--startprint--><!--注意要加上html里star和end的这两个标记-->
        <asp:DataList ID="DataListbookbarcode" runat="server" RepeatColumns="1" HorizontalAlign="center" Enabled="false">
            <ItemTemplate>
                <br>
