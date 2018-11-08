@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="AddPeriodicals.aspx.cs" Inherits="Pages_LibrarianPages_AddPeriodicals" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="header" Runat="Server">
+    <script>
+        document.getElementById("book").className = "active";
+    </script>
       <a><asp:Label runat="server" Text="<%$ Resources:Resource, AddPeriodical %>" CssClass="navbar-brand"></asp:Label> </a>
     <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
     <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />

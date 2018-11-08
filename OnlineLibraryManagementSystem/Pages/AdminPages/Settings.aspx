@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/AdminPages/MasterPage.master" AutoEventWireup="true" CodeFile="Settings.aspx.cs" Inherits="Pages_AdminPages_Settings" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="header" runat="Server">
+    <script>
+        document.getElementById("settings").className = "active";
+    </script>
         <a> <asp:Label runat="server" Text="<%$ Resources:Resource, Settings %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" contentplaceholderid="body">

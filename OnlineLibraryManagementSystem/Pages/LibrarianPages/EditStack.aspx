@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="EditStack.aspx.cs" Inherits="Pages_LibrarianPages_EditStack" %>
 
 <asp:Content ID="header" ContentPlaceHolderID="header" Runat="Server">
+    <script>
+        document.getElementById("stack").className = "active";
+    </script>
     <a> <asp:Label runat="server" Text="<%$ Resources:Resource, StackInfo %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" contentplaceholderid="body">

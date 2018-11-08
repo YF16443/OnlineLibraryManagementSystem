@@ -1,9 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="FineInfo.aspx.cs" Inherits="Pages_LibrarianPages_FineInfo" %>
-
 <asp:Content ID="header" ContentPlaceHolderID="header" Runat="Server">
+    <script>
+        document.getElementById("fine").className = "active";
+    </script>
     <a> <asp:Label runat="server" Text="<%$ Resources:Resource, Fine %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="body" ContentPlaceHolderID="body" Runat="Server">
+
     <div class="table-responsive">
         <asp:GridView ID="FineOverdue" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered">
             <Columns>
@@ -24,5 +27,6 @@
             </Columns>
         </asp:GridView>
     </div>
+
 </asp:Content>
 

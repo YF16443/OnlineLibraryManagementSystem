@@ -26,6 +26,9 @@
     
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" Runat="Server">
+    <script>
+        document.getElementById("fine").className = "active";
+    </script>
     <a> <asp:Label runat="server" Text="<%$ Resources:Resource, Reparation %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">

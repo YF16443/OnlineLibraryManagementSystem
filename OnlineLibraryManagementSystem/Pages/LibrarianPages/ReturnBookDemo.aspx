@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="ReturnBookDemo.aspx.cs" Inherits="Pages_ReturnBookDemo" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="header" runat="Server">
+    <script>
+        document.getElementById("circulation").className = "active";
+    </script>
     <a>
         <asp:Label runat="server" Text="<%$ Resources:Resource, Return %>" CssClass="navbar-brand"></asp:Label>
     </a>

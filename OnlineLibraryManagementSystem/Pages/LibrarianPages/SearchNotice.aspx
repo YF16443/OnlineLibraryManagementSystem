@@ -5,6 +5,9 @@
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" Runat="Server">
+    <script>
+        document.getElementById("notice").className = "active";
+    </script>
     <a> <asp:Label runat="server" Text="<%$ Resources:Resource, Notice %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="body" Runat="Server">

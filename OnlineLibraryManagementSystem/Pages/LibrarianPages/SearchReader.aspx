@@ -13,6 +13,9 @@
     <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="header" runat="Server">
+    <script>
+        document.getElementById("reader").className = "active";
+    </script>
     <a> <asp:Label runat="server" Text="<%$ Resources:Resource, Search %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 

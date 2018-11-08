@@ -2,6 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" runat="server">
+    <script>
+        document.getElementById("librarian").className = "active";
+    </script>
     <a> <asp:Label runat="server" Text="<%$ Resources:Resource, LibrarianManagement %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="body" Runat="Server">
