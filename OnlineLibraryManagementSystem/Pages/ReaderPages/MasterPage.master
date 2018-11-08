@@ -41,7 +41,7 @@
                                 <li>
                                     <asp:LoginView ID="LoginView" runat="server">
                                         <AnonymousTemplate>
-                                            <asp:LinkButton ID="lbLogin" runat="server" Text="<%$ Resources:Resource,Login %>" PostBackUrl="~/Pages/ReaderLogin.aspx"></asp:LinkButton>
+                                            <asp:LinkButton ID="lbLogin" runat="server" Text="<%$ Resources:Resource,ReaderLogin %>" PostBackUrl="~/Pages/ReaderLogin.aspx"></asp:LinkButton>
                                         </AnonymousTemplate>
                                         
                                         <LoggedInTemplate>
@@ -49,6 +49,9 @@
                                             <asp:LinkButton ID="lbLogout" runat="server" Text="<%$ Resources:Resource,Logout %>" OnClick="lbLogout_Click"></asp:LinkButton>
                                         </LoggedInTemplate>
                                     </asp:LoginView>
+                                </li>
+                                <li>
+                                    <asp:HyperLink ID="LibrarianLogin" runat="server" Text="<%$ Resources:Resource, LibrarianLogin %>" NavigateUrl="~/Pages/LibrarianLogin.aspx"></asp:HyperLink>
                                 </li>
                                 <li>
                                      <asp:HyperLink ID="hlMyAccount" runat="server" Text="<%$ Resources:Resource,MyAccount %>" NavigateUrl="~/Pages/ReaderPages/ShowReaderInfo.aspx" Visible="false"></asp:HyperLink>

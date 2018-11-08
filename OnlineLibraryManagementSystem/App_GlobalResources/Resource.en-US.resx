@@ -809,4 +809,7 @@
   <data name="InputError" xml:space="preserve">
     <value>Input Error!</value>
   </data>
+  <data name="ReaderLogin" xml:space="preserve">
+    <value>Reader Login</value>
+  </data>
 </root>

@@ -19,6 +19,7 @@ public partial class Pages_MasterPage : BaseMasterPage
         if (!string.IsNullOrEmpty((string)Session["id"])) 
         {
             hlMyAccount.Visible = true;
+            LibrarianLogin.Visible = false;
         }
     }
 
