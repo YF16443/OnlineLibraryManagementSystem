@@ -90,8 +90,11 @@ public partial class Pages_StackInfo : BasePage
         Shelves.DataSource = searchResult;
         Shelves.DataKeyNames = new string[] { "ShelfId" };
         Shelves.DataBind();
-        Shelves.HeaderRow.TableSection = TableRowSection.TableHeader;
-    }
+        if (Shelves.HeaderRow!= null)
+        {
+           Shelves.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+      }
     protected void Shelves_RowEditing(object sender, GridViewEditEventArgs e)
     {
         Shelves.EditIndex = e.NewEditIndex;

@@ -74,7 +74,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="<%$ Resources:Resource, Shelf_Summary %>" HeaderStyle-CssClass="text-primary">
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtSummary" runat="server" Text='<%# Eval("Summary") %>'></asp:TextBox>
+                        <asp:TextBox ID="txtSummary" runat="server" Text='<%# Eval("Summary") %>' onkeypress="return doClick(event);"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
                         <asp:Label ID="lblSummary" runat="server" Text='<%# Eval("Summary") %>'></asp:Label>
