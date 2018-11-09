@@ -22,7 +22,7 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
 
             OLMSDBConnection.Open();
             //搜索建库时间，建库时间不可变
-            string selecttimestamp = "select * from Stacks where StackId='"+Session["ID"]+"';";
+            string selecttimestamp = "select * from Stacks where StackId='"+Session["STACKID"] +"';";
             MySqlCommand cmdselecttimestamp = new MySqlCommand(selecttimestamp, OLMSDBConnection);
             MySqlDataReader reader = cmdselecttimestamp.ExecuteReader();
             if (reader.Read())
@@ -126,7 +126,7 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         var OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
 
-        string stackid = Session["ID"].ToString();
+        string stackid = Session["STACKID"].ToString();
         MySqlCommand get_sql = new MySqlCommand("select ShelfId,Summary,Timestamp from Shelves where StackId='" + stackid + "';");
         var resultAdapter = new MySqlDataAdapter();
         resultAdapter.SelectCommand = get_sql;
