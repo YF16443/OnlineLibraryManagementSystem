@@ -34,7 +34,7 @@ public partial class Pages_LibrarianPages_EditShelf : BasePage
                 //DropDownList1.DataTextField = "StackId";
                 //DropDownList1.DataBind();
                 readerstack.Close();
-                string selectshelf = "select * from Shelves where ShelfId='" + Session["ID"] + "';";
+                string selectshelf = "select * from Shelves where ShelfId='" + Session["SHELFID"] + "';";
                 MySqlCommand cmdselectshelf = new MySqlCommand(selectshelf, OLMSDBConnection);
                 MySqlDataReader readershlef = cmdselectshelf.ExecuteReader();
                 if (readershlef.Read())
@@ -74,7 +74,7 @@ public partial class Pages_LibrarianPages_EditShelf : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         //string selectshelfid = "select count(*) as num from Shelves where ShelfId='" + newshelfid + "';";
-        string updateshelf = "update Shelves set StackId='" + newstackid + "',Summary='" + newsummary + "' where ShelfId='" + Session["ID"] + "';";
+        string updateshelf = "update Shelves set StackId='" + newstackid + "',Summary='" + newsummary + "' where ShelfId='" + Session["SHELFID"] + "';";
         try
         {
             OLMSDBConnection.Open();

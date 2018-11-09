@@ -17,11 +17,11 @@ public partial class Pages_ShelfInfo : BasePage
         if (Request["ShelfId"] != null)
         {
             shelfid = Request["ShelfId"];
-            Session["ID"] = Request["ShelfId"];
+            Session["SHELFID"] = Request["ShelfId"];
         }
         else
         {
-            shelfid = Session["ID"].ToString();
+            shelfid = Session["SHELFID"].ToString();
         }
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
