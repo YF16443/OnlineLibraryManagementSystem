@@ -11,7 +11,7 @@
               <div class="row">
                   <div class='col-md-5'>
 
-                      <input name="date" class="daterangepicker-field" style="z-index: 999;background-color: #F3F2EE;border: 1px solid #e8e7e3;border-radius: 4px;color: #364150;font-size: 14px;padding: 7px 18px;height: 40px;width:210px;"></input>
+                      <input name="date" class="daterangepicker-field" style="z-index: 999;background-color: #F3F2EE;border: 1px solid #e8e7e3;border-radius: 4px;color: #364150;font-size: 14px;padding: 7px 18px;height: 40px;width:210px;"  readonly="readonly"></input>
                       <asp:Button ID="search" runat="server" Text="<%$ Resources:Resource, Search %>" CssClass="btn btn-primary btn-fill" OnClick="search_Click" /> 
                       <asp:Button ID="reset" runat="server" Text="<%$ Resources:Resource, Reset %>" CssClass="btn btn-primary btn-fill" OnClick="reset_Click"/> 
                   </div> 
