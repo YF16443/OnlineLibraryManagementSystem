@@ -90,14 +90,6 @@
                        </div>
 	                 </div>
 	              </fieldset>
-         <fieldset>
-	                <div class="form-group">
-	                   <label class="col-sm-1 control-label"> <asp:Label ID="Label14" runat="server" Text="<%$ Resources:Resource, Position %>"></asp:Label></label>
-	                   <div class="col-sm-2">
-	                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="selectpicker" data-style="btn btn-primary btn-round"></asp:DropDownList>
-                       </div>
-	                 </div>
-	              </fieldset>
             <fieldset>
             <asp:Button ID="Alter" runat="server" Text="<%$ Resources:Resource,Alter %>" OnClick="Alter_Click" CssClass="btn btn-fill btn-default"/>        
             </fieldset>
@@ -118,12 +110,12 @@
                         <asp:Label ID="BookId" runat="server" Text='<%# Eval("BookId") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="<%$ Resources:Resource, ShelfId %>" HeaderStyle-CssClass="text-primary">
+                <asp:TemplateField HeaderText="<%$ Resources:Resource, Position %>" HeaderStyle-CssClass="text-primary">
                     <EditItemTemplate>
                         <asp:DropDownList ID="ddlShelfId" runat="server"></asp:DropDownList>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="ShelfId" runat="server" Text='<%# Eval("ShelfId") %>'></asp:Label>
+                        <asp:Label ID="ShelfId" runat="server" Text='<%# Eval("Position") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                  <asp:TemplateField HeaderText="<%$ Resources:Resource, Status %>" HeaderStyle-CssClass="text-primary">
@@ -222,7 +214,7 @@
             bdhtml=window.document.body.innerHTML;    
             sprnstr="<!--startprint-->";    
             eprnstr="<!--endprint-->";    
-           prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);    
+            prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);    
             prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));    
             window.document.body.innerHTML=prnhtml; 
             window.print();
