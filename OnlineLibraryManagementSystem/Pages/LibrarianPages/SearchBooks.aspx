@@ -10,6 +10,12 @@
     <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
     <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
 </asp:Content>
+<asp:Content ID="header" ContentPlaceHolderID="header" Runat="Server">
+    <script>
+        document.getElementById("book").className = "active";
+    </script>
+      <a><asp:Label runat="server" Text="<%$ Resources:Resource, search %>" CssClass="navbar-brand"></asp:Label> </a>
+</asp:Content>
 <asp:Content ID="body" ContentPlaceHolderID="body" Runat="Server">
     <div style="padding-top:50px">
         <table style="width: 100%;">

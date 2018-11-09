@@ -17,7 +17,7 @@ public partial class Pages_LibrarianPages_ReaderReport : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         var OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
 
-        MySqlCommand getReader_sql = new MySqlCommand("select ReaderId,sum(Fine) from IssueRecords group by ReaderId");
+        MySqlCommand getReader_sql = new MySqlCommand("select ReaderId,sum(Fine) from IssueRecords where Status=3 group by ReaderId");
         var result1Adapter = new MySqlDataAdapter();
         result1Adapter.SelectCommand = getReader_sql;
         result1Adapter.SelectCommand.Connection = OLMSDBConnection;

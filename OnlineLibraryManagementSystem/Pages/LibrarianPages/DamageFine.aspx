@@ -26,6 +26,9 @@
     
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="header" Runat="Server">
+    <script>
+        document.getElementById("fine").className = "active";
+    </script>
     <a> <asp:Label runat="server" Text="<%$ Resources:Resource, Reparation %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
@@ -37,10 +40,10 @@
                     <label><asp:Label ID="lbBarcode" runat="server" Text="<%$ Resources:Resource,Barcode %>"></asp:Label>
                 </td>
                 <td style="text-align:center" class="auto-style2">
-                    <asp:TextBox ID="tbBarcode" runat="server" Width="300px" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="tbBarcode" runat="server" Width="300px" CssClass="form-control" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
                 </td>
                 <td class="auto-style1">
-                    <asp:RequiredFieldValidator ID="rfvBarcode" runat="server" ControlToValidate="tbBarcode" ErrorMessage="*"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="rfvBarcode" runat="server" ControlToValidate="tbBarcode" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
              <tr>

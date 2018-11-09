@@ -35,7 +35,7 @@
     <asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource,Price %>"></asp:Label>
     <asp:Label ID="price" runat="server" Text=""></asp:Label><br/>
     <asp:Label ID="Label5" runat="server" Text="ISBN13"></asp:Label>
-    <asp:Label ID="isbn13" runat="server" Text=""></asp:Label>
+    <asp:Label ID="isbn13" runat="server" Text=""></asp:Label><br/>
     <asp:Label ID="Label6" runat="server" Text="ISBN10"></asp:Label>
     <asp:Label ID="isbn10" runat="server" Text=""></asp:Label><br/>
 <%--    <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
@@ -52,8 +52,6 @@
     <asp:Label ID="pages" runat="server" Text=""></asp:Label><br/>
     <asp:Label ID="Label13" runat="server" Text="<%$ Resources:Resource,Publisher %>"></asp:Label>
     <asp:Label ID="publisher" runat="server" Text=""></asp:Label><br/>
-            <asp:Label ID="Label14" runat="server" Text="<%$ Resources:Resource,Position %>"></asp:Label>
-            <asp:Label ID="Label15" runat="server" Text="Label"></asp:Label>
             <br/>
     </div>
     <asp:Button ID="reserve" runat="server" Text="<%$ Resources:Resource,Reserve %>" OnClick="reserve_Click" />
@@ -68,8 +66,8 @@
                             
                             <asp:BoundField DataField="BookBarcode" HeaderText="BookBarcode" HeaderStyle-CssClass="text-primary"/>
                             <asp:BoundField DataField="BookId" HeaderText="<%$ Resources:Resource,BookId %>" HeaderStyle-CssClass="text-primary"/>
-                            <asp:BoundField DataField="ShelfId" HeaderText="<%$ Resources:Resource,ShelfId %>" HeaderStyle-CssClass="text-primary"/>
-                            <asp:BoundField DataField="Status" HeaderText="<%$ Resources:Resource,Status %>" HeaderStyle-CssClass="text-primary"/>
+                            <asp:BoundField DataField="Position" HeaderText="<%$ Resources:Resource,Position %>" HeaderStyle-CssClass="text-primary"/>
+                            <asp:BoundField DataField="newStatus" HeaderText="<%$ Resources:Resource,Status %>" HeaderStyle-CssClass="text-primary"/>
                         </Columns>
                     </asp:GridView>
 </asp:Content>

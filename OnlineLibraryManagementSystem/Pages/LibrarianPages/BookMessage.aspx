@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="BookMessage.aspx.cs" Inherits="Pages_LibrarianPages_BookMessage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <script>
+        document.getElementById("book").className = "active";
+    </script>
     <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
     <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
 </asp:Content>
@@ -87,14 +90,6 @@
                        </div>
 	                 </div>
 	              </fieldset>
-         <fieldset>
-	                <div class="form-group">
-	                   <label class="col-sm-1 control-label"> <asp:Label ID="Label14" runat="server" Text="<%$ Resources:Resource, Position %>"></asp:Label></label>
-	                   <div class="col-sm-2">
-	                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="selectpicker" data-style="btn btn-primary btn-round"></asp:DropDownList>
-                       </div>
-	                 </div>
-	              </fieldset>
             <fieldset>
             <asp:Button ID="Alter" runat="server" Text="<%$ Resources:Resource,Alter %>" OnClick="Alter_Click" CssClass="btn btn-fill btn-default"/>        
             </fieldset>
@@ -115,12 +110,12 @@
                         <asp:Label ID="BookId" runat="server" Text='<%# Eval("BookId") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="<%$ Resources:Resource, ShelfId %>" HeaderStyle-CssClass="text-primary">
+                <asp:TemplateField HeaderText="<%$ Resources:Resource, Position %>" HeaderStyle-CssClass="text-primary">
                     <EditItemTemplate>
                         <asp:DropDownList ID="ddlShelfId" runat="server"></asp:DropDownList>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="ShelfId" runat="server" Text='<%# Eval("ShelfId") %>'></asp:Label>
+                        <asp:Label ID="ShelfId" runat="server" Text='<%# Eval("Position") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                  <asp:TemplateField HeaderText="<%$ Resources:Resource, Status %>" HeaderStyle-CssClass="text-primary">
@@ -149,7 +144,8 @@
                 <asp:CommandField ShowDeleteButton="true" />
             </Columns>
         </asp:GridView>
-        <!--startprint--><!--注意要加上html里star和end的这两个标记-->
+        &nbsp
+<!--startprint--><!--注意要加上html里star和end的这两个标记-->
        <asp:DataList ID="DataListbookbarcode" runat="server" RepeatColumns="1" HorizontalAlign="center" Enabled="false">
            <ItemTemplate>
                <br>
@@ -176,7 +172,11 @@
             "searching": false,
             "lengthChange": false,
             "order": [[0, 'asc']],
-            "bStateSave":true,
+            "bStateSave": true,
+            columnDefs: [{
+                'targets': [5,6,7,8],
+                'orderable': false
+            }]
         });
 
         function doClick(event) {
@@ -214,7 +214,7 @@
             bdhtml=window.document.body.innerHTML;    
             sprnstr="<!--startprint-->";    
             eprnstr="<!--endprint-->";    
-           prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);    
+            prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);    
             prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));    
             window.document.body.innerHTML=prnhtml; 
             window.print();

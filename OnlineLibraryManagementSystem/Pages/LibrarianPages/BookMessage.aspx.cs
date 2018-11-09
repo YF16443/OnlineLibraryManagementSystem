@@ -15,6 +15,9 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        DataListbookbarcode.Enabled = false;
+        DataListbookbarcode.DataSource = null;
+        DataListbookbarcode.DataBind();
         if (!this.IsPostBack)
         {
             string bookId = Request["book_id"];
@@ -67,7 +70,8 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                     }
                 }
                 reader1.Close();
-                string book_stackid = "select StackId from Shelves where ShelfId='" + shelfid + "';";
+                //原书本位置
+               /* string book_stackid = "select StackId from Shelves where ShelfId='" + shelfid + "';";
                 MySqlCommand cmd3 = new MySqlCommand(book_stackid, OLMSDBConnection);
                 MySqlDataReader reader2 = cmd3.ExecuteReader();
                 if (reader2.Read())
@@ -83,7 +87,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                 {
                     DropDownList1.Items.Add(reader3["ShelfId"].ToString() + "," + reader3["StackId"].ToString());
                 }
-                reader3.Close();
+                reader3.Close();*/
 
                 ////////////////////////////////////////////////Barcode表/////////////////////////////////////////
                 BindDataTogvResult();
@@ -192,8 +196,8 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             Response.Write("<script>alert('Publisher Is Null!')</script>");
             return;
         }
-        string[] shelf = DropDownList1.SelectedItem.Text.Split(',');
-        newshelfid = shelf[0];
+        //string[] shelf = DropDownList1.SelectedItem.Text.Split(',');
+        //newshelfid = shelf[0];
 
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
@@ -240,11 +244,11 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             MySqlCommand cmdupdatebook = new MySqlCommand(updatebook, OLMSDBConnection);
             int result = 0;
             result = cmdupdatebook.ExecuteNonQuery();
-            string updateshelfid = "update BookBarcodes set ShelfId='" + newshelfid + "' where BookId='" + bookId + "';";
-            MySqlCommand cmdupdateshelfid = new MySqlCommand(updateshelfid, OLMSDBConnection);
-            int result1 = 0;
-            result1 = cmdupdateshelfid.ExecuteNonQuery();
-            if (result != 0 && result1 != 0&& result2!=0)
+            //string updateshelfid = "update BookBarcodes set ShelfId='" + newshelfid + "' where BookId='" + bookId + "';";
+            //MySqlCommand cmdupdateshelfid = new MySqlCommand(updateshelfid, OLMSDBConnection);
+            //int result1 = 0;
+            //result1 = cmdupdateshelfid.ExecuteNonQuery();
+            if (result != 0 && result2!=0)
             {
                 BindDataTogvResult();
                 Response.Write("<script>alert('Edited Successfully!')</script>");
@@ -337,7 +341,8 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             DataListbookbarcode.Enabled = true;
             DataListbookbarcode.DataSource = dt;
             DataListbookbarcode.DataBind();
-            Button buttonprint = (Button)row.FindControl("Button2");
+            BindDataTogvResult();
+           // Button buttonprint = (Button)row.FindControl("Button2");
             //ClientScript.RegisterStartupScript(ClientScript.GetType(), "myscript", "<script>doPrint();</script>");
             //Response.Write("<script>alert('" + barcode + "')</script>");
             //var barcodeImage = MyBarcodeGenerator.Generate(barcode) as System.Drawing.Image;
@@ -348,18 +353,18 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             Response.Write("<script>alert('Error!')<script/>");
         }
     }
-    /*protected int bind()
+   /* protected int bind()
     {
         //MyBarcodeGenerator.Generate(barcode);
         DataTable dt = new DataTable();
         dt.Columns.Add("name");
         DataRow dr = dt.NewRow();
-        dr["name"] = "711128060.jpg";
+        dr["name"] = "0000000091000.jpg";
         dt.Rows.Add(dr);
         DataListbookbarcode.Enabled = true;
         DataListbookbarcode.DataSource = dt;
         DataListbookbarcode.DataBind();
-        return 0;
+       return 0;
     }*/
     protected int deletebind()
     {
@@ -377,12 +382,14 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         try
         {
+            OLMSDBConnection.Open();
             MySqlCommand cmdselectbarcodeinfo = new MySqlCommand(selectbarcode, OLMSDBConnection);
             MySqlDataAdapter info = new MySqlDataAdapter(cmdselectbarcodeinfo);
             DataSet infoset = new DataSet();
             info.Fill(infoset);
             DataTable searchResult = infoset.Tables[0];
             searchResult.Columns.Add("newStatus");
+            searchResult.Columns.Add("Position");
             foreach (DataRow row in searchResult.Rows)
             {
                 string status = row["Status"].ToString();
@@ -404,6 +411,14 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                     if (status == "2")
                         row["newStatus"] = "Aleardy Reserved";
                 }
+                string selectstackid = "select StackId from Shelves where ShelfId='" + row["ShelfId"].ToString() + "';";
+                MySqlCommand cmdselectstackid = new MySqlCommand(selectstackid, OLMSDBConnection);
+                MySqlDataReader readerstackid = cmdselectstackid.ExecuteReader();
+                if (readerstackid.Read())
+                {
+                    row["Position"] = row["ShelfId"] +","+readerstackid["StackId"].ToString();
+                }
+                readerstackid.Close();
             }
             gvBookBarcodeResult.Enabled = true;
             gvBookBarcodeResult.DataKeyNames = new string[] { "BookBarcode" };
@@ -633,7 +648,9 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         conn.Close();
         //更新
         string bookbarcode = gvBookBarcodeResult.DataKeys[e.RowIndex].Values[0].ToString();
-        string shelfid = ((DropDownList)gvBookBarcodeResult.Rows[e.RowIndex].FindControl("ddlShelfId")).SelectedItem.Text.ToString();
+        string position = ((DropDownList)gvBookBarcodeResult.Rows[e.RowIndex].FindControl("ddlShelfId")).SelectedItem.Text.ToString();
+        string[] shelf_stack = position.Split(',');
+        string shelfid = shelf_stack[0];
         conn.Open();
         MySqlCommand cmd = conn.CreateCommand();
         cmd.CommandText = "update BookBarcodes set ShelfId=@s where BookBarcode=@i";
@@ -662,17 +679,39 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         OLMSDBConnection.Open();
-        string selectshelfid = "select ShelfId from Shelves";
-        MySqlCommand cmdselectshelfid = new MySqlCommand(selectshelfid, OLMSDBConnection);
-        MySqlDataReader readershelfid = cmdselectshelfid.ExecuteReader();
+        string barcode = gvBookBarcodeResult.DataKeys[e.NewEditIndex].Values[0].ToString();
+        string selectbarcodeshelf = "select ShelfId from BookBarcodes where BookBarcode='" + barcode + "';";
+        MySqlCommand cmdselectbarcodeshelf = new MySqlCommand(selectbarcodeshelf, OLMSDBConnection);
+        MySqlDataReader readershelf = cmdselectbarcodeshelf.ExecuteReader();
+        string barcode_shelf = "";//当前shelfid
+        if (readershelf.Read())
+        {
+            barcode_shelf = readershelf["ShelfId"].ToString();
+        }
+        readershelf.Close();
+        string selectbarcodestack = "select StackId from Shelves where ShelfId='" + barcode_shelf + "';";
+        MySqlCommand cmdselectbarcodestack = new MySqlCommand(selectbarcodestack, OLMSDBConnection);
+        MySqlDataReader readerstack = cmdselectbarcodestack.ExecuteReader();
+        string barcode_stack = "";//当前stackid
+        if (readerstack.Read())
+        {
+            barcode_stack = readerstack["StackId"].ToString();
+        }
+        readerstack.Close();
+        //为下拉框添加元素
         DropDownList ddlshelfid = (DropDownList)(gvBookBarcodeResult.Rows[e.NewEditIndex].FindControl("ddlShelfId"));
         if (ddlshelfid != null)
         {
             ddlshelfid.Items.Clear();
         }
+        ddlshelfid.Items.Add(barcode_shelf + "," + barcode_stack);
+        string selectshelfid = "select ShelfId,StackId from Shelves where ShelfId<>'"+barcode_shelf+"';";
+        MySqlCommand cmdselectshelfid = new MySqlCommand(selectshelfid, OLMSDBConnection);
+        MySqlDataReader readershelfid = cmdselectshelfid.ExecuteReader();
+       
         while (readershelfid.Read())
         {
-            ddlshelfid.Items.Add(readershelfid["ShelfId"].ToString());
+            ddlshelfid.Items.Add(readershelfid["ShelfId"].ToString()+","+readershelfid["StackId"]);
         }
         readershelfid.Close();
         OLMSDBConnection.Close();

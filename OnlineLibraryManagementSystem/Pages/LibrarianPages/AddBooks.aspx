@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="AddBooks.aspx.cs" Inherits="Pages_Addbooks_ISBN" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="header" Runat="Server">
+    <script>
+        document.getElementById("book").className = "active";
+    </script>
       <a><asp:Label runat="server" Text="<%$ Resources:Resource, Add_Books %>" CssClass="navbar-brand"></asp:Label> </a>
      <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
     <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
@@ -26,8 +29,8 @@
                                                 <div>
                                                     <asp:Button ID="ButtonUpload" runat="server" Text="<%$ Resources:Resource, Upload %>" OnClick="ButtonUpload_Click" CssClass="btn btn-fill btn-default"/>                            
                                                     <input type=button value="<asp:Literal runat="server" Text="<%$ Resources:Resource, Selectimage%>" />" onclick=fileupload.click() Class="btn btn-fill btn-default">
-                                                        <input type="file" id="fileupload" name="fileupload"  style="display: none;" onchange="filepath.value=this.value"/>                            
-                                                        <label><input type="Text" id="filepath" name="filepath" value="" class="form-control"></label>
+                                                        <input type="file" id="fileupload" name="fileupload"  style="display: none;" onchange="filepath.value=this.value"/>                                                      
+                                                        <label><input type="Text" id="filepath" name="filepath" value="" class="form-control" style="width:400px;"></label>                                                        
                                                 </div>
                     </div>                                        
                 </fieldset>

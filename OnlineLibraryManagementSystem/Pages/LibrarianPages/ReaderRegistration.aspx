@@ -3,6 +3,9 @@
     <link href="../assets/vendors/sweetalert/css/sweetalert2.min.css" rel="Stylesheet" >
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" runat="server">
+    <script>
+        document.getElementById("reader").className = "active";
+    </script>
         <a> <asp:Label runat="server" Text="<%$ Resources:Resource, ReaderRegister %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content3" runat="server" contentplaceholderid="body">

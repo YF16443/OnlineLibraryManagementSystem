@@ -71,7 +71,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="<%$ Resources:Resource, Shelf_Summary %>" HeaderStyle-CssClass="text-primary">
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtSummary" runat="server" Text='<%# Eval("Summary") %>'></asp:TextBox>
+                        <asp:TextBox ID="txtSummary" runat="server" Text='<%# Eval("Summary") %>' onkeypress="doClick(event)"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
                         <asp:Label ID="lblSummary" runat="server" Text='<%# Eval("Summary") %>'></asp:Label>
@@ -103,7 +103,35 @@
             "order": [[0, 'asc']],
             "bStateSave":true,
         });
-        
+        function doClick(event) {
+            //    if ($.trim($('#' + buttonId + '').val()) == '') {
+            //        shorError();
+            //        return;
+            //    }
+            var key;
+
+            if (window.event)
+                key = window.event.keyCode;     //IE
+            else
+                key = event.which;     //firefox
+
+            if (key == 13) {
+                //                if ($.trim($('#btnVerificationCode').val()) == '') {
+                //                    shorError();
+                //                }
+                try {
+                    if (window.event) {//ie
+                        window.event.keyCode = 0
+                        window.event.returnValue = false;
+                    }
+                    else {//firefox
+                        return false;
+                    }
+                }
+                catch (ex) {
+                }
+            }
+        }
 </script>
 
 </asp:Content>

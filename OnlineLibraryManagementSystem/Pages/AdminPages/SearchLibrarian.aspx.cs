@@ -72,6 +72,8 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        if (!rfvAccount.IsValid || !rfvName.IsValid || !rfvPassword.IsValid) 
+            return;
         string Account = TextBox2.Text.ToString();
         string Password = TextBox3.Text.ToString();
         string Name = TextBox4.Text.ToString();

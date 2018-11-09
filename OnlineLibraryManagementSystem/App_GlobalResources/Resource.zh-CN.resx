@@ -795,4 +795,29 @@
     <value>显示条形码</value>
     <comment>显示二维码</comment>
   </data>
+  <data name="Reader" xml:space="preserve">
+    <value>读者</value>
+  </data>
+  <data name="Librarian" xml:space="preserve">
+    <value>图书管理员</value>
+  </data>
+  <data name="InputError" xml:space="preserve">
+    <value>输入错误！</value>
+  </data>
+  <data name="ReaderLogin" xml:space="preserve">
+    <value>读者登录</value>
+  </data>
+  <data name="AdminLogined" xml:space="preserve">
+    <value>超级管理员账号已登录，你必须先退出该账户才能登陆新账号。</value>
+  </data>
+  <data name="LibrarianLogined" xml:space="preserve">
+    <value>一个图书管理员账号已登录，你必须先退出该账户才能登陆新账号。</value>
+  </data>
+  <data name="ReaderLogined" xml:space="preserve">
+    <value>一个读者账号已登录，你必须先退出该账户才能登陆新账号。</value>
+  </data>
+  <data name="LibrarianNotAdmin" xml:space="preserve">
+    <value>图书管理员账号不能与超级管理员账号相同。</value>
+    <comment>Librarian账号不能与Admin账号相同</comment>
+  </data>
 </root>
