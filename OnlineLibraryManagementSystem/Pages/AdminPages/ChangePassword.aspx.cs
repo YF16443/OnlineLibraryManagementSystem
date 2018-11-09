@@ -10,11 +10,7 @@ public partial class Pages_AdminPages_ChangePassword : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //检查登陆
-        if (string.IsNullOrEmpty((string)Session["lid"]))
-        {
-            Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='/Pages/AdminLogin.aspx';</script>");
-        }
+
     }
 
     protected void btChangePassword_Click(object sender, EventArgs e)

@@ -13,7 +13,7 @@
         <table style="width: 100%;">
             <tr>
                 <td style="width: 45%; text-align: right">
-                    <asp:Label ID="aOldPassword" runat="server" Text="<%$ Resources:Resource,OldPassword %>"></asp:Label>
+                    <label><asp:Label ID="aOldPassword" runat="server" Text="<%$ Resources:Resource,OldPassword %>"></asp:Label></label>
                     &nbsp;
                 </td>
                 <td style="width: 20%; text-align: center">
@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <td style="width: 45%; text-align: right">
-                    <asp:Label ID="aNewPassword" runat="server" Text="<%$ Resources:Resource,NewPassword %>"></asp:Label>
+                    <label><asp:Label ID="aNewPassword" runat="server" Text="<%$ Resources:Resource,NewPassword %>"></asp:Label></label>
                     &nbsp;
                 </td>
                 <td style="width: 20%; text-align: center">
@@ -45,7 +45,7 @@
             </tr>
             <tr>
                 <td style="width: 45%; text-align: right">
-                    <asp:Label ID="aConfirmNewPassword" runat="server" Text="<%$ Resources:Resource,ConfirmNewPassword %>"></asp:Label>
+                    <label><asp:Label ID="aConfirmNewPassword" runat="server" Text="<%$ Resources:Resource,ConfirmNewPassword %>"></asp:Label></label>
                     &nbsp;
                 </td>
                 <td style="width: 20%; text-align: center">

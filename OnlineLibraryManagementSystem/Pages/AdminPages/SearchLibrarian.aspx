@@ -13,14 +13,17 @@
             <div class="form-group">
                 <label><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Account %>"></asp:Label></label>
                 <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvAccount" runat="server" ControlToValidate="TextBox2" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
             <div class="form-group">
                 <label><asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Password %>"></asp:Label></label>
                 <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" Text="00010001" onpaste="return false;" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="TextBox3" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
             <div class="form-group">
                 <label><asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Name %>"></asp:Label></label>
                 <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="TextBox4" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
             <asp:Button ID="Button1" runat="server" Text="<%$ Resources:Resource, Add %>" CssClass="btn btn-fill btn-default" OnClick="Button1_Click" />
         </div>
@@ -35,8 +38,8 @@
                             <asp:BoundField DataField="Account" HeaderText="<%$ Resources:Resource, Account %>" HeaderStyle-CssClass="text-primary"/>
                             <asp:BoundField DataField="Password" HeaderText="<%$ Resources:Resource, Password %>" HeaderStyle-CssClass="text-primary"/>
                             <asp:BoundField DataField="Name" HeaderText="<%$ Resources:Resource, Name %>" HeaderStyle-CssClass="text-primary"/>
-                            <asp:CommandField HeaderText="<%$ Resources:Resource, Edit %>" ShowEditButton="True" HeaderStyle-CssClass="text-primary" ItemStyle-Width="100"/>
-                            <asp:CommandField HeaderText="<%$ Resources:Resource, Delete %>" ShowDeleteButton="True" HeaderStyle-CssClass="text-primary" ItemStyle-Width="100"/>
+                            <asp:CommandField ShowEditButton="True" HeaderStyle-CssClass="text-primary" ItemStyle-Width="100"/>
+                            <asp:CommandField ShowDeleteButton="True" HeaderStyle-CssClass="text-primary" ItemStyle-Width="100"/>
                         </Columns>
                     </asp:GridView>
         </div>
