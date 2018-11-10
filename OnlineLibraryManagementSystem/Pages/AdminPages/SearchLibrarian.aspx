@@ -31,7 +31,7 @@
     <div class="card">
         <div class="content">
             <div class="table-responsive">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" CssClass="table table-bordered">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" CssClass="table table-bordered" AllowPaging="True" AllowSorting="True" OnPageIndexChanging="GridView1_PageIndexChanging" >
                         <Columns>
                             <asp:BoundField DataField="LibrarianId" HeaderText="LibrarianId" ReadOnly="True" HeaderStyle-CssClass="text-primary" ItemStyle-Width="120"/>
                             
@@ -41,7 +41,10 @@
                             <asp:CommandField ShowEditButton="True" HeaderStyle-CssClass="text-primary" ItemStyle-Width="100"/>
                             <asp:CommandField ShowDeleteButton="True" HeaderStyle-CssClass="text-primary" ItemStyle-Width="100"/>
                         </Columns>
+
                     </asp:GridView>
+
+
         </div>
         </div>
     </div>

@@ -13,13 +13,13 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
     {
         if (!IsPostBack)
         {
-            bind();
+            Bind();
         }
     }
     protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
     {
         GridView1.EditIndex = e.NewEditIndex;
-        bind();
+        Bind();
     }
     //删除
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -30,7 +30,7 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
         sqlcon.Open();
         sqlcom.ExecuteNonQuery();
         sqlcon.Close();
-        bind();
+        Bind();
     }
     //更新
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -46,16 +46,17 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
         sqlcom.ExecuteNonQuery();
         sqlcon.Close();
         GridView1.EditIndex = -1;
-        bind();
+        Bind();
     }
     //取消
     protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         GridView1.EditIndex = -1;
-        bind();
+        Bind();
     }
     //绑定
-    public void bind()
+
+    public void Bind()
     {
         string sqlstr = "select * from Librarians";
         sqlcon = new MySqlConnection(strCon);
@@ -70,9 +71,10 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
         sqlcon.Close();
     }
 
+
     protected void Button1_Click(object sender, EventArgs e)
     {
-        if (!rfvAccount.IsValid || !rfvName.IsValid || !rfvPassword.IsValid) 
+        if (!rfvAccount.IsValid || !rfvName.IsValid || !rfvPassword.IsValid)
             return;
         string Account = TextBox2.Text.ToString();
         string Password = TextBox3.Text.ToString();
@@ -93,4 +95,18 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
 
 
 
+
+
+
+    protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        GridView1.PageIndex = e.NewPageIndex;
+        //GridView1.DataBind();
+        Bind();
+    }
+
+
+
 }
+
+
