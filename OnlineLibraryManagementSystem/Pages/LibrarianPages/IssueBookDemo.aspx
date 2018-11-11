@@ -10,7 +10,8 @@
 </asp:Content>
 
 <asp:Content ID="body" ContentPlaceHolderID="body" runat="Server">
-    <div>
+    <asp:Panel ID="panEnter" runat="server" DefaultButton="btIssue">
+    <div class="card">
         <div class="content">
             <table class="nav-justified">
                 <tr>
@@ -53,5 +54,6 @@
             </table>
         </div>
     </div>
+    </asp:Panel>
 </asp:Content>
 

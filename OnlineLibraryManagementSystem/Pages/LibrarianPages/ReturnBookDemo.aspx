@@ -5,23 +5,26 @@
         document.getElementById("circulation").className = "active";
     </script>
     <a>
-        <asp:Label runat="server" Text="<%$ Resources:Resource, Return %>" CssClass="navbar-brand"></asp:Label>
+        <asp:label runat="server" text="<%$ Resources:Resource, Return %>" cssclass="navbar-brand"></asp:label>
     </a>
 </asp:Content>
 <asp:Content ID="body" ContentPlaceHolderID="body" runat="Server">
-    <div>
+    <asp:Panel ID="panEnter" runat="server" DefaultButton="btReturn">
+    <div class="card">
         <div class="content">
             <table style="width: 100%;">
                 <tr>
                     <td style="width: 40%; text-align: right" class="auto-style1">
-                        <label><asp:Label ID="lbBarcode" runat="server" Text="<%$ Resources:Resource,Barcode %>"></asp:Label></label>
+                        <label>
+                            <asp:label id="lbBarcode" runat="server" text="<%$ Resources:Resource,Barcode %>"></asp:label>
+                        </label>
                         &nbsp;
                     </td>
                     <td style="width: 40%; text-align: center" class="auto-style2">
-                        <asp:TextBox ID="tbBarcode" runat="server" Width="300px" CssClass="form-control" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
+                        <asp:textbox id="tbBarcode" runat="server" width="300px" cssclass="form-control" onkeypress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:textbox>
                     </td>
                     <td>
-                        <asp:RequiredFieldValidator ID="rfvBarcode" runat="server" ControlToValidate="tbBarcode" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:requiredfieldvalidator id="rfvBarcode" runat="server" controltovalidate="tbBarcode" errormessage="*" forecolor="Red"></asp:requiredfieldvalidator>
                     </td>
                 </tr>
                 <tr>
@@ -30,12 +33,13 @@
                 </tr>
                 <tr>
                     <td colspan="3" style="text-align: center">
-                        <asp:Button ID="btReturn" runat="server" OnClick="btReturn_Click" Text="<%$ Resources:Resource,Return %>" CssClass="btn btn-default btn-fill" />
+                        <asp:button id="btReturn" runat="server" onclick="btReturn_Click" text="<%$ Resources:Resource,Return %>" cssclass="btn btn-default btn-fill" />
                     </td>
                 </tr>
             </table>
         </div>
     </div>
+    </asp:Panel>
 </asp:Content>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">

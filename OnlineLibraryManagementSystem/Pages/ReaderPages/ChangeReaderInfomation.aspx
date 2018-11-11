@@ -3,6 +3,7 @@
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="body" ContentPlaceHolderID="body" runat="Server">
+    <asp:Panel ID="panEnter" runat="server" DefaultButton="btNewInfomation">
     <div>
         <table style="width: 100%;">
             <tr>
@@ -42,4 +43,5 @@
             </tr>
         </table>
     </div>
+    </asp:Panel>
 </asp:Content>
