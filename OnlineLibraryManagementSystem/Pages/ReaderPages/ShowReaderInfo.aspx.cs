@@ -45,7 +45,7 @@ public partial class Pages_ShowReaderInfo : BasePage
                 "and IssueRecords.ReaderId = ?reader_id;";
             string selectRevervationSql = "select Books.Title, A.ReservingTime, A.ShelfId, C.StackId, A.BookBarcode from BookBarcodes as A, Books, Shelves  as C" +
                 " where A.status = 2 and A.ReservingReaderId = ?readerid and Books.BookId = A.BookId and A.ShelfId = C.ShelfId;";
-            int totalFine = 0;
+            int totalOverdueDays = 0;
             try
             {
                 OLMSDBConnection.Open();
@@ -115,6 +115,7 @@ public partial class Pages_ShowReaderInfo : BasePage
                         else
                         {
                             r.overdueTime = delta.ToString();
+                            totalOverdueDays = totalOverdueDays + delta;
                         }
                         r.issueTime = issueTime.ToString();
                         if (reader2["Fine"] is System.DBNull)
@@ -137,7 +138,9 @@ public partial class Pages_ShowReaderInfo : BasePage
 
                     }
                 }
-
+                int finePerDay = int.Parse(ConfigurationManager.AppSettings.Get("OverdueFinePerDay"));
+                double totalFine = totalOverdueDays * finePerDay;
+                TextBoxFine.Text = totalFine.ToString();
                 reader2.Close();
                 MySqlCommand cmd3 = new MySqlCommand(selectRevervationSql, OLMSDBConnection);
                 cmd3.Parameters.AddWithValue("?readerid", id);

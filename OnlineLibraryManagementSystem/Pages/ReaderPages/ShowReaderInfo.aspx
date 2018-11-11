@@ -77,6 +77,10 @@
                             <asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Email %>" CssClass="control-label"></asp:Label>
                             <asp:TextBox ID="TextBoxEmail" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
                         </div>
+                        <div class="form-group label-floating">
+                            <asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource, Fine %>" CssClass="control-label"></asp:Label>
+                            <asp:TextBox ID="TextBoxFine" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
+                        </div>
                         <div class="form-footer text-right">
                             <asp:LinkButton ID="lbChangePassword" runat="server" Text="<%$ Resources:Resource, ChangePassword %>" PostBackUrl="~/Pages/ReaderPages/ChangePassword.aspx"  CssClass="btn btn-rose btn-fill"></asp:LinkButton>
                             <asp:LinkButton ID="lbChangeReaderInfomation" runat="server" Text="<%$ Resources:Resource, ChangeReaderInfomation %>" PostBackUrl="~/Pages/ReaderPages/ChangeReaderInfomation.aspx"  CssClass="btn btn-rose btn-fill"></asp:LinkButton>
