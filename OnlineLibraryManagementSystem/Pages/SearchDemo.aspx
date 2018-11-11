@@ -15,6 +15,7 @@
     <link href="../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
     <link href="../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" >
     <link rel="stylesheet" href="../../assets/slider/css/edslider.css">
 	<link rel="stylesheet" href="../../assets/slider/css/styles.css">
 	<link rel="stylesheet" href="../../assets/slider/css/animate-custom.css">
@@ -51,22 +52,49 @@
                 <td style="text-align:center; height:30px" colspan="3">&nbsp;</td>
             </tr>
             </table>
+        </div>
                 <div class="table-responsive">
-                    <asp:GridView ID="gvBookResult" runat="server" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvBookResult_Sorting" OnPageIndexChanging="gvBookResult_PageIndexChanging" CssClass="table table-striped" GridLines="None">
+                    <asp:GridView ID="gvBookResult" runat="server" AutoGenerateColumns="False" Enabled="False" CssClass="table table-striped" GridLines="None">
                         <Columns>
                             <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True" HeaderStyle-CssClass="text-center">
                                 <ItemStyle Height="84px" HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" CssClass="resultImg" />
                             </asp:ImageField>
-                            <asp:HyperLinkField HeaderText="<%$ Resources:Resource, BookTitle %>" SortExpression="Title" DataNavigateUrlFields="BookId" DataNavigateUrlFormatString="~/Pages/ReaderPages/bookMessage.aspx?book_id={0}" DataTextField="Title" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
+                            <asp:HyperLinkField HeaderText="<%$ Resources:Resource, BookTitle %>" DataNavigateUrlFields="BookId" DataNavigateUrlFormatString="~/Pages/ReaderPages/bookMessage.aspx?book_id={0}" DataTextField="Title" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:HyperLinkField>
-                            <asp:BoundField HeaderText="<%$ Resources:Resource, Author %>" SortExpression="Author" DataField="Author" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, Author %>" DataField="Author" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:BoundField>
-                            <asp:BoundField DataField="Publisher" HeaderText="<%$ Resources:Resource, Publisher %>" SortExpression="Publisher" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
+                            <asp:BoundField DataField="Publisher" HeaderText="<%$ Resources:Resource, Publisher %>" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:BoundField>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    </td></tr>
+                                    <tr>
+                                        <td colspan="100%">
+                                            <div class="accordion" id="simple-accordion">
+                                                <div class="accordion-header">
+                                                    copies
+                                                </div>
+                                                <div class="accordion-content" data-wrapper="true" style="height: 0px; position: relative; overflow: hidden;" aria-expanded="false">
+                                                    <div>
+                                                        <asp:GridView ID="gvCopy" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered">
+                                                            <Columns>                         
+                                                                <asp:BoundField DataField="BookBarcode" HeaderText="BookBarcode" HeaderStyle-CssClass="text-primary"/>
+                                                                <asp:BoundField DataField="BookId" HeaderText="<%$ Resources:Resource,BookId %>" HeaderStyle-CssClass="text-primary"/>
+                                                                <asp:BoundField DataField="Position" HeaderText="<%$ Resources:Resource,Position %>" HeaderStyle-CssClass="text-primary"/>
+                                                                <asp:BoundField DataField="newStatus" HeaderText="<%$ Resources:Resource,Status %>" HeaderStyle-CssClass="text-primary"/>
+                                                            </Columns>
+                                                        </asp:GridView>
+		                                            </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                     <br />
-                    <asp:GridView ID="gvPeriodicalResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False"  Enabled="False" AllowSorting="True" OnSorting="gvBookResult_Sorting" OnPageIndexChanging="gvBookResult_PageIndexChanging" CssClass="table table-no-bordered">
+                    <asp:GridView ID="gvPeriodicalResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False"  Enabled="False" CssClass="table table-no-bordered">
                         <Columns>
                             <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True">
                                 <ItemStyle Height="84px" HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" CssClass="resultImg" />
@@ -74,7 +102,7 @@
                              <asp:BoundField HeaderText="<%$ Resources:Resource, Title %>"  DataField="Title" ReadOnly="True">
                             <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                             </asp:BoundField>
-                            <asp:BoundField HeaderText="<%$ Resources:Resource, ISSN %>" SortExpression="Title" DataField="ISSN" ReadOnly="True">
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, ISSN %>" DataField="ISSN" ReadOnly="True">
                             <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                             </asp:BoundField>
                             <asp:BoundField HeaderText="<%$ Resources:Resource, Country %>"  DataField="Country" ReadOnly="True">
@@ -83,7 +111,7 @@
                             <asp:BoundField HeaderText="<%$ Resources:Resource, Type %>"  DataField="NewType" ReadOnly="True">
                             <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                             </asp:BoundField>
-                            <asp:BoundField HeaderText="<%$ Resources:Resource, Price %>" SortExpression="Price" DataField="Price" ReadOnly="True">
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, Price %>" DataField="Price" ReadOnly="True">
                             <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                             </asp:BoundField>
                         </Columns>
@@ -114,17 +142,28 @@
   <center><a href="ReaderPages/ViewNotice.aspx"><asp:Label ID="search" runat="server" Text="<%$ Resources:Resource, MoreNotices %>"  /></a></center>
 	</div>
 
-	
+
 
 
 
 </asp:Content>
 <asp:Content ID="foot" runat="server" ContentPlaceHolderID="foot">
+    	        <script>
+        $(".accordion").accordion({
+			collapsible: true,
+            animate: 200
+        });
+        $('body').on('click', '#btn-color-targets > .btn', function () {
+			var color = $(this).data('target-color');
+			$('#modalColor').attr('data-modal-color', color);
+		});
+    </script>
     <script src="../Scripts/art-Template/template-web.js"></script>
     <script src="../assets/vendors/dropzone/dropzone.min.js"></script>
     <script src="../assets/vendors/jquery.select-bootstrap.js"></script>
     <script src="../../assets/slider/js/jquery-1.11.0.min.js"></script>
 	<script src="../../assets/slider/js/jquery.edslider.js"></script>
+
 	<script>
 		$(document).ready(function(){
 			//Call plugin
@@ -147,6 +186,7 @@
             }
     });
 </script>
+
 </asp:Content>
 
 
