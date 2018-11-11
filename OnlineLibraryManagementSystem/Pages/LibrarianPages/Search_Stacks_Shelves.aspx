@@ -21,14 +21,14 @@
             text-align:center;
         }
         .auto-style2 {
-            width: 40%;
+            width: 30%;
             height: 35px;
             text-align: right;
             font-size: x-large;
         }
 
         .auto-style4 {
-            width: 30%;
+            width: 40%;
             height: 35px;
             text-align:left;
             font-size: x-large;

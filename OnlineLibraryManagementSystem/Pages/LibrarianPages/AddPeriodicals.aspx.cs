@@ -12,6 +12,7 @@ public partial class Pages_LibrarianPages_AddPeriodicals : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         if (!IsPostBack)
         {
             InitDDLShelf();

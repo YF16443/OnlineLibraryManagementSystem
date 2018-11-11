@@ -1,10 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="AddPeriodicals.aspx.cs" Inherits="Pages_LibrarianPages_AddPeriodicals" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="header" Runat="Server">
+<asp:Content ID="header" ContentPlaceHolderID="header" Runat="Server">
     <script>
         document.getElementById("book").className = "active";
     </script>
       <a><asp:Label runat="server" Text="<%$ Resources:Resource, AddPeriodical %>" CssClass="navbar-brand"></asp:Label> </a>
+    <script src="../../Scripts/art-Template/template-web.js"></script>
     <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
     <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
 </asp:Content>
@@ -24,7 +25,7 @@
                                                     <asp:Button ID="ButtonUpload" runat="server" Text="<%$ Resources:Resource, Upload %>" OnClick="ButtonUpload_Click" CssClass="btn btn-fill btn-default"/>                      
                                                     <input type=button value="<asp:Literal runat="server" Text="<%$ Resources:Resource, Selectimage%>" />" onclick=fileupload.click() Class="btn btn-fill btn-default">
                                                         <input type="file" id="fileupload" name="fileupload"  style="display: none;" onchange="filepath.value=this.value"/>                            
-                                                        <label><input type="Text" id="filepath" name="filepath" value="" class="form-control"></label>
+                                                        <label><input type="Text" id="filepath" name="filepath" value="" class="form-control" onkeypress="return doClick(event);"></label>
                                                 </div>
                     </div>                                        
                 </fieldset>
@@ -89,13 +90,8 @@
                     <asp:Button ID="btSubmit" runat="server" Text="<%$ Resources:Resource,Submit %>" OnClick="btSubmit_Click" CssClass="btn btn-fill btn-default"/>
                     </fieldset>
                                 </div>
-                           </div>                  
- </asp:Content>
-<asp:Content ID="Content4" runat="server" ContentPlaceHolderID="foot">
-    <script src="../../Scripts/art-Template/template-web.js"></script>
-    <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
-    <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
-    <script type="text/javascript">
+                           </div>  
+       <script type="text/javascript">
         function doClick(event) {
             //    if ($.trim($('#' + buttonId + '').val()) == '') {
             //        shorError();
@@ -125,5 +121,10 @@
                 }
             }
         }
-    </script>
+    </script>         
+ </asp:Content>
+<asp:Content ID="foot" runat="server" ContentPlaceHolderID="foot">
+    <script src="../../Scripts/art-Template/template-web.js"></script>
+    <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
+        <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
 </asp:Content>

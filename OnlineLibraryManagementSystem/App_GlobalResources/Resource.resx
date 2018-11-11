@@ -820,4 +820,8 @@
     <value>The librarian account cannot be the same as the super administrator account. &amp; 图书管理员账号不能与超级管理员账号相同。</value>
     <comment>Librarian账号不能与Admin账号相同</comment>
   </data>
+  <data name="BookInfo" xml:space="preserve">
+    <value>Book Info &amp; 图书信息</value>
+    <comment>图书信息</comment>
+  </data>
 </root>

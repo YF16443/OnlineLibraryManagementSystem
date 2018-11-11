@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="AddBooks.aspx.cs" Inherits="Pages_Addbooks_ISBN" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="header" Runat="Server">
+<asp:Content ID="header" ContentPlaceHolderID="header" Runat="Server">
     <script>
         document.getElementById("book").className = "active";
     </script>
@@ -7,7 +7,7 @@
      <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
     <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
 </asp:Content>
-<asp:Content ID="Content2" runat="server" contentplaceholderid="body">
+<asp:Content ID="body" runat="server" contentplaceholderid="body">
     <style type="text/css">
         .style1 {
             width: 100%;
@@ -30,7 +30,7 @@
                                                     <asp:Button ID="ButtonUpload" runat="server" Text="<%$ Resources:Resource, Upload %>" OnClick="ButtonUpload_Click" CssClass="btn btn-fill btn-default"/>                            
                                                     <input type=button value="<asp:Literal runat="server" Text="<%$ Resources:Resource, Selectimage%>" />" onclick=fileupload.click() Class="btn btn-fill btn-default">
                                                         <input type="file" id="fileupload" name="fileupload"  style="display: none;" onchange="filepath.value=this.value"/>                                                      
-                                                        <label><input type="Text" id="filepath" name="filepath" value="" class="form-control" style="width:400px;"></label>                                                        
+                                                        <label><input type="Text" id="filepath" name="filepath" value="" class="form-control" style="width:400px;" onkeypress="return doClick(event);"></label>                                                        
                                                 </div>
                     </div>                                        
                 </fieldset>
@@ -120,8 +120,8 @@
  <fieldset>
 	                <div class="form-group">
 	                   <label class="col-sm-1 control-label">  <asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Position %>"></asp:Label></label>
-	                   <div class="col-sm-2">
-                            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="selectpicker" data-style="btn btn-primary btn-round"></asp:DropDownList>  
+	                   <div class="col-sm-2" style="max-height:60px;">
+                            <asp:DropDownList ID="DropDownList1" style="height:60px;max-height:60px;" runat="server" CssClass="selectpicker" data-style="btn btn-primary btn-round"></asp:DropDownList>  
 	                    </div>
 	                 </div>
 	              </fieldset>
@@ -153,12 +153,9 @@
 <!--endprint-->
             </div>
         </div>
-        
 </asp:Content>
-<asp:Content ID="content4" ContentPlaceHolderID="foot" runat="server">
+<asp:Content ID="foot" ContentPlaceHolderID="foot" runat="server">
     <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
-    <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-    <script src="../../assets/vendors/jasny-bootstrap.min.js"></script>
     <script type="text/javascript">
         function doClick(event) {
             //    if ($.trim($('#' + buttonId + '').val()) == '') {
@@ -199,6 +196,6 @@
             window.document.body.innerHTML=prnhtml; 
             window.print();
             var result="<%=deletebind() %>";
-        }    
+        }
     </script>
  </asp:Content>

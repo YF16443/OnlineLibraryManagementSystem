@@ -1,11 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="BookMessage.aspx.cs" Inherits="Pages_LibrarianPages_BookMessage" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="header" ContentPlaceHolderID="header" Runat="Server">
     <script>
         document.getElementById("book").className = "active";
     </script>
     <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
     <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
+     <a><asp:Label runat="server" Text="<%$ Resources:Resource, BookInfo %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
     <div class="card">
@@ -22,7 +23,7 @@
                               <asp:Button ID="ButtonUpload" runat="server" Text="<%$ Resources:Resource,Upload %>" OnClick="Upload_Click" CssClass="btn btn-fill btn-default"/>                         
                               <input type=button value="<asp:Literal runat="server" Text="<%$ Resources:Resource, Selectimage%>" />" onclick=fileupload.click() Class="btn btn-fill btn-default">
                               <input type="file" id="fileupload" name="fileupload"  style="display: none;" onchange="filepath.value=this.value"/>                            
-                              <label><input type="Text" id="filepath" name="filepath" value="" class="form-control"></label>
+                              <label><input type="Text" id="filepath" name="filepath" value="" class="form-control" onkeypress="return doClick(event);"></label>
                           </div>
                     </div>                                        
                 </fieldset>
