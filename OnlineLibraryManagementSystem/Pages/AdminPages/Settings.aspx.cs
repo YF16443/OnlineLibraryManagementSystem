@@ -54,10 +54,6 @@ public partial class Pages_AdminPages_Settings : BasePage
         config.Save();
         Response.Write("<script>alert('" + Resources.Resource.Successful + "')</script>");
     }
-    protected void Cancel(object sender, EventArgs e)
-    {
-        Response.Write("<script>alert('" + Resources.Resource.Failure + "')</script>");
-    }
     private string getValue(string key)
     {
         try

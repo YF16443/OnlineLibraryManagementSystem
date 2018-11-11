@@ -12,8 +12,15 @@ using System.Collections;
 
 public partial class Pages_bookMessage : BasePage
 {
+    string strCon = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+    MySqlConnection sqlcon;
+    MySqlCommand sqlcom;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            bind();
+        }
         string bookId = Request["book_id"];
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
@@ -79,7 +86,7 @@ public partial class Pages_bookMessage : BasePage
 
 
         ////////////////////////////////////////////////图书位置信息/////////////////////////////////////////
-        string OLMSDBConnectionString1 = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        /*string OLMSDBConnectionString1 = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection1 = new MySqlConnection(OLMSDBConnectionString);
         try
         {
@@ -107,7 +114,7 @@ public partial class Pages_bookMessage : BasePage
         finally
         {
             OLMSDBConnection.Close();
-        }
+        }*/
     }
 
     protected void reserve_Click(object sender, EventArgs e)
@@ -174,6 +181,7 @@ public partial class Pages_bookMessage : BasePage
                 if (result == 1)
                 {
                     Response.Write("<script>alert('" + Resources.Resource.Reservation_Success + "')</script>");
+                    bind();
                 }
                 else
                 {
@@ -190,5 +198,73 @@ public partial class Pages_bookMessage : BasePage
         {
             OLMSDBConnection.Close();
         }
+    }
+
+    protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        string bookId = Request["book_id"];
+        sqlcon = new MySqlConnection(strCon);
+        string sqlstr = "update Librarians set BookBarcode='"
+            + ((TextBox)(GridView1.Rows[e.RowIndex].Cells[1].Controls[0])).Text.ToString().Trim() + "',BookId='"
+            + ((TextBox)(GridView1.Rows[e.RowIndex].Cells[2].Controls[0])).Text.ToString().Trim() + "',ShelfId='"
+            + ((TextBox)(GridView1.Rows[e.RowIndex].Cells[2].Controls[0])).Text.ToString().Trim() + "',Status='"
+            + ((TextBox)(GridView1.Rows[e.RowIndex].Cells[3].Controls[0])).Text.ToString().Trim() + "' where BookId='"
+            + bookId + "'";
+        sqlcom = new MySqlCommand(sqlstr, sqlcon);
+        sqlcon.Open();
+        sqlcom.ExecuteNonQuery();
+        sqlcon.Close();
+        GridView1.EditIndex = -1;
+        bind();
+    }
+
+    public void bind()
+    {
+        string bookId = Request["book_id"];
+        string sqlstr = "select BookBarcode,BookId,ShelfId,Status from BookBarcodes where BookId =" + bookId;
+        sqlcon = new MySqlConnection(strCon);
+        MySqlDataAdapter myda = new MySqlDataAdapter(sqlstr, sqlcon);
+        DataSet myds = new DataSet();
+        sqlcon.Open();
+        myda.Fill(myds, "BookBarcodes");
+        DataTable searchResult = myds.Tables[0];
+        searchResult.Columns.Add("newStatus");
+        searchResult.Columns.Add("Position");
+        foreach (DataRow row in searchResult.Rows)
+        {
+            string status = row["Status"].ToString();
+            if (Session["PreferredCulture"].ToString() == "zh-CN")
+            {
+                if (status == "0")
+                    row["newStatus"] = "在馆无预约";
+                if (status == "1")
+                    row["newStatus"] = "已借出";
+                if (status == "2")
+                    row["newStatus"] = "已预约";
+            }
+            else
+            {
+                if (status == "0")
+                    row["newStatus"] = "No Reservation";
+                if (status == "1")
+                    row["newStatus"] = "On Loan";
+                if (status == "2")
+                    row["newStatus"] = "Aleardy Reserved";
+            }
+            string selectstackid = "select StackId from Shelves where ShelfId='" + row["ShelfId"].ToString() + "';";
+            MySqlCommand cmdselectstackid = new MySqlCommand(selectstackid, sqlcon);
+            MySqlDataReader readerstackid = cmdselectstackid.ExecuteReader();
+            if (readerstackid.Read())
+            {
+                row["Position"] = row["ShelfId"] + "," + readerstackid["StackId"].ToString();
+            }
+            readerstackid.Close();
+        }
+        GridView1.Enabled = true;
+        GridView1.DataSource = searchResult;
+        GridView1.DataKeyNames = new string[] { "BookBarcode" };//主键
+        GridView1.DataBind();
+        GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
+        sqlcon.Close();
     }
 }

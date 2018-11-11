@@ -1,36 +1,25 @@
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;            //引入命名空间
-using System.Data.SqlClient;  //引入命名空间
+using System.Data;            
 using MySql.Data.MySqlClient;
 
 public partial class Pages_AdminPages_SearchLibrarian : BasePage
 {
-
-
-    //SqlConnection sqlcon;
-    //SqlCommand sqlcom;
-    //string strCon = "Server=cdb-2x9xtpja.cd.tencentcdb.com;Database=Librarians;Uid=olms;Pwd=123456";
     string strCon = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
     MySqlConnection sqlcon;
     MySqlCommand sqlcom;
     protected void Page_Load(object sender, EventArgs e)
     {
-        //MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         if (!IsPostBack)
         {
-            bind();
+            Bind();
         }
     }
     protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
     {
         GridView1.EditIndex = e.NewEditIndex;
-        bind();
+        Bind();
     }
     //删除
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -41,7 +30,7 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
         sqlcon.Open();
         sqlcom.ExecuteNonQuery();
         sqlcon.Close();
-        bind();
+        Bind();
     }
     //更新
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -57,16 +46,17 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
         sqlcom.ExecuteNonQuery();
         sqlcon.Close();
         GridView1.EditIndex = -1;
-        bind();
+        Bind();
     }
     //取消
     protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         GridView1.EditIndex = -1;
-        bind();
+        Bind();
     }
     //绑定
-    public void bind()
+
+    public void Bind()
     {
         string sqlstr = "select * from Librarians";
         sqlcon = new MySqlConnection(strCon);
@@ -81,17 +71,58 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
         sqlcon.Close();
     }
 
+
     protected void Button1_Click(object sender, EventArgs e)
     {
+        if (!rfvAccount.IsValid || !rfvName.IsValid || !rfvPassword.IsValid)
+            return;
         string Account = TextBox2.Text.ToString();
         string Password = TextBox3.Text.ToString();
         string Name = TextBox4.Text.ToString();
+
         sqlcon = new MySqlConnection(strCon);
-        string sql = "insert into Librarians(Account,Password,Name) values('" + Account + "','" + Password + "','" + Name + "')";
-        string sqlstr = "select LibrarianId,Account,Password,Name from Librarians";
         sqlcon.Open();
-        MySqlCommand sqlcom = new MySqlCommand(sql, sqlcon);
-        sqlcom.ExecuteNonQuery();
+        string exsql = "select count(*) as num from Librarians where Account = ?Account;";
+        MySqlCommand exsqlcom = new MySqlCommand(exsql, sqlcon);
+        exsqlcom.Parameters.AddWithValue("?Account", Account);
+        MySqlDataReader reader = exsqlcom.ExecuteReader();
+        while (reader.Read())
+        {
+            if (reader.HasRows)
+            {
+                Int64 count = (Int64)reader["num"];
+                if (count > 0)
+                {
+                    Response.Write("<script>window.alert('" + "账户名已存在" + "!');</script>");
+                    return;
+                }
+                break;
+            }
+        }
+        reader.Close();
+
+            string sql = "insert into Librarians(Account,Password,Name) values('" + Account + "','" + Password + "','" + Name + "')";
+            string sqlstr = "select LibrarianId,Account,Password,Name from Librarians";
+            
+            MySqlCommand sqlcom = new MySqlCommand(sql, sqlcon);
+            sqlcom.ExecuteNonQuery();
+            MySqlDataAdapter sqlda = new MySqlDataAdapter(sqlstr, sqlcon);
+            DataSet ds = new DataSet();
+            sqlda.Fill(ds);
+            GridView1.DataSource = ds;
+            GridView1.DataBind();
+            sqlcon.Close();
+
+        
+    }
+
+    protected void Button2_Click(object sender, EventArgs e)
+
+    {
+        String name = TextBox1.Text.ToString();
+        sqlcon = new MySqlConnection(strCon);
+        string sqlstr = "select LibrarianId,Account,Password,Name from Librarians where Name like " + "\"%" + name + "%\"";
+        sqlcon.Open();
         MySqlDataAdapter sqlda = new MySqlDataAdapter(sqlstr, sqlcon);
         DataSet ds = new DataSet();
         sqlda.Fill(ds);
@@ -102,4 +133,16 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
 
 
 
+
+    protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        GridView1.PageIndex = e.NewPageIndex;
+        //GridView1.DataBind();
+        Bind();
+    }
+
+
+
 }
+
+

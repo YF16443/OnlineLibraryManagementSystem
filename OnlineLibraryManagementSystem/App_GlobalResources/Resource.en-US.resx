@@ -800,6 +800,34 @@
     <value>Display_Barcode</value>
     <comment>显示二维码</comment>
   </data>
+  <data name="Reader" xml:space="preserve">
+    <value>Reader</value>
+  </data>
+  <data name="Librarian" xml:space="preserve">
+    <value>Librarian</value>
+  </data>
+  <data name="InputError" xml:space="preserve">
+    <value>Input Error!</value>
+  </data>
+  <data name="ReaderLogin" xml:space="preserve">
+    <value>Reader Login</value>
+  </data>
+  <data name="AdminLogined" xml:space="preserve">
+    <value>The admin account is already logged in. You must log out of the account before you can log in to the new account.</value>
+  </data>
+  <data name="LibrarianLogined" xml:space="preserve">
+    <value>A librarian account is already logged in. You must log out of the account before you can log in to the new account.</value>
+  </data>
+  <data name="ReaderLogined" xml:space="preserve">
+    <value>A reader account is already logged in. You must log out of the account before you can log in to the new account.</value>
+  </data>
+  <data name="LibrarianNotAdmin" xml:space="preserve">
+    <value>The librarian account cannot be the same as the super administrator account.</value>
+    <comment>Librarian账号不能与Admin账号相同</comment>
+  </data>
+  <data name="BookInfo" xml:space="preserve">
+    <value>Book Info</value>
+  </data>
   <data name="returnHistory" xml:space="preserve">
     <value>Return History</value>
   </data>

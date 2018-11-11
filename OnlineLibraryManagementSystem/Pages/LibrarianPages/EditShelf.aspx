@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="EditShelf.aspx.cs" Inherits="Pages_LibrarianPages_EditShelf" %>
 <asp:Content ID="head" ContentPlaceHolderID="header" Runat="Server">
+    <script>
+        document.getElementById("stack").className = "active";
+    </script>
     <a> <asp:Label runat="server" Text="<%$ Resources:Resource, ShelfInfo %>" CssClass="navbar-brand"></asp:Label> </a>
 
      <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />

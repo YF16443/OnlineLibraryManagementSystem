@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="CategoryManagement.aspx.cs" Inherits="Pages_LibrarianPages_CategoryManagement" %>
 
 <asp:Content ID="header" ContentPlaceHolderID="header" Runat="Server">
+    <script>
+        document.getElementById("book").className = "active";
+    </script>
     <a> <asp:Label runat="server" Text="<%$ Resources:Resource, CategoryManagement %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="body" ContentPlaceHolderID="body" Runat="Server">
@@ -53,7 +56,11 @@
             "searching": false,
             "lengthChange": false,
             "order": [[0, 'asc']],
-            "bStateSave":true,
+            "bStateSave": true,
+            columnDefs: [{
+                'targets': [2],
+                'orderable': false
+            }]
         });
         
 </script>

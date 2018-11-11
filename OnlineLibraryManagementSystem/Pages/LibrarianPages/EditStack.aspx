@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="EditStack.aspx.cs" Inherits="Pages_LibrarianPages_EditStack" %>
 
 <asp:Content ID="header" ContentPlaceHolderID="header" Runat="Server">
+    <script>
+        document.getElementById("stack").className = "active";
+    </script>
     <a> <asp:Label runat="server" Text="<%$ Resources:Resource, StackInfo %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" contentplaceholderid="body">
@@ -71,7 +74,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="<%$ Resources:Resource, Shelf_Summary %>" HeaderStyle-CssClass="text-primary">
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtSummary" runat="server" Text='<%# Eval("Summary") %>'></asp:TextBox>
+                        <asp:TextBox ID="txtSummary" runat="server" Text='<%# Eval("Summary") %>' onkeypress="return doClick(event);"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
                         <asp:Label ID="lblSummary" runat="server" Text='<%# Eval("Summary") %>'></asp:Label>

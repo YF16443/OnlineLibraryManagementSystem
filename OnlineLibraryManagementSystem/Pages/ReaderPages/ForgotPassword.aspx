@@ -25,10 +25,10 @@
                      <label><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Phone %>"></asp:Label></label>
                   </td>
                   <td style="text-align:center" class="auto-style3">
-                     <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control"></asp:TextBox>
+                     <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
                   </td>
                   <td class="auto-style4">
-                      <asp:RequiredFieldValidator ID="rfvPhone" runat="server" ControlToValidate="txtPhone" ErrorMessage="*"></asp:RequiredFieldValidator>
+                      <asp:RequiredFieldValidator ID="rfvPhone" runat="server" ControlToValidate="txtPhone" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                   </td>
             </tr>
             <tr>
@@ -36,10 +36,10 @@
                     <label><asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, IdNumber %>"></asp:Label></label>
                 </td>
                 <td style="text-align:center" class="auto-style3">
-                    <asp:TextBox ID="TextBoxId" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="TextBoxId" runat="server" CssClass="form-control" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
                 </td>
                 <td class="auto-style4">
-                      <asp:RequiredFieldValidator ID="rfvId" runat="server" ControlToValidate="TextBoxId" ErrorMessage="*"></asp:RequiredFieldValidator>
+                      <asp:RequiredFieldValidator ID="rfvId" runat="server" ControlToValidate="TextBoxId" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>

@@ -13,11 +13,15 @@ public partial class Pages_LibrarianLogin : BasePage
     {
         if (!string.IsNullOrEmpty((string)Session["id"]))
         {
-            Response.Redirect("~/Pages/SearchDemo.aspx");
+            //登录读者后不能同时登录管理员
+            Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.ReaderLogined + "');location.href='SearchDemo.aspx';</script>");
         }
         else if (!string.IsNullOrEmpty((string)Session["lid"]))
         {
-            Response.Redirect("~/Pages/LibrarianPages/IssueBookDemo.aspx");
+            if (string.Equals((string)Session["lid"], ConfigurationManager.AppSettings["AdminAccount"].ToString()))
+                Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.AdminLogined + "');location.href='AdminPages/Settings.aspx';</script>");
+            else
+                Response.Redirect("~/Pages/LibrarianPages/IssueBookDemo.aspx");
         }
     }
 

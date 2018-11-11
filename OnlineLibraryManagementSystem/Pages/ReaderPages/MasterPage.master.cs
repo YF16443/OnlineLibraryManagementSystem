@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Threading;
 using System.Globalization;
 using System.Web.Security;
+using System.Configuration;
 
 public partial class Pages_MasterPage : BaseMasterPage
 {
@@ -14,11 +15,21 @@ public partial class Pages_MasterPage : BaseMasterPage
     {
         if (!IsPostBack)
         {
+            if (!string.IsNullOrEmpty((string)Session["lid"]))
+            {
+                string url = HttpContext.Current.Request.Url.Host;
+                //登录管理员或者超级管理员后不能访问读者界面
+                if (string.Equals((string)Session["lid"], ConfigurationManager.AppSettings["AdminAccount"].ToString()))
+                    Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.AdminLogined + "');top.location.href='AdminPages/Settings.aspx';</script>");
+                else
+                    Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LibrarianLogined + "');top.location.href='LibrarianPages/IssueBookDemo.aspx';</script>");
+            }
             ddlLanguages.SelectedValue = Session["PreferredCulture"].ToString();
         }
         if (!string.IsNullOrEmpty((string)Session["id"])) 
         {
             hlMyAccount.Visible = true;
+            LibrarianLogin.Visible = false;
         }
     }
 

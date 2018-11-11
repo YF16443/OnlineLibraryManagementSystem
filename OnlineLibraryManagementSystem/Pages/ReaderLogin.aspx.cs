@@ -18,7 +18,10 @@ public partial class Pages_Login : BasePage
         }
         else if (!string.IsNullOrEmpty((string)Session["lid"]))
         {
-            Response.Redirect("~/Pages/LibrarianPages/IssueBookDemo.aspx");
+            if (string.Equals((string)Session["lid"], ConfigurationManager.AppSettings["AdminAccount"].ToString()))
+                Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.AdminLogined + "');location.href='AdminPages/Settings.aspx';</script>");
+            else
+                Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LibrarianLogined + "');location.href='LibrarianPages/IssueBookDemo.aspx';</script>");
         }
     }
 

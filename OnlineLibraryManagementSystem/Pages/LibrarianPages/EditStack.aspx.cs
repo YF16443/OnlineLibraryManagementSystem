@@ -22,7 +22,7 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
 
             OLMSDBConnection.Open();
             //搜索建库时间，建库时间不可变
-            string selecttimestamp = "select * from Stacks where StackId='"+Session["ID"]+"';";
+            string selecttimestamp = "select * from Stacks where StackId='"+Session["STACKID"] +"';";
             MySqlCommand cmdselecttimestamp = new MySqlCommand(selecttimestamp, OLMSDBConnection);
             MySqlDataReader reader = cmdselecttimestamp.ExecuteReader();
             if (reader.Read())
@@ -79,12 +79,12 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
         //数据库
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
-        string updatestack = "update Stacks set StackId='" + newstackid + "',Position='" + newposition + "',Summary='" + newsummary + "' where StackId='" + Session["ID"] + "';";
+        string updatestack = "update Stacks set StackId='" + newstackid + "',Position='" + newposition + "',Summary='" + newsummary + "' where StackId='" + Session["STACKID"] + "';";
         string selectnewstackid = "select count(*) as num from Stacks where StackId='" + newstackid + "';";
-        try
+       try
         {
             OLMSDBConnection.Open();
-            if (newstackid != Session["ID"].ToString())
+            if (newstackid != Session["STACKID"].ToString())
             {
                 MySqlCommand cmdselectstackid = new MySqlCommand(selectnewstackid, OLMSDBConnection);
                 MySqlDataReader readerselect = cmdselectstackid.ExecuteReader();
@@ -108,25 +108,25 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
             result = cmdupdatestack.ExecuteNonQuery();
             if (result != 0)
             {
-                Session["ID"] = newstackid;
+                Session["STACKID"] = newstackid;
                 Response.Write("<script>alert('Edited Successfully!');window.location.href = 'StackInfo.aspx';</script>");
             }
         }
         catch (MySqlException ex)
-        {
+       {
             Console.WriteLine(ex.Message);
-        }
-        finally
+       }
+       finally
         {
-            OLMSDBConnection.Close();
+           OLMSDBConnection.Close();
         }
     }
-    public void GridviewBind()
+    protected void GridviewBind()
     {
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         var OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
 
-        string stackid = Session["ID"].ToString();
+        string stackid = Session["STACKID"].ToString();
         MySqlCommand get_sql = new MySqlCommand("select ShelfId,Summary,Timestamp from Shelves where StackId='" + stackid + "';");
         var resultAdapter = new MySqlDataAdapter();
         resultAdapter.SelectCommand = get_sql;
@@ -142,8 +142,11 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
         Shelves.DataSource = searchResult;
         Shelves.DataKeyNames = new string[] { "ShelfId" };
         Shelves.DataBind();
-        Shelves.HeaderRow.TableSection = TableRowSection.TableHeader;
-    }
+        if (Shelves.HeaderRow != null)
+        {
+            Shelves.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+        }
     protected void Shelves_RowEditing(object sender, GridViewEditEventArgs e)
     {
         Shelves.EditIndex = e.NewEditIndex;

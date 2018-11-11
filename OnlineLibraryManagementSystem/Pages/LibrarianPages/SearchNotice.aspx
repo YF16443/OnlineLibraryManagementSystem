@@ -5,6 +5,9 @@
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" Runat="Server">
+    <script>
+        document.getElementById("notice").className = "active";
+    </script>
     <a> <asp:Label runat="server" Text="<%$ Resources:Resource, Notice %>" CssClass="navbar-brand"></asp:Label> </a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="body" Runat="Server">
@@ -13,7 +16,7 @@
               <div class="row">
                   <div class='col-md-5'>
 
-                      <input name="date" class="daterangepicker-field" style="z-index: 999;background-color: #F3F2EE;border: 1px solid #e8e7e3;border-radius: 4px;color: #364150;font-size: 14px;padding: 7px 18px;height: 40px;width:210px;"></input>
+                      <input name="date" class="daterangepicker-field" style="z-index: 999;background-color: #F3F2EE;border: 1px solid #e8e7e3;border-radius: 4px;color: #364150;font-size: 14px;padding: 7px 18px;height: 40px;width:210px;" readonly="readonly"></input>
                       <asp:Button ID="search" runat="server" Text="<%$ Resources:Resource, Search %>" CssClass="btn btn-primary btn-fill" OnClick="search_Click" /> 
                       <asp:Button ID="reset" runat="server" Text="<%$ Resources:Resource, Reset %>" CssClass="btn btn-primary btn-fill" OnClick="reset_Click"/> 
                   </div> 
@@ -21,11 +24,19 @@
             </div>
             
             <div class="material-datatables">
-                <asp:GridView ID="History" runat="server" CssClass="table table-striped table-no-bordered table-hover" AutoGenerateColumns="False" style="width:100%;cellspacing:0" OnRowDeleting="GridView1_RowDeleting" DataKeyNames="NoticeId">
+                <asp:GridView ID="History" runat="server" CssClass="table table-striped table-no-bordered table-hover" AutoGenerateColumns="False" style="width:100%;cellspacing:0" OnRowDeleting="GridView1_RowDeleting" DataKeyNames="NoticeId" OnPageIndexChanging="History_PageIndexChanging" OnRowCancelingEdit="History_RowCancelingEdit" OnRowDataBound="History_RowDataBound" OnRowEditing="History_RowEditing" OnRowUpdating="History_RowUpdating">
                     <Columns>
                         <asp:BoundField HeaderText="<%$ Resources:Resource, NoticeId %>" DataField="NoticeId" ReadOnly="true"  />
-                        <asp:BoundField HeaderText="<%$ Resources:Resource, Notice %>" DataField="Details" ReadOnly="true" />
+                        <asp:TemplateField HeaderText="<%$ Resources:Resource, Notice %>" HeaderStyle-CssClass="text-primary">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtName" runat="server" Text='<%# Eval("Details") %>' MaxLength="150"></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="lblName" runat="server" Text='<%# Eval("Details") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:BoundField HeaderText="<%$ Resources:Resource, Time %>" DataField="Timestamp" ReadOnly="true" />
+                        <asp:CommandField ShowEditButton="true"  />
                         <asp:CommandField HeaderText=""   DeleteText="<%$ Resources:Resource, Delete %>"  ShowDeleteButton="true" />
                     </Columns>
                 </asp:GridView>
@@ -51,6 +62,10 @@
             "searching": false,
             "lengthChange": false,
             "order": [[0, 'asc']],
+            columnDefs: [{
+                'targets': [3],
+                'orderable': false
+            }]
         });
         $(".daterangepicker-field").daterangepicker({
             forceUpdate: true,

@@ -4,6 +4,12 @@
     <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
     <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
 </asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="header" runat="Server">
+    <script>
+        document.getElementById("stack").className = "active";
+    </script>
+    <a> <asp:Label runat="server" Text="<%$ Resources:Resource, search %>" CssClass="navbar-brand"></asp:Label> </a>
+</asp:Content>
 <asp:Content ID="Content2" runat="server" contentplaceholderid="body">
     <style type="text/css">
         .style1 {
@@ -15,14 +21,14 @@
             text-align:center;
         }
         .auto-style2 {
-            width: 40%;
+            width: 30%;
             height: 35px;
             text-align: right;
             font-size: x-large;
         }
 
         .auto-style4 {
-            width: 30%;
+            width: 40%;
             height: 35px;
             text-align:left;
             font-size: x-large;

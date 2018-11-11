@@ -20,11 +20,11 @@ public partial class Pages_StackInfo : BasePage
             if (Request["StackId"] != null)
             {
                 stackid = Request["StackId"];
-                Session["ID"] = Request["StackId"];
+                Session["STACKID"] = Request["StackId"];
             }
             else
             {
-                stackid = Session["ID"].ToString();
+                stackid = Session["STACKID"].ToString();
             }
             //数据库
             string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
@@ -69,11 +69,11 @@ public partial class Pages_StackInfo : BasePage
         if (Request["StackId"] != null)
         {
             stackid = Request["StackId"];
-            Session["ID"] = Request["StackId"];
+            Session["STACKID"] = Request["StackId"];
         }
         else
         {
-            stackid = Session["ID"].ToString();
+            stackid = Session["STACKID"].ToString();
         }
         MySqlCommand get_sql = new MySqlCommand("select ShelfId,Summary,Timestamp from Shelves where StackId='"+stackid+"';");
         var resultAdapter = new MySqlDataAdapter();
@@ -90,8 +90,11 @@ public partial class Pages_StackInfo : BasePage
         Shelves.DataSource = searchResult;
         Shelves.DataKeyNames = new string[] { "ShelfId" };
         Shelves.DataBind();
-        Shelves.HeaderRow.TableSection = TableRowSection.TableHeader;
-    }
+        if (Shelves.HeaderRow!= null)
+        {
+           Shelves.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+      }
     protected void Shelves_RowEditing(object sender, GridViewEditEventArgs e)
     {
         Shelves.EditIndex = e.NewEditIndex;
