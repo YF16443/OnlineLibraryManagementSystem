@@ -88,10 +88,10 @@
              <fieldset style="text-align:center;">
                     <asp:Button ID="btSubmit" runat="server" Text="<%$ Resources:Resource,Submit %>" OnClick="btSubmit_Click" CssClass="btn btn-fill btn-default"/>
                     </fieldset>
-            </div>
-        </div>
+                                </div>
+                           </div>                  
  </asp:Content>
-<asp:Content ID="foot" runat="server" ContentPlaceHolderID="foot">
+<asp:Content ID="Content4" runat="server" ContentPlaceHolderID="foot">
     <script src="../../Scripts/art-Template/template-web.js"></script>
     <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
     <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>

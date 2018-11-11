@@ -79,12 +79,50 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
         string Account = TextBox2.Text.ToString();
         string Password = TextBox3.Text.ToString();
         string Name = TextBox4.Text.ToString();
+
         sqlcon = new MySqlConnection(strCon);
-        string sql = "insert into Librarians(Account,Password,Name) values('" + Account + "','" + Password + "','" + Name + "')";
-        string sqlstr = "select LibrarianId,Account,Password,Name from Librarians";
         sqlcon.Open();
-        MySqlCommand sqlcom = new MySqlCommand(sql, sqlcon);
-        sqlcom.ExecuteNonQuery();
+        string exsql = "select count(*) as num from Librarians where Account = ?Account;";
+        MySqlCommand exsqlcom = new MySqlCommand(exsql, sqlcon);
+        exsqlcom.Parameters.AddWithValue("?Account", Account);
+        MySqlDataReader reader = exsqlcom.ExecuteReader();
+        while (reader.Read())
+        {
+            if (reader.HasRows)
+            {
+                Int64 count = (Int64)reader["num"];
+                if (count > 0)
+                {
+                    Response.Write("<script>window.alert('" + "账户名已存在" + "!');</script>");
+                    return;
+                }
+                break;
+            }
+        }
+        reader.Close();
+
+            string sql = "insert into Librarians(Account,Password,Name) values('" + Account + "','" + Password + "','" + Name + "')";
+            string sqlstr = "select LibrarianId,Account,Password,Name from Librarians";
+            
+            MySqlCommand sqlcom = new MySqlCommand(sql, sqlcon);
+            sqlcom.ExecuteNonQuery();
+            MySqlDataAdapter sqlda = new MySqlDataAdapter(sqlstr, sqlcon);
+            DataSet ds = new DataSet();
+            sqlda.Fill(ds);
+            GridView1.DataSource = ds;
+            GridView1.DataBind();
+            sqlcon.Close();
+
+        
+    }
+
+    protected void Button2_Click(object sender, EventArgs e)
+
+    {
+        String name = TextBox1.Text.ToString();
+        sqlcon = new MySqlConnection(strCon);
+        string sqlstr = "select LibrarianId,Account,Password,Name from Librarians where Name like " + "\"%" + name + "%\"";
+        sqlcon.Open();
         MySqlDataAdapter sqlda = new MySqlDataAdapter(sqlstr, sqlcon);
         DataSet ds = new DataSet();
         sqlda.Fill(ds);
@@ -92,8 +130,6 @@ public partial class Pages_AdminPages_SearchLibrarian : BasePage
         GridView1.DataBind();
         sqlcon.Close();
     }
-
-
 
 
 
