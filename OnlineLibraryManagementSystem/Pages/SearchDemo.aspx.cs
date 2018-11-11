@@ -84,7 +84,6 @@ public partial class Pages_SearchDemo : BasePage
         if (ddlClass.SelectedValue.ToString().Equals("Books"))
         {
             DataTable searchResult = resultSet.Tables[0];
-            siForGv = new SortInfo(resultSet.Tables[0]);
             gvBookResult.DataSource = searchResult;
             gvBookResult.DataBind();
             gvBookResult.HeaderRow.TableSection = TableRowSection.TableHeader;
@@ -119,7 +118,6 @@ public partial class Pages_SearchDemo : BasePage
                     }
                 }
             }
-            siForGv = new SortInfo(resultSet.Tables[0]);
             gvPeriodicalResult.DataSource = searchResult;
             gvPeriodicalResult.DataBind();
         }
@@ -147,30 +145,6 @@ public partial class Pages_SearchDemo : BasePage
             gvBookResult.DataSource = null;
             gvBookResult.DataBind();
         }
-    }
-
-    protected void gvBookResult_Sorting(object sender, GridViewSortEventArgs e)
-    {
-        if (siForGv == null)
-        {
-            return;
-        }
-        GridView SortGv = (GridView)sender;
-        siForGv.SortExpression = e.SortExpression;
-        int page = SortGv.PageIndex;
-        siForGv.SortDataBind(SortGv, page, false);
-
-    }
-
-    protected void gvBookResult_PageIndexChanging(object sender, GridViewPageEventArgs e)
-    {
-        if (siForGv == null)
-        {
-            return;
-        }
-        GridView SortGv = (GridView)sender;
-        int page = e.NewPageIndex;
-        siForGv.SortDataBind(SortGv, page, true);
     }
 
     protected void tbSearch_TextChanged(object sender, EventArgs e)
