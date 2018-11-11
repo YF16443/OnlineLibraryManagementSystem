@@ -26,7 +26,7 @@ public partial class Pages_ReaderRegistration : BasePage
         string name,password, idNumber, telephone, email;
         name = TextBoxName.Text;
         idNumber = TextBoxIDNumber.Text;
-        password = idNumber.Substring(idNumber.Length - 6);
+        password = ConfigurationManager.AppSettings.Get("DefaultPassword");
         telephone = TextBoxTelephone.Text;
         email = TextBoxEmail.Text;
         if (! IsDeposit.Checked)

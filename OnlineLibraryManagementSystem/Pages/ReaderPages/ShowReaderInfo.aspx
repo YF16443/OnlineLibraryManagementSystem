@@ -18,6 +18,11 @@
                                 </a>
                             <li>
                             <li class="">
+                                <a href="#history" aria-controls="history" role="tab" data-toggle="tab">
+                                    <asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, returnHistory %>" ></asp:Label>
+                                </a>
+                            <li>
+                            <li class="">
                                 <a href="#reversation" aria-controls="reversation" role="tab" data-toggle="tab">
                                     <asp:Label ID="Label8" runat="server" Text="<%$ Resources:Resource, ReversationRecords %>" ></asp:Label>
                                 </a>
@@ -29,6 +34,13 @@
                         <div id="issue" class="tab-pane active" role="tabpanel">
                             <div class="table-responsive">
                                 <asp:GridView cssClass="table table-hover" ID="GridView1" runat="server" GridLines="None">
+                                    <HeaderStyle cssClass="text-primary"/>
+                                </asp:GridView>
+                             </div>
+                        </div>
+                        <div id="history" class="tab-pane" role="tabpanel">
+                            <div class="table-responsive">
+                                <asp:GridView cssClass="table table-hover" ID="GridView3" runat="server" GridLines="None">
                                     <HeaderStyle cssClass="text-primary"/>
                                 </asp:GridView>
                              </div>

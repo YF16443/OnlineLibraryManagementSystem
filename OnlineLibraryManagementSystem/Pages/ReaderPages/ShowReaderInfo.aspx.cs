@@ -29,7 +29,7 @@ public partial class Pages_ShowReaderInfo : BasePage
             }
             //注意这里改成了通过Session获取
             string id = (string)Session["id"];
-            //string id = "123";
+            //string id = "111";
             if (id == null)
             {
                 //exception-handler
@@ -45,6 +45,7 @@ public partial class Pages_ShowReaderInfo : BasePage
                 "and IssueRecords.ReaderId = ?reader_id;";
             string selectRevervationSql = "select Books.Title, A.ReservingTime, A.ShelfId, C.StackId, A.BookBarcode from BookBarcodes as A, Books, Shelves  as C" +
                 " where A.status = 2 and A.ReservingReaderId = ?readerid and Books.BookId = A.BookId and A.ShelfId = C.ShelfId;";
+            int totalFine = 0;
             try
             {
                 OLMSDBConnection.Open();
@@ -70,7 +71,9 @@ public partial class Pages_ShowReaderInfo : BasePage
                 MySqlCommand cmd2 = new MySqlCommand(selectBookSql, OLMSDBConnection);
                 cmd2.Parameters.AddWithValue("?reader_id", id);
                 ArrayList issueRecords = new ArrayList();
+                ArrayList history = new ArrayList();
                 MySqlDataReader reader2 = cmd2.ExecuteReader();
+                int flag = 1;
                 while (reader2.Read())
                 {
                     if (reader2.HasRows)
@@ -85,6 +88,7 @@ public partial class Pages_ShowReaderInfo : BasePage
                         {
                             r.returnTime = "";
                             //获取当前时间
+                            flag = 0; //为归还
                             DateTime Now = DateTime.Now;
                             d = Now.Subtract(issueTime);
                         }
@@ -98,6 +102,7 @@ public partial class Pages_ShowReaderInfo : BasePage
                             catch (Exception ex)
                             {
                                 returnTime = DateTime.Now;
+                                flag = 0;
                                 r.returnTime = "";
                             }
                             d = returnTime.Subtract(issueTime);
@@ -120,7 +125,16 @@ public partial class Pages_ShowReaderInfo : BasePage
                         {
                             r.fine = reader2["Fine"].ToString();
                         }
-                        issueRecords.Add(r);
+                        if (flag == 1)
+                        {
+                            history.Add(r);
+                        }
+                        else
+                        {
+                            issueRecords.Add(r);
+                        }
+                        
+
                     }
                 }
 
@@ -161,6 +175,8 @@ public partial class Pages_ShowReaderInfo : BasePage
                 GridView1.DataBind();
                 GridView2.DataSource = reversationRecords;
                 GridView2.DataBind();
+                GridView3.DataSource = history;
+                GridView3.DataBind();
             }
             catch (MySqlException ex)
             {

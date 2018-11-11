@@ -795,4 +795,7 @@
     <value>显示条形码</value>
     <comment>显示二维码</comment>
   </data>
+  <data name="returnHistory" xml:space="preserve">
+    <value>归还记录</value>
+  </data>
 </root>

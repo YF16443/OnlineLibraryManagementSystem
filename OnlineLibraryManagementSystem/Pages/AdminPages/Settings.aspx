@@ -51,7 +51,6 @@
     </div>
     <div class="form-footer text-right">
     <asp:Button ID="SubmitButton" runat="server" Text="<%$ Resources:Resource, Submit %>" OnClick="Submit"  CausesValidation="True" CssClass="btn btn-rose btn-fill"/>
-    <asp:Button ID="CancelButton" runat="server" Text="<%$ Resources:Resource, Cancel %>" OnClick="Cancel" CausesValidation="False" CssClass="btn btn-rose btn-fill"/>   
     </div>
     </div>   
     </div>

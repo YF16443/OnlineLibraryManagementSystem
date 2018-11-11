@@ -742,10 +742,10 @@
     <value>Id number is not legal</value>
   </data>
   <data name="IssueRecords" xml:space="preserve">
-    <value>issue records</value>
+    <value>Borrow History</value>
   </data>
   <data name="ReversationRecords" xml:space="preserve">
-    <value>Reversation Records</value>
+    <value>Reversation History</value>
   </data>
   <data name="ChangeConfiguration" xml:space="preserve">
     <value>Change the configuration</value>
@@ -799,5 +799,8 @@
   <data name="Display_Barcode" xml:space="preserve">
     <value>Display_Barcode</value>
     <comment>显示二维码</comment>
+  </data>
+  <data name="returnHistory" xml:space="preserve">
+    <value>Return History</value>
   </data>
 </root>
