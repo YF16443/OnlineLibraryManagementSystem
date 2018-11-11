@@ -50,22 +50,18 @@
             <tr>
                 <td style="text-align:center; height:30px" colspan="3">&nbsp;</td>
             </tr>
-            <tr>
+            </table>
                 <div class="table-responsive">
-                <td style="text-align:center" colspan="3">
-                    <asp:GridView ID="gvBookResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvBookResult_Sorting" OnPageIndexChanging="gvBookResult_PageIndexChanging" CssClass="table table-no-bordered">
+                    <asp:GridView ID="gvBookResult" runat="server" AutoGenerateColumns="False" Enabled="False" AllowSorting="True" OnSorting="gvBookResult_Sorting" OnPageIndexChanging="gvBookResult_PageIndexChanging" CssClass="table table-striped" GridLines="None">
                         <Columns>
-                            <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True">
+                            <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True" HeaderStyle-CssClass="text-center">
                                 <ItemStyle Height="84px" HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" CssClass="resultImg" />
                             </asp:ImageField>
-                            <asp:HyperLinkField HeaderText="<%$ Resources:Resource, BookTitle %>" SortExpression="Title" DataNavigateUrlFields="BookId" DataNavigateUrlFormatString="~/Pages/ReaderPages/bookMessage.aspx?book_id={0}" DataTextField="Title">
-                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                            <asp:HyperLinkField HeaderText="<%$ Resources:Resource, BookTitle %>" SortExpression="Title" DataNavigateUrlFields="BookId" DataNavigateUrlFormatString="~/Pages/ReaderPages/bookMessage.aspx?book_id={0}" DataTextField="Title" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:HyperLinkField>
-                            <asp:BoundField HeaderText="<%$ Resources:Resource, Author %>" SortExpression="Author" DataField="Author" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, Author %>" SortExpression="Author" DataField="Author" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:BoundField>
-                            <asp:BoundField DataField="Publisher" HeaderText="<%$ Resources:Resource, Publisher %>" SortExpression="Publisher" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                            <asp:BoundField DataField="Publisher" HeaderText="<%$ Resources:Resource, Publisher %>" SortExpression="Publisher" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:BoundField>
                         </Columns>
                     </asp:GridView>
@@ -92,10 +88,8 @@
                             </asp:BoundField>
                         </Columns>
                     </asp:GridView>
-                </td>
                 </div>
-            </tr>
-            </table>
+
     </div>
     <div class="container" ID="notice" runat="server">
 		<ul class="mySlideshow">

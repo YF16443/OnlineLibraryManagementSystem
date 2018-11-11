@@ -31,7 +31,18 @@
     <div class="card">
         <div class="content">
             <div class="table-responsive">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" CssClass="table table-bordered">
+                <table border="0" cellpadding="4" cellspacing="0" style="width: 100%">
+
+            <tr><td bgcolor="#f7f7de" colspan="2" style="height: 18px" valign="bottom">
+
+<asp:TextBox ID="TextBox1"  runat="server"></asp:TextBox>
+
+                   <asp:Button ID="Button2" runat="server"  OnClick="Button2_Click"  Text="<%$ Resources:Resource, Search %>" /></td>
+
+            </tr>
+
+        </table>
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" CssClass="table table-bordered" AllowPaging="True" AllowSorting="True" OnPageIndexChanging="GridView1_PageIndexChanging" >
                         <Columns>
                             <asp:BoundField DataField="LibrarianId" HeaderText="LibrarianId" ReadOnly="True" HeaderStyle-CssClass="text-primary" ItemStyle-Width="120"/>
                             
@@ -41,7 +52,10 @@
                             <asp:CommandField ShowEditButton="True" HeaderStyle-CssClass="text-primary" ItemStyle-Width="100"/>
                             <asp:CommandField ShowDeleteButton="True" HeaderStyle-CssClass="text-primary" ItemStyle-Width="100"/>
                         </Columns>
+
                     </asp:GridView>
+
+
         </div>
         </div>
     </div>

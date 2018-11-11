@@ -21,6 +21,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
       <div style="padding-top:50px">
+        <asp:Panel runat="server" DefaultButton="Button2">
         <table style="width: 100%;">
             <tr>
                 <td style="width:40%; text-align:right">
@@ -64,6 +65,7 @@
                 </div>
             </tr>
             </table>
+            </asp:Panel>
     </div>
     <br />
         <script src="../../assets/vendors/DataTables/jQuery-1.12.4/jquery-1.12.4.min.js"></script>
