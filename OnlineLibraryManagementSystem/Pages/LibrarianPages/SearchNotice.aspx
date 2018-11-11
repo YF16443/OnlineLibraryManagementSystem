@@ -29,7 +29,7 @@
                         <asp:BoundField HeaderText="<%$ Resources:Resource, NoticeId %>" DataField="NoticeId" ReadOnly="true"  />
                         <asp:TemplateField HeaderText="<%$ Resources:Resource, Notice %>" HeaderStyle-CssClass="text-primary">
                             <EditItemTemplate>
-                                <asp:TextBox ID="txtName" runat="server" Text='<%# Eval("Details") %>'></asp:TextBox>
+                                <asp:TextBox ID="txtName" runat="server" Text='<%# Eval("Details") %>' MaxLength="150"></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="lblName" runat="server" Text='<%# Eval("Details") %>'></asp:Label>
