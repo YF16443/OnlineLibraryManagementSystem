@@ -99,25 +99,20 @@
                         </Columns>
                     </asp:GridView>
                     <br />
-                    <asp:GridView ID="gvPeriodicalResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False"  Enabled="False" CssClass="table table-no-bordered">
+                    <asp:GridView ID="gvPeriodicalResult" runat="server" AutoGenerateColumns="False" Enabled="False" CssClass="table table-striped" GridLines="None">
                         <Columns>
-                            <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True">
+                            <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True" HeaderStyle-CssClass="text-center">
                                 <ItemStyle Height="84px" HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" CssClass="resultImg" />
                             </asp:ImageField>
-                             <asp:BoundField HeaderText="<%$ Resources:Resource, Title %>"  DataField="Title" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                             <asp:BoundField HeaderText="<%$ Resources:Resource, Title %>"  DataField="Title" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:BoundField>
-                            <asp:BoundField HeaderText="<%$ Resources:Resource, ISSN %>" DataField="ISSN" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, ISSN %>" DataField="ISSN" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:BoundField>
-                            <asp:BoundField HeaderText="<%$ Resources:Resource, Country %>"  DataField="Country" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, Country %>"  DataField="Country" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:BoundField>
-                            <asp:BoundField HeaderText="<%$ Resources:Resource, Type %>"  DataField="NewType" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, Type %>"  DataField="NewType" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:BoundField>
-                            <asp:BoundField HeaderText="<%$ Resources:Resource, Price %>" DataField="Price" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, Price %>" DataField="Price" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:BoundField>
                         </Columns>
                     </asp:GridView>
