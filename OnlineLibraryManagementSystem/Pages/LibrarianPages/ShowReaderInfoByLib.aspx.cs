@@ -51,69 +51,127 @@ public partial class Pages_ShowReaderInfo : BasePage
                     }
                 }
                 reader.Close();
-                string selectBookSql = "select IssueTime, ReturnTime,Title,IssueRecords.Status,IssueRecords.Fine,IssueRecords.OverdueLength,IssueRecords.BookBarcode " +
-                                       "from  IssueRecords, BookBarcodes, Books " +
-                                       "where  BookBarcodes.BookBarcode =   IssueRecords.BookBarcode and  BookBarcodes.BookId = Books.BookId " +
-                                       "and IssueRecords.ReaderId = ?reader_id;";
-            MySqlCommand cmd2 = new MySqlCommand(selectBookSql, OLMSDBConnection);
+                string selectBookSql = "select IssueTime, ReturnTime,Title, Fine " +
+                "from  IssueRecords, BookBarcodes, Books " +
+                "where  BookBarcodes.BookBarcode =   IssueRecords.BookBarcode and  BookBarcodes.BookId = Books.BookId " +
+                "and IssueRecords.ReaderId = ?reader_id;";
+                string selectRevervationSql = "select Books.Title, A.ReservingTime, A.ShelfId, C.StackId, A.BookBarcode from BookBarcodes as A, Books, Shelves  as C" +
+                " where A.status = 2 and A.ReservingReaderId = ?readerid and Books.BookId = A.BookId and A.ShelfId = C.ShelfId;";
+                int totalOverdueDays = 0;
+                MySqlCommand cmd2 = new MySqlCommand(selectBookSql, OLMSDBConnection);
                 cmd2.Parameters.AddWithValue("?reader_id", id);
                 ArrayList issueRecords = new ArrayList();
+                ArrayList history = new ArrayList();
                 MySqlDataReader reader2 = cmd2.ExecuteReader();
+                int flag = 1;
                 while (reader2.Read())
                 {
                     if (reader2.HasRows)
                     {
                         Record r = new Record();
-                        r.title = reader2["Title"].ToString();
-                        r.Barcode = reader2["BookBarcode"].ToString();
+                        r.title = (string)reader2["Title"];
                         DateTime issueTime = (DateTime)reader2["IssueTime"];
-                        DateTime returnTime=DateTime.Now;
-                        if (reader2["ReturnTime"] == null)
+                        DateTime returnTime;
+                        TimeSpan d;
+
+                        if (reader2["ReturnTime"] is System.DBNull)
                         {
-                            r.returnTime = "";  
+                            r.returnTime = "";
+                            //获取当前时间
+                            flag = 0; //未归还
+                            DateTime Now = DateTime.Now;
+                            d = Now.Subtract(issueTime);
                         }
                         else
                         {
                             try
                             {
                                 returnTime = (DateTime)reader2["ReturnTime"];
-                                r.returnTime = returnTime.ToString("yyyy-MM-dd");
+                                r.returnTime = returnTime.ToString();
                             }
                             catch (Exception ex)
                             {
                                 returnTime = DateTime.Now;
+                                flag = 0;
                                 r.returnTime = "";
                             }
-
-                    }
-                    if (reader2["Fine"] == null) { r.fine = ""; }
-                    else { r.fine = reader2["Fine"].ToString(); }
-                    if (reader2["OverdueLength"] == null) { r.overdueTime = ""; }
-                    else {r.overdueTime = reader2["OverdueLength"].ToString();}
-
-                        r.status = reader2["Status"].ToString();
-                        if (Session["PreferredCulture"].ToString() == "zh-CN")
+                            d = returnTime.Subtract(issueTime);
+                        }
+                        int delta = d.Days - 30;
+                        if (delta < 0)
                         {
-                            if (r.status == "0") r.status = "借出";
-                            else if (r.status == "1") r.status = "已归还";
-                            else if (r.status == "2") r.status = "非正常归还";
-                            else r.status = "逾期未还";
+                            r.overdueTime = "0";
                         }
                         else
                         {
-                            if (r.status == "0") r.status = "Lending";
-                            else if (r.status == "1") r.status = "Returned";
-                            else if (r.status == "2") r.status = "Abnormal returned";
-                            else r.status = "Overdue";
+                            r.overdueTime = delta.ToString();
+                            totalOverdueDays = totalOverdueDays + delta;
                         }
-                        r.issueTime = issueTime.ToString("yyyy-MM-dd");
-                    issueRecords.Add(r);
+                        r.issueTime = issueTime.ToString();
+                        if (reader2["Fine"] is System.DBNull)
+                        {
+                            r.fine = "";
+                        }
+                        else
+                        {
+                            r.fine = reader2["Fine"].ToString();
+                        }
+                        if (flag == 1)
+                        {
+                            history.Add(r);
+                        }
+                        else
+                        {
+                            issueRecords.Add(r);
+                        }
+
+
                     }
                 }
-                Category.DataSource = issueRecords;
-                Category.DataBind();
+                int finePerDay = int.Parse(ConfigurationManager.AppSettings.Get("OverdueFinePerDay"));
+                double totalFine = totalOverdueDays * finePerDay;
+                TextBoxFine.Text = totalFine.ToString();
+                reader2.Close();
+                MySqlCommand cmd3 = new MySqlCommand(selectRevervationSql, OLMSDBConnection);
+                cmd3.Parameters.AddWithValue("?readerid", id);
+                ArrayList reversationRecords = new ArrayList();
+                MySqlDataReader reader3 = cmd3.ExecuteReader();
+                string ReversationTime = "";
+                try
+                {
+                    ReversationTime = ConfigurationManager.AppSettings.Get("OverdueReservationDuration");
+                }
+                catch
+                {
+                    ReversationTime = "";
+                }
+                double ReversationTime2 = double.Parse(ReversationTime);
+                while (reader3.Read())
+                {
+                    if (reader3.HasRows)
+                    {
+                        Record2 r = new Record2();
+                        r.barcode = (string)reader3["BookBarcode"];
+                        r.shelf = reader3.GetString("ShelfId");
+                        r.stack = reader3.GetString("StackId");
+                        r.title = reader3.GetString("Title");
+                        DateTime time = (DateTime)reader3["ReservingTime"];
+                        DateTime nowTime = DateTime.Now;
+                        TimeSpan delta = nowTime.Subtract(time);
+                        double d = (double)delta.TotalMinutes;
+                        r.time = String.Format("{0:F}", ReversationTime2 * 60 - d);
+                        reversationRecords.Add(r);
+                    }
+                }
+
+                GridView1.DataSource = issueRecords;
+                GridView1.DataBind();
+                GridView2.DataSource = reversationRecords;
+                GridView2.DataBind();
+                GridView3.DataSource = history;
+                GridView3.DataBind();
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 //exception-handler
                 Console.WriteLine(ex.Message);
@@ -341,19 +399,7 @@ public partial class Pages_ShowReaderInfo : BasePage
     {
 
     }
-   
-    public class Record
-    {
-        public string title { get; set; }
-        public string issueTime { get; set; }
-        public string returnTime { get; set; }
-        public string overdueTime { get; set; }
-        public string status { get; set; }
-        public string fine { get; set; }
-        public string Barcode { get; set; }
-    }
-
-
+ 
 
     protected void TextBoxPhone_TextChanged(object sender, EventArgs e)
     {
@@ -379,4 +425,22 @@ public partial class Pages_ShowReaderInfo : BasePage
     {
 
     }
+}
+
+public class Record
+{
+    public string title { get; set; }
+    public string issueTime { get; set; }
+    public string returnTime { get; set; }
+    public string overdueTime { get; set; }
+    public string fine { get; set; }
+}
+
+public class Record2
+{
+    public string title { get; set; }
+    public string time { get; set; }
+    public string shelf { get; set; }
+    public string stack { get; set; }
+    public string barcode { get; set; }
 }

@@ -22,6 +22,7 @@
                 <asp:GridView ID="History" runat="server" CssClass="table table-striped table-no-bordered table-hover" AutoGenerateColumns="False" style="width:100%;cellspacing:0"  DataKeyNames="NoticeId">
                     <Columns>
                         <asp:BoundField HeaderText="<%$ Resources:Resource, NoticeId %>" DataField="NoticeId" ReadOnly="true"  />
+                        <asp:BoundField HeaderText="<%$ Resources:Resource, Title %>" DataField="Title" ReadOnly="true"  />
                         <asp:BoundField HeaderText="<%$ Resources:Resource, Notice %>" DataField="Details" ReadOnly="true" />
                         <asp:BoundField HeaderText="<%$ Resources:Resource, Time %>" DataField="Timestamp" ReadOnly="true" />
                     </Columns>

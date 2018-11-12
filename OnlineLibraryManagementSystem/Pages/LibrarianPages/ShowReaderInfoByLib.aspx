@@ -25,57 +25,66 @@
                 <label><asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource, Password %>"></asp:Label></label>
                 <asp:TextBox ID="TextBoxPassword" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
+            <div class="form-group">
+                <label><asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource, Fine %>"></asp:Label></label>
+                <asp:TextBox ID="TextBoxFine" runat="server" CssClass="form-control" readonly="true"></asp:TextBox>
+            </div>
             <asp:Button ID="SubmitButton" runat="server" Text="<%$ Resources:Resource, Submit %>" CssClass="btn btn-fill btn-default" OnClick="Submit" />
             <asp:Button ID="Button" runat="server" Text="<%$ Resources:Resource, Delete %>" CssClass="btn btn-fill btn-default" OnClick="Delete" />
         </div>
     </div>
 
-    <div class="card">
-
-   <div class="content">
-    <div class="material-datatables">
-        <asp:GridView ID="Category" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-no-bordered table-hover"   style="width:100%;cellspacing:0"  >
-            <Columns>
-                <asp:TemplateField HeaderText="<%$ Resources:Resource, BookTitle %>" HeaderStyle-CssClass="text-primary">
-                    <ItemTemplate>
-                        <asp:Label ID="lblId" runat="server" Text='<%# Eval("title") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="<%$ Resources:Resource, Barcode %>" HeaderStyle-CssClass="text-primary">
-                    <ItemTemplate>
-                        <asp:Label ID="Label10" runat="server" Text='<%# Eval("Barcode") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="<%$ Resources:Resource, IssueTime %>" HeaderStyle-CssClass="text-primary">
-                    <ItemTemplate>
-                        <asp:Label ID="lblName" runat="server" Text='<%# Eval("issueTime") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="<%$ Resources:Resource, ReturnTime %>" HeaderStyle-CssClass="text-primary">
-                    <ItemTemplate>
-                        <asp:Label ID="Label6" runat="server" Text='<%# Eval("returnTime") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="<%$ Resources:Resource,  OverDueTime %>" HeaderStyle-CssClass="text-primary">
-                    <ItemTemplate>
-                        <asp:Label ID="Label7" runat="server" Text='<%# Eval("overdueTime") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="<%$ Resources:Resource, Status %>" HeaderStyle-CssClass="text-primary">
-                    <ItemTemplate>
-                        <asp:Label ID="Label8" runat="server" Text='<%# Eval("status") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="<%$ Resources:Resource,  Fine %>" HeaderStyle-CssClass="text-primary">
-                    <ItemTemplate>
-                        <asp:Label ID="Label9" runat="server" Text='<%# Eval("fine") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                
-            </Columns>
-        </asp:GridView>
-    </div>
-         </div></div>
+       <div class="card">
+                <div class="content">
+                    <h3><asp:Label ID="LabelName" runat="server" Text="" CssClass="title"></asp:Label></h3>
+                    <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                        <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li class="active">
+                                <a href="#issue" aria-controls="issue" role="tab" data-toggle="tab">
+                                    <asp:Label ID="Label6" runat="server" Text="<%$ Resources:Resource, IssueRecords %>" ></asp:Label>
+                                </a>
+                            <li>
+                            <li class="">
+                                <a href="#history" aria-controls="history" role="tab" data-toggle="tab">
+                                    <asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource, returnHistory %>" ></asp:Label>
+                                </a>
+                            <li>
+                            <li class="">
+                                <a href="#reversation" aria-controls="reversation" role="tab" data-toggle="tab">
+                                    <asp:Label ID="Label8" runat="server" Text="<%$ Resources:Resource, ReversationRecords %>" ></asp:Label>
+                                </a>
+                            <li>
+                        </ul>
+                    </div>
+                    </div>
+                    <div class="tab-content">
+                        <div id="issue" class="tab-pane active" role="tabpanel">
+                            <div class="table-responsive">
+                                <asp:GridView cssClass="table table-hover" ID="GridView1" runat="server" GridLines="None">
+                                    <HeaderStyle cssClass="text-primary"/>
+                                </asp:GridView>
+                             </div>
+                        </div>
+                        <div id="history" class="tab-pane" role="tabpanel">
+                            <div class="table-responsive">
+                                <asp:GridView cssClass="table table-hover" ID="GridView3" runat="server" GridLines="None">
+                                    <HeaderStyle cssClass="text-primary"/>
+                                </asp:GridView>
+                             </div>
+                        </div>
+                        <div id="reversation" class="tab-pane" role="tabpanel">
+                            <div class="table-responsive">
+                                <asp:GridView cssClass="table table-hover" ID="GridView2" runat="server" GridLines="None">
+                                    <HeaderStyle cssClass="text-primary"/>
+                                </asp:GridView>
+                             </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                </div>
 
     <script src="../../assets/vendors/DataTables/jQuery-1.12.4/jquery-1.12.4.min.js"></script>
     <script type="text/javascript">

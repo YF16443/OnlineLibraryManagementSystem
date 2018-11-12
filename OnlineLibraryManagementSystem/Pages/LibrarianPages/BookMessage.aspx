@@ -221,6 +221,6 @@
             window.print();
             var result="<%=deletebind() %>";
            
-        }    
+        }      
 </script>
 </asp:Content>

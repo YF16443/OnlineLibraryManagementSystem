@@ -553,7 +553,7 @@
     <value>Income Report &amp; 收入报表</value>
   </data>
   <data name="Amount" xml:space="preserve">
-    <value>Amount &amp; 金额</value>
+    <value>Amount &amp; 数量</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>Time &amp; 时间</value>
@@ -826,5 +826,20 @@
   </data>
   <data name="returnHistory" xml:space="preserve">
     <value>Return History &amp; 归还记录</value>
+  </data>
+  <data name="Numberofborrowables" xml:space="preserve">
+    <value>Copies can be issued &amp; 可借阅数量</value>
+    <comment>可借阅</comment>
+  </data>
+  <data name="Numberofcollections" xml:space="preserve">
+    <value>Copies &amp; 馆藏数量</value>
+    <comment>馆藏</comment>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Summary &amp; 简介</value>
+    <comment>简介</comment>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copies &amp; 馆藏副本</value>
   </data>
 </root>

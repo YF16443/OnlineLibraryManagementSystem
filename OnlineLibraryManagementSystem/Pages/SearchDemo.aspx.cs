@@ -14,7 +14,7 @@ public partial class Pages_SearchDemo : BasePage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
     }
 
     protected void Page_LoadComplete(object sender, EventArgs e)
@@ -86,7 +86,10 @@ public partial class Pages_SearchDemo : BasePage
             DataTable searchResult = resultSet.Tables[0];
             gvBookResult.DataSource = searchResult;
             gvBookResult.DataBind();
-            gvBookResult.HeaderRow.TableSection = TableRowSection.TableHeader;
+            if (gvBookResult.HeaderRow != null)
+            {
+                gvBookResult.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
         else
@@ -120,6 +123,10 @@ public partial class Pages_SearchDemo : BasePage
             }
             gvPeriodicalResult.DataSource = searchResult;
             gvPeriodicalResult.DataBind();
+            if (gvPeriodicalResult.HeaderRow != null)
+            {
+                gvPeriodicalResult.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
 
@@ -154,7 +161,7 @@ public partial class Pages_SearchDemo : BasePage
     }
     public void myshow()
     {
-     
+
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         var OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
 
@@ -171,12 +178,18 @@ public partial class Pages_SearchDemo : BasePage
 
         DataTable dtResult = new DataTable();
         dtResult = search1Result.Copy();
-        String [] notices= { "No announcement", "No announcement", "No announcement", "", "" };
+        String[] notices = { "No announcement", "No announcement", "No announcement", "", "" };
+        String[] titles = { "", "", "", "", "" };
         int i = 0;
+        int j = 0;
         foreach (DataRow dr in dtResult.Rows)
         {
-            notices[i++] = dr["Details"].ToString();
+            titles[i++] = dr["Title"].ToString();
+            notices[j++] = dr["Details"].ToString();
         }
+        title1.Text = titles[0].ToString();
+        title2.Text = titles[1].ToString();
+        title3.Text = titles[2].ToString();
         notice1.Text = notices[0].ToString();
         notice2.Text = notices[1].ToString();
         notice3.Text = notices[2].ToString();
@@ -185,6 +198,225 @@ public partial class Pages_SearchDemo : BasePage
 
     protected void tbSearch_TextChanged1(object sender, EventArgs e)
     {
+
+    }
+
+    protected void gvBookResult_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            string bookId = gvBookResult.DataKeys[e.Row.RowIndex].Value.ToString();
+            GridView gvCopy = e.Row.FindControl("gvCopy") as GridView;
+            Label copy = e.Row.FindControl("copy") as Label;
+            Label copy0 = e.Row.FindControl("copy0") as Label;
+            string num = "";
+            string num0 = "";
+
+            string book_allnum = "select count(*) as num from BookBarcodes where BookId=" + bookId + " limit 0,2";
+            string book_num0 = "select count(*) as num from BookBarcodes where BookId=" + bookId + " and Status=0";
+            string sqlstr = "select BookBarcode,BookId,ShelfId,Status from BookBarcodes where BookId =" + bookId;
+            string strCon = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+            MySqlConnection sqlcon = new MySqlConnection(strCon);
+            sqlcon.Open();
+            MySqlCommand cmd_num = new MySqlCommand(book_allnum, sqlcon);
+            MySqlDataReader reader = cmd_num.ExecuteReader();
+            while(reader.Read())
+            {
+                if(reader.HasRows)
+                {
+                    num = reader["num"].ToString();
+                }
+            }
+            reader.Close();
+            cmd_num.CommandText = book_num0;
+            reader = cmd_num.ExecuteReader();
+            while (reader.Read())
+            {
+                if (reader.HasRows)
+                {
+                    num0 = reader["num"].ToString();
+                }
+            }
+            reader.Close();
+
+            copy.Text = Resources.Resource.Numberofcollections + ":" + num;
+            copy0.Text = Resources.Resource.Numberofborrowables + ":" + num0;
+
+            MySqlDataAdapter myda = new MySqlDataAdapter(sqlstr, sqlcon);
+            DataSet myds = new DataSet();     
+            myda.Fill(myds, "BookBarcodes");
+            DataTable searchResult = myds.Tables[0];
+            searchResult.Columns.Add("newStatus");
+            searchResult.Columns.Add("Position");
+            foreach (DataRow row in searchResult.Rows)
+            {
+                string status = row["Status"].ToString();
+                if (Session["PreferredCulture"].ToString() == "zh-CN")
+                {
+                    if (status == "0")
+                        row["newStatus"] = "在馆无预约";
+                    if (status == "1")
+                        row["newStatus"] = "已借出";
+                    if (status == "2")
+                        row["newStatus"] = "已预约";
+                }
+                else
+                {
+                    if (status == "0")
+                        row["newStatus"] = "No Reservation";
+                    if (status == "1")
+                        row["newStatus"] = "On Loan";
+                    if (status == "2")
+                        row["newStatus"] = "Aleardy Reserved";
+                }
+                string selectstackid = "select StackId from Shelves where ShelfId='" + row["ShelfId"].ToString() + "';";
+                MySqlCommand cmdselectstackid = new MySqlCommand(selectstackid, sqlcon);
+                MySqlDataReader readerstackid = cmdselectstackid.ExecuteReader();
+                if (readerstackid.Read())
+                {
+                    row["Position"] = row["ShelfId"] + "," + readerstackid["StackId"].ToString();
+                }
+                readerstackid.Close();
+            }
+            gvCopy.DataSource = searchResult;
+            gvCopy.DataBind();
+            foreach (GridViewRow row in gvCopy.Rows)
+            {
+                Button btreserve = (Button)row.FindControl("ButtonReserve");
+                btreserve.Enabled = false;
+                if (row.Cells[2].Text == "在馆无预约" || row.Cells[2].Text == "No Reservation")
+                {
+                    btreserve.Enabled = true;
+                }
+            }
+        }
+    }
+
+    protected void gvCopy_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName.ToString().Equals("Btn_reserve"))
+        {
+            if (string.IsNullOrEmpty((string)Session["id"]))
+            {
+                //未登录时提示登录
+                Response.Write("<script type='text/javascript'>alert('" + Resources.Resource.LogInNotice + "');location.href='ReaderLogin.aspx';</script>");
+                return;
+            }
+
+            Button btn = (Button)e.CommandSource;
+            GridViewRow gvr = (GridViewRow)btn.NamingContainer;
+            GridView gv = gvr.NamingContainer as GridView;
+            int rowIndex = int.Parse(e.CommandArgument.ToString());
+            string bookBarcode = gv.DataKeys[rowIndex].Value.ToString();
+            string readerId = Session["id"].ToString();
+            string book_sql1 = "select * from BookBarcodes where BookBarcode=" + bookBarcode;
+            string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+            MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+            OLMSDBConnection.Open();
+            MySqlCommand cmd1 = new MySqlCommand(book_sql1, OLMSDBConnection);
+            MySqlDataReader bookReader = cmd1.ExecuteReader();
+            string bookId = "";
+            while (bookReader.Read())
+            {
+                if (bookReader.HasRows)
+                {
+                    bookId = bookReader["BookId"].ToString();
+                    if ((int)bookReader["Status"] != 0)
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.Reservation_Fail + "');", true);
+                        return;
+                    }
+                }
+
+            }
+            bookReader.Close();
+            string book_sql3 = "select * from BookBarcodes where BookId=" + bookId;
+            MySqlCommand cmd3 = new MySqlCommand(book_sql3, OLMSDBConnection);
+            MySqlDataReader bookReader3 = cmd3.ExecuteReader();
+            while (bookReader3.Read())
+            {
+                if (bookReader3.HasRows)
+                {
+                    if (bookReader3["ReservingReaderId"].ToString().Equals(readerId))
+                    {
+                        ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.ReservationAlready + "');", true);
+                        return;
+                    }
+                }
+            }
+            bookReader3.Close();
+
+            string reservingTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            int reservingReaderId = int.Parse(readerId);
+            string reserve_sql = "update BookBarcodes set Status=2, ReservingTime=?reservingtime,ReservingReaderId=?reservingreaderid where BookBarcode=?barcode";
+            MySqlCommand cmd2 = new MySqlCommand(reserve_sql, OLMSDBConnection);
+            cmd2.Parameters.AddWithValue("?reservingtime", reservingTime);
+            cmd2.Parameters.AddWithValue("?reservingreaderid", reservingReaderId);
+            cmd2.Parameters.AddWithValue("?barcode", bookBarcode);
+            int result = cmd2.ExecuteNonQuery();
+            if (result == 1)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.Reservation_Success + "');", true);
+                string sqlstr = "select BookBarcode,BookId,ShelfId,Status from BookBarcodes where BookId =" + bookId;
+                string strCon = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+                MySqlConnection sqlcon = new MySqlConnection(strCon);
+                MySqlDataAdapter myda = new MySqlDataAdapter(sqlstr, sqlcon);
+                DataSet myds = new DataSet();
+                sqlcon.Open();
+                myda.Fill(myds, "BookBarcodes");
+                DataTable searchResult = myds.Tables[0];
+                searchResult.Columns.Add("newStatus");
+                searchResult.Columns.Add("Position");
+                foreach (DataRow row in searchResult.Rows)
+                {
+                    string status = row["Status"].ToString();
+                    if (Session["PreferredCulture"].ToString() == "zh-CN")
+                    {
+                        if (status == "0")
+                            row["newStatus"] = "在馆无预约";
+                        if (status == "1")
+                            row["newStatus"] = "已借出";
+                        if (status == "2")
+                            row["newStatus"] = "已预约";
+                    }
+                    else
+                    {
+                        if (status == "0")
+                            row["newStatus"] = "No Reservation";
+                        if (status == "1")
+                            row["newStatus"] = "On Loan";
+                        if (status == "2")
+                            row["newStatus"] = "Aleardy Reserved";
+                    }
+                    string selectstackid = "select StackId from Shelves where ShelfId='" + row["ShelfId"].ToString() + "';";
+                    MySqlCommand cmdselectstackid = new MySqlCommand(selectstackid, sqlcon);
+                    MySqlDataReader readerstackid = cmdselectstackid.ExecuteReader();
+                    if (readerstackid.Read())
+                    {
+                        row["Position"] = row["ShelfId"] + "," + readerstackid["StackId"].ToString();
+                    }
+                    readerstackid.Close();
+                }
+                gv.DataSource = searchResult;
+                gv.DataBind();
+                foreach (GridViewRow row in gv.Rows)
+                {
+                    Button btreserve = (Button)row.FindControl("ButtonReserve");
+                    btreserve.Enabled = false;
+                    if (row.Cells[2].Text == "在馆无预约" || row.Cells[2].Text == "No Reservation")
+                    {
+                        btreserve.Enabled = true;
+                    }
+                }
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.Reservation_Fail + "');", true);
+                return;
+            }
+
+        }
+
 
     }
 }

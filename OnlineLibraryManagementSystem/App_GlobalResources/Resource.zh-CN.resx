@@ -553,7 +553,7 @@
     <value>时间</value>
   </data>
   <data name="Amount" xml:space="preserve">
-    <value>金额</value>
+    <value>数量</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>复位</value>
@@ -826,5 +826,20 @@
   </data>
   <data name="returnHistory" xml:space="preserve">
     <value>归还记录</value>
+  </data>
+  <data name="Numberofborrowables" xml:space="preserve">
+    <value>可借阅数量</value>
+    <comment>借阅</comment>
+  </data>
+  <data name="Numberofcollections" xml:space="preserve">
+    <value>馆藏数量</value>
+    <comment>馆藏</comment>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>简介</value>
+    <comment>简介</comment>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>馆藏副本</value>
   </data>
 </root>

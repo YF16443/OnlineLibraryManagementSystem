@@ -29,33 +29,48 @@ ul {
     }
 
     .first a {
-        top: 80px;
-        left: 39%;
-        margin-left: -165px;
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-size: 50px;
+        top: 50px;
+        left: 50%;
+        width: 400px;
+        text-align: center;
+        margin-left: -200px;
+        word-break: break-all;
     }
 
     .first div {
         font-family: 'Open Sans Condensed', sans-serif;
-        font-size: 40px;
-        bottom: 200px;
+        font-size: 35px;
+        top:150px;
         left: 50%;
-        width: 320px;
+        width: 400px;
         text-align: center;
-        margin-left: -160px;
+        margin-left: -200px;
         word-break: break-all;
     }
 
 .second {
     background: url("../images/5.jpg") center no-repeat;
 }
+    .second a {
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-size: 50px;
+        top: 50px;
+        left: 50%;
+        width: 400px;
+        text-align: center;
+        margin-left: -200px;
+        word-break: break-all;
+    }
     .second div {
         font-family: 'Open Sans Condensed', sans-serif;
-        font-size: 40px;
-        bottom: 200px;
+        font-size: 35px;
+        top: 150px;
         left: 50%;
-        width: 320px;
+        width: 400px;
         text-align: center;
-        margin-left: -160px;
+        margin-left: -200px;
         word-break: break-all;
     }   
     .second img {
@@ -66,14 +81,24 @@ ul {
 .third {
     background: url("../images/5.jpg") center no-repeat;
 }
+    .third a {
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-size: 50px;
+        top: 50px;
+        left: 50%;
+        width: 400px;
+        text-align: center;
+        margin-left: -200px;
+        word-break: break-all;
+    }
     .third div {
         font-family: 'Open Sans Condensed', sans-serif;
-        font-size: 40px;
-        bottom: 200px;
+        font-size: 35px;
+        top: 150px;
         left: 50%;
-        width: 320px;
+        width: 400px;
         text-align: center;
-        margin-left: -160px;
+        margin-left: -200px;
         word-break: break-all;
     } 
     .third img {
