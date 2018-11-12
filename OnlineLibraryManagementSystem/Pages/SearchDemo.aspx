@@ -127,6 +127,9 @@
     <div class="container" ID="notice" runat="server">
 		<ul class="mySlideshow">
 			<li class="first">
+                <a href="LibrarianPages/SearchNotice.aspx" class="animated fadeInLeft">
+                    <asp:Label ID="title1" runat="server" Text="No title"  />
+                </a>
 				<div class="animated fadeInRight">
                     <asp:label id="notice1" runat="server" text="No announcement!"></asp:label>
                    
@@ -134,11 +137,17 @@
 
 			</li>
 			<li class="second">
+                <a href="LibrarianPages/SearchNotice.aspx" class="animated fadeInRight">
+                    <asp:Label ID="title2" runat="server" Text="No title"  />
+                </a>
 				<div class="animated fadeInLeft">
                     <asp:label id="notice2" runat="server" text="No announcement!"></asp:label>
 				</div>
 			</li>
 			<li class="third">
+                <a href="LibrarianPages/SearchNotice.aspx" class="animated fadeInLeft">
+                    <asp:Label ID="title3" runat="server" Text="No title"  />
+                </a>
 				<div class="animated fadeInRight">
                     <asp:label id="notice3" runat="server" text="No announcement!"></asp:label>
 				</div>
@@ -193,6 +202,4 @@
 </script>
 
 </asp:Content>
-
-
 

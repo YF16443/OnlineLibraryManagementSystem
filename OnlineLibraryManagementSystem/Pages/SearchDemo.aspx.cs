@@ -14,7 +14,7 @@ public partial class Pages_SearchDemo : BasePage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
     }
 
     protected void Page_LoadComplete(object sender, EventArgs e)
@@ -90,7 +90,7 @@ public partial class Pages_SearchDemo : BasePage
             {
                 gvBookResult.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
-         }
+        }
 
         else
         {
@@ -161,7 +161,7 @@ public partial class Pages_SearchDemo : BasePage
     }
     public void myshow()
     {
-     
+
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         var OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
 
@@ -178,12 +178,18 @@ public partial class Pages_SearchDemo : BasePage
 
         DataTable dtResult = new DataTable();
         dtResult = search1Result.Copy();
-        String [] notices= { "No announcement", "No announcement", "No announcement", "", "" };
+        String[] notices = { "No announcement", "No announcement", "No announcement", "", "" };
+        String[] titles = { "", "", "", "", "" };
         int i = 0;
+        int j = 0;
         foreach (DataRow dr in dtResult.Rows)
         {
-            notices[i++] = dr["Details"].ToString();
+            titles[i++] = dr["Title"].ToString();
+            notices[j++] = dr["Details"].ToString();
         }
+        title1.Text = titles[0].ToString();
+        title2.Text = titles[1].ToString();
+        title3.Text = titles[2].ToString();
         notice1.Text = notices[0].ToString();
         notice2.Text = notices[1].ToString();
         notice3.Text = notices[2].ToString();
@@ -287,11 +293,11 @@ public partial class Pages_SearchDemo : BasePage
             string book_sql3 = "select * from BookBarcodes where BookId=" + bookId;
             MySqlCommand cmd3 = new MySqlCommand(book_sql3, OLMSDBConnection);
             MySqlDataReader bookReader3 = cmd3.ExecuteReader();
-            while(bookReader3.Read())
+            while (bookReader3.Read())
             {
-                if(bookReader3.HasRows)
+                if (bookReader3.HasRows)
                 {
-                    if (bookReader3["ReservingReaderId"].ToString().Equals(readerId)) 
+                    if (bookReader3["ReservingReaderId"].ToString().Equals(readerId))
                     {
                         ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.ReservationAlready + "');", true);
                         return;
@@ -361,7 +367,7 @@ public partial class Pages_SearchDemo : BasePage
             }
 
         }
-            
-        
+
+
     }
 }
