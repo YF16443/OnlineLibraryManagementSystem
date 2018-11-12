@@ -54,7 +54,7 @@
             </table>
         </div>
                 <div class="table-responsive">
-                    <asp:GridView ID="gvBookResult" runat="server" AutoGenerateColumns="False" Enabled="False" CssClass="table table-striped" GridLines="None">
+                    <asp:GridView ID="gvBookResult" runat="server" AutoGenerateColumns="False" Enabled="False" CssClass="table table-striped" GridLines="None" DataKeyNames="BookId" OnRowDataBound="gvBookResult_RowDataBound">
                         <Columns>
                             <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True" HeaderStyle-CssClass="text-center">
                                 <ItemStyle Height="84px" HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" CssClass="resultImg" />
@@ -72,17 +72,21 @@
                                         <td colspan="100%">
                                             <div class="accordion" id="simple-accordion">
                                                 <div class="accordion-header">
-                                                    copies
+                                                   copies
                                                 </div>
                                                 <div class="accordion-content" data-wrapper="true" style="height: 0px; position: relative; overflow: hidden;" aria-expanded="false">
                                                     <div>
-                                                        <asp:GridView ID="gvCopy" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered">
+                                                        <asp:GridView ID="gvCopy" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered" OnRowCommand="gvCopy_RowCommand" DataKeyNames="BookBarcode">
                                                             <Columns>                         
                                                                 <asp:BoundField DataField="BookBarcode" HeaderText="BookBarcode" HeaderStyle-CssClass="text-primary"/>
-                                                                <asp:BoundField DataField="BookId" HeaderText="<%$ Resources:Resource,BookId %>" HeaderStyle-CssClass="text-primary"/>
                                                                 <asp:BoundField DataField="Position" HeaderText="<%$ Resources:Resource,Position %>" HeaderStyle-CssClass="text-primary"/>
-                                                                <asp:BoundField DataField="newStatus" HeaderText="<%$ Resources:Resource,Status %>" HeaderStyle-CssClass="text-primary"/>
-                                                            </Columns>
+                                                                <asp:BoundField DataField="newStatus" HeaderText="<%$ Resources:Resource,Status %>" HeaderStyle-CssClass="text-primary" />
+                                                                <asp:TemplateField ItemStyle-CssClass="text-center" ItemStyle-Width="100px">
+                                                                    <ItemTemplate>
+                                                                        <asp:Button Text="<%$ Resources:Resource, Reserve %>" CssClass="btn btn-info" CommandName="Btn_reserve" runat="server" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'/>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                </Columns>
                                                         </asp:GridView>
 		                                            </div>
                                                 </div>
@@ -91,6 +95,7 @@
                                     </tr>
                                 </ItemTemplate>
                             </asp:TemplateField>
+
                         </Columns>
                     </asp:GridView>
                     <br />
