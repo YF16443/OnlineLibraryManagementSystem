@@ -86,8 +86,11 @@ public partial class Pages_SearchDemo : BasePage
             DataTable searchResult = resultSet.Tables[0];
             gvBookResult.DataSource = searchResult;
             gvBookResult.DataBind();
-            gvBookResult.HeaderRow.TableSection = TableRowSection.TableHeader;
-        }
+            if (gvBookResult.HeaderRow != null)
+            {
+                gvBookResult.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+         }
 
         else
         {
@@ -120,6 +123,10 @@ public partial class Pages_SearchDemo : BasePage
             }
             gvPeriodicalResult.DataSource = searchResult;
             gvPeriodicalResult.DataBind();
+            if (gvPeriodicalResult.HeaderRow != null)
+            {
+                gvPeriodicalResult.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
 
 

@@ -17,7 +17,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
     protected void Page_Load(object sender, EventArgs e)
     {
         //回车支持搜索
-        //this.Page.Form.DefaultButton= ButtonSearch.ClientID.Replace('_', '$');
+        //this.Page.Form.DefaultButton= ButtonSearch.ClientID.Replace('_', '$');   
         if (!Page.IsPostBack)
         {
             string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
@@ -247,7 +247,9 @@ public partial class Pages_Addbooks_ISBN : BasePage
                     DataListbookbarcode.DataSource = dt_diy;
                     DataListbookbarcode.DataBind();
                     Response.Write("<script>alert('This Book Is Exist，Add " + quantity + " Books!\\nThe Amount Is Updated to " + newamount.ToString() + "!')</script>");
-                    return;
+                //ltScript.Text = "<script type=\"text/javascript\">doPrint();</script>";
+                // ClientScript.RegisterStartupScript(ClientScript.GetType(), "myscript", "<script>doPrint();</script>");
+                return;
                 }
             }
             else
@@ -301,7 +303,9 @@ public partial class Pages_Addbooks_ISBN : BasePage
                     DataListbookbarcode.DataSource = dt;
                     DataListbookbarcode.DataBind();
                     Response.Write("<script>alert('Add Book Successfully!\\nThe Amount Is " + amount + "!')</script>");
-                    return;
+                //ltScript.Text = "<script type=\"text/javascript\">doPrint();</script>";
+                //ClientScript.RegisterStartupScript(ClientScript.GetType(), "myscript", "<script>doPrint();</script>");
+                return;
                 }
             }
         //}
@@ -479,8 +483,9 @@ public partial class Pages_Addbooks_ISBN : BasePage
                     //绑定bookbarcode
                     DataListbookbarcode.Enabled = true;
                     DataListbookbarcode.DataSource = dt_exist;
-                    DataListbookbarcode.DataBind();
-                    Response.Write("<script>alert('This Book Is Exist，Add " + quantity + " Books!\\nThe Amount Is Updated to " + newamount.ToString() + "!')</script>");
+                    DataListbookbarcode.DataBind();                   
+                   Response.Write("<script>alert('This Book Is Exist，Add " + quantity + " Books!\\nThe Amount Is Updated to " + newamount.ToString() + "!')</script>");
+                   // this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "", "<script language='javascript'>doPrint();</script>", false);
                     return;
                 }
             }
@@ -670,6 +675,8 @@ public partial class Pages_Addbooks_ISBN : BasePage
                 DataListbookbarcode.DataSource = dt;
                 DataListbookbarcode.DataBind();
                 Response.Write("<script>alert('Add Book Successfully!\\nThe Amount Is " + amount + "!')</script>");
+                //ltScript.Text = "<script type=\"text/javascript\">doPrint();</script>";
+                //ClientScript.RegisterStartupScript(ClientScript.GetType(), "myscript", "<script>doPrint();</script>");
                 return;
             }
         }
@@ -1006,4 +1013,5 @@ public partial class Pages_Addbooks_ISBN : BasePage
         DataListbookbarcode.DataBind();
         return 0;
     }
+
 }

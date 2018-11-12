@@ -553,7 +553,7 @@
     <value>时间</value>
   </data>
   <data name="Amount" xml:space="preserve">
-    <value>金额</value>
+    <value>数量</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>复位</value>
