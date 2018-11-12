@@ -831,4 +831,7 @@
   <data name="returnHistory" xml:space="preserve">
     <value>Return History</value>
   </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copies</value>
+  </data>
 </root>
