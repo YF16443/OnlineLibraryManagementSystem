@@ -843,4 +843,7 @@
     <value>Summary</value>
     <comment>简介</comment>
   </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copies</value>
+  </data>
 </root>

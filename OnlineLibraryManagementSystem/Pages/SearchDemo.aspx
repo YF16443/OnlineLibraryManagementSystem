@@ -39,7 +39,7 @@
                     <asp:TextBox ID="tbSearch" runat="server" Width="450px" CssClass="form-control"></asp:TextBox>
                 </td>
                 <td style="width:40%">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                     <asp:DropDownList ID="ddlClass" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged" CssClass="selectpicker" data-style="btn btn-primary btn-round">
                         <asp:ListItem Text="<%$ Resources:Resource,Book %>" Value="Books" Selected="True"></asp:ListItem>
                         <asp:ListItem Text="<%$ Resources:Resource,Periodical %>" Value="Periodicals"></asp:ListItem>
@@ -54,7 +54,7 @@
             </table>
         </div>
                 <div class="table-responsive">
-                    <asp:GridView ID="gvBookResult" runat="server" AutoGenerateColumns="False" Enabled="False" CssClass="table table-striped" GridLines="None">
+                    <asp:GridView ID="gvBookResult" runat="server" AutoGenerateColumns="False" Enabled="False" CssClass="table table-striped" GridLines="None" DataKeyNames="BookId" OnRowDataBound="gvBookResult_RowDataBound">
                         <Columns>
                             <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True" HeaderStyle-CssClass="text-center">
                                 <ItemStyle Height="84px" HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" CssClass="resultImg" />
@@ -72,17 +72,21 @@
                                         <td colspan="100%">
                                             <div class="accordion" id="simple-accordion">
                                                 <div class="accordion-header">
-                                                    copies
+                                                    <label><asp:Literal runat="server" Text="<%$ Resources:Resource, Copy %>"></asp:Literal></label>
                                                 </div>
                                                 <div class="accordion-content" data-wrapper="true" style="height: 0px; position: relative; overflow: hidden;" aria-expanded="false">
                                                     <div>
-                                                        <asp:GridView ID="gvCopy" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered">
+                                                        <asp:GridView ID="gvCopy" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered" OnRowCommand="gvCopy_RowCommand" DataKeyNames="BookBarcode">
                                                             <Columns>                         
-                                                                <asp:BoundField DataField="BookBarcode" HeaderText="BookBarcode" HeaderStyle-CssClass="text-primary"/>
-                                                                <asp:BoundField DataField="BookId" HeaderText="<%$ Resources:Resource,BookId %>" HeaderStyle-CssClass="text-primary"/>
+                                                                <asp:BoundField DataField="BookBarcode" HeaderText="<%$ Resources:Resource,Barcode %>" HeaderStyle-CssClass="text-primary"/>
                                                                 <asp:BoundField DataField="Position" HeaderText="<%$ Resources:Resource,Position %>" HeaderStyle-CssClass="text-primary"/>
-                                                                <asp:BoundField DataField="newStatus" HeaderText="<%$ Resources:Resource,Status %>" HeaderStyle-CssClass="text-primary"/>
-                                                            </Columns>
+                                                                <asp:BoundField DataField="newStatus" HeaderText="<%$ Resources:Resource,Status %>" HeaderStyle-CssClass="text-primary" />
+                                                                <asp:TemplateField ItemStyle-CssClass="text-center" ItemStyle-Width="100px">
+                                                                    <ItemTemplate>
+                                                                        <asp:Button Text="<%$ Resources:Resource, Reserve %>" CssClass="btn btn-info" CommandName="Btn_reserve" runat="server" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'/>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                </Columns>
                                                         </asp:GridView>
 		                                            </div>
                                                 </div>
@@ -91,28 +95,24 @@
                                     </tr>
                                 </ItemTemplate>
                             </asp:TemplateField>
+
                         </Columns>
                     </asp:GridView>
                     <br />
-                    <asp:GridView ID="gvPeriodicalResult" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False"  Enabled="False" CssClass="table table-no-bordered">
+                    <asp:GridView ID="gvPeriodicalResult" runat="server" AutoGenerateColumns="False" Enabled="False" CssClass="table table-striped" GridLines="None">
                         <Columns>
-                            <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True">
+                            <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True" HeaderStyle-CssClass="text-center">
                                 <ItemStyle Height="84px" HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" CssClass="resultImg" />
                             </asp:ImageField>
-                             <asp:BoundField HeaderText="<%$ Resources:Resource, Title %>"  DataField="Title" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                             <asp:BoundField HeaderText="<%$ Resources:Resource, Title %>"  DataField="Title" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:BoundField>
-                            <asp:BoundField HeaderText="<%$ Resources:Resource, ISSN %>" DataField="ISSN" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, ISSN %>" DataField="ISSN" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:BoundField>
-                            <asp:BoundField HeaderText="<%$ Resources:Resource, Country %>"  DataField="Country" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, Country %>"  DataField="Country" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:BoundField>
-                            <asp:BoundField HeaderText="<%$ Resources:Resource, Type %>"  DataField="NewType" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, Type %>"  DataField="NewType" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:BoundField>
-                            <asp:BoundField HeaderText="<%$ Resources:Resource, Price %>" DataField="Price" ReadOnly="True">
-                            <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                            <asp:BoundField HeaderText="<%$ Resources:Resource, Price %>" DataField="Price" ReadOnly="True" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             </asp:BoundField>
                         </Columns>
                     </asp:GridView>
@@ -122,6 +122,9 @@
     <div class="container" ID="notice" runat="server">
 		<ul class="mySlideshow">
 			<li class="first">
+                <a href="LibrarianPages/SearchNotice.aspx" class="animated fadeInLeft">
+                    <asp:Label ID="title1" runat="server" Text="No title"  />
+                </a>
 				<div class="animated fadeInRight">
                     <asp:label id="notice1" runat="server" text="No announcement!"></asp:label>
                    
@@ -129,11 +132,17 @@
 
 			</li>
 			<li class="second">
+                <a href="LibrarianPages/SearchNotice.aspx" class="animated fadeInRight">
+                    <asp:Label ID="title2" runat="server" Text="No title"  />
+                </a>
 				<div class="animated fadeInLeft">
                     <asp:label id="notice2" runat="server" text="No announcement!"></asp:label>
 				</div>
 			</li>
 			<li class="third">
+                <a href="LibrarianPages/SearchNotice.aspx" class="animated fadeInLeft">
+                    <asp:Label ID="title3" runat="server" Text="No title"  />
+                </a>
 				<div class="animated fadeInRight">
                     <asp:label id="notice3" runat="server" text="No announcement!"></asp:label>
 				</div>
@@ -188,6 +197,4 @@
 </script>
 
 </asp:Content>
-
-
 

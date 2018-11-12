@@ -27,6 +27,14 @@
                 <asp:GridView ID="History" runat="server" CssClass="table table-striped table-no-bordered table-hover" AutoGenerateColumns="False" style="width:100%;cellspacing:0" OnRowDeleting="GridView1_RowDeleting" DataKeyNames="NoticeId" OnPageIndexChanging="History_PageIndexChanging" OnRowCancelingEdit="History_RowCancelingEdit" OnRowDataBound="History_RowDataBound" OnRowEditing="History_RowEditing" OnRowUpdating="History_RowUpdating">
                     <Columns>
                         <asp:BoundField HeaderText="<%$ Resources:Resource, NoticeId %>" DataField="NoticeId" ReadOnly="true"  />
+                        <asp:TemplateField HeaderText="<%$ Resources:Resource, Title %>" HeaderStyle-CssClass="text-primary">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="ttName" runat="server" Text='<%# Eval("Title") %>' MaxLength="150"></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="llName" runat="server" Text='<%# Eval("Title") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="<%$ Resources:Resource, Notice %>" HeaderStyle-CssClass="text-primary">
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtName" runat="server" Text='<%# Eval("Details") %>' MaxLength="150"></asp:TextBox>

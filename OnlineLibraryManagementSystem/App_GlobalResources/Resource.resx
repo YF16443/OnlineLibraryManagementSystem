@@ -839,4 +839,7 @@
     <value>Summary &amp; 简介</value>
     <comment>简介</comment>
   </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copies &amp; 馆藏副本</value>
+  </data>
 </root>

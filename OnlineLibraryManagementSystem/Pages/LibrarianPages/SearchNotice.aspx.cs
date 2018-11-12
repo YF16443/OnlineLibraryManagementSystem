@@ -247,15 +247,18 @@ public partial class Pages_LibrarianPages_SearchNotice : BasePage
     {
         string NoticeId = History.DataKeys[e.RowIndex].Value.ToString();
         string name = ((TextBox)History.Rows[e.RowIndex].FindControl("txtName")).Text;
+        string name1 = ((TextBox)History.Rows[e.RowIndex].FindControl("ttName")).Text;
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
         conn.Open();
         MySqlCommand cmd = conn.CreateCommand();
-        cmd.CommandText = "update Notices set Details=@n where NoticeId=@i";
+        cmd.CommandText = "update Notices set Details=@n , Title=@t where NoticeId=@i";
         MySqlParameter param;
         param = new MySqlParameter("@n", name);
         cmd.Parameters.Add(param);
         param = new MySqlParameter("@i", NoticeId);
+        cmd.Parameters.Add(param);
+        param = new MySqlParameter("@t", name1);
         cmd.Parameters.Add(param);
         int result = cmd.ExecuteNonQuery();
         if (result == 1)
