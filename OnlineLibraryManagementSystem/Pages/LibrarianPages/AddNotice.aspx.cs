@@ -16,19 +16,22 @@ public partial class Pages_LibrarianPages_AddNotice : BasePage
 
     protected void Add_Click(object sender, EventArgs e)
     {
-        if (!rfvDetails.IsValid)
+        if (!rfvDetails.IsValid || !rfvTitle.IsValid) 
         {
             return;
         }
         string details = txtdetails.Text;
+        string title = txttitle.Text;
 
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
         conn.Open();
         MySqlCommand cmd = conn.CreateCommand();
         MySqlParameter param;
-        cmd.CommandText = "insert into Notices(Details) values(@d);";
+        cmd.CommandText = "insert into Notices(Details,Title) values(@d,@t);";
         param = new MySqlParameter("@d", details);
+        cmd.Parameters.Add(param);
+        param = new MySqlParameter("@t", title);
         cmd.Parameters.Add(param);
         int result = cmd.ExecuteNonQuery();
         if (result == 1)
