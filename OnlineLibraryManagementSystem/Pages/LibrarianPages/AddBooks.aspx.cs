@@ -14,6 +14,7 @@ using System.IO;
 
 public partial class Pages_Addbooks_ISBN : BasePage
 {
+    string[] barcode_product = { };
     protected void Page_Load(object sender, EventArgs e)
     {
         //回车支持搜索
