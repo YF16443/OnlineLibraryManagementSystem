@@ -207,12 +207,43 @@ public partial class Pages_SearchDemo : BasePage
         {
             string bookId = gvBookResult.DataKeys[e.Row.RowIndex].Value.ToString();
             GridView gvCopy = e.Row.FindControl("gvCopy") as GridView;
+            Label copy = e.Row.FindControl("copy") as Label;
+            Label copy0 = e.Row.FindControl("copy0") as Label;
+            string num = "";
+            string num0 = "";
+
+            string book_allnum = "select count(*) as num from BookBarcodes where BookId=" + bookId + " limit 0,2";
+            string book_num0 = "select count(*) as num from BookBarcodes where BookId=" + bookId + " and Status=0";
             string sqlstr = "select BookBarcode,BookId,ShelfId,Status from BookBarcodes where BookId =" + bookId;
             string strCon = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
             MySqlConnection sqlcon = new MySqlConnection(strCon);
-            MySqlDataAdapter myda = new MySqlDataAdapter(sqlstr, sqlcon);
-            DataSet myds = new DataSet();
             sqlcon.Open();
+            MySqlCommand cmd_num = new MySqlCommand(book_allnum, sqlcon);
+            MySqlDataReader reader = cmd_num.ExecuteReader();
+            while(reader.Read())
+            {
+                if(reader.HasRows)
+                {
+                    num = reader["num"].ToString();
+                }
+            }
+            reader.Close();
+            cmd_num.CommandText = book_num0;
+            reader = cmd_num.ExecuteReader();
+            while (reader.Read())
+            {
+                if (reader.HasRows)
+                {
+                    num0 = reader["num"].ToString();
+                }
+            }
+            reader.Close();
+
+            copy.Text = Resources.Resource.Numberofcollections + ":" + num;
+            copy0.Text = Resources.Resource.Numberofborrowables + ":" + num0;
+
+            MySqlDataAdapter myda = new MySqlDataAdapter(sqlstr, sqlcon);
+            DataSet myds = new DataSet();     
             myda.Fill(myds, "BookBarcodes");
             DataTable searchResult = myds.Tables[0];
             searchResult.Columns.Add("newStatus");

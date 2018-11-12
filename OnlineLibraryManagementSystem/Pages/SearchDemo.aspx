@@ -74,7 +74,8 @@
                             <td colspan="100%">
                                 <div class="accordion" id="simple-accordion">
                                     <div class="accordion-header">
-                                        <label><asp:Literal runat="server" Text="<%$ Resources:Resource, Copy %>"></asp:Literal></label>
+                                        <label><asp:Label ID="copy" runat="server" ></asp:Label></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label><asp:Label ID="copy0" runat="server" ></asp:Label></label>
                                     </div>
                                     <div class="accordion-content" data-wrapper="true" style="height: 0px; position: relative; overflow: hidden;" aria-expanded="false">
                                         <div>

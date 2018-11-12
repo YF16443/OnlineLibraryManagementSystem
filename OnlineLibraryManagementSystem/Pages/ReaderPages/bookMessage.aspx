@@ -163,6 +163,10 @@
             "lengthChange": false,
             "order": [[0, 'asc']],
             "bStateSave": true,
+             columnDefs: [{
+                'targets': [4],
+                'orderable': false
+            }]
         });
 </script>
 </asp:Content>
