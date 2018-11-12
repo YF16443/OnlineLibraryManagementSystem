@@ -249,6 +249,15 @@ public partial class Pages_SearchDemo : BasePage
             }
             gvCopy.DataSource = searchResult;
             gvCopy.DataBind();
+            foreach (GridViewRow row in gvCopy.Rows)
+            {
+                Button btreserve = (Button)row.FindControl("ButtonReserve");
+                btreserve.Visible = false;
+                if (row.Cells[2].Text == "在馆无预约" || row.Cells[2].Text == "No Reservation")
+                {
+                    btreserve.Visible = true;
+                }
+            }
         }
     }
 
@@ -359,6 +368,15 @@ public partial class Pages_SearchDemo : BasePage
                 }
                 gv.DataSource = searchResult;
                 gv.DataBind();
+                foreach (GridViewRow row in gv.Rows)
+                {
+                    Button btreserve = (Button)row.FindControl("ButtonReserve");
+                    btreserve.Visible = false;
+                    if (row.Cells[2].Text == "在馆无预约" || row.Cells[2].Text == "No Reservation")
+                    {
+                        btreserve.Visible = true;
+                    }
+                }
             }
             else
             {

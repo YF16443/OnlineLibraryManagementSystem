@@ -141,7 +141,7 @@
                             <asp:BoundField DataField="newStatus" HeaderText="<%$ Resources:Resource,Status %>" HeaderStyle-CssClass="text-primary"/>
                         <asp:TemplateField HeaderText="<%$ Resources:Resource, Reserve %>">
                        <ItemTemplate>
-                          <asp:Button ID="ButtonReserve" runat="server" Text="<%$ Resources:Resource, Reserve %>"  OnClick="reserve_Click" Cssclass="btn btn-fill btn-default" />                           
+                          <asp:Button ID="ButtonReserve" runat="server" Text="<%$ Resources:Resource, Reserve %>"  OnClick="reserve_Click" Cssclass="btn btn-info" />                           
                        </ItemTemplate>
                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     </asp:TemplateField>

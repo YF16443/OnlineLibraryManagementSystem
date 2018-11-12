@@ -83,7 +83,7 @@
                                                                 <asp:BoundField DataField="newStatus" HeaderText="<%$ Resources:Resource,Status %>" HeaderStyle-CssClass="text-primary" />
                                                                 <asp:TemplateField ItemStyle-CssClass="text-center" ItemStyle-Width="100px">
                                                                     <ItemTemplate>
-                                                                        <asp:Button Text="<%$ Resources:Resource, Reserve %>" CssClass="btn btn-info" CommandName="Btn_reserve" runat="server" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'/>
+                                                                        <asp:Button   ID="ButtonReserve" Text="<%$ Resources:Resource, Reserve %>" CssClass="btn btn-info" CommandName="Btn_reserve" runat="server" CommandArgument='<%# DataBinder.Eval(Container, "RowIndex") %>'/>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 </Columns>
