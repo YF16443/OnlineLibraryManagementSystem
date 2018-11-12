@@ -252,10 +252,10 @@ public partial class Pages_SearchDemo : BasePage
             foreach (GridViewRow row in gvCopy.Rows)
             {
                 Button btreserve = (Button)row.FindControl("ButtonReserve");
-                btreserve.Visible = false;
+                btreserve.Enabled = false;
                 if (row.Cells[2].Text == "在馆无预约" || row.Cells[2].Text == "No Reservation")
                 {
-                    btreserve.Visible = true;
+                    btreserve.Enabled = true;
                 }
             }
         }
@@ -371,10 +371,10 @@ public partial class Pages_SearchDemo : BasePage
                 foreach (GridViewRow row in gv.Rows)
                 {
                     Button btreserve = (Button)row.FindControl("ButtonReserve");
-                    btreserve.Visible = false;
+                    btreserve.Enabled = false;
                     if (row.Cells[2].Text == "在馆无预约" || row.Cells[2].Text == "No Reservation")
                     {
-                        btreserve.Visible = true;
+                        btreserve.Enabled = true;
                     }
                 }
             }
