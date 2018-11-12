@@ -827,4 +827,7 @@
   <data name="returnHistory" xml:space="preserve">
     <value>Return History &amp; 归还记录</value>
   </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copies &amp; 馆藏副本</value>
+  </data>
 </root>
