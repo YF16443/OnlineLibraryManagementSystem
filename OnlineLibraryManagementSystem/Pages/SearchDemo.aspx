@@ -56,7 +56,7 @@
         </div>
     </asp:Panel>
     <div class="table-responsive">
-        <asp:GridView ID="gvBookResult" runat="server" AutoGenerateColumns="False" Enabled="False" CssClass="table table-striped" GridLines="None" DataKeyNames="BookId" OnRowDataBound="gvBookResult_RowDataBound">
+        <asp:GridView ID="gvBookResult" runat="server" AutoGenerateColumns="False" Enabled="False" CssClass="table table-striped" GridLines="None" DataKeyNames="BookId" OnRowDataBound="gvBookResult_RowDataBound" Width="65%" HorizontalAlign="Center">
             <Columns>
                 <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True" HeaderStyle-CssClass="text-center">
                     <ItemStyle Height="84px" HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" CssClass="resultImg" />
