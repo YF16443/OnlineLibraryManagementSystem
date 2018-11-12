@@ -827,4 +827,16 @@
   <data name="returnHistory" xml:space="preserve">
     <value>Return History &amp; 归还记录</value>
   </data>
+  <data name="Numberofborrowables" xml:space="preserve">
+    <value>Number of borrowables &amp; 可借阅数量</value>
+    <comment>可借阅</comment>
+  </data>
+  <data name="Numberofcollections" xml:space="preserve">
+    <value>Number of collections &amp; 馆藏数量</value>
+    <comment>馆藏</comment>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Summary &amp; 简介</value>
+    <comment>简介</comment>
+  </data>
 </root>

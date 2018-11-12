@@ -27,26 +27,12 @@ public partial class Pages_bookMessage : BasePage
         try
         {
             string book_id_sql = "select * from Books where BookId=" + bookId;
-            string book_num = "select * from BookBarcodes where BookId=" + bookId+" limit 0,1";
+            string book_num = "select count(*) as num from BookBarcodes where BookId=" + bookId+" limit 0,1";
             OLMSDBConnection.Open();
             MySqlCommand cmd1 = new MySqlCommand(book_id_sql, OLMSDBConnection);
             ArrayList books_list = new ArrayList();
             MySqlDataReader reader = cmd1.ExecuteReader();
             
-            //MySqlCommand cmd2 = new MySqlCommand(book_num, OLMSDBConnection);
-            //MySqlDataReader reader1 = cmd2.ExecuteReader();
-
-            //while (reader1.Read())
-            //{
-            //    if (reader1.HasRows)
-            //    {
-            //        Label14.Text = "位置：";
-            //        Label15.Text = reader1["Shelfid"].ToString();
-            //        break;
-            //    }
-            //}
-            //reader1.Close();
-
             while (reader.Read())
             {
                 if (reader.HasRows)
@@ -74,6 +60,20 @@ public partial class Pages_bookMessage : BasePage
                 }
             }
             reader.Close();
+            MySqlCommand cmd2 = new MySqlCommand(book_num, OLMSDBConnection);
+            MySqlDataReader reader1 = cmd2.ExecuteReader();
+
+            while (reader1.Read())
+            {
+                if (reader1.HasRows)
+                {
+                    //        Label14.Text = "位置：";
+                    numberofcollections.Text = reader1["num"].ToString();
+                    //        Label15.Text = reader1["Shelfid"].ToString();
+                    //        break;
+                }
+            }
+            reader1.Close();
         }
         catch (MySqlException ex)
         {
@@ -128,6 +128,9 @@ public partial class Pages_bookMessage : BasePage
         string bookId = Request["book_id"];
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         string readerId = Session["id"].ToString();
+        string barcode = "";
+        GridViewRow row = (GridViewRow)(((Button)sender).NamingContainer);
+        barcode = row.Cells[0].Text;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         try
         {
@@ -136,12 +139,12 @@ public partial class Pages_bookMessage : BasePage
             MySqlCommand cmd1 = new MySqlCommand(book_sql1, OLMSDBConnection);
             ArrayList bookList = new ArrayList();
             MySqlDataReader bookReader = cmd1.ExecuteReader();
-            Boolean bookAva = false;
-            string reserveBarcode = null;
+            //Boolean bookAva = false;
+            //string reserveBarcode = null;
             while(bookReader.Read())
             {
                 if(bookReader.HasRows)
-                {
+               {
                     //已预约
                     if (bookReader["ReservingReaderId"].ToString().Equals(readerId))
                     {
@@ -149,24 +152,24 @@ public partial class Pages_bookMessage : BasePage
                         return;
                     }
                     //有可预约图书
-                    if((int)bookReader["Status"]==0)
-                    {
-                        bookAva = true;
-                        reserveBarcode = bookReader["BookBarcode"].ToString();
-                    }
+                  //  if((int)bookReader["Status"]==0)
+                 //   {
+                //        bookAva = true;
+                //        reserveBarcode = bookReader["BookBarcode"].ToString();
+                //    }
 
                 }
 
             }
             bookReader.Close();
             //库存不足
-            if(!bookAva)
-            {
-                Response.Write("<script>alert('" + Resources.Resource.Reservation_Fail + "')</script>");
-                return;
-            }
-            else
-            {
+           // if(!bookAva)
+           // {
+              //  Response.Write("<script>alert('" + Resources.Resource.Reservation_Fail + "')</script>");
+          //      return;
+          //  }
+           // else
+           //{
                 string reservingTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 int reservingReaderId = 0;
                 reservingReaderId = int.Parse(readerId);
@@ -176,7 +179,7 @@ public partial class Pages_bookMessage : BasePage
                 MySqlCommand cmd2 = new MySqlCommand(reserve_sql, OLMSDBConnection);
                 cmd2.Parameters.AddWithValue("?reservingtime", reservingTime);
                 cmd2.Parameters.AddWithValue("?reservingreaderid", reservingReaderId);
-                cmd2.Parameters.AddWithValue("?bookbarcode", reserveBarcode);
+                cmd2.Parameters.AddWithValue("?bookbarcode", barcode);
                 int result = cmd2.ExecuteNonQuery();
                 if (result == 1)
                 {
@@ -187,7 +190,7 @@ public partial class Pages_bookMessage : BasePage
                 {
                     Response.Write("<script>alert('" + Resources.Resource.Reservation_Fail + "')</script>");
                 }
-            }
+            //}
         }
         catch(MySqlException ex)
         {
@@ -221,8 +224,18 @@ public partial class Pages_bookMessage : BasePage
     public void bind()
     {
         string bookId = Request["book_id"];
-        string sqlstr = "select BookBarcode,BookId,ShelfId,Status from BookBarcodes where BookId =" + bookId;
         sqlcon = new MySqlConnection(strCon);
+        string sqlborrow = "select count(*) as num from BookBarcodes where BookId='" + bookId + "' && Status='0';";
+        sqlcon.Open();
+        MySqlCommand cmdsqlborrow = new MySqlCommand(sqlborrow,sqlcon);
+        MySqlDataReader readerborrow = cmdsqlborrow.ExecuteReader();
+        if (readerborrow.Read())
+        {
+            numberofborrowables.Text = readerborrow["num"].ToString();
+        }
+        readerborrow.Close();
+        sqlcon.Close();
+        string sqlstr = "select BookBarcode,BookId,ShelfId,Status from BookBarcodes where BookId =" + bookId;
         MySqlDataAdapter myda = new MySqlDataAdapter(sqlstr, sqlcon);
         DataSet myds = new DataSet();
         sqlcon.Open();
@@ -236,7 +249,9 @@ public partial class Pages_bookMessage : BasePage
             if (Session["PreferredCulture"].ToString() == "zh-CN")
             {
                 if (status == "0")
-                    row["newStatus"] = "在馆无预约";
+                {
+                    row["newStatus"] = "在馆无预约";                   
+                }
                 if (status == "1")
                     row["newStatus"] = "已借出";
                 if (status == "2")
@@ -264,7 +279,19 @@ public partial class Pages_bookMessage : BasePage
         GridView1.DataSource = searchResult;
         GridView1.DataKeyNames = new string[] { "BookBarcode" };//主键
         GridView1.DataBind();
-        GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
+        if (GridView1.HeaderRow != null)
+        {
+            GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+        foreach (GridViewRow row in GridView1.Rows)
+        {
+            Button btreserve = (Button)row.FindControl("ButtonReserve");
+            btreserve.Visible = false;
+            if (row.Cells[3].Text== "在馆无预约"||row.Cells[3].Text== "No Reservation")
+            {
+                btreserve.Visible = true;
+            }
+        }
         sqlcon.Close();
     }
 }
