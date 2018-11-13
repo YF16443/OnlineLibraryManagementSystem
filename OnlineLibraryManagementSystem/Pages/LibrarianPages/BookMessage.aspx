@@ -137,8 +137,8 @@
                     </asp:TemplateField>
                  <asp:TemplateField HeaderText="<%$ Resources:Resource, Print_Barcode %>">
                      <ItemTemplate>
-                     <input type=button value="<asp:Literal runat="server" Text="<%$ Resources:Resource, Print%>" />" onclick="doPrint()" Class="btn btn-fill btn-default">
-                  </ItemTemplate>
+                    <asp:Button ID="ButtonPrint" runat="server" Text="<%$ Resources:Resource, Print %>"  OnClick="ButtonPrint_Click" Cssclass="btn btn-fill btn-default" />                    
+                     </ItemTemplate>
                      <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                  </asp:TemplateField>
                 <asp:CommandField ShowEditButton="true"  />
@@ -164,6 +164,20 @@
     <script type="text/javascript">
         var $124 = $;
     </script>
+ <script type="text/javascript">
+        $(document).ready(function(e) {
+            var counter = 0;
+            if (window.history && window.history.pushState) {
+                $(window).on('popstate', function () {
+                    //window.history.pushState('forward', null, '#');
+                    //window.history.forward(1);
+                   // window.location.href = window.location.reload();
+                });
+            }
+            //window.history.pushState('forward', null, '#'); //在IE中必须得有这两行
+            //window.history.forward(1);
+        });
+        </script>
     <script src="../../assets/vendors/jquery.datatables.js"></script> 
 </asp:Content>
 <asp:Content ID="content4" ContentPlaceHolderID="foot" runat="server">
@@ -221,6 +235,6 @@
             window.print();
             var result="<%=deletebind() %>";
            
-        }      
+        }
 </script>
 </asp:Content>

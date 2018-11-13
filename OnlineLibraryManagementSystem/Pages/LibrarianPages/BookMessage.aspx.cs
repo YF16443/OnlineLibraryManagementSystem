@@ -14,7 +14,7 @@ using System.IO;
 public partial class Pages_LibrarianPages_BookMessage : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
-    {
+    {    
         DataListbookbarcode.Enabled = false;
         DataListbookbarcode.DataSource = null;
         DataListbookbarcode.DataBind();
@@ -155,12 +155,20 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         {
             newisbn13 = TextBoxisbn13.Text.Trim();
         }
+        else if (TextBoxisbn13.Text.Trim().Length == 0)
+        {
+            newisbn13 = TextBoxisbn13.Text.Trim();
+        }
         else
         {
             Response.Write("<script>alert('Error ISBN13 Format!')</script>");
             return;
         }
         if (TextBoxisbn10.Text.Trim().Length == 10 && System.Text.RegularExpressions.Regex.IsMatch(TextBoxisbn10.Text.Trim(), isbn10parttern))
+        {
+            newisbn10 = TextBoxisbn10.Text.Trim();
+        }
+        else if (TextBoxisbn10.Text.Trim().Length == 0)
         {
             newisbn10 = TextBoxisbn10.Text.Trim();
         }
@@ -252,6 +260,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             {
                 BindDataTogvResult();
                 Response.Write("<script>alert('Edited Successfully!')</script>");
+                Response.AddHeader("Refresh", "0");
                 return;
             }
             else
@@ -284,7 +293,15 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
 
             string fileExtension = System.IO.Path.GetExtension(req.FileName.ToString()).ToLower();
             string[] restricyExtension = { ".gif", ".jpg", ".bmp", ".png" };
-            string src = req.FileName;
+            string src = "";
+            if (req.FileName.IndexOf("\\") > -1)
+            {
+                src = req.FileName.Substring(req.FileName.LastIndexOf("\\") + 1);//IE
+            }
+            else
+            {
+                src = req.FileName;//GOOGLE
+            }
             for (int i = 0; i < restricyExtension.Length; i++)
             {
                 if (fileExtension == restricyExtension[i])
@@ -330,28 +347,28 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         Label barcodelabel = (Label)row.FindControl("BookBarcode");
         barcode = barcodelabel.Text;
         //Barcode generation test
-        if (barcode != "")
-        {
-            MyBarcodeGenerator.Generate(barcode);
-            DataTable dt = new DataTable();
-            dt.Columns.Add("name");
-            DataRow dr = dt.NewRow();
-            dr["name"] = barcode+".jpg";
-            dt.Rows.Add(dr);
-            DataListbookbarcode.Enabled = true;
-            DataListbookbarcode.DataSource = dt;
-            DataListbookbarcode.DataBind();
-            BindDataTogvResult();
-           // Button buttonprint = (Button)row.FindControl("Button2");
-            //ClientScript.RegisterStartupScript(ClientScript.GetType(), "myscript", "<script>doPrint();</script>");
-            //Response.Write("<script>alert('" + barcode + "')</script>");
-            //var barcodeImage = MyBarcodeGenerator.Generate(barcode) as System.Drawing.Image;
-            //MyBarcodeGenerator.ShowBarcode(barcode, this.Response);
-        }
-        else
-        {
-            Response.Write("<script>alert('Error!')<script/>");
-        }
+            if (barcode != "")
+            {
+                MyBarcodeGenerator.Generate(barcode);
+                DataTable dt = new DataTable();
+                dt.Columns.Add("name");
+                DataRow dr = dt.NewRow();
+                dr["name"] = barcode + ".jpg";
+                dt.Rows.Add(dr);
+                DataListbookbarcode.Enabled = true;
+                DataListbookbarcode.DataSource = dt;
+                DataListbookbarcode.DataBind();
+                BindDataTogvResult();
+                // Button buttonprint = (Button)row.FindControl("Button2");
+                //ClientScript.RegisterStartupScript(ClientScript.GetType(), "myscript", "<script>doPrint();</script>");
+                //Response.Write("<script>alert('" + barcode + "')</script>");
+                //var barcodeImage = MyBarcodeGenerator.Generate(barcode) as System.Drawing.Image;
+                //MyBarcodeGenerator.ShowBarcode(barcode, this.Response);
+            }
+            else
+            {
+                Response.Write("<script>alert('Error!')<script/>");
+            }
     }
    /* protected int bind()
     {
@@ -718,4 +735,24 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
     }
 
 
+
+    protected void ButtonPrint_Click(object sender, EventArgs e)
+    {
+        string to_barcode = "";
+        GridViewRow row = (GridViewRow)(((Button)sender).NamingContainer);
+        Label barcodelabel = (Label)row.FindControl("BookBarcode");
+        to_barcode = barcodelabel.Text;
+        if (to_barcode != "")
+        {
+            DataListbookbarcode.Enabled = false;
+            DataListbookbarcode.DataSource = null;
+            DataListbookbarcode.DataBind();
+            BindDataTogvResult();
+            MyBarcodeGenerator.Generate(to_barcode);
+            Session["info_barcode"] = to_barcode;
+            Response.AddHeader("Refresh", "0");
+            Response.Redirect("BarcodePrint.aspx");
+            return;
+        }
+    }
 }

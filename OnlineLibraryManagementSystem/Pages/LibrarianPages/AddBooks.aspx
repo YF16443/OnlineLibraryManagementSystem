@@ -137,7 +137,7 @@
             &nbsp
   <fieldset style="text-align:center;">
       <asp:Button ID="AddButton" runat="server" Text="<%$ Resources:Resource, Add %>" OnClick="Addbooks"  CausesValidation="False" CssClass="btn btn-fill btn-default" />
-      <input type=button value="<asp:Literal runat="server" Text="<%$ Resources:Resource, Print%>" />" onclick="doPrint()" Class="btn btn-fill btn-default">             
+      <input type=button value="<asp:Literal runat="server" Text="<%$ Resources:Resource, Print%>" />" onclick="doPrint()" Class="btn btn-fill btn-default" style="display:none;">             
   </fieldset>
             &nbsp
 <!--startprint--><!--注意要加上html里star和end的这两个标记-->

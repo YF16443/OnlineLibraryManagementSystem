@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="BarcodePrint.aspx.cs" Inherits="Pages_LibrarianPages_BarcodePrint" %>
-<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="BarcodePrint.aspx.cs" Inherits="Pages_LibrarianPages_BarcodePrint" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="BarcodePrint.aspx.cs" Inherits="Pages_LibrarianPages_BarcodePrint" %>
 <asp:Content ID="header" ContentPlaceHolderID="header" Runat="Server">
     <script>
         document.getElementById("book").className = "active";
@@ -20,6 +19,10 @@
             </ItemTemplate>
         </asp:DataList>
 <!--endprint-->
+    <div style="text-align:center;">
+    <input type=button value="<asp:Literal runat="server" Text="<%$ Resources:Resource, Print%>" />" onclick="doPrint()" Class="btn btn-fill btn-default">
+    <asp:Button ID="Buttoncancel" runat="server" Text="<%$ Resources:Resource, Cancel %>" Onclick="Buttoncancel_Click"  CausesValidation="False" CssClass="btn btn-fill btn-default" />
+    </div>
 </asp:Content>
 <asp:Content ID="foot" ContentPlaceHolderID="foot" runat="server">
     <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
@@ -33,7 +36,15 @@
             prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));    
             window.document.body.innerHTML=prnhtml; 
             window.print();
-            //var result="<%=deletebind() %>";
+        }
+        window.onload = function () {
+
+
+            doPrint();
+
+          
+
+
         }
     </script>
  </asp:Content>
