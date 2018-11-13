@@ -82,7 +82,7 @@ public class TimerTasks
                             + "Dear user, the books you borrowed in the library have been overdue and have not been returned. Please return it as soon as possible. Thanks for your cooperation!");
                         }
                         string updateEmailStatusSql = "UPDATE IssueRecords SET EmailNoticeStatus = "
-                            + (emailNoticeStatus + 1) + " WHERE (RecordId = " + reader["RecordId"] + ");";
+                            + (emailNoticeStatus + 1) + " WHERE (RecordId = " + reader["RecordId"] + ");COMMIT WORK;";
                         MySqlCommand cmd2 = new MySqlCommand(updateEmailStatusSql, conn2);
                         cmd2.ExecuteNonQuery();
                     }
