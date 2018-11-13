@@ -846,4 +846,7 @@
   <data name="Copy" xml:space="preserve">
     <value>Copies</value>
   </data>
+  <data name="AccountExist" xml:space="preserve">
+    <value>Account already exists!</value>
+  </data>
 </root>

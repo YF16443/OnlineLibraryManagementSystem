@@ -842,4 +842,7 @@
   <data name="Copy" xml:space="preserve">
     <value>Copies &amp; 馆藏副本</value>
   </data>
+  <data name="AccountExist" xml:space="preserve">
+    <value>Account already exists! &amp; 账户名已存在！</value>
+  </data>
 </root>

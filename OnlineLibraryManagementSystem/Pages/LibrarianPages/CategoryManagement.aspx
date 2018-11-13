@@ -12,6 +12,7 @@
             <div class="form-group">
                 <label><asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, CategoryName %>"></asp:Label></label>
                 <asp:TextBox ID="newName" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="newName" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
             <asp:Button ID="Add" runat="server" Text="<%$ Resources:Resource, Add %>" CssClass="btn btn-fill btn-default" OnClick="Add_Click" />
         </div>

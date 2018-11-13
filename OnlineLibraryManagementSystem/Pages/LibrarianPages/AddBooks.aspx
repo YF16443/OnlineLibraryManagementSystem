@@ -169,7 +169,7 @@
             &nbsp
             <fieldset style="text-align: center;">
                 <asp:button id="AddButton" runat="server" text="<%$ Resources:Resource, Add %>" onclick="Addbooks" causesvalidation="False" cssclass="btn btn-fill btn-default" />
-                <input type="button" value="<%$ Resources:Resource, Print%>" runat="server" text="" onclick="doPrint()" class="btn btn-fill btn-default">
+                <input type="button" value="<%$ Resources:Resource, Print%>" runat="server" text="" onclick="doPrint()" class="btn btn-fill btn-default" style="display:none">
             </fieldset>
             &nbsp
             <!--startprint-->
