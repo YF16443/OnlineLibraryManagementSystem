@@ -1767,7 +1767,7 @@ table td[class*="col-"], table th[class*="col-"] {
     overflow-x: auto;
     min-height: 0.01%;
     background-color: rgba(255, 255, 255, 0.8);
-    margin: 0px 150px;
+    margin: 0px;
 }
 
 @media screen and (max-width:767px) {
@@ -1826,7 +1826,7 @@ legend {
 label {
     display: inline-block;
     max-width: 100%;
-    margin-bottom: 5px;
+    margin: 0px 10px 5px 10px;
     font-weight: bold
 }
 
@@ -2931,7 +2931,7 @@ tbody.collapse.in {
 
 .btn-group > .btn:first-child {
     margin-left: 0;
-    background-color: rgba(114, 125, 125, 0.8);
+    background-color: #fff;
 }
 
     .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {

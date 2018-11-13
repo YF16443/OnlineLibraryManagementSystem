@@ -33,6 +33,7 @@ public partial class Pages_SearchDemo : BasePage
         // 输入过滤，未完成
         if (tbSearch.Text.ToString().Length == 0)
         {
+            Response.Redirect("~/Pages/SearchDemo.aspx");
             return;
         }
 

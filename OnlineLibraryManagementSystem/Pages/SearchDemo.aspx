@@ -18,12 +18,6 @@
             max-height: 84px;
             max-width: 60px;
         }
-
-        body {
-            background-image: url(../../Images/homepageBackground.jpg);
-            background-attachment: fixed;
-            background-position: top left;
-        }
     </style>
 </asp:Content>
 
@@ -32,7 +26,7 @@
         <div style="padding-top: 50px">
             <table style="width: 100%;">
                 <tr>
-                    <td style="width: 30%; text-align: right">
+                    <td style="width: 25%; text-align: right">
                         <div class="col-md-4 col-md-offset-8">
                             <asp:DropDownList ID="ddlField" runat="server" CssClass="selectpicker" data-style="btn btn-primary btn-round">
                                 <asp:ListItem Text="<%$ Resources:Resource,Title %>" Value="Title"></asp:ListItem>
@@ -42,11 +36,11 @@
                             </asp:DropDownList>
                         </div>
                     </td>
-                    <td style="width: 30%">
-                        <asp:TextBox ID="tbSearch" runat="server" Width="450px" CssClass="form-control"></asp:TextBox>
+                    <td style="width: 50%">
+                        <asp:TextBox ID="tbSearch" runat="server" style="width:100%; padding:0px; margin:0px;" CssClass="form-control"></asp:TextBox>
                     </td>
-                    <td style="width: 40%">
-                        <div class="col-md-4">
+                    <td style="width: 25%">
+                        <div class="col-md-4" style="margin-left:1px; width:130px">
                             <asp:DropDownList ID="ddlClass" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged" CssClass="selectpicker" data-style="btn btn-primary btn-round">
                                 <asp:ListItem Text="<%$ Resources:Resource,Book %>" Value="Books" Selected="True"></asp:ListItem>
                                 <asp:ListItem Text="<%$ Resources:Resource,Periodical %>" Value="Periodicals"></asp:ListItem>
@@ -61,8 +55,8 @@
             </table>
         </div>
     </asp:Panel>
-    <div class="table-responsive">
-        <asp:GridView ID="gvBookResult" runat="server" AutoGenerateColumns="False" Enabled="False" CssClass="table table-striped" GridLines="None" DataKeyNames="BookId" OnRowDataBound="gvBookResult_RowDataBound" Width="65%" HorizontalAlign="Center">
+    <div class="table-responsive" style="margin: 0px 150px">
+        <asp:GridView ID="gvBookResult" runat="server" AutoGenerateColumns="False" Enabled="False" CssClass="table table-striped" GridLines="None" DataKeyNames="BookId" OnRowDataBound="gvBookResult_RowDataBound" Width="80%" HorizontalAlign="Center">
             <Columns>
                 <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True" HeaderStyle-CssClass="text-center">
                     <ItemStyle Height="84px" HorizontalAlign="Center" VerticalAlign="Middle" Width="60px" CssClass="resultImg" />
@@ -106,7 +100,7 @@
             </Columns>
         </asp:GridView>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive" style="margin: 0px 150px">
         <asp:GridView ID="gvPeriodicalResult" runat="server" AutoGenerateColumns="False" Enabled="False" CssClass="table table-striped" GridLines="None">
             <Columns>
                 <asp:ImageField HeaderText="<%$ Resources:Resource, Cover %>" DataImageUrlField="ImageURL" ReadOnly="True" HeaderStyle-CssClass="text-center">
@@ -147,8 +141,11 @@
                 </div>
             </li>
         </ul>
+        <br />
+        <br />
+        <br />
         <div style="text-align: center;">
-            <a href="ReaderPages/ViewNotice.aspx">
+            <a href="ReaderPages/ViewNotice.aspx" style="color:cadetblue; font-size:16px">
                 <asp:Label ID="search" runat="server" Text="<%$ Resources:Resource, MoreNotices %>" />
             </a>
         </div>
@@ -191,7 +188,6 @@
             }
             else {
                 body_notice.setAttribute("style", "visibility:visible;");
-
             }
         });
     </script>

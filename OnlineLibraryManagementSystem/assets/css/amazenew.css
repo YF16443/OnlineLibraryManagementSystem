@@ -5578,7 +5578,7 @@ strong {
     .main-panel > .content {
         padding: 30px 15px 0 15px;
         min-height: calc(100vh - 123px);
-        margin-bottom: 80px;
+        margin-bottom: 46px;
     }
 
     .main-panel .navbar-fixed + .content {
@@ -6419,7 +6419,7 @@ body {
         }
 
 a {
-    color: #68B3C8;
+    color: rgb(79, 114, 218);
 }
 
     a:hover, a:focus {
@@ -6573,8 +6573,8 @@ a.dropdown-toggle[aria-expanded="true"] .caret {
 }
 
 .form-control {
-    background-color: #F3F2EE;
-    border: 1px solid #e8e7e3;
+    background-color: rgba(243, 242, 238, 0.4);
+    border: 1.4px #e8e7e3;
     border-radius: 5px;
     color: #364150;
     font-size: 14px;
@@ -7177,7 +7177,7 @@ star {
     .table tbody tr > td,
     .table tfoot tr > th,
     .table tfoot tr > td {
-        border-top: 1px solid #CCC5B9;
+        border-top: 2px solid #CCC5B9;
     }
 
     .table thead tr.success th, .table thead tr.success td,
@@ -7301,7 +7301,7 @@ star {
     }
 
 .table-striped tbody > tr:nth-of-type(2n+1) {
-    background-color: #F3F2EE;
+    background-color: rgb(222, 222, 213);
 }
 
 .table-striped > thead > tr > th,
@@ -12036,6 +12036,7 @@ input.ct-danger + span + label + span.switch-right {
 
     .table-responsive {
         overflow: visible;
+        margin: 0px;
     }
 }
 

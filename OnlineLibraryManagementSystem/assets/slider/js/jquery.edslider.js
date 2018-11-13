@@ -152,7 +152,7 @@
 						.filter(':nth-child(' + index + ')')
 						.addClass('current');
                 }
-                $(".mySlideshow>li").css("background", "rgba(255, 255, 255, 0.5)");
+                $(".mySlideshow>li").css("background", "rgba(160, 160, 160, 0.5)");           //
 			}
 
             // обр╩рЁ
