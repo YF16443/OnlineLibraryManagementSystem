@@ -25,9 +25,10 @@ public partial class Pages_ReturnBookDemo : BasePage
             DateTime time_now = DateTime.Now;
             string now_time = time_now.ToString("yyyy-MM-dd HH:mm:ss");
             //查询没有归还日期的书籍列表，升序排序
-            string getRecordIdSql = "SELECT * FROM IssueRecords WHERE BookBarcode = " + BarcodeID +
+            string getRecordIdSql = "SELECT * FROM IssueRecords WHERE BookBarcode = @bookBarcode" +
                 " and ReturnTime is null ORDER BY IssueTime ASC";
             MySqlCommand cmd2 = new MySqlCommand(getRecordIdSql, OLMSDBConnection);
+            cmd2.Parameters.AddWithValue("@bookBarcode", BarcodeID);
             MySqlDataReader reader = cmd2.ExecuteReader();
             //如果没有符合条件的图书说明输入书号错误
             if (!reader.HasRows)

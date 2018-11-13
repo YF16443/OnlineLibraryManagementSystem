@@ -24,23 +24,27 @@ public partial class Pages_IssueBookDemo : BasePage
         {
             OLMSDBConnection.Open();
             //判断用户是否存在
-            string queryReaderSql = "SELECT ReaderId FROM Readers WHERE ReaderId = " + readerID;
+            string queryReaderSql = "SELECT ReaderId FROM Readers WHERE ReaderId = @readerId";
             MySqlCommand cmd0 = new MySqlCommand(queryReaderSql, OLMSDBConnection);
+            cmd0.Parameters.AddWithValue("@readerId", readerID);
             MySqlDataReader reader0 = cmd0.ExecuteReader();
             if (!reader0.HasRows)
                 throw new Exception("Wrong Input!");
             reader0.Close();
             //判断书籍是否存在
-            string queryBarcodeSql = "SELECT BookBarcode FROM BookBarcodes WHERE BookBarcode = " + BarcodeID;
+            string queryBarcodeSql = "SELECT BookBarcode FROM BookBarcodes WHERE BookBarcode = @bookBarcode";
             MySqlCommand cmd1 = new MySqlCommand(queryBarcodeSql, OLMSDBConnection);
+            cmd1.Parameters.AddWithValue("@bookBarcode", BarcodeID);
             MySqlDataReader reader1 = cmd1.ExecuteReader();
             if (!reader1.HasRows)
                 throw new Exception("Wrong Input!");
             reader1.Close();
             //判断书籍是否借出
-            string getRecordIdSql = "SELECT RecordId FROM IssueRecords WHERE BookBarcode = " + BarcodeID +
-                " and ReaderId = " + readerID + " and ReturnTime is null ORDER BY IssueTime ASC";
+            string getRecordIdSql = "SELECT RecordId FROM IssueRecords WHERE BookBarcode = @bookBarcode" +
+                " and ReaderId = @readerId and ReturnTime is null ORDER BY IssueTime ASC";
             MySqlCommand cmd = new MySqlCommand(getRecordIdSql, OLMSDBConnection);
+            cmd.Parameters.AddWithValue("@readerId", readerID);
+            cmd.Parameters.AddWithValue("@bookBarcode", BarcodeID);
             MySqlDataReader reader = cmd.ExecuteReader();
             //如果查询结果不为空，说明该书未归还，不应被借出
             if (reader.HasRows)
