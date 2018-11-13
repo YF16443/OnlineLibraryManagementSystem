@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="BarcodePrint.aspx.cs" Inherits="Pages_LibrarianPages_BarcodePrint" %>
-<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="BarcodePrint.aspx.cs" Inherits="Pages_LibrarianPages_BarcodePrint" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="BarcodePrint.aspx.cs" Inherits="Pages_LibrarianPages_BarcodePrint" %>
+
 <asp:Content ID="header" ContentPlaceHolderID="header" Runat="Server">
     <script>
         document.getElementById("book").className = "active";
@@ -8,6 +8,7 @@
      <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
     <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
 </asp:Content>
+
 <asp:Content ID="body" runat="server" contentplaceholderid="body">
 <!--startprint--><!--注意要加上html里star和end的这两个标记-->
        <asp:DataList ID="DataListbookbarcode" runat="server" RepeatColumns="1" HorizontalAlign="center" Enabled="false">
@@ -21,6 +22,7 @@
         </asp:DataList>
 <!--endprint-->
 </asp:Content>
+
 <asp:Content ID="foot" ContentPlaceHolderID="foot" runat="server">
     <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
     <script type="text/javascript">
@@ -33,7 +35,6 @@
             prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));    
             window.document.body.innerHTML=prnhtml; 
             window.print();
-            //var result="<%=deletebind() %>";
         }
     </script>
  </asp:Content>
