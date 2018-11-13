@@ -2,11 +2,11 @@
 
 ul {
     margin: 0;
-    padding: 0 0 20px 30px;
+    padding: 0px;
 }
 
 .container {
-    max-width: 750px;
+    max-width: 1800px;
     overflow: hidden;
     padding: 20px;
 }

@@ -4,10 +4,8 @@
  * Code under MIT License
  */
 
-(function($){
-
-	$.fn.edslider = function(settings){
-
+(function ($) {
+    $.fn.edslider = function (settings) {
 		var defaults = {
 			width     : 960,
 			height    : 400,
@@ -25,7 +23,6 @@
 		var options = $.extend({}, defaults, settings);
 
 		this.each(function(){
-
 			//Building (wrapping, validating, setting up)
 			var slider = $(this),
 				sliderLi = slider.find('li'),
@@ -76,7 +73,7 @@
 					.append('<div class="controls" />')
 					.find('.controls');
 
-				if(options.paginator){
+                if (options.paginator) {
 					paginator = controls
 						.prepend('<ul class="paginator"/>')
 						.find('.paginator')
@@ -100,8 +97,9 @@
 								}
 							}
 						})
-				}
-				if(options.navigator){
+                }
+
+                if (options.navigator) {
 					controls
 						.append('<div class="navigator prev"/><div class="navigator next"/>')
 						.find('.navigator')
@@ -123,11 +121,13 @@
 			//Functions (init, play, next, prev, pause, resume)
 			var timeLeft = options.interval, current, index, paused;
 
+            // slider初始化？
 			function init(){				
 				progressResize();
 				sliderLi.length > 1 ? play() : sliderLi.fadeIn(options.duration);
 			}
 
+            // 播放了个什么东西
 			function play(){
 				progressReset();
 				interact = false;
@@ -146,14 +146,16 @@
 
 				index = sliderLi.index(current) + 1;
 				
-				if(options.paginator){
+                if (options.paginator) {
 					paginatorLi
 						.removeClass('current')
 						.filter(':nth-child(' + index + ')')
 						.addClass('current');
-				}
+                }
+                $(".mySlideshow>li").css("background", "rgba(255, 255, 255, 0.5)");
 			}
 
+            // 下一页
 			function next(){
 				sliderLi.removeClass('current');
 				if(++index <= sliderLi.length){
@@ -168,6 +170,7 @@
 				play();
 			}
 
+            // 前一页
 			function prev(){
 				sliderLi.removeClass('current');
 				if(--index >= 1){
@@ -182,6 +185,7 @@
 				play();
 			}
 
+            // 暂停播放
 			function pause(){
 				paused = true;
 				progressElapsed = progress
@@ -190,6 +194,7 @@
 				timeLeft = (progressWidth - progressElapsed) * (options.interval / progressWidth);
 			}
 
+            // 进度条正常走？
 			function interval(){
 				paused = false;
 				interact = true;
@@ -205,12 +210,14 @@
 				hoverControl();
 			}
 
+            // 重置进度条
 			function progressReset(){
 				progress.stop().width(0);				
 				progressElapsed = 0;
 				timeLeft = options.interval;
 			}
 
+            // 重设进度条大小？
 			function progressResize(){
 				$(window)
 					.resize(function(){
@@ -219,6 +226,7 @@
 					}).resize();
 			}
 
+            // 鼠标悬停动作
 			function hoverControl(){
 				if(interact){
 					if(slider.hasClass('hover')){
@@ -242,8 +250,8 @@
 				totalImgsUrl.push(this.src);
 			});
 
-			if(totalImgsUrl){
-				$.each(totalImgsUrl, function(value){
+            if (totalImgsUrl) {
+                $.each(totalImgsUrl, function (value) {
 					$('<img/>')
 						.hide()
 						.attr('src', totalImgsUrl[value])

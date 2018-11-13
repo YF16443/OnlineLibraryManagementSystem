@@ -33,6 +33,15 @@
     <!--    JQuery UI     -->
     <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet">
     <link href="../../assets/vendors/sweetalert/css/sweetalert2.min.css" rel="Stylesheet">
+
+    <style>
+        body {
+            background-image: url(../../Images/homepageBackground.jpg);
+            background-attachment: fixed;
+            background-position-x: top;
+        }
+    </style>
+
 </head>
 
 <body>

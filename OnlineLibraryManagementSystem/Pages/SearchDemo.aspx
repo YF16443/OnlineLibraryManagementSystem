@@ -1,22 +1,30 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/ReaderPages/MasterPage.master" AutoEventWireup="true" CodeFile="SearchDemo.aspx.cs" Inherits="Pages_SearchDemo" %>
 
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="Server">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scle=1.0" />
+
+    <link rel="stylesheet" href="../../assets/vendors/dropzone/dropzone.min.css" />
+    <link rel="stylesheet" href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" />
+    <link rel="stylesheet" href="../../assets/slider/css/edslider.css" />
+    <link rel="stylesheet" href="../../assets/slider/css/styles.css" />
+    <link rel="stylesheet" href="../../assets/slider/css/animate-custom.css" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
+
     <style type="text/css">
         .resultImg img {
             max-height: 84px;
             max-width: 60px;
         }
+
+        body {
+            background-image: url(../../Images/homepageBackground.jpg);
+            background-attachment: fixed;
+            background-position: top left;
+        }
     </style>
-    <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
-    <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-    <link rel="stylesheet" href="../../assets/slider/css/edslider.css">
-    <link rel="stylesheet" href="../../assets/slider/css/styles.css">
-    <link rel="stylesheet" href="../../assets/slider/css/animate-custom.css">
 </asp:Content>
 
 <asp:Content ID="body" ContentPlaceHolderID="body" runat="Server">
@@ -112,8 +120,7 @@
             </Columns>
         </asp:GridView>
     </div>
-
-    <div class="container" id="notice" runat="server">
+    <div id="notice" class="container" runat="server">
         <ul class="mySlideshow">
             <li class="first">
                 <a href="LibrarianPages/SearchNotice.aspx" class="animated fadeInLeft">
@@ -121,9 +128,7 @@
                 </a>
                 <div class="animated fadeInRight">
                     <asp:Label ID="notice1" runat="server" Text="No announcement!"></asp:Label>
-
                 </div>
-
             </li>
             <li class="second">
                 <a href="LibrarianPages/SearchNotice.aspx" class="animated fadeInRight">
@@ -142,7 +147,11 @@
                 </div>
             </li>
         </ul>
-        <center><a href="ReaderPages/ViewNotice.aspx"><asp:Label ID="search" runat="server" Text="<%$ Resources:Resource, MoreNotices %>"  /></a></center>
+        <div style="text-align: center;">
+            <a href="ReaderPages/ViewNotice.aspx">
+                <asp:Label ID="search" runat="server" Text="<%$ Resources:Resource, MoreNotices %>" />
+            </a>
+        </div>
     </div>
 </asp:Content>
 
@@ -157,6 +166,7 @@
             $('#modalColor').attr('data-modal-color', color);
         });
     </script>
+
     <script src="../../Scripts/art-Template/template-web.js"></script>
     <script src="../../assets/vendors/dropzone/dropzone.min.js"></script>
     <script src="../../assets/vendors/jquery.select-bootstrap.js"></script>
@@ -168,7 +178,7 @@
             //Call plugin
             $('.mySlideshow').edslider({
                 width: '100%',
-                height: 498
+                height: 250
             });
         });
     </script>
@@ -186,4 +196,3 @@
         });
     </script>
 </asp:Content>
-
