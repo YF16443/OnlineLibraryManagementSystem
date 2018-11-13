@@ -11,43 +11,43 @@
     <div class="content">
     <div class="form-group label-floating">
         <label><asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource, IsDeposit %>" CssClass="control-label"></asp:Label></label>
-        <asp:TextBox ID="Deposit" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="Deposit" runat="server" CssClass="form-control" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)&&event.keyCode!=46) event.returnValue=false"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
              ErrorMessage="<%$ Resources:Resource, Error %>" ControlToValidate ="Deposit" ForeColor="Red"></asp:RequiredFieldValidator>
     </div>
     <div class="form-group label-floating">
         <label><asp:Label ID="Label8" runat="server" Text="<%$ Resources:Resource, DamageFineRate %>" CssClass="control-label"></asp:Label></label>
-        <asp:TextBox ID="DamageFineRate" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="DamageFineRate" runat="server" CssClass="form-control" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)&&event.keyCode!=46) event.returnValue=false"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
              ErrorMessage="<%$ Resources:Resource, Error %>" ControlToValidate ="DamageFineRate" ForeColor="Red"></asp:RequiredFieldValidator>
     </div>
     <div class="form-group label-floating">
         <label><asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource, LostFineRate %>" CssClass="control-label"></asp:Label></label>
-        <asp:TextBox ID="LostFineRate" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="LostFineRate" runat="server" CssClass="form-control" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)&&event.keyCode!=46) event.returnValue=false"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
              ErrorMessage="<%$ Resources:Resource, Error %>" ControlToValidate ="LostFineRate" ForeColor="Red"></asp:RequiredFieldValidator>
     </div>
     <div class="form-group label-floating">
         <label><asp:Label ID="Label10" runat="server" Text="<%$ Resources:Resource, MaximunIssue %>" CssClass="control-label"></asp:Label></label>
-        <asp:TextBox ID="MaximunIssue" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="MaximunIssue" runat="server" CssClass="form-control" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
-             ErrorMessage="<%$ Resources:Resource, Error %>" ControlToValidate ="MaximunIssue" ForeColor="Red"></asp:RequiredFieldValidator>
+             ErrorMessage="<%$ Resources:Resource, Error %>" ControlToValidate ="MaximunIssue" ForeColor="Red" ></asp:RequiredFieldValidator>
     </div>
     <div class="form-group label-floating">
         <label><asp:Label ID="Label11" runat="server" Text="<%$ Resources:Resource, OverdueFinePerDay %>" CssClass="control-label"></asp:Label></label>
-        <asp:TextBox ID="OverdueFinePerDay" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="OverdueFinePerDay" runat="server" CssClass="form-control" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)&&event.keyCode!=46) event.returnValue=false"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
              ErrorMessage="<%$ Resources:Resource, Error %>" ControlToValidate ="OverdueFinePerDay" ForeColor="Red"></asp:RequiredFieldValidator>
     </div>
     <div class="form-group label-floating">
         <label><asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, Limitofreservation %>" CssClass="control-label"></asp:Label></label>
-        <asp:TextBox ID="Limitofreservation" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="Limitofreservation" runat="server" CssClass="form-control" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
              ErrorMessage="<%$ Resources:Resource, Error %>" ControlToValidate ="OverdueFinePerDay" ForeColor="Red"></asp:RequiredFieldValidator>
     </div>
     <div class="form-group label-floating">
         <label><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Limitofissue %>" CssClass="control-label"></asp:Label></label>
-        <asp:TextBox ID="Limitofissue" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="Limitofissue" runat="server" CssClass="form-control" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
              ErrorMessage="<%$ Resources:Resource, Error %>" ControlToValidate ="OverdueFinePerDay" ForeColor="Red"></asp:RequiredFieldValidator>
     </div>
