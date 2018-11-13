@@ -12,12 +12,12 @@
         <div class="content">
             <div class="form-group">
                 <label><asp:Label ID="Label1" runat="server" Text="<%$ Resources:Resource, Account %>"></asp:Label></label>
-                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
+                <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" ></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvAccount" runat="server" ControlToValidate="TextBox2" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
             <div class="form-group">
                 <label><asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Password %>"></asp:Label></label>
-                <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" Text="00010001" onpaste="return false;" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
+                <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" Text="00010001" onpaste="return false;" ></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="TextBox3" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
             <div class="form-group">
@@ -30,19 +30,8 @@
     </div>
     <div class="card">
         <div class="content">
-            <div class="table-responsive">
-                <table border="0" cellpadding="4" cellspacing="0" style="width: 100%">
-
-            <tr><td bgcolor="#f7f7de" colspan="2" style="height: 18px" valign="bottom">
-
-<asp:TextBox ID="TextBox1"  runat="server"></asp:TextBox>
-
-                   <asp:Button ID="Button2" runat="server"  OnClick="Button2_Click"  Text="<%$ Resources:Resource, Search %>" /></td>
-
-            </tr>
-
-        </table>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" CssClass="table table-bordered" AllowPaging="True" AllowSorting="True" OnPageIndexChanging="GridView1_PageIndexChanging" >
+            <div class="material-datatables">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" CssClass="table table-striped table-no-bordered table-hover" OnPageIndexChanging="GridView1_PageIndexChanging" >
                         <Columns>
                             <asp:BoundField DataField="LibrarianId" HeaderText="LibrarianId" ReadOnly="True" HeaderStyle-CssClass="text-primary" ItemStyle-Width="120"/>
                             
@@ -59,4 +48,27 @@
         </div>
         </div>
     </div>
+
+        <script src="../../assets/vendors/DataTables/jQuery-1.12.4/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        var $124 = $;
+    </script>
+    <script src="../../assets/vendors/jquery.datatables.js"></script>
+</asp:Content>
+
+<asp:Content ID="content4" ContentPlaceHolderID="foot" runat="server">
+    
+    <script>
+        var income = $124('#body_GridView1').DataTable({
+            "lengthChange": false,
+            "order": [[0, 'asc']],
+            "bStateSave": true,
+            columnDefs: [{
+                'targets': [2,4,5],
+                'orderable': false
+            }]
+        });
+        
+</script>
+
 </asp:Content>

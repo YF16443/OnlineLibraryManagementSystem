@@ -832,11 +832,11 @@
     <value>Return History</value>
   </data>
   <data name="Numberofborrowables" xml:space="preserve">
-    <value>Number of borrowables</value>
+    <value>Copies can be issued</value>
     <comment>可借阅</comment>
   </data>
   <data name="Numberofcollections" xml:space="preserve">
-    <value>Number of collections</value>
+    <value>Copies</value>
     <comment>馆藏</comment>
   </data>
   <data name="Summary" xml:space="preserve">
@@ -845,5 +845,8 @@
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Copies</value>
+  </data>
+  <data name="AccountExist" xml:space="preserve">
+    <value>Account already exists!</value>
   </data>
 </root>
