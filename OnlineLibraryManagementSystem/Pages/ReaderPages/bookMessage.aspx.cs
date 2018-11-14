@@ -32,7 +32,7 @@ public partial class Pages_bookMessage : BasePage
             MySqlCommand cmd1 = new MySqlCommand(book_id_sql, OLMSDBConnection);
             ArrayList books_list = new ArrayList();
             MySqlDataReader reader = cmd1.ExecuteReader();
-            
+            string categoryid = "";
             while (reader.Read())
             {
                 if (reader.HasRows)
@@ -56,10 +56,19 @@ public partial class Pages_bookMessage : BasePage
                     //catalog.Text = reader["Catalog"].ToString();
                     pages.Text = reader["Pages"].ToString();
                     publisher.Text = reader["Publisher"].ToString();
+                    if (reader["Category"].ToString() != "")
+                    {
+                        categoryid = reader["Category"].ToString();
+                    }
                     break;
                 }
             }
             reader.Close();
+            //显示类别
+            LabelCategorytitle.Visible = false;
+            LabelCatogoryinfo.Visible = false;          
+            
+            //馆藏
             MySqlCommand cmd2 = new MySqlCommand(book_num, OLMSDBConnection);
             MySqlDataReader reader1 = cmd2.ExecuteReader();
 
@@ -74,6 +83,27 @@ public partial class Pages_bookMessage : BasePage
                 }
             }
             reader1.Close();
+            if (categoryid != "")
+            {
+                LabelCategorytitle.Visible = true;
+                LabelCatogoryinfo.Visible = true;
+                string[] categoryid_array = categoryid.Split(',');
+                string category = "";
+                List<string> categorytotalinfo = new List<string>();
+                foreach (string id in categoryid_array)
+                {
+                    string selectcategory = "select Name from BookCategories where CategoryId='" + id + "';";
+                    MySqlCommand cmdselect = new MySqlCommand(selectcategory, OLMSDBConnection);
+                    MySqlDataReader readerinfo = cmdselect.ExecuteReader();
+                    if (readerinfo.Read())
+                    {
+                        categorytotalinfo.Add(readerinfo["Name"].ToString());
+                    }
+                    readerinfo.Close();
+                }
+                category = string.Join(",", categorytotalinfo.ToArray());
+                LabelCatogoryinfo.Text = category;
+            }
         }
         catch (MySqlException ex)
         {
