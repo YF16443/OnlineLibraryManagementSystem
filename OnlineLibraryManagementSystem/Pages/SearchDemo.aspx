@@ -123,6 +123,9 @@
                 <div class="animated fadeInRight">
                     <asp:Label ID="notice1" runat="server" Text="No announcement!"></asp:Label>
                 </div>
+                <div class="animated fadeInRight" style="top:175px;font-size: 22px;color:aliceblue">
+                    <asp:Label ID="date1" runat="server" Text="No date!"></asp:Label>
+                </div>
             </li>
             <li class="second">
                 <a href="LibrarianPages/SearchNotice.aspx" class="animated fadeInRight">
@@ -131,6 +134,9 @@
                 <div class="animated fadeInLeft">
                     <asp:Label ID="notice2" runat="server" Text="No announcement!"></asp:Label>
                 </div>
+                <div class="animated fadeInRight" style="top:175px;font-size: 22px;color:aliceblue">
+                    <asp:Label ID="date2" runat="server" Text="No date!"></asp:Label>
+                </div>
             </li>
             <li class="third">
                 <a href="LibrarianPages/SearchNotice.aspx" class="animated fadeInLeft">
@@ -138,6 +144,9 @@
                 </a>
                 <div class="animated fadeInRight">
                     <asp:Label ID="notice3" runat="server" Text="No announcement!"></asp:Label>
+                </div>
+                <div class="animated fadeInRight" style="top:175px;font-size: 22px;color:aliceblue">
+                    <asp:Label ID="date3" runat="server" Text="No date!"></asp:Label>
                 </div>
             </li>
         </ul>
