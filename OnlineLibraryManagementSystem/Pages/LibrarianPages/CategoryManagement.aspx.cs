@@ -104,6 +104,21 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
         conn.Open();
         MySqlCommand cmd = conn.CreateCommand();
         MySqlParameter param;
+        cmd.CommandText = "select * from BookCategories";
+        MySqlDataReader reader = cmd.ExecuteReader();
+        while(reader.Read())
+        {
+            if(reader.HasRows)
+            {
+                if (reader["Name"].ToString().Equals(name))
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.CategoryIdExist + "');", true);
+                    GridviewBind();
+                    return;
+
+                }
+            }
+        }
         cmd.CommandText = "insert into BookCategories(Name) values(@n);";
         param = new MySqlParameter("@n", name);
         cmd.Parameters.Add(param);
