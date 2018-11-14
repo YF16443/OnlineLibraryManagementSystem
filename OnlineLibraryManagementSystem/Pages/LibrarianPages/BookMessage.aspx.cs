@@ -18,6 +18,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         DataListbookbarcode.Enabled = false;
         DataListbookbarcode.DataSource = null;
         DataListbookbarcode.DataBind();
+        string categoryid = "";
         if (!this.IsPostBack)
         {
             string bookId = Request["book_id"];
@@ -43,6 +44,14 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                         TextBoxisbn10.Text = reader["ISBN10"].ToString();
                         TextBoxpages.Text = reader["Pages"].ToString();
                         TextBoxpublisher.Text = reader["Publisher"].ToString();
+                        if (reader["Category"].ToString() == "")
+                        {
+                            TextBoxCategory.Text = "";
+                        }
+                        else
+                        {
+                            categoryid = reader["Category"].ToString();
+                        }
                         break;
                     }
                 }
@@ -50,10 +59,29 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                 reader.Close();
 
 
+                if (categoryid != "")
+                {
+                    string[] categoryid_array = categoryid.Split(',');
+                    string category = "";
+                    List<string> categorytotalinfo = new List<string>();
+                    foreach (string id in categoryid_array)
+                    {
+                        string selectcategory = "select Name from BookCategories where CategoryId='" + id + "';";
+                        MySqlCommand cmdselect = new MySqlCommand(selectcategory, OLMSDBConnection);
+                        MySqlDataReader readerinfo = cmdselect.ExecuteReader();
+                        if (readerinfo.Read())
+                        {
+                            categorytotalinfo.Add(readerinfo["Name"].ToString());
+                        }
+                        readerinfo.Close();
+                    }
+                    category = string.Join(",", categorytotalinfo.ToArray());
+                    TextBoxCategory.Text = category;
+                }
 
 
-                ////////////////////////////////////////////////图书位置信息/////////////////////////////////////////
-                string shelfid = "";
+                    ////////////////////////////////////////////////图书位置信息/////////////////////////////////////////
+                    string shelfid = "";
                 string stackid = "";
 
                 string book_shelfid = "select Shelfid from BookBarcodes where BookId='" + bookId + "';";
@@ -124,6 +152,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         string pagesparttern = "^[1-9]\\d*$";
         string isbn13parttern = "^[0-9A-Z]{13}$";
         string isbn10parttern = "^[0-9A-Z]{10}$";
+        string newcategory = "";
         if (TextBoxtitle.Text.Trim() != "")
         {
             newtitle = TextBoxtitle.Text.Trim();
@@ -248,7 +277,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             MySqlCommand cmdinsertbookmanagement = new MySqlCommand(insertbookmanagement, OLMSDBConnection);
             result2 = cmdinsertbookmanagement.ExecuteNonQuery();
             //更新书本
-            string updatebook = "update Books set Title='" + newtitle + "',Author='" + newauthor + "',PubDate='" + newpubdate + "',Price='" + newprice + "',ISBN13='" + newisbn13 + "',ISBN10='" + newisbn10 + "',Pages='" + newpages + "',Publisher='" + newpublisher + "',ImageURL='" + Image1.ImageUrl + "' where BookId='" + bookId + "';";
+            string updatebook = "update Books set Title='" + newtitle + "',Author='" + newauthor + "',PubDate='" + newpubdate + "',Price='" + newprice + "',ISBN13='" + newisbn13 + "',ISBN10='" + newisbn10 + "',Pages='" + newpages + "',Publisher='" + newpublisher + "',ImageURL='" + Image1.ImageUrl +"' where BookId='" + bookId + "';";
             MySqlCommand cmdupdatebook = new MySqlCommand(updatebook, OLMSDBConnection);
             int result = 0;
             result = cmdupdatebook.ExecuteNonQuery();
@@ -441,7 +470,10 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             gvBookBarcodeResult.DataKeyNames = new string[] { "BookBarcode" };
             gvBookBarcodeResult.DataSource = searchResult;
             gvBookBarcodeResult.DataBind();
-            gvBookBarcodeResult.HeaderRow.TableSection = TableRowSection.TableHeader;
+            if (gvBookBarcodeResult.HeaderRow != null)
+            {
+                gvBookBarcodeResult.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
         }
         catch (MySqlException ex)
         {
@@ -733,8 +765,6 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         readershelfid.Close();
         OLMSDBConnection.Close();
     }
-
-
 
     protected void ButtonPrint_Click(object sender, EventArgs e)
     {
