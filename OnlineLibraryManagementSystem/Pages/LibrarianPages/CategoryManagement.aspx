@@ -1,27 +1,31 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="CategoryManagement.aspx.cs" Inherits="Pages_LibrarianPages_CategoryManagement" %>
 
-<asp:Content ID="header" ContentPlaceHolderID="header" Runat="Server">
+<asp:Content ID="header" ContentPlaceHolderID="header" runat="Server">
     <script>
         document.getElementById("book").className = "active";
     </script>
-    <a> <asp:Label runat="server" Text="<%$ Resources:Resource, CategoryManagement %>" CssClass="navbar-brand"></asp:Label> </a>
+    <a>
+        <asp:label runat="server" text="<%$ Resources:Resource, CategoryManagement %>" cssclass="navbar-brand"></asp:label>
+    </a>
 </asp:Content>
-<asp:Content ID="body" ContentPlaceHolderID="body" Runat="Server">
+
+<asp:Content ID="body" ContentPlaceHolderID="body" runat="Server">
     <div class="card">
         <div class="content">
             <div class="form-group">
-                <label><asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource, CategoryName %>"></asp:Label></label>
-                <asp:TextBox ID="newName" runat="server" CssClass="form-control"></asp:TextBox>
+                <label>
+                    <asp:label id="Label2" runat="server" text="<%$ Resources:Resource, CategoryName %>"></asp:label>
+                </label>
+                <asp:textbox id="newName" runat="server" cssclass="form-control"></asp:textbox>
             </div>
-            <asp:Button ID="Add" runat="server" Text="<%$ Resources:Resource, Add %>" CssClass="btn btn-fill btn-default" OnClick="Add_Click" />
+            <asp:button id="Add" runat="server" text="<%$ Resources:Resource, Add %>" cssclass="btn btn-fill btn-default" onclick="Add_Click" />
         </div>
     </div>
 
     <div class="card">
-
-   <div class="content">
-    <div class="material-datatables">
-        <asp:GridView ID="Category" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-no-bordered table-hover" OnRowEditing="Category_RowEditing" OnRowDataBound="Category_RowDataBound" OnRowUpdating="Category_RowUpdating" style="width:100%;cellspacing:0" OnRowCancelingEdit="Category_RowCancelingEdit" OnPageIndexChanging="Category_PageIndexChanging">
+        <div class="content">
+            <div class="material-datatables">
+                <asp:gridview id="Category" runat="server" autogeneratecolumns="False" cssclass="table table-striped table-no-bordered table-hover" onrowediting="Category_RowEditing" onrowdatabound="Category_RowDataBound" onrowupdating="Category_RowUpdating" style="width: 100%; cellspacing: 0" onrowcancelingedit="Category_RowCancelingEdit" onpageindexchanging="Category_PageIndexChanging">
             <Columns>
                 <asp:TemplateField HeaderText="<%$ Resources:Resource, CategoryId %>" HeaderStyle-CssClass="text-primary">
                     <ItemTemplate>
@@ -38,9 +42,10 @@
                 </asp:TemplateField>
                 <asp:CommandField ShowEditButton="true"  />
             </Columns>
-        </asp:GridView>
+        </asp:gridview>
+            </div>
+        </div>
     </div>
-         </div></div>
 
     <script src="../../assets/vendors/DataTables/jQuery-1.12.4/jquery-1.12.4.min.js"></script>
     <script type="text/javascript">
@@ -50,7 +55,6 @@
 </asp:Content>
 
 <asp:Content ID="content4" ContentPlaceHolderID="foot" runat="server">
-    
     <script>
         var income = $124('#body_Category').DataTable({
             "searching": false,
@@ -62,8 +66,5 @@
                 'orderable': false
             }]
         });
-        
-</script>
-
+    </script>
 </asp:Content>
-
