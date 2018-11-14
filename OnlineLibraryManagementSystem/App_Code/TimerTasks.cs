@@ -102,7 +102,7 @@ public class TimerTasks
                             if (fine > deposit)
                                 fine = deposit;
                             //更改判断罚金逻辑，只有未归还的才需要判断罚金
-                            string overdue_sql = "update IssueRecords set OverdueLength=?overduelength,Fine=?fine where BookBarcode=?bookbarcode and Status=3";
+                            string overdue_sql = "update IssueRecords set OverdueLength=?overduelength,Fine=?fine,Status=3 where BookBarcode=?bookbarcode";
                             MySqlCommand cmd2 = new MySqlCommand(overdue_sql, conn3);
                             cmd2.Parameters.AddWithValue("?overduelength", overduelength);
                             cmd2.Parameters.AddWithValue("?fine", fine);
