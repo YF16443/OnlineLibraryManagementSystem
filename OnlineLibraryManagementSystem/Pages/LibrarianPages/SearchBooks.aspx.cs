@@ -178,7 +178,7 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage, IPostBackEvent
             result = cmddeletebook.ExecuteNonQuery();
             //重新绑定gridview,使用函数较方便
             string keyword = tbSearch.Text.ToString();
-            Response.Write("<script>alert(" + keyword + ")</script>");
+           // Response.Write("<script>alert(" + keyword + ")</script>");
             MySqlCommand getResult_sql = new MySqlCommand("select BookId,Title,ImageURL,Author,Publisher " +
                                                  "from Books " +
                                                  "where " + (ddlField.SelectedValue.ToString().Equals("ISBN") ? "ISBN13 like '%" + keyword + "%' or ISBN10 like '%" + keyword + "%';" : ddlField.Text.ToString() + " like '%" + keyword + "%';"), OLMSDBConnection);
@@ -275,7 +275,7 @@ public partial class Pages_LibrarianPages_SearchBooks : BasePage, IPostBackEvent
                             {
                                 Int64 counts = (Int64)reader2["count"];
                                 //多个副本 需要处理
-                                global_id = id;
+                                global_id = id.Replace("\'", "\\\'");//单引号处理
                                 if (counts > 1)
                                 {
                                     
