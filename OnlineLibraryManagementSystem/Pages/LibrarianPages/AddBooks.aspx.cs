@@ -46,7 +46,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
         string quantity = "";
         string quantityparttern = "^[1-9]\\d*$";
         string pubdateparttern = "^[0-9]{4}-(0?[0-9]|1[0-2])-(0?[1-9]|[12]?[0-9]|3[01])$";
-        string float_priceparttern = "^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*$";//正浮点数
+        string float_priceparttern = "^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$";//正浮点数
         string integer_priceparttern = "^[1-9]\\d*$";//正整数
         string pagesparttern = "^[1-9]\\d*$";//正整数
         string isbn13 = "";
@@ -162,7 +162,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         //先检查数据库中是否存在该图书
-        string selectbook = "select count(*) as num from Books where Title ='"+title+"';";
+       // string selectbook = "select count(*) as num from Books where Title ='"+title+"';";
         int updateflag = 0;
         string[] shelf = DropDownList1.SelectedItem.Text.Split(',');//书架号
         string shelfid = shelf[0];
@@ -171,7 +171,11 @@ public partial class Pages_Addbooks_ISBN : BasePage
         try
         {
             OLMSDBConnection.Open();
-            MySqlCommand cmdselectbook = new MySqlCommand(selectbook, OLMSDBConnection);
+            MySqlCommand cmdselectbook = OLMSDBConnection.CreateCommand();
+            cmdselectbook.CommandText = "select count(*) as num from Books where Title =@title";
+            MySqlParameter paratertitle;
+            paratertitle = new MySqlParameter("@title", title);
+            cmdselectbook.Parameters.Add(paratertitle);
             MySqlDataReader readerbook = cmdselectbook.ExecuteReader();
             while (readerbook.Read())
             {
@@ -207,8 +211,12 @@ public partial class Pages_Addbooks_ISBN : BasePage
             //如果书库中存在这本书，只更新书本数量
             if (updateflag == 1)
             {
-                string selectoldamount = "select Amount,BookId from Books where Title='" + title + "';";
-                MySqlCommand cmdselectoldamount = new MySqlCommand(selectoldamount, OLMSDBConnection);
+                // string selectoldamount = "select Amount,BookId from Books where Title='" + title + "';";
+                MySqlCommand cmdselectoldamount = OLMSDBConnection.CreateCommand();
+                cmdselectoldamount.CommandText = "select Amount,BookId from Books where Title=@title";
+                MySqlParameter oldparater;
+                oldparater = new MySqlParameter("@title", title);
+                cmdselectoldamount.Parameters.Add(oldparater);
                 MySqlDataReader readeroldamount = cmdselectoldamount.ExecuteReader();
                 if (readeroldamount.Read())
                 {
@@ -258,12 +266,38 @@ public partial class Pages_Addbooks_ISBN : BasePage
             else
             {
                 //插入书
-                string insertBook_diy = "insert into Books(ISBN13,ISBN10,ImageURL,Title,Author,Publisher,PubDate,Pages,Price,Amount) " + "values('"+isbn13+"','"+isbn10+"','" + addslashes(imagesave) + "','" + addslashes(title) + "','" + addslashes(author) + "','" + addslashes(publisher) + "','" + pubdate + "','" + pages + "','" + price + "','" + quantity + "')";
-                MySqlCommand cmdinsertBook_diy = new MySqlCommand(insertBook_diy, OLMSDBConnection);
+                //string insertBook_diy = "insert into Books(ISBN13,ISBN10,ImageURL,Title,Author,Publisher,PubDate,Pages,Price,Amount) " + "values('"+isbn13+"','"+isbn10+"','" + addslashes(imagesave) + "','" + addslashes(title) + "','" + addslashes(author) + "','" + addslashes(publisher) + "','" + pubdate + "','" + pages + "','" + price + "','" + quantity + "')";
+                MySqlCommand cmdinsertBook_diy = OLMSDBConnection.CreateCommand();
+                cmdinsertBook_diy.CommandText = "insert into Books(ISBN13,ISBN10,ImageURL,Title,Author,Publisher,PubDate,Pages,Price,Amount) values(@i13,@i10,@url,@title,@author,@publisher,@pubdate,@page,@price,@quantity);";
+                MySqlParameter parater_diy;
+                parater_diy = new MySqlParameter("@i13", isbn13);
+                cmdinsertBook_diy.Parameters.Add(parater_diy);
+                parater_diy = new MySqlParameter("@i10", isbn10);
+                cmdinsertBook_diy.Parameters.Add(parater_diy);
+                parater_diy = new MySqlParameter("@url", imagesave);
+                cmdinsertBook_diy.Parameters.Add(parater_diy);
+                parater_diy = new MySqlParameter("@title", title);
+                cmdinsertBook_diy.Parameters.Add(parater_diy);
+                parater_diy = new MySqlParameter("@author", author);
+                cmdinsertBook_diy.Parameters.Add(parater_diy);
+                parater_diy = new MySqlParameter("@publisher", publisher);
+                cmdinsertBook_diy.Parameters.Add(parater_diy);
+                parater_diy = new MySqlParameter("@pubdate", pubdate);
+                cmdinsertBook_diy.Parameters.Add(parater_diy);
+                parater_diy = new MySqlParameter("@page", pages);
+                cmdinsertBook_diy.Parameters.Add(parater_diy);
+                parater_diy = new MySqlParameter("@price", price);
+                cmdinsertBook_diy.Parameters.Add(parater_diy);
+                parater_diy = new MySqlParameter("@quantity", quantity);
+                cmdinsertBook_diy.Parameters.Add(parater_diy);
                 int resultinsertbook = cmdinsertBook_diy.ExecuteNonQuery();
-                //向barcode表中插入数据，先找到bookid
-                string selectBookid = "select BookId from Books where Title='" + title + "';";
-                MySqlCommand cmdselectBookid = new MySqlCommand(selectBookid, OLMSDBConnection);
+            //向barcode表中插入数据，先找到bookid
+            //string selectBookid = "select BookId from Books where Title='" + title + "';";
+                MySqlCommand cmdselectBookid = OLMSDBConnection.CreateCommand();
+                cmdselectBookid.CommandText = "select BookId from Books where Title=@title";
+                MySqlParameter titleparater;
+                titleparater = new MySqlParameter("@title", title);
+                cmdselectBookid.Parameters.Add(titleparater);
                 MySqlDataReader reader2 = cmdselectBookid.ExecuteReader();
                 if (reader2.Read())
                 {
@@ -313,7 +347,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
                 return;
                 }
             }
-        }
+       }
         catch (MySqlException ex)
         {
             Console.WriteLine(ex.Message);
@@ -404,7 +438,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         //先检查数据库中是否存在该ISBN图书
-        string selectIsbn = "select count(*) as num from Books where ISBN13 = '" +isbn13+"';";
+       // string selectIsbn = "select count(*) as num from Books where ISBN13 = '" +isbn13+"';";
         int updateflag = 0;
         string[] shelf= DropDownList1.SelectedItem.Text.Split(',');//书架号
         string shelfid = shelf[0];
@@ -413,8 +447,12 @@ public partial class Pages_Addbooks_ISBN : BasePage
         try
         { 
             OLMSDBConnection.Open();
-            MySqlCommand cmdselectIsbn = new MySqlCommand(selectIsbn, OLMSDBConnection);
-            MySqlDataReader readerisbn = cmdselectIsbn.ExecuteReader();
+            MySqlCommand cmdselectIsbn = OLMSDBConnection.CreateCommand();
+            cmdselectIsbn.CommandText = "select count(*) as num from Books where ISBN13 =@isbn13";
+            MySqlParameter parater1;
+            parater1 = new MySqlParameter("@isbn13", isbn13);
+            cmdselectIsbn.Parameters.Add(parater1);
+             MySqlDataReader readerisbn = cmdselectIsbn.ExecuteReader();
             while (readerisbn.Read())
             {
                 if (readerisbn.HasRows)
@@ -449,8 +487,12 @@ public partial class Pages_Addbooks_ISBN : BasePage
             //如果书库中存在这本书，只更新书本数量
             if (updateflag == 1)
             {
-                string selectoldamount = "select Amount,BookId from Books where ISBN13='" +isbn13+"';";
-                MySqlCommand cmdselectoldamount = new MySqlCommand(selectoldamount, OLMSDBConnection);
+                //string selectoldamount = "select Amount,BookId from Books where ISBN13='" +isbn13+"';";
+                MySqlCommand cmdselectoldamount = OLMSDBConnection.CreateCommand();
+                cmdselectoldamount.CommandText = "select Amount,BookId from Books where ISBN13=@isbn13";
+                MySqlParameter oldparater;
+                oldparater = new MySqlParameter("@isbn13", isbn13);
+                cmdselectoldamount.Parameters.Add(oldparater);
                 MySqlDataReader readeroldamount = cmdselectoldamount.ExecuteReader();
                 if (readeroldamount.Read())
                 {
@@ -480,8 +522,16 @@ public partial class Pages_Addbooks_ISBN : BasePage
                     updateresult = cmdinsertBookBarcode.ExecuteNonQuery();
                 }
                 //记录操作
-                string insertexistbookmanagement = "insert into BookManagementRecords(Operation,BookId,LibrarianId,Amount) Values('Add','" + Bookid + "','" + lid + "','" + quantity + "');";
-                MySqlCommand cmdinsertexistbookmanagement = new MySqlCommand(insertexistbookmanagement, OLMSDBConnection);
+                //string insertexistbookmanagement = "insert into BookManagementRecords(Operation,BookId,LibrarianId,Amount) Values('Add','" + Bookid + "','" + lid + "','" + quantity + "');";
+                MySqlCommand cmdinsertexistbookmanagement = OLMSDBConnection.CreateCommand();
+                cmdinsertexistbookmanagement.CommandText = "insert into BookManagementRecords(Operation,BookId,LibrarianId,Amount) Values('Add',@bookid,@lid,@quantity);";
+                MySqlParameter existparater;
+                existparater = new MySqlParameter("@bookid", Bookid);
+                cmdinsertexistbookmanagement.Parameters.Add(existparater);
+                existparater = new MySqlParameter("@lid", lid);
+                cmdinsertexistbookmanagement.Parameters.Add(existparater);
+                existparater = new MySqlParameter("@quantity", quantity);
+                cmdinsertexistbookmanagement.Parameters.Add(existparater);
                 int insertexistresult = 0;
                 insertexistresult = cmdinsertexistbookmanagement.ExecuteNonQuery();
                 if (updateresult != 0 && update != 0&& insertexistresult!=0)
@@ -520,7 +570,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
                 return;
             }
             //价格
-            string float_priceparttern = "^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*$";//正浮点数
+            string float_priceparttern = "^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$";//正浮点数
             string integer_priceparttern = "^[1-9]\\d*$";//正整数
             string price = "";
             if (System.Text.RegularExpressions.Regex.IsMatch(TextBoxPrice.Text.Trim(), float_priceparttern)||System.Text.RegularExpressions.Regex.IsMatch(TextBoxPrice.Text.Trim(),integer_priceparttern))
@@ -583,8 +633,30 @@ public partial class Pages_Addbooks_ISBN : BasePage
             if (BookInfoQuery.GetByISBN(isbn) == null)
             {
                 //当api无法获取时插入输入的内容
-                string insertbook_diy = "insert Books(ISBN13,ISBN10,ImageURL,Title,Author,Publisher,Pubdate,Pages,Price,Amount) Values('" + isbn13 + "','" + isbn10 + "','" + addslashes(ImageURLSave) + "','" + addslashes(title) + "','" + addslashes(author) + "','" + addslashes(publisher) + "','"+pubdate+"','" + pages + "','" + price + "','" + quantity + "');";
-                MySqlCommand cmdinsertbook_diy = new MySqlCommand(insertbook_diy, OLMSDBConnection);
+                //string insertbook_diy = "insert Books(ISBN13,ISBN10,ImageURL,Title,Author,Publisher,Pubdate,Pages,Price,Amount) Values('" + isbn13 + "','" + isbn10 + "','" + addslashes(ImageURLSave) + "','" + addslashes(title) + "','" + addslashes(author) + "','" + addslashes(publisher) + "','"+pubdate+"','" + pages + "','" + price + "','" + quantity + "');";
+                MySqlCommand cmdinsertbook_diy = OLMSDBConnection.CreateCommand();
+                cmdinsertbook_diy.CommandText= "insert into Books(ISBN13,ISBN10,ImageURL,Title,Author,Publisher,PubDate,Pages,Price,Amount) values(@i13,@10,@url,@title,@author,@publisher,@pubdate,@page,@price,@quantity);";
+                MySqlParameter insert_diy_parater;
+                insert_diy_parater = new MySqlParameter("@i13", isbn13);
+                cmdinsertbook_diy.Parameters.Add(insert_diy_parater);
+                insert_diy_parater = new MySqlParameter("@i10", isbn10);
+                cmdinsertbook_diy.Parameters.Add(insert_diy_parater);
+                insert_diy_parater = new MySqlParameter("@url", ImageURLSave);
+                cmdinsertbook_diy.Parameters.Add(insert_diy_parater);
+                insert_diy_parater = new MySqlParameter("@title", title);
+                cmdinsertbook_diy.Parameters.Add(insert_diy_parater);
+                insert_diy_parater = new MySqlParameter("@author", author);
+                cmdinsertbook_diy.Parameters.Add(insert_diy_parater);
+                insert_diy_parater = new MySqlParameter("@publisher", publisher);
+                cmdinsertbook_diy.Parameters.Add(insert_diy_parater);
+                insert_diy_parater = new MySqlParameter("@pubdate", pubdate);
+                cmdinsertbook_diy.Parameters.Add(insert_diy_parater);
+                insert_diy_parater = new MySqlParameter("@pages", pages);
+                cmdinsertbook_diy.Parameters.Add(insert_diy_parater);
+                insert_diy_parater = new MySqlParameter("@price", price);
+                cmdinsertbook_diy.Parameters.Add(insert_diy_parater);
+                insert_diy_parater = new MySqlParameter("@quantity", quantity);
+                cmdinsertbook_diy.Parameters.Add(insert_diy_parater);
                 resultinsertbook = cmdinsertbook_diy.ExecuteNonQuery();
 
             }
@@ -634,8 +706,47 @@ public partial class Pages_Addbooks_ISBN : BasePage
                 //将关键字转为关键字id存入，以逗号隔开即为categories，读取时需转换
                 string categoryid = string.Join(",", tagsid.ToArray());
                 //插入书
-                string insertBook_api = "insert into Books(ISBN13,ISBN10,ImageURL,Title,SubTitle,OriginTitle,Author,Translator,Publisher,PubDate,Category,Binding,Pages,Price,Summary,AuthorIntro,Catalog,Amount) " + "values('" + isbn13 + "','" + isbn10 + "','" + addslashes(ImageURLSave)+ "','" + addslashes(title) + "','" + addslashes(book.subtitle) + "','" + addslashes(book.origin_title) + "','" + addslashes(author) + "','" + addslashes(translator) + "','" + addslashes(publisher) + "','" + pubdate + "','" + categoryid + "','" + addslashes(book.binding) + "','" + pages + "','" + price + "','" + addslashes(book.summary) + "','" + addslashes(book.author_intro) + "','" + addslashes(book.catalog) + "','" + quantity + "')";
-                MySqlCommand cmdinsertBook_api = new MySqlCommand(insertBook_api, OLMSDBConnection);
+             //   string insertBook_api = "insert into Books(ISBN13,ISBN10,ImageURL,Title,SubTitle,OriginTitle,Author,Translator,Publisher,PubDate,Category,Binding,Pages,Price,Summary,AuthorIntro,Catalog,Amount) " + "values('" + isbn13 + "','" + isbn10 + "','" + addslashes(ImageURLSave)+ "','" + addslashes(title) + "','" + addslashes(book.subtitle) + "','" + addslashes(book.origin_title) + "','" + addslashes(author) + "','" + addslashes(translator) + "','" + addslashes(publisher) + "','" + pubdate + "','" + categoryid + "','" + addslashes(book.binding) + "','" + pages + "','" + price + "','" + addslashes(book.summary) + "','" + addslashes(book.author_intro) + "','" + addslashes(book.catalog) + "','" + quantity + "')";
+                MySqlCommand cmdinsertBook_api = OLMSDBConnection.CreateCommand();
+                cmdinsertBook_api.CommandText = "insert into Books(ISBN13,ISBN10,ImageURL,Title,SubTitle,OriginTitle,Author,Translator,Publisher,PubDate,Category,Binding,Pages,Price,Summary,AuthorIntro,Catalog,Amount) values(@i13,@i10,@url,@title,@subtitle,@origintitle,@author,@translator,@publisher,@pubdate,@categoryid,@bind,@pages,@price,@summary,@intro,@catelog,@quantity);";
+                MySqlParameter api_parater;
+                api_parater = new MySqlParameter("@i13", isbn13);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@i10", isbn10);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@url", ImageURLSave);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@title", title);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@subtitle", book.origin_title);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@origintitle", book.origin_title);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@author", author);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@translator", translator);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@publisher", publisher);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@pubdate", pubdate);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@categoryid", categoryid);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@bind", book.binding);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@pages", pages);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@price", price);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@summary", book.summary);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@intro", book.author_intro);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@catelog", book.catalog);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+                api_parater = new MySqlParameter("@quantity", quantity);
+                cmdinsertBook_api.Parameters.Add(api_parater);
+
                 resultinsertbook = cmdinsertBook_api.ExecuteNonQuery();
             }
             //向barcode表中插入数据，先找到bookid

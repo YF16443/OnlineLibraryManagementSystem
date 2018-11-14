@@ -59,14 +59,18 @@ public partial class Pages_AddStacks : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         //检查同ID书库是否存在
-        string selectStack = "select count(*) as num from Stacks where StackId='" + stackid + "';";
+       // string selectStack = "select count(*) as num from Stacks where StackId='" + stackid + "';";
         //创建书库
-        string insertStack = "insert into Stacks(StackId,Position,Summary) " + "values('" + stackid +"','"+position+ "','" + stack_summary  + "');";
+        //string insertStack = "insert into Stacks(StackId,Position,Summary) " + "values('" + stackid +"','"+position+ "','" + stack_summary  + "');";
         //打开数据库
         try
         {
             OLMSDBConnection.Open();
-            MySqlCommand cmdselect = new MySqlCommand(selectStack, OLMSDBConnection);
+            MySqlCommand cmdselect = OLMSDBConnection.CreateCommand();
+            cmdselect.CommandText = "select count(*) as num from Stacks where StackId =@s";
+            MySqlParameter selectparaters;
+            selectparaters = new MySqlParameter("@s", stackid);
+            cmdselect.Parameters.Add(selectparaters);
             MySqlDataReader reader = cmdselect.ExecuteReader();
             while (reader.Read())
             {
@@ -82,7 +86,15 @@ public partial class Pages_AddStacks : BasePage
                 }
             }
             reader.Close();
-            MySqlCommand cmdinsert = new MySqlCommand(insertStack, OLMSDBConnection);
+            MySqlCommand cmdinsert = OLMSDBConnection.CreateCommand();
+            cmdinsert.CommandText = "insert into Stacks(StackId,Position,Summary) values(@stackid,@position,@summary);";
+            MySqlParameter insertparater;
+            insertparater = new MySqlParameter("@stackid", stackid);
+            cmdinsert.Parameters.Add(insertparater);
+            insertparater = new MySqlParameter("@position", position);
+            cmdinsert.Parameters.Add(insertparater);
+            insertparater = new MySqlParameter("@summary", stack_summary);
+            cmdinsert.Parameters.Add(insertparater);
             int result = 0;
             result = cmdinsert.ExecuteNonQuery();
             if (result != 0)

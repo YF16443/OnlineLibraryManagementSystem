@@ -74,30 +74,38 @@ public partial class Pages_LibrarianPages_EditShelf : BasePage
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
         //string selectshelfid = "select count(*) as num from Shelves where ShelfId='" + newshelfid + "';";
-        string updateshelf = "update Shelves set StackId='" + newstackid + "',Summary='" + newsummary + "' where ShelfId='" + Session["SHELFID"] + "';";
+        //string updateshelf = "update Shelves set StackId='" + newstackid + "',Summary='" + newsummary + "' where ShelfId='" + Session["SHELFID"] + "';";
         try
         {
             OLMSDBConnection.Open();
-           /* if (newshelfid != Session["ID"].ToString())
-            {
-                MySqlCommand cmdselectshelfid = new MySqlCommand(selectshelfid, OLMSDBConnection);
-                MySqlDataReader readerselect = cmdselectshelfid.ExecuteReader();
-                while (readerselect.Read())
-                {
-                    if (readerselect.HasRows)
-                    {
-                        Int64 count = (Int64)readerselect["num"];
-                        if (count > 0)
-                        {
-                            Response.Write("<script>window.alert('ShelfId Is Exist!');</script>");
-                            return;
-                        }
-                        break;
-                    }
-                }
-                readerselect.Close();
-            }*/
-            MySqlCommand cmdupdateshelf = new MySqlCommand(updateshelf, OLMSDBConnection);
+            /* if (newshelfid != Session["ID"].ToString())
+             {
+                 MySqlCommand cmdselectshelfid = new MySqlCommand(selectshelfid, OLMSDBConnection);
+                 MySqlDataReader readerselect = cmdselectshelfid.ExecuteReader();
+                 while (readerselect.Read())
+                 {
+                     if (readerselect.HasRows)
+                     {
+                         Int64 count = (Int64)readerselect["num"];
+                         if (count > 0)
+                         {
+                             Response.Write("<script>window.alert('ShelfId Is Exist!');</script>");
+                             return;
+                         }
+                         break;
+                     }
+                 }
+                 readerselect.Close();
+             }*/
+            MySqlCommand cmdupdateshelf = OLMSDBConnection.CreateCommand();
+            cmdupdateshelf.CommandText = "update Shelves set StackId=@stack,Summary=@summary where ShelfId=@id";
+            MySqlParameter updateparater;
+            updateparater = new MySqlParameter("@stack", newstackid);
+            cmdupdateshelf.Parameters.Add(updateparater);
+            updateparater = new MySqlParameter("@summary", newsummary);
+            cmdupdateshelf.Parameters.Add(updateparater);
+            updateparater = new MySqlParameter("@id", Session["SHELFID"]);
+            cmdupdateshelf.Parameters.Add(updateparater);
             int resultupdate = 0;
             resultupdate = cmdupdateshelf.ExecuteNonQuery();
             if (resultupdate != 0)

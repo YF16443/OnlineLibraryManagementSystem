@@ -67,27 +67,62 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
     {
         int categoryId = int.Parse(Category.DataKeys[e.RowIndex].Values[0].ToString());
         string name = ((TextBox)Category.Rows[e.RowIndex].FindControl("txtName")).Text;
+        int updateflag = 1;//1--更新，0--不更新
+        if (name.Trim() == "")
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('Name can not be none!');", true);
+            GridviewBind();
+            return;
+        }
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
-        conn.Open();
-        MySqlCommand cmd = conn.CreateCommand();
-        cmd.CommandText = "update BookCategories set Name=@n where CategoryId=@i";
-        MySqlParameter param;
-        param = new MySqlParameter("@n", name);
-        cmd.Parameters.Add(param);
-        param = new MySqlParameter("@i", categoryId);
-        cmd.Parameters.Add(param);
-        int result = cmd.ExecuteNonQuery();
-        if (result == 1)
-        {
-            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditSuccess + "');", true);
-        }
-        else
-        {
-            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditFail + "');", true);
-        }
-        Category.EditIndex = -1;
-        GridviewBind();
+            conn.Open();
+            MySqlCommand cmdselectnewname = conn.CreateCommand();
+            cmdselectnewname.CommandText= "select count(*) as num from BookCategories where Name=@name  && CategoryId<>@id;";
+            MySqlParameter cmdparam;
+            cmdparam = new MySqlParameter("@name", name);
+            cmdselectnewname.Parameters.Add(cmdparam);
+            cmdparam = new MySqlParameter("@id", categoryId);
+            cmdselectnewname.Parameters.Add(cmdparam);
+            MySqlDataReader readernum = cmdselectnewname.ExecuteReader();
+            while (readernum.Read())
+            {
+                if (readernum.HasRows)
+                {
+                    Int64 count = (Int64)readernum["num"];
+                    if (count > 0)
+                    {
+                        updateflag = 0;
+                        ClientScript.RegisterStartupScript(GetType(), "", "window.alert('This category has existed!');", true);
+                        GridviewBind();
+                        return;
+                    }
+                    break;
+                }
+            }
+            readernum.Close();
+            if (updateflag != 0)
+            {
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "update BookCategories set Name=@n where CategoryId=@i";
+                MySqlParameter param;
+                param = new MySqlParameter("@n", name);
+                cmd.Parameters.Add(param);
+                param = new MySqlParameter("@i", categoryId);
+                cmd.Parameters.Add(param);
+                int result = cmd.ExecuteNonQuery();
+
+                if (result == 1)
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditSuccess + "');", true);
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditFail + "');", true);
+                }
+                Category.EditIndex = -1;
+                GridviewBind();
+            }
     }
 
     protected void Category_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)

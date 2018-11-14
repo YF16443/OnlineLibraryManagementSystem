@@ -79,14 +79,18 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
         //数据库
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
-        string updatestack = "update Stacks set StackId='" + newstackid + "',Position='" + newposition + "',Summary='" + newsummary + "' where StackId='" + Session["STACKID"] + "';";
-        string selectnewstackid = "select count(*) as num from Stacks where StackId='" + newstackid + "';";
+        //string updatestack = "update Stacks set StackId='" + newstackid + "',Position='" + newposition + "',Summary='" + newsummary + "' where StackId='" + Session["STACKID"] + "';";
+       // string selectnewstackid = "select count(*) as num from Stacks where StackId='" + newstackid + "';";
        try
         {
             OLMSDBConnection.Open();
             if (newstackid != Session["STACKID"].ToString())
             {
-                MySqlCommand cmdselectstackid = new MySqlCommand(selectnewstackid, OLMSDBConnection);
+                MySqlCommand cmdselectstackid = OLMSDBConnection.CreateCommand();
+                cmdselectstackid.CommandText = "select count(*) as num from Stacks where StackId=@s";
+                MySqlParameter selectparaters;
+                selectparaters = new MySqlParameter("@s", newstackid);
+                cmdselectstackid.Parameters.Add(selectparaters);
                 MySqlDataReader readerselect = cmdselectstackid.ExecuteReader();
                 while (readerselect.Read())
                 {
@@ -103,7 +107,17 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
                 }
                 readerselect.Close();
             }
-            MySqlCommand cmdupdatestack = new MySqlCommand(updatestack, OLMSDBConnection);
+            MySqlCommand cmdupdatestack = OLMSDBConnection.CreateCommand();
+            cmdupdatestack.CommandText = "update Stacks set StackId=@stackid,Position=@position,Summary=@summary where Stackid=@old;";
+            MySqlParameter updateparater;
+            updateparater = new MySqlParameter("@stackid", newstackid);
+            cmdupdatestack.Parameters.Add(updateparater);
+            updateparater = new MySqlParameter("@position", newposition);
+            cmdupdatestack.Parameters.Add(updateparater);
+            updateparater = new MySqlParameter("@summary", newsummary);
+            cmdupdatestack.Parameters.Add(updateparater);
+            updateparater = new MySqlParameter("@old", Session["STACKID"]);
+            cmdupdatestack.Parameters.Add(updateparater);
             int result = 0;
             result = cmdupdatestack.ExecuteNonQuery();
             if (result != 0)
@@ -156,27 +170,45 @@ public partial class Pages_LibrarianPages_EditStack : BasePage
     {
         int ShelfId = int.Parse(Shelves.DataKeys[e.RowIndex].Values[0].ToString());
         string summary = ((TextBox)Shelves.Rows[e.RowIndex].FindControl("txtSummary")).Text;
+        if (summary.Trim() == "")
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('Name can not be none!');", true);
+            GridviewBind();
+            return;
+        }
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
-        conn.Open();
-        MySqlCommand cmd = conn.CreateCommand();
-        cmd.CommandText = "update Shelves set Summary=@s where ShelfId=@i";
-        MySqlParameter param;
-        param = new MySqlParameter("@s", summary);
-        cmd.Parameters.Add(param);
-        param = new MySqlParameter("@i", ShelfId);
-        cmd.Parameters.Add(param);
-        int result = cmd.ExecuteNonQuery();
-        if (result == 1)
+        try
         {
-            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditSuccess + "');", true);
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "update Shelves set Summary=@s where ShelfId=@i";
+            MySqlParameter param;
+            param = new MySqlParameter("@s", summary);
+            cmd.Parameters.Add(param);
+            param = new MySqlParameter("@i", ShelfId);
+            cmd.Parameters.Add(param);
+            int result = cmd.ExecuteNonQuery();
+            if (result == 1)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditSuccess + "');", true);
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditFail + "');", true);
+            }
+            Shelves.EditIndex = -1;
+            GridviewBind();
         }
-        else
+        catch (MySqlException ex)
         {
-            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditFail + "');", true);
+            Console.WriteLine(ex.Message);
+            GridviewBind();
         }
-        Shelves.EditIndex = -1;
-        GridviewBind();
+        finally
+        {
+            conn.Close();
+        }
     }
     protected void Shelves_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {

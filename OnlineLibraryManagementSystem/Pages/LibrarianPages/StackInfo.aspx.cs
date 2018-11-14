@@ -104,27 +104,45 @@ public partial class Pages_StackInfo : BasePage
     {
         int ShelfId = int.Parse(Shelves.DataKeys[e.RowIndex].Values[0].ToString());
         string summary = ((TextBox)Shelves.Rows[e.RowIndex].FindControl("txtSummary")).Text;
+        if (summary.Trim() == "")
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('Name can not be none!');", true);
+            GridviewBind();
+            return;
+        }
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
         MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
-        conn.Open();
-        MySqlCommand cmd = conn.CreateCommand();
-        cmd.CommandText = "update Shelves set Summary=@s where ShelfId=@i";
-        MySqlParameter param;
-        param = new MySqlParameter("@s", summary);
-        cmd.Parameters.Add(param);
-        param = new MySqlParameter("@i", ShelfId);
-        cmd.Parameters.Add(param);
-        int result = cmd.ExecuteNonQuery();
-        if (result == 1)
+        try
         {
-            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditSuccess + "');", true);
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "update Shelves set Summary=@s where ShelfId=@i";
+            MySqlParameter param;
+            param = new MySqlParameter("@s", summary);
+            cmd.Parameters.Add(param);
+            param = new MySqlParameter("@i", ShelfId);
+            cmd.Parameters.Add(param);
+            int result = cmd.ExecuteNonQuery();
+            if (result == 1)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditSuccess + "');", true);
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditFail + "');", true);
+            }
+            Shelves.EditIndex = -1;
+            GridviewBind();
         }
-        else
+        catch (MySqlException ex)
         {
-            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditFail + "');", true);
+            Console.WriteLine(ex.Message);
+            GridviewBind();
         }
-        Shelves.EditIndex = -1;
-        GridviewBind();
+        finally
+        {
+            conn.Close();
+        }
     }
     protected void Shelves_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
