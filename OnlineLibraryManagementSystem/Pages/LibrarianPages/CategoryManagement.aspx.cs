@@ -12,7 +12,7 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack)
+        if (!IsPostBack)
         {
             GridviewBind();
         }
@@ -92,8 +92,9 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
 
     protected void Add_Click(object sender, EventArgs e)
     {
-        if (!rfvName.IsValid)
+        if (newName.Text.Equals(""))
         {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.CategoryNameRequire + "');", true);
             GridviewBind();
             return;
         }
