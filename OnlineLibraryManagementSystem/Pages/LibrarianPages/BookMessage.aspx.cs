@@ -309,7 +309,7 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         string newpublisher = "";
         string newshelfid = "";
         string pubdateparttern = "^[0-9]{4}-(0?[0-9]|1[0-2])-(0?[1-9]|[12]?[0-9]|3[01])$";
-        string float_priceparttern = "^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*$";
+        string float_priceparttern = "^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$";
         string integer_priceparttern = "^[1-9]\\d*$";
         string pagesparttern = "^[1-9]\\d*$";
         string isbn13parttern = "^[0-9A-Z]{13}$";
