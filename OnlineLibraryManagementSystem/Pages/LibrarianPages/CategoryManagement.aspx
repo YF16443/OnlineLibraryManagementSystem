@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/LibrarianPages/MasterPage.master" AutoEventWireup="true" CodeFile="CategoryManagement.aspx.cs" Inherits="Pages_LibrarianPages_CategoryManagement" %>
 
-<asp:Content ID="header" ContentPlaceHolderID="header" Runat="Server">
+<asp:Content ID="header" ContentPlaceHolderID="header" runat="Server">
     <script>
         document.getElementById("book").className = "active";
     </script>
@@ -8,7 +8,8 @@
     <link href="../../assets/vendors/dropzone/dropzone.min.css" rel="stylesheet" />
     <link href="../../assets/vendors/jquery-ui-1.12.0/jquery-ui.css" rel="stylesheet" />
 </asp:Content>
-<asp:Content ID="body" ContentPlaceHolderID="body" Runat="Server">
+
+<asp:Content ID="body" ContentPlaceHolderID="body" runat="Server">
     <div class="card">
 
    <div class="content">
@@ -50,9 +51,10 @@
                 </asp:TemplateField>
                 <asp:CommandField ShowEditButton="true"  />
             </Columns>
-        </asp:GridView>
+        </asp:gridview>
+            </div>
+        </div>
     </div>
-         </div></div>
 
     <script src="../../assets/vendors/DataTables/jQuery-1.12.4/jquery-1.12.4.min.js"></script>
     <script type="text/javascript">
@@ -75,8 +77,5 @@
                 'orderable': false
             }]
         });
-        
-</script>
-
+    </script>
 </asp:Content>
-
