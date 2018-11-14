@@ -14,7 +14,17 @@ public partial class Pages_SearchReader : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!string.IsNullOrEmpty((string)Session["delete"]))
+        {
+            if (Session["delete"].ToString() == "true")
+            {
+                Response.Write("<script>window.alert(' The removal completed successfully!');</script>");
+            }
+               
+            Session["delete"] = "false";
+        }
      
+        
     }
 
     protected void Search(object sender, EventArgs e)
@@ -29,13 +39,13 @@ public partial class Pages_SearchReader : BasePage
         String readersql = "" ;
         if (DropDownList1.SelectedValue == "0")
         {
-            readersql = "select * from Readers where ReaderId like " + "\"%" + search + "%\""
+            readersql = "select * from Readers where Phone like " + "\"%" + search + "%\""
                                            + " or " + "Name like " + "\"%" + search + "%\"";
             
         }
         if (DropDownList1.SelectedValue == "1")
         {
-            readersql = "select * from Readers where ReaderID like " + "\"%" + search + "%\"";
+            readersql = "select * from Readers where Phone like " + "\"%" + search + "%\"";
         }
         if (DropDownList1.SelectedValue == "2")
         {
