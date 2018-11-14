@@ -17,7 +17,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
     <div class="card">
-        <div class="content">
+        <div class="content" style="margin: 0px 100px">
               <fieldset style="text-align:center;">    
                 <div class="form-group">
                    <div >
