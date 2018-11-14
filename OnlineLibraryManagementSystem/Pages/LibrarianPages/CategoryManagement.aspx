@@ -17,14 +17,12 @@
                     <asp:label id="Label2" runat="server" text="<%$ Resources:Resource, CategoryName %>"></asp:label>
                 </label>
                 <asp:textbox id="newName" runat="server" cssclass="form-control"></asp:textbox>
-                <asp:requiredfieldvalidator id="rfvName" runat="server" controltovalidate="newName" errormessage="*" forecolor="Red"></asp:requiredfieldvalidator>
             </div>
             <asp:button id="Add" runat="server" text="<%$ Resources:Resource, Add %>" cssclass="btn btn-fill btn-default" onclick="Add_Click" />
         </div>
     </div>
 
     <div class="card">
-
         <div class="content">
             <div class="material-datatables">
                 <asp:gridview id="Category" runat="server" autogeneratecolumns="False" cssclass="table table-striped table-no-bordered table-hover" onrowediting="Category_RowEditing" onrowdatabound="Category_RowDataBound" onrowupdating="Category_RowUpdating" style="width: 100%; cellspacing: 0" onrowcancelingedit="Category_RowCancelingEdit" onpageindexchanging="Category_PageIndexChanging">
@@ -70,4 +68,3 @@
         });
     </script>
 </asp:Content>
-

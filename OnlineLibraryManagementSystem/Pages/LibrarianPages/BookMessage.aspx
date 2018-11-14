@@ -98,6 +98,15 @@
                        </div>
 	                 </div>
 	              </fieldset>
+                         &nbsp
+                     <fieldset>
+	                <div class="form-group">
+	                   <label class="col-sm-1 control-label"> <asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource, Category %>"></asp:Label></label>
+	                   <div class="col-sm-10">
+	                    <asp:TextBox ID="TextBoxCategory" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
+                       </div>
+	                 </div>
+	              </fieldset>
             &nbsp
             <fieldset style="text-align:center;">
             <asp:Button ID="Alter" runat="server" Text="<%$ Resources:Resource,Alter %>" OnClick="Alter_Click" CssClass="btn btn-fill btn-default"/>        
@@ -172,20 +181,6 @@
     <script type="text/javascript">
         var $124 = $;
     </script>
- <script type="text/javascript">
-        $(document).ready(function(e) {
-            var counter = 0;
-            if (window.history && window.history.pushState) {
-                $(window).on('popstate', function () {
-                    //window.history.pushState('forward', null, '#');
-                    //window.history.forward(1);
-                   // window.location.href = window.location.reload();
-                });
-            }
-            //window.history.pushState('forward', null, '#'); //在IE中必须得有这两行
-            //window.history.forward(1);
-        });
-        </script>
     <script src="../../assets/vendors/jquery.datatables.js"></script> 
 </asp:Content>
 <asp:Content ID="content4" ContentPlaceHolderID="foot" runat="server">
