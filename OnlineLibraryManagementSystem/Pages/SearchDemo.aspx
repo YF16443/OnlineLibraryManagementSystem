@@ -37,10 +37,10 @@
                         </div>
                     </td>
                     <td style="width: 50%">
-                        <asp:TextBox ID="tbSearch" runat="server" style="width:100%; padding:0px; margin:0px;" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="tbSearch" runat="server" Style="width: 100%; padding: 0px; margin: 0px;" CssClass="form-control"></asp:TextBox>
                     </td>
                     <td style="width: 25%">
-                        <div class="col-md-4" style="margin-left:1px; width:130px">
+                        <div class="col-md-4" style="margin-left: 1px; width: 130px">
                             <asp:DropDownList ID="ddlClass" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged" CssClass="selectpicker" data-style="btn btn-primary btn-round">
                                 <asp:ListItem Text="<%$ Resources:Resource,Book %>" Value="Books" Selected="True"></asp:ListItem>
                                 <asp:ListItem Text="<%$ Resources:Resource,Periodical %>" Value="Periodicals"></asp:ListItem>
@@ -123,7 +123,7 @@
                 <div class="animated fadeInRight">
                     <asp:Label ID="notice1" runat="server" Text="No announcement!"></asp:Label>
                 </div>
-                <div class="animated fadeInRight" style="top:175px;font-size: 22px;color:aliceblue">
+                <div class="animated fadeInRight" style="top: 175px; font-size: 22px; color: aliceblue">
                     <asp:Label ID="date1" runat="server" Text="No date!"></asp:Label>
                 </div>
             </li>
@@ -134,7 +134,7 @@
                 <div class="animated fadeInLeft">
                     <asp:Label ID="notice2" runat="server" Text="No announcement!"></asp:Label>
                 </div>
-                <div class="animated fadeInRight" style="top:175px;font-size: 22px;color:aliceblue">
+                <div class="animated fadeInRight" style="top: 175px; font-size: 22px; color: aliceblue">
                     <asp:Label ID="date2" runat="server" Text="No date!"></asp:Label>
                 </div>
             </li>
@@ -145,7 +145,7 @@
                 <div class="animated fadeInRight">
                     <asp:Label ID="notice3" runat="server" Text="No announcement!"></asp:Label>
                 </div>
-                <div class="animated fadeInRight" style="top:175px;font-size: 22px;color:aliceblue">
+                <div class="animated fadeInRight" style="top: 175px; font-size: 22px; color: aliceblue">
                     <asp:Label ID="date3" runat="server" Text="No date!"></asp:Label>
                 </div>
             </li>
@@ -154,7 +154,7 @@
         <br />
         <br />
         <div style="text-align: center;">
-            <a href="ReaderPages/ViewNotice.aspx" style="color:cadetblue; font-size:16px">
+            <a href="ReaderPages/ViewNotice.aspx" style="color: cadetblue; font-size: 16px">
                 <asp:Label ID="search" runat="server" Text="<%$ Resources:Resource, MoreNotices %>" />
             </a>
         </div>
