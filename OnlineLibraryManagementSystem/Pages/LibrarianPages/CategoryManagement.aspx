@@ -49,7 +49,7 @@
                         <asp:Label ID="lblName" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:CommandField ShowEditButton="true"  />
+                <asp:CommandField ShowEditButton="true"  CausesValidation="false" />
             </Columns>
         </asp:gridview>
             </div>
