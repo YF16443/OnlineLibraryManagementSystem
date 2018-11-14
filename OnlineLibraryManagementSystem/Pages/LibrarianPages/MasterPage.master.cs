@@ -46,6 +46,6 @@ public partial class Pages_MasterPage : BaseMasterPage
         FormsAuthentication.SignOut();
         Session.Remove("id");
         Session.Remove("lid");
-        Response.Redirect("~/Pages/LibrarianLogin.aspx");
+        Response.Redirect("~/Pages/SearchDemo.aspx");
     }
 }
