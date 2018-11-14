@@ -706,7 +706,7 @@
     <value>Edit Success!</value>
   </data>
   <data name="CategoryIdExist" xml:space="preserve">
-    <value>Category ID already exists!</value>
+    <value>Category already exists!</value>
   </data>
   <data name="ReservationAlready" xml:space="preserve">
     <value>You have already reserved this book!</value>

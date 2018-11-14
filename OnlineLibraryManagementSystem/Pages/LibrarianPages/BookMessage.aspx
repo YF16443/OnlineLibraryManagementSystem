@@ -103,7 +103,7 @@
 	                <div class="form-group">
 	                   <label class="col-sm-1 control-label"> <asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource, Category %>"></asp:Label></label>
 	                   <div class="col-sm-10">
-	                    <asp:TextBox ID="TextBoxCategory" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
+	                    <asp:TextBox ID="TextBoxCategory" runat="server" Cssclass="form-control" onkeypress="return doClick(event);" ReadOnly="True"></asp:TextBox>
                        </div>
 	                 </div>
 	              </fieldset>

@@ -38,7 +38,7 @@
                             <asp:BoundField DataField="Account" HeaderText="<%$ Resources:Resource, Account %>" HeaderStyle-CssClass="text-primary"/>
                             <asp:BoundField DataField="Password" HeaderText="<%$ Resources:Resource, Password %>" HeaderStyle-CssClass="text-primary"/>
                             <asp:BoundField DataField="Name" HeaderText="<%$ Resources:Resource, Name %>" HeaderStyle-CssClass="text-primary"/>
-                            <asp:CommandField ShowEditButton="True" HeaderStyle-CssClass="text-primary" ItemStyle-Width="100"/>
+                            <asp:CommandField ShowEditButton="True" HeaderStyle-CssClass="text-primary" ItemStyle-Width="100" CausesValidation="false"/>
                             <asp:CommandField ShowDeleteButton="True" HeaderStyle-CssClass="text-primary" ItemStyle-Width="100"/>
                         </Columns>
 
