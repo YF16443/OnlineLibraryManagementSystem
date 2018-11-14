@@ -57,12 +57,13 @@
 	                </div>
                 </asp:panel>
             </fieldset>
+            &nbsp
             <fieldset>
                 <div class="form-group">
                     <label class="col-sm-1 control-label">
                         <asp:label id="Label5" runat="server" text="<%$ Resources:Resource, Title %>"></asp:label>
                     </label>
-                    <div class="col-sm-11">
+                    <div class="col-sm-10">
                         <asp:textbox id="TextBoxTitle" runat="server" cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
                     </div>
                 </div>
@@ -73,7 +74,7 @@
                             <label class="col-sm-1 control-label">
                                 <asp:label id="Label6" runat="server" text="<%$ Resources:Resource, Author %>"></asp:label>
                             </label>
-                            <div class="col-sm-11">
+                            <div class="col-sm-10">
                                 <asp:textbox id="TextBoxAuthor" runat="server" cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
                             </div>
                         </div>
@@ -84,7 +85,7 @@
                     <label class="col-sm-1 control-label">
                         <asp:label id="Label7" runat="server" text="<%$ Resources:Resource, Pubdate %>"></asp:label>
                     </label>
-                    <div class="col-sm-11">
+                    <div class="col-sm-10">
                         <asp:textbox id="TextBoxPubdate" runat="server" cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
                     </div>
                 </div>
@@ -95,7 +96,7 @@
                     <label class="col-sm-1 control-label">
                         <asp:label id="Label8" runat="server" text="<%$ Resources:Resource, Price %>"></asp:label>
                     </label>
-                    <div class="col-sm-11">
+                    <div class="col-sm-10">
                         <asp:textbox id="TextBoxPrice" runat="server" cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
                     </div>
                 </div>
@@ -106,7 +107,7 @@
                     <label class="col-sm-1 control-label">
                         <asp:label id="Label9" runat="server" text="<%$ Resources:Resource, ISBN13 %>"></asp:label>
                     </label>
-                    <div class="col-sm-11">
+                    <div class="col-sm-10">
                         <asp:textbox id="TextBoxISBN13" runat="server" cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
                     </div>
                 </div>
@@ -117,7 +118,7 @@
                     <label class="col-sm-1 control-label">
                         <asp:label id="Label10" runat="server" text="<%$ Resources:Resource, ISBN10 %>"></asp:label>
                     </label>
-                    <div class="col-sm-11">
+                    <div class="col-sm-10">
                         <asp:textbox id="TextBoxISBN10" runat="server" cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
                     </div>
                 </div>
@@ -128,7 +129,7 @@
                     <label class="col-sm-1 control-label">
                         <asp:label id="Label11" runat="server" text="<%$ Resources:Resource, Pages %>"></asp:label>
                     </label>
-                    <div class="col-sm-11">
+                    <div class="col-sm-10">
                         <asp:textbox id="TextBoxPages" runat="server" cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
                     </div>
                 </div>
@@ -139,7 +140,7 @@
                     <label class="col-sm-1 control-label">
                         <asp:label id="Label12" runat="server" text="<%$ Resources:Resource, Publisher %>"></asp:label>
                     </label>
-                    <div class="col-sm-11">
+                    <div class="col-sm-10">
                         <asp:textbox id="TextBoxPublisher" runat="server" cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
                     </div>
                 </div>
@@ -161,7 +162,7 @@
                     <label class="col-sm-1 control-label">
                         <asp:label id="Label4" runat="server" text="<%$ Resources:Resource, Quantity %>"></asp:label>
                     </label>
-                    <div class="col-sm-11">
+                    <div class="col-sm-10">
                         <asp:textbox id="TextBoxQuantity" runat="server" cssclass="form-control" onkeypress="return doClick(event);"></asp:textbox>
                     </div>
                 </div>

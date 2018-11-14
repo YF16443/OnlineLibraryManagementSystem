@@ -12,7 +12,7 @@
                                     <div class="content">
 	                                    <fieldset>
 	                                        <div class="form-group">
-	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource,StackId %>"></asp:Label>
+	                                            <label class="col-sm-1 control-label"><asp:Label ID="Label2" runat="server" Text="<%$ Resources:Resource,StackId %>"></asp:Label>
 	                                            </label>
                                                 <div class="col-sm-10">
                                                     <asp:Label ID="LabelStackId" runat="server" Text="LabelStackId" Cssclass="form-control"></asp:Label>
@@ -22,7 +22,7 @@
                                         &nbsp
 	                                    <fieldset>
 	                                        <div class="form-group">
-	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource,Position %>"></asp:Label></label>
+	                                            <label class="col-sm-1 control-label"><asp:Label ID="Label5" runat="server" Text="<%$ Resources:Resource,Position %>"></asp:Label></label>
 	                                            <div class="col-sm-10">
                                                     <asp:Label ID="LabelPosition" runat="server" Text="LabelPosition" Cssclass="form-control"></asp:Label>
 	                                            </div>
@@ -31,7 +31,7 @@
                                         &nbsp
                                          <fieldset>
 	                                        <div class="form-group">
-	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Stack_Summary %>"></asp:Label></asp:Label></label>
+	                                            <label class="col-sm-1 control-label"><asp:Label ID="Label3" runat="server" Text="<%$ Resources:Resource, Stack_Summary %>"></asp:Label></asp:Label></label>
 	                                            <div class="col-sm-10">
                                                     <asp:Label ID="LabelSummary" runat="server" Text="LabelSummary" Cssclass="form-control"></asp:Label>
 	                                            </div>
@@ -40,7 +40,7 @@
                                         &nbsp
                                          <fieldset>
 	                                        <div class="form-group">
-	                                            <label Class="col-sm-2 control-label"><asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Stack_Timestamp %>"></asp:Label></label>
+	                                            <label Class="col-sm-1 control-label"><asp:Label ID="Label4" runat="server" Text="<%$ Resources:Resource, Stack_Timestamp %>"></asp:Label></label>
 	                                            <div class="col-sm-10">
 	                                                <asp:Label ID="LabelStack_Timestamp" runat="server" Text="LabelStack_Timestamp" Cssclass="form-control"></asp:Label>
 	                                            </div>

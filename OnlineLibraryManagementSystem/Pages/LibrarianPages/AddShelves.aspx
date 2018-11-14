@@ -17,7 +17,7 @@
                                     <div class="content">
 	                                    <fieldset>
 	                                        <div class="form-group">
-	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource,StackId %>"></asp:Label>
+	                                            <label class="col-sm-1 control-label"><asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource,StackId %>"></asp:Label>
 	                                            </label>
                                                 <div class="col-sm-2">
                                                      <asp:DropDownList ID="DropDownList1" runat="server" CssClass="selectpicker" data-style="btn btn-primary btn-round">
@@ -28,7 +28,7 @@
                                         &nbsp
                                          <fieldset>
 	                                        <div class="form-group">
-	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource, Shelf_Summary %>"></asp:Label></asp:Label></label>
+	                                            <label class="col-sm-1 control-label"><asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource, Shelf_Summary %>"></asp:Label></asp:Label></label>
 	                                            <div class="col-sm-10">
                                                     <asp:TextBox ID="TextBoxShelf_Summary" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
 	                                            </div>

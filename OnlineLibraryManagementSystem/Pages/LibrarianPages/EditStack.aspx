@@ -15,7 +15,7 @@
                                     <div class="content">
 	                                    <fieldset>
 	                                        <div class="form-group">
-	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource,StackId %>"></asp:Label>
+	                                            <label class="col-sm-1 control-label"><asp:Label ID="Label7" runat="server" Text="<%$ Resources:Resource,StackId %>"></asp:Label>
 	                                            </label>
                                                 <div class="col-sm-10">
                                                     <asp:TextBox ID="TextBoxStackId" runat="server" CssClass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
@@ -25,7 +25,7 @@
                                         &nbsp
 	                                    <fieldset>
 	                                        <div class="form-group">
-	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label8" runat="server" Text="<%$ Resources:Resource,Position %>"></asp:Label></label>
+	                                            <label class="col-sm-1 control-label"><asp:Label ID="Label8" runat="server" Text="<%$ Resources:Resource,Position %>"></asp:Label></label>
 	                                            <div class="col-sm-10">
                                                     <asp:TextBox ID="TextBoxPosition" runat="server" Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
 	                                            </div>
@@ -34,7 +34,7 @@
                                         &nbsp
                                          <fieldset>
 	                                        <div class="form-group">
-	                                            <label class="col-sm-2 control-label"><asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource, Stack_Summary %>"></asp:Label></asp:Label></label>
+	                                            <label class="col-sm-1 control-label"><asp:Label ID="Label9" runat="server" Text="<%$ Resources:Resource, Stack_Summary %>"></asp:Label></asp:Label></label>
 	                                            <div class="col-sm-10">
                                                     <asp:TextBox ID="TextBoxSummary" runat="server"  Cssclass="form-control" onkeypress="return doClick(event);"></asp:TextBox>
 	                                            </div>
@@ -43,7 +43,7 @@
                                         &nbsp
                                          <fieldset>
 	                                        <div class="form-group">
-	                                            <label Class="col-sm-2 control-label"><asp:Label ID="Label10" runat="server" Text="<%$ Resources:Resource, Stack_Timestamp %>"></asp:Label></label>
+	                                            <label Class="col-sm-1 control-label"><asp:Label ID="Label10" runat="server" Text="<%$ Resources:Resource, Stack_Timestamp %>"></asp:Label></label>
 	                                            <div class="col-sm-10">
 	                                                <asp:Label ID="LabelStack_Timestamp" runat="server" Text="LabelStack_Timestamp" Cssclass="form-control" onkeypress="return doClick(event);"></asp:Label>
 	                                            </div>

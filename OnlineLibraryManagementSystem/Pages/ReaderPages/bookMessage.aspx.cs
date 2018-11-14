@@ -286,10 +286,10 @@ public partial class Pages_bookMessage : BasePage
         foreach (GridViewRow row in GridView1.Rows)
         {
             Button btreserve = (Button)row.FindControl("ButtonReserve");
-            btreserve.Visible = false;
+            btreserve.Enabled = false;
             if (row.Cells[3].Text== "在馆无预约"||row.Cells[3].Text== "No Reservation")
             {
-                btreserve.Visible = true;
+                btreserve.Enabled = true;
             }
         }
         sqlcon.Close();
