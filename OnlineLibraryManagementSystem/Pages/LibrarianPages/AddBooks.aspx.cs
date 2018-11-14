@@ -258,7 +258,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
             else
             {
                 //插入书
-                string insertBook_diy = "insert into Books(ISBN13,ISBN10,ImageURL,Title,Author,Publisher,PubDate,Pages,Price,Amount) " + "values('"+isbn13+"','"+isbn10+"','" + imagesave + "','" + title + "','" + author + "','" + publisher + "','" + pubdate + "','" + pages + "','" + price + "','" + quantity + "')";
+                string insertBook_diy = "insert into Books(ISBN13,ISBN10,ImageURL,Title,Author,Publisher,PubDate,Pages,Price,Amount) " + "values('"+isbn13+"','"+isbn10+"','" + addslashes(imagesave) + "','" + addslashes(title) + "','" + addslashes(author) + "','" + addslashes(publisher) + "','" + pubdate + "','" + pages + "','" + price + "','" + quantity + "')";
                 MySqlCommand cmdinsertBook_diy = new MySqlCommand(insertBook_diy, OLMSDBConnection);
                 int resultinsertbook = cmdinsertBook_diy.ExecuteNonQuery();
                 //向barcode表中插入数据，先找到bookid
@@ -583,7 +583,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
             if (BookInfoQuery.GetByISBN(isbn) == null)
             {
                 //当api无法获取时插入输入的内容
-                string insertbook_diy = "insert Books(ISBN13,ISBN10,ImageURL,Title,Author,Publisher,Pubdate,Pages,Price,Amount) Values('" + isbn13 + "','" + isbn10 + "','" + ImageURLSave + "','" + title + "','" + author + "','" + publisher + "','"+pubdate+"','" + pages + "','" + price + "','" + quantity + "');";
+                string insertbook_diy = "insert Books(ISBN13,ISBN10,ImageURL,Title,Author,Publisher,Pubdate,Pages,Price,Amount) Values('" + isbn13 + "','" + isbn10 + "','" + addslashes(ImageURLSave) + "','" + addslashes(title) + "','" + addslashes(author) + "','" + addslashes(publisher) + "','"+pubdate+"','" + pages + "','" + price + "','" + quantity + "');";
                 MySqlCommand cmdinsertbook_diy = new MySqlCommand(insertbook_diy, OLMSDBConnection);
                 resultinsertbook = cmdinsertbook_diy.ExecuteNonQuery();
 
@@ -634,7 +634,7 @@ public partial class Pages_Addbooks_ISBN : BasePage
                 //将关键字转为关键字id存入，以逗号隔开即为categories，读取时需转换
                 string categoryid = string.Join(",", tagsid.ToArray());
                 //插入书
-                string insertBook_api = "insert into Books(ISBN13,ISBN10,ImageURL,Title,SubTitle,OriginTitle,Author,Translator,Publisher,PubDate,Category,Binding,Pages,Price,Summary,AuthorIntro,Catalog,Amount) " + "values('" + isbn13 + "','" + isbn10 + "','" + ImageURLSave + "','" + addslashes(title) + "','" + addslashes(book.subtitle) + "','" + addslashes(book.origin_title) + "','" + addslashes(author) + "','" + addslashes(translator) + "','" + addslashes(publisher) + "','" + pubdate + "','" + categoryid + "','" + addslashes(book.binding) + "','" + pages + "','" + price + "','" + addslashes(book.summary) + "','" + addslashes(book.author_intro) + "','" + addslashes(book.catalog) + "','" + quantity + "')";
+                string insertBook_api = "insert into Books(ISBN13,ISBN10,ImageURL,Title,SubTitle,OriginTitle,Author,Translator,Publisher,PubDate,Category,Binding,Pages,Price,Summary,AuthorIntro,Catalog,Amount) " + "values('" + isbn13 + "','" + isbn10 + "','" + addslashes(ImageURLSave)+ "','" + addslashes(title) + "','" + addslashes(book.subtitle) + "','" + addslashes(book.origin_title) + "','" + addslashes(author) + "','" + addslashes(translator) + "','" + addslashes(publisher) + "','" + pubdate + "','" + categoryid + "','" + addslashes(book.binding) + "','" + pages + "','" + price + "','" + addslashes(book.summary) + "','" + addslashes(book.author_intro) + "','" + addslashes(book.catalog) + "','" + quantity + "')";
                 MySqlCommand cmdinsertBook_api = new MySqlCommand(insertBook_api, OLMSDBConnection);
                 resultinsertbook = cmdinsertBook_api.ExecuteNonQuery();
             }
