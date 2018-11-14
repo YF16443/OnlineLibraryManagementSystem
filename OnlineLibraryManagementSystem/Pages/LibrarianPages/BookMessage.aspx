@@ -115,6 +115,26 @@
     </div>
     <div class="card">
    <div class="content">
+       <div class="material-datatables">
+        <asp:GridView ID="Category" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-no-bordered table-hover" OnRowEditing="Category_RowEditing"  OnRowUpdating="Category_RowUpdating" style="width:100%;cellspacing:0" OnRowCancelingEdit="Category_RowCancelingEdit" OnRowDeleting="Category_RowDeleting" OnPageIndexChanging="Category_PageIndexChanging">
+            <Columns>
+                <asp:TemplateField HeaderText="<%$ Resources:Resource, CategoryId %>" HeaderStyle-CssClass="text-primary">
+                    <ItemTemplate>
+                        <asp:Label ID="lblId" runat="server" Text='<%# Eval("CategoryId") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="<%$ Resources:Resource, CategoryName %>" HeaderStyle-CssClass="text-primary">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txtName" runat="server" Text='<%# Eval("Name") %>' onkeypress="doClick(event)"></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="lblName" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:CommandField ShowEditButton="true"  CausesValidation="false" />
+                <asp:CommandField ShowDeleteButton="true" />
+            </Columns>
+        </asp:gridview>
     <div class="material-datatables">
         <asp:GridView ID="gvBookBarcodeResult" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-no-bordered table-hover" OnRowEditing="gvBookBarcodeResult_RowEditing"  OnRowUpdating="gvBookBarcodeResult_RowUpdating" style="width:100%;cellspacing:0" OnRowCancelingEdit="gvBookBarcodeResult_RowCancelingEdit" OnRowDeleting="gvBookBarcodeResult_RowDeleting" OnPageIndexChanging="gvBookBarcodeResult_PageIndexChanging">
             <Columns>

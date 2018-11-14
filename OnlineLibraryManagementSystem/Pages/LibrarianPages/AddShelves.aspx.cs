@@ -58,7 +58,7 @@ public partial class Pages_AddShelves : BasePage
         //检查同ID书库是否存在
         string selectStack = "select count(*) as num2 from Stacks where StackId='" + stackid + "';";
         //创建书架
-        string insertShelve = "insert into Shelves(StackId,Summary) " + "values('"  + stackid + "','" + shelf_summary  + "');";
+       // string insertShelve = "insert into Shelves(StackId,Summary) " + "values('"  + stackid + "','" + shelf_summary  + "');";
         string selectShelveid = "select max(ShelfId) from Shelves";
         try
         {
@@ -79,7 +79,13 @@ public partial class Pages_AddShelves : BasePage
                 }
             }
             reader1.Close();
-            MySqlCommand cmdinsert = new MySqlCommand(insertShelve, OLMSDBConnection);
+            MySqlCommand cmdinsert = OLMSDBConnection.CreateCommand();
+            cmdinsert.CommandText= "insert into Shelves(StackId,Summary) values(@stackid,@summary);";
+            MySqlParameter myparaters;
+            myparaters = new MySqlParameter("@stackid", stackid);
+            cmdinsert.Parameters.Add(myparaters);
+            myparaters = new MySqlParameter("@summary", shelf_summary);
+            cmdinsert.Parameters.Add(myparaters);
             int result = 0;
             result = cmdinsert.ExecuteNonQuery();
             MySqlCommand cmdselect = new MySqlCommand(selectShelveid, OLMSDBConnection);

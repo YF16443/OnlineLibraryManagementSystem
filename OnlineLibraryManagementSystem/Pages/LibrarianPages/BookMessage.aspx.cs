@@ -18,7 +18,6 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         DataListbookbarcode.Enabled = false;
         DataListbookbarcode.DataSource = null;
         DataListbookbarcode.DataBind();
-        string categoryid = "";
         if (!this.IsPostBack)
         {
             string bookId = Request["book_id"];
@@ -43,41 +42,14 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
                         TextBoxisbn13.Text = reader["ISBN13"].ToString();
                         TextBoxisbn10.Text = reader["ISBN10"].ToString();
                         TextBoxpages.Text = reader["Pages"].ToString();
-                        TextBoxpublisher.Text = reader["Publisher"].ToString();
-                        if (reader["Category"].ToString() == "")
-                        {
-                            TextBoxCategory.Text = "";
-                        }
-                        else
-                        {
-                            categoryid = reader["Category"].ToString();
-                        }
-                        break;
+                        TextBoxpublisher.Text = reader["Publisher"].ToString();            
                     }
                 }
 
                 reader.Close();
 
 
-                if (categoryid != "")
-                {
-                    string[] categoryid_array = categoryid.Split(',');
-                    string category = "";
-                    List<string> categorytotalinfo = new List<string>();
-                    foreach (string id in categoryid_array)
-                    {
-                        string selectcategory = "select Name from BookCategories where CategoryId='" + id + "';";
-                        MySqlCommand cmdselect = new MySqlCommand(selectcategory, OLMSDBConnection);
-                        MySqlDataReader readerinfo = cmdselect.ExecuteReader();
-                        if (readerinfo.Read())
-                        {
-                            categorytotalinfo.Add(readerinfo["Name"].ToString());
-                        }
-                        readerinfo.Close();
-                    }
-                    category = string.Join(",", categorytotalinfo.ToArray());
-                    TextBoxCategory.Text = category;
-                }
+               
 
 
                     ////////////////////////////////////////////////图书位置信息/////////////////////////////////////////
@@ -119,6 +91,8 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
 
                 ////////////////////////////////////////////////Barcode表/////////////////////////////////////////
                 BindDataTogvResult();
+                Bindtocategory();
+               
 
             }
             catch (MySqlException ex)
@@ -132,8 +106,196 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         }
     }
 
+    protected void Bindtocategory()
+    {
+        string bookid = Request["book_id"];
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+        string category_string = "";
+        string[] category_array = { };
+        try
+        {
+            OLMSDBConnection.Open();
+            string selectcategorystring = "select Category from Books where BookId='" + bookid + "';";
+            MySqlCommand cmdselectcategorystring = new MySqlCommand(selectcategorystring, OLMSDBConnection);
+            MySqlDataReader reader_string = cmdselectcategorystring.ExecuteReader();
+            if (reader_string.Read())
+            {
+                category_string = reader_string["Category"].ToString();
+            }
+            reader_string.Close();
+            if (category_string != "")
+            {
+                category_array = category_string.Split(',');
+            }
+            else
+            {
+                Category.Enabled = false;
+                Category.DataSource = null;
+                Category.DataBind();
+            }
+            DataTable dt = new DataTable();
+            dt.Columns.Add("CategoryId");
+            dt.Columns.Add("Name");
+            List<string> categorytotalinfo = new List<string>();
+            foreach (string id in category_array)
+            {
+                string selectname = "Select * from BookCategories where CategoryId='" + id + "';";
+                MySqlCommand cmdselecname = new MySqlCommand(selectname, OLMSDBConnection);
+                MySqlDataReader readername = cmdselecname.ExecuteReader();
+                if (readername.Read())
+                {
+                    DataRow dr = dt.NewRow();
+                    dr["CategoryId"] = readername["CategoryId"].ToString();
+                    dr["Name"] = readername["Name"].ToString();
+                    categorytotalinfo.Add(readername["name"].ToString());
+                    dt.Rows.Add(dr);
+                }
+                readername.Close();
+            }
+            TextBoxCategory.Text = string.Join(",",categorytotalinfo.ToArray());
+            Category.Enabled = true;
+            Category.DataKeyNames=new string[] { "CategoryId" };
+            Category.DataSource = dt;
+            Category.DataBind();
+            if (gvBookBarcodeResult.HeaderRow != null)
+            {
+                gvBookBarcodeResult.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+
+        }
+        catch (MySqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            OLMSDBConnection.Close();
+        }
+    }
+    protected void Category_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        Category.EditIndex = e.NewEditIndex;
+        Bindtocategory();
+    }
+    protected void Category_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        Category.EditIndex = -1;
+        Bindtocategory();
+    }
+    protected void Category_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        Category.PageIndex = e.NewPageIndex;
+        Bindtocategory();
+    }
+
+    protected void Category_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+        string bookid = Request["book_id"];
+        int updateflag = 1;//1--更新，0--不更新
+            OLMSDBConnection.Open();
+            string categoryid = Category.DataKeys[e.RowIndex].Values[0].ToString();
+            string newname = ((TextBox)Category.Rows[e.RowIndex].FindControl("txtName")).Text;
+            if (newname.Trim() == "")
+            {
+                ClientScript.RegisterStartupScript(GetType(), "", "window.alert('Name can not be none!');", true);
+                Bindtocategory();
+                return;
+            }
+            string selectnewname = "select count(*) as num from BookCategories where Name='" + newname + "';";
+            MySqlCommand cmdselectnewname = OLMSDBConnection.CreateCommand();
+            cmdselectnewname.CommandText = "select count(*) as num from BookCategories where Name=@a";
+            MySqlParameter myarameter;
+            myarameter= new MySqlParameter("@a", newname);
+            cmdselectnewname.Parameters.Add(myarameter);
+            MySqlDataReader readernum = cmdselectnewname.ExecuteReader();
+            while (readernum.Read())
+            {
+                if (readernum.HasRows)
+                {
+                    Int64 count = (Int64)readernum["num"];
+                    if (count > 0)
+                    {
+                        updateflag = 0;
+                        ClientScript.RegisterStartupScript(GetType(), "", "window.alert('This category has existed!');", true);
+                        Bindtocategory();
+                        return;
+                    }
+                    break;
+                }
+            }
+            readernum.Close();
+            if (updateflag != 0)
+            {
+                MySqlCommand cmdupdate = OLMSDBConnection.CreateCommand();
+                cmdupdate.CommandText = "update BookCategories set Name=@name where CategoryId=@id";
+                MySqlParameter updateparameter;
+                updateparameter = new MySqlParameter("@name", newname);
+                cmdupdate.Parameters.Add(updateparameter);
+                updateparameter = new MySqlParameter("@id", categoryid);
+                cmdupdate.Parameters.Add(updateparameter);
+                int resultupdate = cmdupdate.ExecuteNonQuery();
+                if (resultupdate != 0)
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditSuccess + "');", true);
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.EditFail + "');", true);
+                }
+                Category.EditIndex = -1;
+                Bindtocategory();
+                }
 
 
+    }
+    protected void Category_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+        string bookid = Request["book_id"];
+        string categoryid = Category.DataKeys[e.RowIndex].Values[0].ToString();
+        string category_string = "";
+        string[] category_array = { };
+        OLMSDBConnection.Open();
+        string selectcategorystring = "select Category from Books where BookId='" + bookid + "';";
+        MySqlCommand cmdselectcategorystring = new MySqlCommand(selectcategorystring, OLMSDBConnection);
+        MySqlDataReader reader_string = cmdselectcategorystring.ExecuteReader();
+        if (reader_string.Read())
+        {
+            category_string = reader_string["Category"].ToString();
+        }
+        reader_string.Close();
+        category_array = category_string.Split(',');
+        List<string> category_list = new List<string>();
+        foreach (string id in category_array)
+        {
+            category_list.Add(id);
+        }
+        string delete = "delete from BookCategories where CategoryId='" + categoryid + "';";
+        MySqlCommand cmddelete = new MySqlCommand(delete, OLMSDBConnection);
+        int resultdelet = cmddelete.ExecuteNonQuery();
+        category_list.Remove(categoryid);
+        string updatebook = "update Books set Category='" + string.Join(",", category_list.ToArray()) + "' where BookId='" + bookid + "';" ;
+        MySqlCommand cmdupdate = new MySqlCommand(updatebook, OLMSDBConnection);
+        int resultupdate = cmdupdate.ExecuteNonQuery();
+        OLMSDBConnection.Close();
+        if (resultdelet != 0 && resultupdate != 0)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('Deleted Successful!');", true);
+            Bindtocategory();
+            return;
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('Faid!');", true);
+            //Response.Redirect()
+            return;
+        }
+
+    }
     protected void Alter_Click(object sender, EventArgs e)
     {
         string bookId = Request["book_id"];
@@ -152,7 +314,6 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
         string pagesparttern = "^[1-9]\\d*$";
         string isbn13parttern = "^[0-9A-Z]{13}$";
         string isbn10parttern = "^[0-9A-Z]{10}$";
-        string newcategory = "";
         if (TextBoxtitle.Text.Trim() != "")
         {
             newtitle = TextBoxtitle.Text.Trim();
@@ -277,8 +438,30 @@ public partial class Pages_LibrarianPages_BookMessage : BasePage
             MySqlCommand cmdinsertbookmanagement = new MySqlCommand(insertbookmanagement, OLMSDBConnection);
             result2 = cmdinsertbookmanagement.ExecuteNonQuery();
             //更新书本
-            string updatebook = "update Books set Title='" + newtitle + "',Author='" + newauthor + "',PubDate='" + newpubdate + "',Price='" + newprice + "',ISBN13='" + newisbn13 + "',ISBN10='" + newisbn10 + "',Pages='" + newpages + "',Publisher='" + newpublisher + "',ImageURL='" + Image1.ImageUrl +"' where BookId='" + bookId + "';";
-            MySqlCommand cmdupdatebook = new MySqlCommand(updatebook, OLMSDBConnection);
+            //string updatebook = "update Books set Title='" + newtitle + "',Author='" + newauthor + "',PubDate='" + newpubdate + "',Price='" + newprice + "',ISBN13='" + newisbn13 + "',ISBN10='" + newisbn10 + "',Pages='" + newpages + "',Publisher='" + newpublisher + "',ImageURL='" + Image1.ImageUrl +"' where BookId='" + bookId + "';";
+            MySqlCommand cmdupdatebook = OLMSDBConnection.CreateCommand();
+            cmdupdatebook.CommandText = "update Books set Title=@title,Author=@author,PubDate=@date,Price=@price,ISBN13=@i13,ISBN10=@i10,Pages=@pages,Publisher=@publisher,ImageURL=@url where BookId=@bookid";
+            MySqlParameter myupdateparameter;
+            myupdateparameter = new MySqlParameter("@title", newtitle);
+            cmdupdatebook.Parameters.Add(myupdateparameter);
+            myupdateparameter = new MySqlParameter("@author", newauthor);
+            cmdupdatebook.Parameters.Add(myupdateparameter);
+            myupdateparameter = new MySqlParameter("@date", newpubdate);
+            cmdupdatebook.Parameters.Add(myupdateparameter);
+            myupdateparameter = new MySqlParameter("@price", newprice);
+            cmdupdatebook.Parameters.Add(myupdateparameter);
+            myupdateparameter = new MySqlParameter("@i13", newisbn13);
+            cmdupdatebook.Parameters.Add(myupdateparameter);
+            myupdateparameter = new MySqlParameter("@i10", newisbn10);
+            cmdupdatebook.Parameters.Add(myupdateparameter);
+            myupdateparameter = new MySqlParameter("@pages", newpages);
+            cmdupdatebook.Parameters.Add(myupdateparameter);
+            myupdateparameter = new MySqlParameter("@publisher", newpublisher);
+            cmdupdatebook.Parameters.Add(myupdateparameter);
+            myupdateparameter = new MySqlParameter("@url", Image1.ImageUrl);
+            cmdupdatebook.Parameters.Add(myupdateparameter);
+            myupdateparameter = new MySqlParameter("@bookid", bookId);
+            cmdupdatebook.Parameters.Add(myupdateparameter);
             int result = 0;
             result = cmdupdatebook.ExecuteNonQuery();
             //string updateshelfid = "update BookBarcodes set ShelfId='" + newshelfid + "' where BookId='" + bookId + "';";
