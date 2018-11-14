@@ -15,6 +15,18 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
         if(!IsPostBack)
         {
             GridviewBind();
+            string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
+            MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+            string select = "select Title from Books";
+            OLMSDBConnection.Open();
+            MySqlCommand cmdselec = new MySqlCommand(select, OLMSDBConnection);
+            MySqlDataReader readertitle = cmdselec.ExecuteReader();
+            while (readertitle.Read())
+            {
+                DropDownList1.Items.Add(readertitle["Title"].ToString());
+            }
+            readertitle.Close();
+            OLMSDBConnection.Close();
         }
     }
     public void GridviewBind()
@@ -92,30 +104,97 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
 
     protected void Add_Click(object sender, EventArgs e)
     {
-        if(!rfvName.IsValid)
+        if (!rfvName.IsValid)
         {
             GridviewBind();
             return;
         }
         string name = newName.Text;
+        int flag = 0;//0表示已有该类别
+        string addid = "";
+        string[] categoryid = { };
+        int resultinsert = 0;
+        int resultupdate = 0;
         string OLMSDBConnectionString = ConfigurationManager.ConnectionStrings["OLMSDB"].ConnectionString;
-        MySqlConnection conn = new MySqlConnection(OLMSDBConnectionString);
-        conn.Open();
-        MySqlCommand cmd = conn.CreateCommand();
-        MySqlParameter param;
-        cmd.CommandText = "insert into BookCategories(Name) values(@n);";
-        param = new MySqlParameter("@n", name);
-        cmd.Parameters.Add(param);
-        int result = cmd.ExecuteNonQuery();
-        if (result == 1)
+        MySqlConnection OLMSDBConnection = new MySqlConnection(OLMSDBConnectionString);
+        try
         {
-            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.Successful + "');", true);
+            OLMSDBConnection.Open();
+            //先找有没有
+            string selecttags = "select count(*) as num,CategoryId from BookCategories where Name='" + name + "';";
+            MySqlCommand cmdselecttags = new MySqlCommand(selecttags, OLMSDBConnection);
+            MySqlDataReader readertags = cmdselecttags.ExecuteReader();
+            while (readertags.Read())
+            {
+                if (readertags.HasRows)
+                {
+                    Int64 count = (Int64)readertags["num"];
+                    if (count == 0)
+                    {
+                        flag = 1;//没有该类别
+                    }
+                    else
+                    {
+                       addid= readertags["CategoryId"].ToString();             
+                    }
+                }
+            }
+            readertags.Close();
+            //如果没有该类别插入类别表
+            if (flag == 1)
+            {
+                MySqlCommand cmd = OLMSDBConnection.CreateCommand();
+                MySqlParameter param;
+                cmd.CommandText = "insert into BookCategories(Name) values(@n);";
+                param = new MySqlParameter("@n", name);
+                cmd.Parameters.Add(param);
+                resultinsert = cmd.ExecuteNonQuery();
+                string selectid = "select CategoryId from BookCategories where Name='" + name + "';";
+                MySqlCommand cmdselecid = new MySqlCommand(selectid, OLMSDBConnection);
+                MySqlDataReader readerselectid = cmdselecid.ExecuteReader();
+                if (readerselectid.Read())
+                {
+                    addid = readerselectid["CategoryId"].ToString();
+                }
+                readerselectid.Close();
+            }
+            //书本category
+            string selectcategory = "select Category from Books where Title='" + DropDownList1.SelectedItem.Text.Replace("\'", "\\\'") + "';";
+            MySqlCommand cmdselect = new MySqlCommand(selectcategory, OLMSDBConnection);
+            MySqlDataReader readercategory = cmdselect.ExecuteReader();
+            if (readercategory.Read())
+            {
+                categoryid = readercategory["Category"].ToString().Split(',');
+            }
+            readercategory.Close();
+            List<string> categorylist = new List<string>(categoryid);
+
+            if (categorylist.Contains(addid) != true)
+            {
+                categorylist.Add(addid);
+                string updatebook="update Books set Category='"+string.Join(",",categorylist.ToArray())+"' where Title='"+ DropDownList1.SelectedItem.Text.Replace("\'", "\\\'") + "';";
+                MySqlCommand cmdupdatebook = new MySqlCommand(updatebook, OLMSDBConnection);
+                resultupdate = cmdupdatebook.ExecuteNonQuery();
+            }
+            if (resultupdate!=0)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.Successful + "');", true);
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(GetType(), "", "window.alert('Faild,Book contains this category!');", true);
+            }
+            Category.EditIndex = -1;
+            GridviewBind();
         }
-        else
+        catch (MySqlException ex)
         {
-            ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.Failure + "');", true);
+            Console.WriteLine(ex.Message);
         }
-        Category.EditIndex = -1;
-        GridviewBind();
+        finally
+        {
+            OLMSDBConnection.Close();
+        }
     }
+
 }
