@@ -20,6 +20,7 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
             string select = "select Title from Books";
             OLMSDBConnection.Open();
             MySqlCommand cmdselec = new MySqlCommand(select, OLMSDBConnection);
+            DropDownList1.Items.Add("Add");
             MySqlDataReader readertitle = cmdselec.ExecuteReader();
             while (readertitle.Read())
             {
@@ -194,34 +195,51 @@ public partial class Pages_LibrarianPages_CategoryManagement : BasePage
                 }
                 readerselectid.Close();
             }
-            //书本category
-            string selectcategory = "select Category from Books where Title='" + DropDownList1.SelectedItem.Text.Replace("\'", "\\\'") + "';";
-            MySqlCommand cmdselect = new MySqlCommand(selectcategory, OLMSDBConnection);
-            MySqlDataReader readercategory = cmdselect.ExecuteReader();
-            if (readercategory.Read())
+            if (DropDownList1.Text != "Add")
             {
-                categoryid = readercategory["Category"].ToString().Split(',');
-            }
-            readercategory.Close();
-            List<string> categorylist = new List<string>(categoryid);
+                //书本category
+                string selectcategory = "select Category from Books where Title='" + DropDownList1.SelectedItem.Text.Replace("\'", "\\\'") + "';";
+                MySqlCommand cmdselect = new MySqlCommand(selectcategory, OLMSDBConnection);
+                MySqlDataReader readercategory = cmdselect.ExecuteReader();
+                if (readercategory.Read())
+                {
+                    categoryid = readercategory["Category"].ToString().Split(',');
+                }
+                readercategory.Close();
+                List<string> categorylist = new List<string>(categoryid);
 
-            if (categorylist.Contains(addid) != true)
-            {
-                categorylist.Add(addid);
-                string updatebook="update Books set Category='"+string.Join(",",categorylist.ToArray())+"' where Title='"+ DropDownList1.SelectedItem.Text.Replace("\'", "\\\'") + "';";
-                MySqlCommand cmdupdatebook = new MySqlCommand(updatebook, OLMSDBConnection);
-                resultupdate = cmdupdatebook.ExecuteNonQuery();
+
+                if (categorylist.Contains(addid) != true)
+                {
+                    categorylist.Add(addid);
+                    string updatebook = "update Books set Category='" + string.Join(",", categorylist.ToArray()) + "' where Title='" + DropDownList1.SelectedItem.Text.Replace("\'", "\\\'") + "';";
+                    MySqlCommand cmdupdatebook = new MySqlCommand(updatebook, OLMSDBConnection);
+                    resultupdate = cmdupdatebook.ExecuteNonQuery();
+                }
+                if (resultupdate != 0)
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.Successful + "');", true);
+                    return;
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "", "window.alert('Faild,Book contains this category!');", true);
+                    return;
+                }
+                Category.EditIndex = -1;
+                GridviewBind();
             }
-            if (resultupdate!=0)
+            if (resultinsert != 0)
             {
                 ClientScript.RegisterStartupScript(GetType(), "", "window.alert('" + Resources.Resource.Successful + "');", true);
+                GridviewBind();
+                return;
             }
             else
             {
-                ClientScript.RegisterStartupScript(GetType(), "", "window.alert('Faild,Book contains this category!');", true);
+                ClientScript.RegisterStartupScript(GetType(), "", "window.alert('This category has existed!');", true);
+                return;
             }
-            Category.EditIndex = -1;
-            GridviewBind();
         }
         catch (MySqlException ex)
         {
